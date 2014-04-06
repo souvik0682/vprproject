@@ -1,0 +1,10 @@
+C:\Users\Souvik\Desktop\NVOCC\EMS.Common\bin\Debug\EMS.Common.dll
+C:\Users\Souvik\Desktop\NVOCC\EMS.Common\bin\Debug\EMS.Common.pdb
+C:\Users\Souvik\Desktop\NVOCC\EMS.Common\obj\Debug\EMS.Common.dll
+C:\Users\Souvik\Desktop\NVOCC\EMS.Common\obj\Debug\EMS.Common.pdb
+C:\Users\Souvik\Desktop\NVOCC\EMS.Common\obj\Debug\EMS.Common.csprojResolveAssemblyReference.cache
+C:\Users\Souvik\Desktop\VPR\VPR-Code\EMS.Common\bin\Debug\EMS.Common.dll
+C:\Users\Souvik\Desktop\VPR\VPR-Code\EMS.Common\bin\Debug\EMS.Common.pdb
+C:\Users\Souvik\Desktop\VPR\VPR-Code\EMS.Common\obj\Debug\EMS.Common.csprojResolveAssemblyReference.cache
+C:\Users\Souvik\Desktop\VPR\VPR-Code\EMS.Common\obj\Debug\EMS.Common.dll
+C:\Users\Souvik\Desktop\VPR\VPR-Code\EMS.Common\obj\Debug\EMS.Common.pdb

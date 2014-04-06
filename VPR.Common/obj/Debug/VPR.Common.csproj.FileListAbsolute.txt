@@ -1,0 +1,8 @@
+C:\Users\Souvik\Desktop\VPR\VPR-Code\EMS.Common\bin\Debug\VPR.Common.dll
+C:\Users\Souvik\Desktop\VPR\VPR-Code\EMS.Common\bin\Debug\VPR.Common.pdb
+C:\Users\Souvik\Desktop\VPR\VPR-Code\EMS.Common\obj\Debug\VPR.Common.dll
+C:\Users\Souvik\Desktop\VPR\VPR-Code\EMS.Common\obj\Debug\VPR.Common.pdb
+C:\Users\Souvik\Desktop\VPR\VPR-Code\VPR.Common\bin\Debug\VPR.Common.dll
+C:\Users\Souvik\Desktop\VPR\VPR-Code\VPR.Common\bin\Debug\VPR.Common.pdb
+C:\Users\Souvik\Desktop\VPR\VPR-Code\VPR.Common\obj\Debug\VPR.Common.dll
+C:\Users\Souvik\Desktop\VPR\VPR-Code\VPR.Common\obj\Debug\VPR.Common.pdb
