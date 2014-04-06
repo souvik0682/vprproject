@@ -1,0 +1,393 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{839F6581-EEE5-4BF9-B4EA-792DD344C3E9}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VPR.WebApp</RootNamespace>
+    <AssemblyName>VPR.WebApp</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
+    <ExcludeGeneratedDebugSymbol>false</ExcludeGeneratedDebugSymbol>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=3.0.30930.28736, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CustomControls\AC_CHA.ascx" />
+    <Content Include="CustomControls\DatePicker.ascx" />
+    <Content Include="Error.aspx" />
+    <Content Include="FileNotFound.aspx" />
+    <Content Include="Images\bg.jpg" />
+    <Content Include="Images\BLA-logo.bmp" />
+    <Content Include="Images\Close-Button.bmp" />
+    <Content Include="Images\edit.png" />
+    <Content Include="Images\edit_icon.png" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\logo_benline.jpg" />
+    <Content Include="Images\MUST_LOGO1.jpg" />
+    <Content Include="Images\MUST_LOGO2.jpg" />
+    <Content Include="Images\MUST_LOGO3.jpg" />
+    <Content Include="Images\MUST_PIC1.jpg" />
+    <Content Include="Images\PleaseWait.gif" />
+    <Content Include="Images\remove.png" />
+    <Content Include="Images\trash_icon.gif" />
+    <Content Include="Login.aspx" />
+    <Content Include="MasterModule\AddEditCountry.aspx" />
+    <Content Include="MasterModule\AddEditEmailGroup.aspx" />
+    <Content Include="MasterModule\AddEditPort.aspx" />
+    <Content Include="MasterModule\ManageEmailGroup.aspx" />
+    <Content Include="MasterModule\Image\Chrysanthemum.jpg" />
+    <Content Include="MasterModule\Image\Defaultlogo.png" />
+    <Content Include="MasterModule\Image\Hydrangeas.jpg" />
+    <Content Include="MasterModule\Image\Tulips.jpg" />
+    <Content Include="MasterModule\ManageCountry.aspx" />
+    <Content Include="MasterModule\ManagePort.aspx" />
+    <Content Include="MasterModule\vendor-add-edit.aspx" />
+    <Content Include="MasterModule\vendor-list.aspx" />
+    <Content Include="Scripts\Common.js" />
+    <Content Include="Scripts\css\ellipsis-xbl.xml" />
+    <Content Include="Scripts\css\images\ui-icons_222222_256x240.png" />
+    <Content Include="Scripts\css\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="Scripts\css\images\ui-icons_2694e8_256x240.png" />
+    <Content Include="Scripts\css\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Scripts\css\images\ui-icons_3d80b3_256x240.png" />
+    <Content Include="Scripts\css\images\ui-icons_72a7cf_256x240.png" />
+    <Content Include="Scripts\css\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Scripts\css\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Scripts\css\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Scripts\css\indicator.gif" />
+    <Content Include="Scripts\css\jquery-ui-1.8.14.custom.css" />
+    <Content Include="Scripts\css\jquery-ui-1.8.14.custom.min.js" />
+    <Content Include="Scripts\css\jquery-ui-1.8.20.custom.css" />
+    <Content Include="Scripts\css\jquery-ui.css" />
+    <Content Include="Scripts\css\jquery.autocomplete.css" />
+    <Content Include="Scripts\css\jquery.ui.dialog.css" />
+    <Content Include="Scripts\css\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Scripts\css\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Scripts\css\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Scripts\css\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Scripts\css\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Scripts\css\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Scripts\css\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Scripts\css\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Scripts\css\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Scripts\css\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Scripts\css\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Scripts\css\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Scripts\css\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Scripts\css\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Scripts\css\themes\base\jquery.ui.all.css" />
+    <Content Include="Scripts\css\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Scripts\css\themes\base\jquery.ui.base.css" />
+    <Content Include="Scripts\css\themes\base\jquery.ui.button.css" />
+    <Content Include="Scripts\css\themes\base\jquery.ui.core.css" />
+    <Content Include="Scripts\css\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Scripts\css\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Scripts\css\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Scripts\css\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Scripts\css\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Scripts\css\themes\base\jquery.ui.slider.css" />
+    <Content Include="Scripts\css\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Scripts\css\themes\base\jquery.ui.theme.css" />
+    <Content Include="Scripts\css\ui.jqgrid.css" />
+    <Content Include="Scripts\CustomTextBox.js" />
+    <Content Include="Scripts\jquery-1.6.2.js" />
+    <Content Include="Scripts\jquery-1.6.2.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.11.js" />
+    <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.14.custom.min.js" />
+    <Content Include="Styles\Site.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.4.1.js" />
+    <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Styles\VPR.css" />
+    <Content Include="Styles\StyleSheet.css" />
+    <Content Include="Styles\Ufal.png" />
+    <Content Include="Unauthorized.aspx" />
+    <Content Include="View\AddEditUser.aspx" />
+    <Content Include="View\ChangePassword.aspx" />
+    <Content Include="View\AddEditRole.aspx" />
+    <Content Include="View\Home.aspx" />
+    <Content Include="View\ManageRole.aspx" />
+    <Content Include="View\ManageUser.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Code\AutoComplete.cs" />
+    <Compile Include="Blank.Master.cs">
+      <DependentUpon>Blank.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Blank.Master.designer.cs">
+      <DependentUpon>Blank.Master</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\AC_CHA.ascx.cs">
+      <DependentUpon>AC_CHA.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomControls\AC_CHA.ascx.designer.cs">
+      <DependentUpon>AC_CHA.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\CustomTextBox.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CustomControls\DatePicker.ascx.cs">
+      <DependentUpon>DatePicker.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomControls\DatePicker.ascx.designer.cs">
+      <DependentUpon>DatePicker.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FileNotFound.aspx.cs">
+      <DependentUpon>FileNotFound.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FileNotFound.aspx.designer.cs">
+      <DependentUpon>FileNotFound.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterModule\AddEditCountry.aspx.cs">
+      <DependentUpon>AddEditCountry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterModule\AddEditCountry.aspx.designer.cs">
+      <DependentUpon>AddEditCountry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterModule\AddEditEmailGroup.aspx.cs">
+      <DependentUpon>AddEditEmailGroup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterModule\AddEditEmailGroup.aspx.designer.cs">
+      <DependentUpon>AddEditEmailGroup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterModule\AddEditPort.aspx.cs">
+      <DependentUpon>AddEditPort.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterModule\AddEditPort.aspx.designer.cs">
+      <DependentUpon>AddEditPort.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterModule\ManageEmailGroup.aspx.cs">
+      <DependentUpon>ManageEmailGroup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterModule\ManageEmailGroup.aspx.designer.cs">
+      <DependentUpon>ManageEmailGroup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterModule\ManageCountry.aspx.cs">
+      <DependentUpon>ManageCountry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterModule\ManageCountry.aspx.designer.cs">
+      <DependentUpon>ManageCountry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterModule\ManagePort.aspx.cs">
+      <DependentUpon>ManagePort.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterModule\ManagePort.aspx.designer.cs">
+      <DependentUpon>ManagePort.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterModule\vendor-add-edit.aspx.cs">
+      <DependentUpon>vendor-add-edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterModule\vendor-add-edit.aspx.designer.cs">
+      <DependentUpon>vendor-add-edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterModule\vendor-list.aspx.cs">
+      <DependentUpon>vendor-list.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterModule\vendor-list.aspx.designer.cs">
+      <DependentUpon>vendor-list.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Unauthorized.aspx.cs">
+      <DependentUpon>Unauthorized.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Unauthorized.aspx.designer.cs">
+      <DependentUpon>Unauthorized.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddEditUser.aspx.cs">
+      <DependentUpon>AddEditUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\AddEditUser.aspx.designer.cs">
+      <DependentUpon>AddEditUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddEditRole.aspx.cs">
+      <DependentUpon>AddEditRole.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\AddEditRole.aspx.designer.cs">
+      <DependentUpon>AddEditRole.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManageRole.aspx.cs">
+      <DependentUpon>ManageRole.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\ManageRole.aspx.designer.cs">
+      <DependentUpon>ManageRole.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManageUser.aspx.cs">
+      <DependentUpon>ManageUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\ManageUser.aspx.designer.cs">
+      <DependentUpon>ManageUser.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Blank.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VPR.BLL\VPR.BLL.csproj">
+      <Project>{07295C3E-C8A6-48F0-AC84-824D50F9DD5A}</Project>
+      <Name>VPR.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VPR.Common\VPR.Common.csproj">
+      <Project>{DEAA8F62-9F75-48A1-AD97-9FAE417E238F}</Project>
+      <Name>VPR.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VPR.Entity\VPR.Entity.csproj">
+      <Project>{8F7034CA-9283-4E9F-AF15-44D0CE2422FD}</Project>
+      <Name>VPR.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VPR.Utilities\VPR.Utilities.csproj">
+      <Project>{96CE34FB-822A-4470-8919-130E02839431}</Project>
+      <Name>VPR.Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Site.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\css\themes\base\images\Thumbs.db" />
+    <None Include="Scripts\jquery-ui-1.8.14.custom.min.js.Prev" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>36844</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
