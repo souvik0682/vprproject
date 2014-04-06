@@ -37,6 +37,7 @@ namespace VPR.WebApp.MasterModule
                 txtMailSendOn.Style["display"] = "none";
                 ddlDayOfMonth.Style["display"] = "none";
                 ddlDayOfWeek.Style["display"] = "none";
+                rfvMailSendOn.Visible = false;
                 lblMailSend.Text = "";
 
                 if (!ReferenceEquals(Request.QueryString["EmailGroupId"], null))
@@ -44,9 +45,15 @@ namespace VPR.WebApp.MasterModule
                     int GroupId = 0;
                     GroupId = GeneralFunctions.DecryptQueryString(Request.QueryString["EmailGroupId"].ToString()).ToInt();
 
-                    ViewState["EmailGroupId"] = GroupId;
-
-                    LoadForEdit(GroupId);
+                    if (GroupId > 0)
+                    {
+                        ViewState["EmailGroupId"] = GroupId;
+                        LoadForEdit(GroupId);
+                    }
+                    else
+                    {
+                        ViewState["EmailGroupId"] = null;
+                    }
                 }
                 else
                 {
@@ -105,6 +112,8 @@ namespace VPR.WebApp.MasterModule
                     emailGroup.EmailList = (List<IEmail>)ViewState["dynList2"];
 
                 new EmailBLL().SaveEmailGroup(emailGroup);
+
+                lblMessage.Text = "Email Group Saved Successfully";
             }
         }
 
@@ -441,10 +450,13 @@ namespace VPR.WebApp.MasterModule
             bool isValid = true;
             lblGroupName.Text = "";
 
-            if (new EmailBLL().IsEmailGroupExists(txtGroupName.Text.Trim()))
+            if (ReferenceEquals(ViewState["EmailGroupId"], null))
             {
-                isValid = false;
-                lblGroupName.Text = "Group Name not available!";
+                if (new EmailBLL().IsEmailGroupExists(txtGroupName.Text.Trim()))
+                {
+                    isValid = false;
+                    lblGroupName.Text = "Group Name not available!";
+                }
             }
 
             return isValid;
@@ -455,6 +467,7 @@ namespace VPR.WebApp.MasterModule
             IEmailGroup objGroup = new EmailBLL().GetEmailGroup(GroupId);
 
             txtGroupName.Text = objGroup.GroupName;
+            txtGroupName.Enabled = false;
 
             ddlCountry.SelectedValue = objGroup.CountryId.ToString();
             ddlCountry_SelectedIndexChanged(this, EventArgs.Empty);
