@@ -243,7 +243,7 @@
                             &nbsp;&nbsp;
                             <asp:Button ID="btnBack" runat="server" CssClass="button" Text="Back" OnClick="btnBack_Click" />
                             <br />
-                            <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
+                            <asp:Label ID="lblMessage" runat="server" ForeColor="Green"></asp:Label>
                         </td>
                     </tr>
                 </table>
