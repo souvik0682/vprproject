@@ -84,7 +84,7 @@
                                 </cc1:TabPanel>
                                 <cc1:TabPanel ID="tpImp" runat="server">
                                     <HeaderTemplate>
-                                        Import</HeaderTemplate>
+                                        VPR</HeaderTemplate>
                                     <ContentTemplate>
                                         <asp:GridView ID="gvwImp" runat="server" AutoGenerateColumns="false" AllowPaging="false"
                                             BorderStyle="None" BorderWidth="0" OnRowDataBound="gvwImp_RowDataBound" Width="100%">
@@ -141,124 +141,10 @@
                                 </cc1:TabPanel>
                                 <cc1:TabPanel ID="tpFin" runat="server">
                                     <HeaderTemplate>
-                                        Finance</HeaderTemplate>
+                                        PAS</HeaderTemplate>
                                     <ContentTemplate>
                                         <asp:GridView ID="gvwFin" runat="server" AutoGenerateColumns="false" AllowPaging="false"
                                             BorderStyle="None" BorderWidth="0" OnRowDataBound="gvwFin_RowDataBound" Width="100%">
-                                            <PagerSettings Mode="NumericFirstLast" Position="TopAndBottom" />
-                                            <PagerStyle CssClass="gridviewpager" />
-                                            <EmptyDataRowStyle CssClass="gridviewemptydatarow" />
-                                            <EmptyDataTemplate>
-                                                No Page(s) Found</EmptyDataTemplate>
-                                            <Columns>
-                                                <asp:TemplateField HeaderText="Sl#">
-                                                    <HeaderStyle CssClass="gridviewheader" />
-                                                    <ItemStyle CssClass="gridviewitem" Width="10%" />
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lblSlNo" runat="server"></asp:Label>
-                                                        <asp:HiddenField ID="hdnAccessId" runat="server" />
-                                                        <asp:HiddenField ID="hdnMenuId" runat="server" />
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Pages">
-                                                    <HeaderStyle CssClass="gridviewheader" />
-                                                    <ItemStyle CssClass="gridviewitem" Width="50%" />
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Add">
-                                                    <HeaderStyle CssClass="gridviewheader" />
-                                                    <ItemStyle CssClass="gridviewitem" Width="10%" HorizontalAlign="Center" VerticalAlign="Middle" />
-                                                    <ItemTemplate>
-                                                        <asp:CheckBox ID="chkAdd" runat="server" />
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Edit">
-                                                    <HeaderStyle CssClass="gridviewheader" />
-                                                    <ItemStyle CssClass="gridviewitem" Width="10%" HorizontalAlign="Center" VerticalAlign="Middle" />
-                                                    <ItemTemplate>
-                                                        <asp:CheckBox ID="chkEdit" runat="server" />
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Delete">
-                                                    <HeaderStyle CssClass="gridviewheader" />
-                                                    <ItemStyle CssClass="gridviewitem" Width="10%" HorizontalAlign="Center" VerticalAlign="Middle" />
-                                                    <ItemTemplate>
-                                                        <asp:CheckBox ID="chkDel" runat="server" />
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="View">
-                                                    <HeaderStyle CssClass="gridviewheader" />
-                                                    <ItemStyle CssClass="gridviewitem" Width="10%" HorizontalAlign="Center" VerticalAlign="Middle" />
-                                                    <ItemTemplate>
-                                                        <asp:CheckBox ID="chkView" runat="server" />
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                            </Columns>
-                                        </asp:GridView>
-                                    </ContentTemplate>
-                                </cc1:TabPanel>
-                                <cc1:TabPanel ID="tpLog" runat="server">
-                                    <HeaderTemplate>
-                                        Logistic</HeaderTemplate>
-                                    <ContentTemplate>
-                                        <asp:GridView ID="gvwLog" runat="server" AutoGenerateColumns="false" AllowPaging="false"
-                                            BorderStyle="None" BorderWidth="0" OnRowDataBound="gvwLog_RowDataBound" Width="100%">
-                                            <PagerSettings Mode="NumericFirstLast" Position="TopAndBottom" />
-                                            <PagerStyle CssClass="gridviewpager" />
-                                            <EmptyDataRowStyle CssClass="gridviewemptydatarow" />
-                                            <EmptyDataTemplate>
-                                                No Page(s) Found</EmptyDataTemplate>
-                                            <Columns>
-                                                <asp:TemplateField HeaderText="Sl#">
-                                                    <HeaderStyle CssClass="gridviewheader" />
-                                                    <ItemStyle CssClass="gridviewitem" Width="10%" />
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lblSlNo" runat="server"></asp:Label>
-                                                        <asp:HiddenField ID="hdnAccessId" runat="server" />
-                                                        <asp:HiddenField ID="hdnMenuId" runat="server" />
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Pages">
-                                                    <HeaderStyle CssClass="gridviewheader" />
-                                                    <ItemStyle CssClass="gridviewitem" Width="50%" />
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Add">
-                                                    <HeaderStyle CssClass="gridviewheader" />
-                                                    <ItemStyle CssClass="gridviewitem" Width="10%" HorizontalAlign="Center" VerticalAlign="Middle" />
-                                                    <ItemTemplate>
-                                                        <asp:CheckBox ID="chkAdd" runat="server" />
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Edit">
-                                                    <HeaderStyle CssClass="gridviewheader" />
-                                                    <ItemStyle CssClass="gridviewitem" Width="10%" HorizontalAlign="Center" VerticalAlign="Middle" />
-                                                    <ItemTemplate>
-                                                        <asp:CheckBox ID="chkEdit" runat="server" />
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Delete">
-                                                    <HeaderStyle CssClass="gridviewheader" />
-                                                    <ItemStyle CssClass="gridviewitem" Width="10%" HorizontalAlign="Center" VerticalAlign="Middle" />
-                                                    <ItemTemplate>
-                                                        <asp:CheckBox ID="chkDel" runat="server" />
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="View">
-                                                    <HeaderStyle CssClass="gridviewheader" />
-                                                    <ItemStyle CssClass="gridviewitem" Width="10%" HorizontalAlign="Center" VerticalAlign="Middle" />
-                                                    <ItemTemplate>
-                                                        <asp:CheckBox ID="chkView" runat="server" />
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                            </Columns>
-                                        </asp:GridView>
-                                    </ContentTemplate>
-                                </cc1:TabPanel>
-                                <cc1:TabPanel ID="tpExp" runat="server">
-                                    <HeaderTemplate>
-                                        Export</HeaderTemplate>
-                                    <ContentTemplate>
-                                        <asp:GridView ID="gvwExp" runat="server" AutoGenerateColumns="false" AllowPaging="false"
-                                            BorderStyle="None" BorderWidth="0" OnRowDataBound="gvwExp_RowDataBound" Width="100%">
                                             <PagerSettings Mode="NumericFirstLast" Position="TopAndBottom" />
                                             <PagerStyle CssClass="gridviewpager" />
                                             <EmptyDataRowStyle CssClass="gridviewemptydatarow" />
