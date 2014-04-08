@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="VPR.WebApp.Login" MasterPageFile="~/Blank.Master" Title=":: Liner :: Login" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="VPR.WebApp.Login" MasterPageFile="~/Blank.Master" Title=":: VPR :: Login" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style type="text/css">
