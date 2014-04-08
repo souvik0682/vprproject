@@ -234,6 +234,7 @@ namespace VPR.BLL
             SearchCriteria searchCriteria = new SearchCriteria();
             SetDefaultSearchCriteriaForLocation(searchCriteria);
             return CommonDAL.GetLocation('Y', searchCriteria);
+            //return CommonDAL.GetCountry();
         }
 
         public ILocation GetLocation(int locId)
