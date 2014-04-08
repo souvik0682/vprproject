@@ -123,7 +123,7 @@ namespace VPR.DAL
 
         public static List<ILocation> GetLocation(char isActiveOnly, SearchCriteria searchCriteria)
         {
-            string strExecution = "[common].[uspGetLocation]";
+            string strExecution = "[admin].[uspGetLocation]";
             List<ILocation> lstLoc = new List<ILocation>();
 
             using (DbQuery oDq = new DbQuery(strExecution))
