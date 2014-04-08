@@ -90,10 +90,22 @@ Inherits="VPR.WebApp.MasterModule.ManageCountry" %>
                                     <HeaderStyle CssClass="gridviewheader" />
                                     <ItemStyle CssClass="gridviewitem" Width="20%" />                                       
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Country Abbr" SortExpression="CountryAbbr">
+                                <asp:TemplateField HeaderText="Abbr" SortExpression="CountryAbbr">
                                     <HeaderStyle CssClass="gridviewheader" />
-                                    <ItemStyle CssClass="gridviewitem" Width="25%" />      
+                                    <ItemStyle CssClass="gridviewitem" Width="10%" />      
                                    <%-- <HeaderTemplate><asp:LinkButton ID="lnkHMan" runat="server" CommandName="Sort" CommandArgument="Manager" Text="Location Manager"></asp:LinkButton></HeaderTemplate>                                                                 --%>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="SMTP" SortExpression="SMTPPort" >
+                                    <HeaderStyle CssClass="gridviewheader" />
+                                    <ItemStyle CssClass="gridviewitem" Width="20%" />                                       
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="POP3" SortExpression="pop3Port" >
+                                    <HeaderStyle CssClass="gridviewheader" />
+                                    <ItemStyle CssClass="gridviewitem" Width="20%" />                                       
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Sender Mail" SortExpression="senderMailId" >
+                                    <HeaderStyle CssClass="gridviewheader" />
+                                    <ItemStyle CssClass="gridviewitem" Width="30%" />                                       
                                 </asp:TemplateField>
                                 <asp:TemplateField>
                                     <HeaderStyle CssClass="gridviewheader" />

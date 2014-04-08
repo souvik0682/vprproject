@@ -44,7 +44,46 @@
                     <td><asp:TextBox ID="txtSector" runat="server" CssClass="textboxuppercase" MaxLength="50" Width="250"></asp:TextBox><br />
                     </td>
                 </tr>
-              
+                <tr>
+                    <td>MailHost:</td>
+                    <td><asp:TextBox ID="txtMailHost" runat="server" CssClass="textboxuppercase" MaxLength="50" Width="250"></asp:TextBox><br />
+                    </td>
+                </tr>
+                 <tr>
+                    <td>User Name:</td>
+                    <td><asp:TextBox ID="txtUserName" runat="server" CssClass="textboxuppercase" MaxLength="50" Width="250"></asp:TextBox><br />
+                    </td>
+                </tr>
+                 <tr>
+                    <td>Password:</td>
+                    <td><asp:TextBox ID="txtPassword" runat="server" CssClass="textboxuppercase" MaxLength="50" Width="250"></asp:TextBox><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>SMTP:</td>
+                    <td><asp:TextBox ID="txtSMTP" runat="server" CssClass="textboxuppercase" MaxLength="50" Width="250"></asp:TextBox><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>POP3:</td>
+                    <td><asp:TextBox ID="txtPOP3" runat="server" CssClass="textboxuppercase" MaxLength="50" Width="250"></asp:TextBox><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Sender Name:</td>
+                    <td><asp:TextBox ID="txtSenderName" runat="server" CssClass="textboxuppercase" MaxLength="50" Width="250"></asp:TextBox><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Sender MailID:</td>
+                    <td><asp:TextBox ID="txtSenderMailID" runat="server" CssClass="textboxuppercase" MaxLength="50" Width="250"></asp:TextBox><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Reply To:</td>
+                    <td><asp:TextBox ID="txtReply" runat="server" CssClass="textboxuppercase" MaxLength="50" Width="250"></asp:TextBox><br />
+                    </td>
+                </tr>
                 <tr>
                     <td colspan="2">
                         <asp:Button ID="btnSave" runat="server" Text="Save" ValidationGroup="Save" OnClick="btnSave_Click" />&nbsp;&nbsp;<asp:Button 
