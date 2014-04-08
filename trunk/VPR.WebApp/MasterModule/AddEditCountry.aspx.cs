@@ -119,6 +119,14 @@ namespace VPR.WebApp.MasterModule
                 txtGMT.Text = ds.Tables[0].Rows[0]["GMT"].ToString();
                 txtISD.Text = ds.Tables[0].Rows[0]["ISDCode"].ToString();
                 txtSector.Text = ds.Tables[0].Rows[0]["Sector"].ToString();
+                txtMailHost.Text = ds.Tables[0].Rows[0]["mailhost"].ToString();
+                txtSMTP.Text = ds.Tables[0].Rows[0]["SMTPPort"].ToString();
+                txtPOP3.Text = ds.Tables[0].Rows[0]["pop3Port"].ToString();
+                txtSenderName.Text = ds.Tables[0].Rows[0]["senderName"].ToString();
+                txtSenderMailID.Text = ds.Tables[0].Rows[0]["senderMailId"].ToString();
+                txtReply.Text = ds.Tables[0].Rows[0]["replyTo"].ToString();
+                txtUserName.Text = ds.Tables[0].Rows[0]["username"].ToString();
+                txtPassword.Text = ds.Tables[0].Rows[0]["password"].ToString();
             }
         }
         private void ClearText()
@@ -137,7 +145,8 @@ namespace VPR.WebApp.MasterModule
                 return;
             }
             int result = dbinteract.AddEditCountry(_userId, Convert.ToInt32(countryId), txtCountryName.Text.Trim().ToUpper(), txtAbbr.Text.Trim().ToUpper(),
-                                                    txtGMT.Text.ToUpper(),txtISD.Text.ToUpper(),txtSector.Text.ToUpper(),     isedit);
+                                                    txtGMT.Text.ToUpper(),txtISD.Text.ToUpper(),txtSector.Text.ToUpper(), isedit, txtMailHost.Text, txtUserName.Text,
+                                                    txtPassword.Text, txtSMTP.Text, txtPOP3.Text, txtSenderName.Text, txtSenderMailID.Text, txtReply.Text);
 
 
             if (result > 0)
