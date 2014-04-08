@@ -133,7 +133,8 @@ namespace VPR.BLL
 
         }
 
-        public int AddEditCountry(int userID, int pk_CountryID, string CountryName, string CountryAbbr,string GMT,string ISD,string Sector, bool isEdit)
+        public int AddEditCountry(int userID, int pk_CountryID, string CountryName, string CountryAbbr,string GMT,string ISD,string Sector, bool isEdit,
+                                string mailhost, string userName, string password, string SMTPPort, string POP3Port, string SenderName, string SendMail, string Replyto)
         {
             string ProcName = "admin.prcAddEditCountry";
             DAL.DbManager.DbQuery dquery = new DAL.DbManager.DbQuery(ProcName);
@@ -145,7 +146,14 @@ namespace VPR.BLL
             dquery.AddVarcharParam("@ISD", 10, ISD);
             dquery.AddVarcharParam("@Sector", 50, Sector);
             dquery.AddBooleanParam("@isEdit", isEdit);
-
+            dquery.AddVarcharParam("@mailhost", 50, mailhost);
+            dquery.AddVarcharParam("@username", 50, userName);
+            dquery.AddVarcharParam("@password", 50, password);
+            dquery.AddVarcharParam("@SMTPPort", 50, SMTPPort);
+            dquery.AddVarcharParam("@POP3Port", 50, POP3Port);
+            dquery.AddVarcharParam("@SenderName", 50, SenderName);
+            dquery.AddVarcharParam("@SendMail", 50, SendMail);
+            dquery.AddVarcharParam("@ReplyTo", 50, Replyto);
             return dquery.RunActionQuery();
 
         }
