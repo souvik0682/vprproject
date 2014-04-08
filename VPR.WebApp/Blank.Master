@@ -18,7 +18,7 @@
                 <img alt="" src="<%=Page.ResolveClientUrl("~/Images/logo_benline.jpg") %>" height="55" />        
             </div>  
             <div class="productname" style="margin-top:10px;">
-                <center><span style="color:Red;font-weight:bold;font-size:16pt;">LINER APPLICATION</span></center>
+                <center><span style="color:Red;font-weight:bold;font-size:16pt;">VPR APPLICATION</span></center>
             </div>
             <div class="search">
                 <div style="text-align: right;">
@@ -37,7 +37,7 @@
         <div id="footer">
             <hr />
             <div class="copyright">Copyright 2012, <b>BLA</b>. All rights reserved.</div>
-            <div class="disclaimer">Powred By <a href="#" onclick="window.open('http://www.mycompany.com/','my_Window')"><b>Ganapati & Europia</b></a></div>
+            <div class="disclaimer">Powred By <a href="#" onclick="window.open('http://www.mycompany.com/','my_Window')"><b>Europia</b></a></div>
         </div>
     </div>
     </form>
