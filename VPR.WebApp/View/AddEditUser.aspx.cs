@@ -50,7 +50,7 @@ namespace VPR.WebApp.View
         protected void ddlRole_SelectedIndexChanged(object sender, EventArgs e)
         {
             ddlLoc.Enabled = false;
-            ddlMultiLoc.Enabled = false;
+            //ddlMultiLoc.Enabled = false;
 
             IRole role = new UserBLL().GetRole(Convert.ToInt32(ddlRole.SelectedValue));
 
@@ -59,7 +59,7 @@ namespace VPR.WebApp.View
                 if (role.LocationSpecific.HasValue && role.LocationSpecific.Value)
                 {
                     ddlLoc.Enabled = true;
-                    ddlMultiLoc.Enabled = true;
+                    //ddlMultiLoc.Enabled = true;
                 }
             }
         }
@@ -102,7 +102,7 @@ namespace VPR.WebApp.View
                 }
 
                 ddlLoc.Enabled = false;
-                ddlMultiLoc.Enabled = false;
+                //ddlMultiLoc.Enabled = false;
                 //rfvUserName.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00036");
                 //rfvFName.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00037");
                 //rfvLName.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00038");
@@ -218,10 +218,10 @@ namespace VPR.WebApp.View
                 ddlRole.SelectedValue = Convert.ToString(user.UserRole.Id);
                 ddlLoc.SelectedValue = Convert.ToString(user.UserLocation.Id);
 
-                if (user.AllowMutipleLocation)
-                    ddlMultiLoc.SelectedValue = "1";
-                else
-                    ddlMultiLoc.SelectedValue = "0";
+                //if (user.AllowMutipleLocation)
+                //    ddlMultiLoc.SelectedValue = "1";
+                //else
+                //    ddlMultiLoc.SelectedValue = "0";
 
                 if (user.IsActive)
                     chkActive.Checked = true;
@@ -340,10 +340,10 @@ namespace VPR.WebApp.View
                 }
             }
 
-            if (ddlMultiLoc.SelectedValue == "1")
-                user.AllowMutipleLocation = true;
-            else
-                user.AllowMutipleLocation = false;
+            //if (ddlMultiLoc.SelectedValue == "1")
+            //    user.AllowMutipleLocation = true;
+            //else
+            //    user.AllowMutipleLocation = false;
 
             if (chkActive.Checked)
                 user.IsActive = true;

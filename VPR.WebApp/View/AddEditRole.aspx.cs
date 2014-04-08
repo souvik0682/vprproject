@@ -74,21 +74,21 @@ namespace VPR.WebApp.View
             }
         }
 
-        protected void gvwLog_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                PopulateControlsForGridView(gvwLog, e.Row);
-            }
-        }
+        //protected void gvwLog_RowDataBound(object sender, GridViewRowEventArgs e)
+        //{
+        //    if (e.Row.RowType == DataControlRowType.DataRow)
+        //    {
+        //        PopulateControlsForGridView(gvwLog, e.Row);
+        //    }
+        //}
 
-        protected void gvwExp_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                PopulateControlsForGridView(gvwExp, e.Row);
-            }
-        }
+        //protected void gvwExp_RowDataBound(object sender, GridViewRowEventArgs e)
+        //{
+        //    if (e.Row.RowType == DataControlRowType.DataRow)
+        //    {
+        //        PopulateControlsForGridView(gvwExp, e.Row);
+        //    }
+        //}
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
@@ -216,11 +216,11 @@ namespace VPR.WebApp.View
             gvwFin.DataSource = userBll.GetMenuByRole(_roleId, (int)MainMenuItem.Finance);
             gvwFin.DataBind();
 
-            gvwLog.DataSource = userBll.GetMenuByRole(_roleId, (int)MainMenuItem.Logistic);
-            gvwLog.DataBind();
+            //gvwLog.DataSource = userBll.GetMenuByRole(_roleId, (int)MainMenuItem.Logistic);
+            //gvwLog.DataBind();
 
-            gvwExp.DataSource = userBll.GetMenuByRole(_roleId, (int)MainMenuItem.Export);
-            gvwExp.DataBind();
+            //gvwExp.DataSource = userBll.GetMenuByRole(_roleId, (int)MainMenuItem.Export);
+            //gvwExp.DataBind();
         }
 
         private void SaveRole()
@@ -280,8 +280,8 @@ namespace VPR.WebApp.View
             BuildRoleMenu(lstRoleMenu, gvwMst);
             BuildRoleMenu(lstRoleMenu, gvwImp);
             BuildRoleMenu(lstRoleMenu, gvwFin);
-            BuildRoleMenu(lstRoleMenu, gvwLog);
-            BuildRoleMenu(lstRoleMenu, gvwExp);
+            //BuildRoleMenu(lstRoleMenu, gvwLog);
+            //BuildRoleMenu(lstRoleMenu, gvwExp);
         }
 
         #endregion

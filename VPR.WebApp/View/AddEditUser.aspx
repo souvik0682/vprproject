@@ -57,7 +57,7 @@
                         <%--<asp:RequiredFieldValidator ID="rfvLoc" runat="server" CssClass="errormessage" ControlToValidate="ddlLoc" InitialValue="0" Display="Dynamic" ValidationGroup="Save"></asp:RequiredFieldValidator>--%>
                     </td>
                 </tr>
-                <tr>
+                <%--<tr>
                     <td>Allow Multiple Location:<span class="errormessage1">*</span></td>
                     <td>
                         <asp:DropDownList ID="ddlMultiLoc" runat="server">
@@ -65,7 +65,7 @@
                             <asp:ListItem Value="1" Text="Yes"></asp:ListItem>
                         </asp:DropDownList>
                     </td>
-                </tr>
+                </tr>--%>
                 <tr>
                     <td>Is Active?:</td>
                     <td><asp:CheckBox ID="chkActive" runat="server" /></td>
