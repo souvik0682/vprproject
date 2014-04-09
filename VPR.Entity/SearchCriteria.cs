@@ -152,6 +152,10 @@ namespace VPR.Entity
         public string EmailId { get; set; }
         public string Subject { get; set; }
 
+        // tapas
+        public string CargoGroup { get; set; }
+        public string CargoSubGroup { get; set; }
+
         #endregion
 
         #region Constructor
@@ -204,6 +208,10 @@ namespace VPR.Entity
             this.Country = string.Empty;
             this.EmailId = string.Empty;
             this.Subject = string.Empty;
+
+            // tapas
+            this.CargoGroup = string.Empty;
+            this.CargoSubGroup = string.Empty;
         }
 
         #endregion      
