@@ -205,6 +205,83 @@ namespace VPR.BLL
 
         #endregion
 
+        #region Cargo Group
+
+        public DataSet GetCargoGroup(int pk_PrdGroupId, string prdGroupName)
+        {
+            string ProcName = "admin.prcGetCargoGroup";
+            DAL.DbManager.DbQuery dquery = new DAL.DbManager.DbQuery(ProcName);
+
+            dquery.AddIntegerParam("@pk_CargoGroupID", pk_PrdGroupId);
+            dquery.AddVarcharParam("@CargoGroupName", 30, prdGroupName);
+
+            return dquery.GetTables();
+        }
+
+        public void DeleteCargoGroup(int PrdGroupId)
+        {
+            string ProcName = "admin.prcDeleteCargoGroup";
+            DAL.DbManager.DbQuery dquery = new DAL.DbManager.DbQuery(ProcName);
+            dquery.AddIntegerParam("@pk_CargoGroupID", PrdGroupId);
+            dquery.RunActionQuery();
+
+        }
+
+        public int AddEditCargoGroup(int userID, int pk_CargoGroupId, string CargoGroupName, bool isEdit)
+        {
+            string ProcName = "admin.prcAddEditCargoGroup";
+            DAL.DbManager.DbQuery dquery = new DAL.DbManager.DbQuery(ProcName);
+            dquery.AddIntegerParam("@userID", userID);
+            dquery.AddIntegerParam("@pk_CargoGroupId", pk_CargoGroupId);
+            dquery.AddVarcharParam("@CargoGroupName", 200, CargoGroupName);
+            dquery.AddBooleanParam("@isEdit", isEdit);
+
+            return dquery.RunActionQuery();
+
+        }
+
+        #endregion
+
+        #region Cargo Sub Group
+
+        public DataSet GetCargoSubGroup(int pk_CargoSubGroupId, string CargoSubGroupName, string CargoGroupName)
+        {
+            string ProcName = "admin.prcGetCargoSubGroup";
+            DAL.DbManager.DbQuery dquery = new DAL.DbManager.DbQuery(ProcName);
+
+            dquery.AddIntegerParam("@pk_CargoSubGroupID", pk_CargoSubGroupId);
+            dquery.AddVarcharParam("@CargoSubGroupName", 30, CargoSubGroupName);
+            dquery.AddVarcharParam("@CargoGroupName", 30, CargoGroupName);
+
+            return dquery.GetTables();
+        }
+
+        public void DeleteCargoSubGroup(int pk_CargoSubGroupId)
+        {
+            string ProcName = "admin.prcDeleteCargoSubGroup";
+            DAL.DbManager.DbQuery dquery = new DAL.DbManager.DbQuery(ProcName);
+            dquery.AddIntegerParam("@pk_CargoSubGroupID", pk_CargoSubGroupId);
+            dquery.RunActionQuery();
+
+        }
+
+        public int AddEditCargoSubGroup(int userID, int pk_CargoSubGroupId, string CargoSubGroupName, bool isEdit, int fk_CargoGroupID)
+        {
+            string ProcName = "admin.prcAddEditCargoSubGroup";
+            DAL.DbManager.DbQuery dquery = new DAL.DbManager.DbQuery(ProcName);
+            dquery.AddIntegerParam("@userID", userID);
+            dquery.AddIntegerParam("@pk_CargoSubGroupId", pk_CargoSubGroupId);
+            dquery.AddIntegerParam("@fk_CargoGroupId", fk_CargoGroupID);
+            dquery.AddVarcharParam("@CargoSubGroupName", 200, CargoSubGroupName);
+            dquery.AddBooleanParam("@isEdit", isEdit);
+
+            return dquery.RunActionQuery();
+
+        }
+
+        #endregion
+
+
         #region NVOCC/Line
 
         public DataSet GetNVOCCLine(int pk_NVOCCID, string NVOCCName)
