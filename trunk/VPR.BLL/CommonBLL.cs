@@ -538,5 +538,10 @@ namespace VPR.BLL
         {
             return CommonDAL.GetAllCountry();
         }
+
+        public DataTable GetAllGroup()
+        {
+            return CommonDAL.GetAllGroup();
+        }
     }
 }
