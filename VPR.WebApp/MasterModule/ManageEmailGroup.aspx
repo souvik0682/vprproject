@@ -43,12 +43,12 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:TextBox ID="txtEmailId" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
+                            <asp:TextBox ID="txtCargoGroup" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
                             <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender7" runat="server" FilterType="Custom,UppercaseLetters,LowercaseLetters,Numbers"
-                                FilterMode="InvalidChars" ValidChars=" " TargetControlID="txtEmailId">
+                                FilterMode="InvalidChars" ValidChars=" " TargetControlID="txtCargoGroup">
                             </cc1:FilteredTextBoxExtender>
-                            <cc1:TextBoxWatermarkExtender ID="TextBoxWatermarkExtender7" runat="server" TargetControlID="txtEmailId"
-                                WatermarkText="Email ID">
+                            <cc1:TextBoxWatermarkExtender ID="TextBoxWatermarkExtender7" runat="server" TargetControlID="txtCargoGroup"
+                                WatermarkText="Cargo Group">
                             </cc1:TextBoxWatermarkExtender>
                         </td>
                         <td>

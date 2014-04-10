@@ -52,7 +52,7 @@ namespace VPR.WebApp.MasterModule
         protected void btnReset_Click(object sender, EventArgs e)
         {
             txtSubject.Text = "";
-            txtEmailId.Text = "";
+            txtCargoGroup.Text = "";
             txtEmailGroup.Text = "";
             txtCountry.Text = "";
 
@@ -269,7 +269,7 @@ namespace VPR.WebApp.MasterModule
             criteria.SortDirection = sortDirection;
 
             criteria.EmailGroup = (txtEmailGroup.Text == "") ? string.Empty : txtEmailGroup.Text.Trim();
-            criteria.EmailId = (txtEmailId.Text == "") ? string.Empty : txtEmailId.Text.Trim();
+            criteria.CargoGroup = (txtCargoGroup.Text == "") ? string.Empty : txtCargoGroup.Text.Trim();
             criteria.Country = (txtCountry.Text == "") ? string.Empty : txtCountry.Text.Trim();
             criteria.Subject = (txtSubject.Text == "") ? string.Empty : txtSubject.Text.Trim();
 
@@ -294,7 +294,7 @@ namespace VPR.WebApp.MasterModule
                     else
                     {
                         txtSubject.Text = criteria.Subject;
-                        txtEmailId.Text = criteria.EmailId;
+                        txtCargoGroup.Text = criteria.CargoGroup;
                         txtEmailGroup.Text = criteria.EmailGroup;
                         txtCountry.Text = criteria.Country;
 

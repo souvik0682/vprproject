@@ -33,7 +33,7 @@
                             Country<span class="errormessage1">*</span>
                         </td>
                         <td>
-                            <asp:DropDownList ID="ddlCountry" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCountry_SelectedIndexChanged">
+                            <asp:DropDownList ID="ddlCountry" runat="server">
                                 <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                             </asp:DropDownList>
                             <asp:RequiredFieldValidator ID="rfvCountry" runat="server" CssClass="errormessage"
@@ -186,6 +186,19 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>
+                            Cargo Group
+                        </td>
+                        <td>
+                            <asp:DropDownList ID="ddlCargoGroup" runat="server">
+                                <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                            </asp:DropDownList>
+                            <asp:RequiredFieldValidator ID="rfvCargoGroup" runat="server" CssClass="errormessage"
+                                            ErrorMessage="This field is required" ControlToValidate="ddlCargoGroup" InitialValue="0"
+                                            ValidationGroup="Save" Display="Dynamic"></asp:RequiredFieldValidator>
+                        </td>
+                    </tr>
+                    <%--<tr>
                         <td colspan="4" style="padding-top: 10; border: none;">
                             <fieldset style="width: 95%;">
                                 <legend>Tag Email Ids</legend>
@@ -236,7 +249,7 @@
                                 </table>
                             </fieldset>
                         </td>
-                    </tr>
+                    </tr>--%>
                     <tr>
                         <td>
                             <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" ValidationGroup="Save" />

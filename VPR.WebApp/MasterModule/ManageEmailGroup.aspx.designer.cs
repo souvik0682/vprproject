@@ -67,13 +67,13 @@ namespace VPR.WebApp.MasterModule {
         protected global::AjaxControlToolkit.TextBoxWatermarkExtender TextBoxWatermarkExtender5;
         
         /// <summary>
-        /// txtEmailId control.
+        /// txtCargoGroup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEmailId;
+        protected global::System.Web.UI.WebControls.TextBox txtCargoGroup;
         
         /// <summary>
         /// FilteredTextBoxExtender7 control.

@@ -193,67 +193,22 @@ namespace VPR.WebApp.MasterModule {
         protected global::System.Web.UI.WebControls.DropDownList ddlDayOfWeek;
         
         /// <summary>
-        /// ListBox1 control.
+        /// ddlCargoGroup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox ListBox1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCargoGroup;
         
         /// <summary>
-        /// ButtonAdd control.
+        /// rfvCargoGroup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonAdd;
-        
-        /// <summary>
-        /// ButtonRemove control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonRemove;
-        
-        /// <summary>
-        /// ButtonAddAll control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonAddAll;
-        
-        /// <summary>
-        /// ButtonRemoveAll control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonRemoveAll;
-        
-        /// <summary>
-        /// ListBox2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox ListBox2;
-        
-        /// <summary>
-        /// lbltxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbltxt;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCargoGroup;
         
         /// <summary>
         /// btnSave control.
