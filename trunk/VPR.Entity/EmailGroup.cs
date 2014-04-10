@@ -26,6 +26,7 @@ namespace VPR.Entity
         public DateTime CreatedOn { get; set; }
         public int ModifiedBy { get; set; }
         public DateTime ModifiedOn { get; set; }
+        public int CargoGroupID { get; set; }
 
         public List<IEmail> EmailList { get; set; }
 
@@ -37,6 +38,10 @@ namespace VPR.Entity
             if (ColumnExists(reader, "pk_EmailGroupID"))
                 if (reader["pk_EmailGroupID"] != DBNull.Value)
                     this.EmailGroupId = Convert.ToInt32(reader["pk_EmailGroupID"]);
+
+            if (ColumnExists(reader, "fk_CargoGroupID"))
+                if (reader["fk_CargoGroupID"] != DBNull.Value)
+                    this.CargoGroupID = Convert.ToInt32(reader["fk_CargoGroupID"]);
 
             if (ColumnExists(reader, "GroupName"))
                 this.GroupName = Convert.ToString(reader["GroupName"]);

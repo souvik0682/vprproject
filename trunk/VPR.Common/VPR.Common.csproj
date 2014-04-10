@@ -44,6 +44,7 @@
     <Compile Include="IAddress.cs" />
     <Compile Include="IArea.cs" />
     <Compile Include="IBase.cs" />
+    <Compile Include="ICargoGroup.cs" />
     <Compile Include="IContactPerson.cs" />
     <Compile Include="IContainerType.cs" />
     <Compile Include="IEmail.cs" />

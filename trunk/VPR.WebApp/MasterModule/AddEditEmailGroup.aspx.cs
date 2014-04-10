@@ -14,8 +14,11 @@ namespace VPR.WebApp.MasterModule
 {
     public partial class AddEditEmailGroup : System.Web.UI.Page
     {
+        /*
         List<IEmail> dynList;
         List<IEmail> dynList2;
+        */
+
         private int _userId = 0;
         private bool _canAdd = false;
         private bool _canEdit = false;
@@ -33,6 +36,7 @@ namespace VPR.WebApp.MasterModule
             if (!IsPostBack)
             {
                 LoadCountryDDL();
+                LoadCargoGroupDDL();
 
                 txtMailSendOn.Style["display"] = "none";
                 ddlDayOfMonth.Style["display"] = "none";
@@ -62,11 +66,13 @@ namespace VPR.WebApp.MasterModule
             }
         }
 
+        /*
         protected void ButtonAdd_Click(object sender, EventArgs e)
         {
             MoveItems(true);// true since we add
         }
 
+      
         protected void ButtonRemove_Click(object sender, EventArgs e)
         {
             MoveItems(false); // false since we remove
@@ -81,6 +87,7 @@ namespace VPR.WebApp.MasterModule
         {
             MoveAllItems(false); // false means re remove all
         }
+        */
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
@@ -93,6 +100,7 @@ namespace VPR.WebApp.MasterModule
 
                 emailGroup.GroupName = txtGroupName.Text.Trim();
                 emailGroup.CountryId = Convert.ToInt32(ddlCountry.SelectedValue);
+                emailGroup.CargoGroupID = Convert.ToInt32(ddlCargoGroup.SelectedValue);
                 emailGroup.Subject = txtMailSubject.Text.Trim();
                 emailGroup.MailBody = txtMailBody.Text.Trim();
                 emailGroup.Attachment = ddlAttachment.SelectedValue;
@@ -122,6 +130,7 @@ namespace VPR.WebApp.MasterModule
 
         }
 
+        /*
         protected void ddlCountry_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ReferenceEquals(ViewState["EmailGroupId"], null))
@@ -129,6 +138,7 @@ namespace VPR.WebApp.MasterModule
             else
                 BindListBox(Convert.ToInt32(ddlCountry.SelectedValue), Convert.ToInt32(ViewState["EmailGroupId"]));
         }
+        */
 
         protected void ddlMailFrequency_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -201,6 +211,7 @@ namespace VPR.WebApp.MasterModule
             }
         }
 
+        /*
         private void MoveItems(bool isAdd)
         {
             if (isAdd)// means if you add items to the right box
@@ -431,6 +442,7 @@ namespace VPR.WebApp.MasterModule
 
             ViewState["dynList2"] = dynList2;
         }
+        */
 
         private void LoadCountryDDL()
         {
@@ -443,6 +455,19 @@ namespace VPR.WebApp.MasterModule
             ddlCountry.DataTextField = "CountryName";
             ddlCountry.DataSource = dt;
             ddlCountry.DataBind();
+        }
+
+        private void LoadCargoGroupDDL()
+        {
+            DataTable dt = new EmailBLL().GetAllCargoGroup();
+            DataRow dr = dt.NewRow();
+            dr["pk_CargoGroupID"] = "0";
+            dr["CargoGroupName"] = "--Select--";
+            dt.Rows.InsertAt(dr, 0);
+            ddlCargoGroup.DataValueField = "pk_CargoGroupID";
+            ddlCargoGroup.DataTextField = "CargoGroupName";
+            ddlCargoGroup.DataSource = dt;
+            ddlCargoGroup.DataBind();
         }
 
         private bool IsValid()
@@ -470,7 +495,8 @@ namespace VPR.WebApp.MasterModule
             txtGroupName.Enabled = false;
 
             ddlCountry.SelectedValue = objGroup.CountryId.ToString();
-            ddlCountry_SelectedIndexChanged(this, EventArgs.Empty);
+            ddlCargoGroup.SelectedValue = objGroup.CargoGroupID.ToString();
+            //ddlCountry_SelectedIndexChanged(this, EventArgs.Empty);
 
             txtMailSubject.Text = objGroup.Subject;
             txtMailBody.Text = objGroup.MailBody;

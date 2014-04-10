@@ -15,15 +15,7 @@ namespace VPR.BLL
 {
     public class EmailBLL
     {
-        public List<IEmail> GetListOfAvailableEmail(int CountryId, int EmailGroupId)
-        {
-            return EmailDAL.GetListOfAvailableEmail(CountryId, EmailGroupId);
-        }
-
-        public List<IEmail> GetListOfTaggedEmail(int EmailGroupId)
-        {
-            return EmailDAL.GetListOfTaggedEmail(EmailGroupId);
-        }
+        #region Email Group
 
         public bool IsEmailGroupExists(string GroupName)
         {
@@ -36,20 +28,7 @@ namespace VPR.BLL
 
             EmailGroupId = EmailDAL.SaveEmailGroup(EmailGroup);
 
-            Tagg_UnTagg_Emails(EmailGroup.EmailList, EmailGroupId);
-        }
-
-        private void Tagg_UnTagg_Emails(List<IEmail> Emails, int EmailGroupId)
-        {
-            Emails = Emails.Where(e => e.IsAdded == true || e.IsRemoved == true).ToList();
-
-            foreach (IEmail Email in Emails)
-            {
-                if (Email.IsAdded)
-                    EmailDAL.Tag_Untag_Email(Email.Id, EmailGroupId, true);
-                else if (Email.IsRemoved)
-                    EmailDAL.Tag_Untag_Email(Email.Id, EmailGroupId, false);
-            }
+            //Tagg_UnTagg_Emails(EmailGroup.EmailList, EmailGroupId);
         }
 
         public IEmailGroup GetEmailGroup(int GroupId)
@@ -66,5 +45,37 @@ namespace VPR.BLL
         {
             EmailDAL.DeleteEmailGroup(EmailGroupId);
         }
+
+        public DataTable GetAllCargoGroup()
+        {
+            return EmailDAL.GetAllCargoGroup();
+        }
+
+        #endregion
+
+        #region Email
+
+        public List<IEmail> GetListOfAvailableEmail(int CountryId, int EmailGroupId)
+        {
+            return EmailDAL.GetListOfAvailableEmail(CountryId, EmailGroupId);
+        }
+        public List<IEmail> GetListOfTaggedEmail(int EmailGroupId)
+        {
+            return EmailDAL.GetListOfTaggedEmail(EmailGroupId);
+        }
+        private void Tagg_UnTagg_Emails(List<IEmail> Emails, int EmailGroupId)
+        {
+            Emails = Emails.Where(e => e.IsAdded == true || e.IsRemoved == true).ToList();
+
+            foreach (IEmail Email in Emails)
+            {
+                if (Email.IsAdded)
+                    EmailDAL.Tag_Untag_Email(Email.Id, EmailGroupId, true);
+                else if (Email.IsRemoved)
+                    EmailDAL.Tag_Untag_Email(Email.Id, EmailGroupId, false);
+            }
+        }
+
+        #endregion
     }
 }

@@ -78,9 +78,14 @@
     <Content Include="Images\remove.png" />
     <Content Include="Images\trash_icon.gif" />
     <Content Include="Login.aspx" />
+    <Content Include="MasterModule\AddEditCargoGroup.aspx" />
+    <Content Include="MasterModule\AddEditCargoSubGroup.aspx" />
     <Content Include="MasterModule\AddEditCountry.aspx" />
+    <Content Include="MasterModule\AddEditEmail.aspx" />
     <Content Include="MasterModule\AddEditEmailGroup.aspx" />
     <Content Include="MasterModule\AddEditPort.aspx" />
+    <Content Include="MasterModule\ManageCargoGroup.aspx" />
+    <Content Include="MasterModule\ManageCargoSubGroup.aspx" />
     <Content Include="MasterModule\ManageEmailGroup.aspx" />
     <Content Include="MasterModule\Image\Chrysanthemum.jpg" />
     <Content Include="MasterModule\Image\Defaultlogo.png" />
@@ -207,12 +212,33 @@
     <Compile Include="FileNotFound.aspx.designer.cs">
       <DependentUpon>FileNotFound.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MasterModule\AddEditCargoGroup.aspx.cs">
+      <DependentUpon>AddEditCargoGroup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterModule\AddEditCargoGroup.aspx.designer.cs">
+      <DependentUpon>AddEditCargoGroup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterModule\AddEditCargoSubGroup.aspx.cs">
+      <DependentUpon>AddEditCargoSubGroup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterModule\AddEditCargoSubGroup.aspx.designer.cs">
+      <DependentUpon>AddEditCargoSubGroup.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MasterModule\AddEditCountry.aspx.cs">
       <DependentUpon>AddEditCountry.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="MasterModule\AddEditCountry.aspx.designer.cs">
       <DependentUpon>AddEditCountry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterModule\AddEditEmail.aspx.cs">
+      <DependentUpon>AddEditEmail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterModule\AddEditEmail.aspx.designer.cs">
+      <DependentUpon>AddEditEmail.aspx</DependentUpon>
     </Compile>
     <Compile Include="MasterModule\AddEditEmailGroup.aspx.cs">
       <DependentUpon>AddEditEmailGroup.aspx</DependentUpon>
@@ -227,6 +253,20 @@
     </Compile>
     <Compile Include="MasterModule\AddEditPort.aspx.designer.cs">
       <DependentUpon>AddEditPort.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterModule\ManageCargoGroup.aspx.cs">
+      <DependentUpon>ManageCargoGroup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterModule\ManageCargoGroup.aspx.designer.cs">
+      <DependentUpon>ManageCargoGroup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterModule\ManageCargoSubGroup.aspx.cs">
+      <DependentUpon>ManageCargoSubGroup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterModule\ManageCargoSubGroup.aspx.designer.cs">
+      <DependentUpon>ManageCargoSubGroup.aspx</DependentUpon>
     </Compile>
     <Compile Include="MasterModule\ManageEmailGroup.aspx.cs">
       <DependentUpon>ManageEmailGroup.aspx</DependentUpon>

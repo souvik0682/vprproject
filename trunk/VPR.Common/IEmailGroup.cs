@@ -18,6 +18,7 @@ namespace VPR.Common
         DateTime? SendingDate { get; set; }
         string SendingTime { get; set; }
         string SendOn { get; set; }
+        int CargoGroupID { get; set; }
 
         List<IEmail> EmailList { get; set; }
     }
