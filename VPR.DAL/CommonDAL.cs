@@ -977,5 +977,19 @@ namespace VPR.DAL
             DAL.DbManager.DbQuery dquery = new DAL.DbManager.DbQuery(ProcName);
             return dquery.GetTable();
         }
+
+        public static DataTable GetAllGroup()
+        {
+            string ProcName = "[dbo].[usp_GetAllGroup]";
+            DAL.DbManager.DbQuery dquery = new DAL.DbManager.DbQuery(ProcName);
+            return dquery.GetTable();
+        }
+
+        public static DataTable GetAllSubGroup()
+        {
+            string ProcName = "[dbo].[usp_GetAllSubGroup]";
+            DAL.DbManager.DbQuery dquery = new DAL.DbManager.DbQuery(ProcName);
+            return dquery.GetTable();
+        }
     }
 }
