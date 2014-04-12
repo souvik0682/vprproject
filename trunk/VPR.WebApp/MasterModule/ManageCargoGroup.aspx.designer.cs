@@ -31,6 +31,24 @@ namespace VPR.WebApp.MasterModule {
         protected global::AjaxControlToolkit.TextBoxWatermarkExtender txtWMEPrdGroup;
         
         /// <summary>
+        /// txtCargoType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCargoType;
+        
+        /// <summary>
+        /// txtWMEType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.TextBoxWatermarkExtender txtWMEType;
+        
+        /// <summary>
         /// btnSearch control.
         /// </summary>
         /// <remarks>

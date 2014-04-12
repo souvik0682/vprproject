@@ -106,6 +106,7 @@ namespace VPR.WebApp.MasterModule
             if (!ReferenceEquals(ds, null) && ds.Tables[0].Rows.Count > 0)
             {
                 txtCargoGroupName.Text = ds.Tables[0].Rows[0]["CargoGroupName"].ToString();
+                ddlType.SelectedValue = ds.Tables[0].Rows[0]["GroupType"].ToString();
             }
         }
         private void ClearText()
@@ -123,7 +124,7 @@ namespace VPR.WebApp.MasterModule
                     GeneralFunctions.RegisterAlertScript(this, "Cargo Name must be unique. Please try with another one.");
                     return;
                 }
-            int result = dbinteract.AddEditCargoGroup(_userId, Convert.ToInt32(portId), txtCargoGroupName.Text.Trim().ToUpper(), isedit);
+            int result = dbinteract.AddEditCargoGroup(_userId, Convert.ToInt32(portId), ddlType.SelectedValue.ToString(), txtCargoGroupName.Text.Trim().ToUpper(), isedit);
 
 
             if (result > 0)
