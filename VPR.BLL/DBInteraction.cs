@@ -227,12 +227,13 @@ namespace VPR.BLL
 
         }
 
-        public int AddEditCargoGroup(int userID, int pk_CargoGroupId, string CargoGroupName, bool isEdit)
+        public int AddEditCargoGroup(int userID, int pk_CargoGroupId, string GroupType, string CargoGroupName, bool isEdit)
         {
             string ProcName = "admin.prcAddEditCargoGroup";
             DAL.DbManager.DbQuery dquery = new DAL.DbManager.DbQuery(ProcName);
             dquery.AddIntegerParam("@userID", userID);
             dquery.AddIntegerParam("@pk_CargoGroupId", pk_CargoGroupId);
+            dquery.AddVarcharParam("@GroupType", 1, GroupType); 
             dquery.AddVarcharParam("@CargoGroupName", 200, CargoGroupName);
             dquery.AddBooleanParam("@isEdit", isEdit);
 

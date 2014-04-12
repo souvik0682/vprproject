@@ -38,6 +38,11 @@ namespace VPR.BLL
             return CargoGroupDAL.GetAllCargoSubGroup(CargoGroupID);
         }
 
+        public DataTable GetAllCargoGroup()
+        {
+            return CargoGroupDAL.GetAllCargoGroup();
+        }
+
 
     }
 }
