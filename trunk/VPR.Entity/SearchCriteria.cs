@@ -155,6 +155,7 @@ namespace VPR.Entity
         // tapas
         public string CargoGroup { get; set; }
         public string CargoSubGroup { get; set; }
+        public string CargoName { get; set; }
 
         #endregion
 

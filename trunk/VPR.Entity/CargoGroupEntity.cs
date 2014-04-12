@@ -18,7 +18,15 @@ namespace VPR.Entity
 
         public int pk_CargoSubGroupID { get; set; }
 
+        public int fk_CargoSubGroupID { get; set; }
+
         public string CargoSubGroupName { get; set; }
+
+        public int pk_CargoID { get; set; }
+
+        public string CargoName { get; set; }
+
+        public bool CargoStatus { get; set; }
 
         public int CreatedBy { get; set; }
 
@@ -46,11 +54,25 @@ namespace VPR.Entity
                 if (reader["pk_CargoSubGroupID"] != DBNull.Value)
                     this.pk_CargoGroupID = Convert.ToInt32(reader["pk_CargoSubGroupID"]);
 
+            if (ColumnExists(reader, "fk_CargoSubGroupID"))
+                if (reader["fk_CargoSubGroupID"] != DBNull.Value)
+                    this.fk_CargoSubGroupID = Convert.ToInt32(reader["fk_CargoSubGroupID"]);
+
             if (ColumnExists(reader, "CargoGroupName"))
-                this.CargoGroupName = Convert.ToString(reader["CargoGroupName"]);
+                if (reader["CargoGroupName"] != DBNull.Value)
+                    this.CargoGroupName = Convert.ToString(reader["CargoGroupName"]);
 
             if (ColumnExists(reader, "CargoSubGroupName"))
-                this.CargoSubGroupName = Convert.ToString(reader["CargoSubGroupName"]);
+                if (reader["CargoSubGroupName"] != DBNull.Value)
+                    this.CargoSubGroupName = Convert.ToString(reader["CargoSubGroupName"]);
+
+            if (ColumnExists(reader, "CargoName"))
+                if (reader["CargoName"] != DBNull.Value)
+                    this.CargoName = Convert.ToString(reader["CargoName"]);
+
+            if (ColumnExists(reader, "pk_CargoID"))
+                if (reader["pk_CargoID"] != DBNull.Value)
+                    this.pk_CargoID = Convert.ToInt32(reader["pk_CargoID"]);
 
             if (ColumnExists(reader, "fk_UserAdded"))
                 if (reader["fk_UserAdded"] != DBNull.Value)
@@ -67,6 +89,9 @@ namespace VPR.Entity
             if (ColumnExists(reader, "EditedOn"))
                 if (reader["EditedOn"] != DBNull.Value)
                     this.ModifiedOn = Convert.ToDateTime(reader["EditedOn"]);
+
+            if (ColumnExists(reader, "CargoStatus"))
+                this.CargoStatus = Convert.ToBoolean(reader["CargoStatus"]);
         }
 
         public bool ColumnExists(IDataReader reader, string columnName)
