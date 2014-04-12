@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ManageCargoSubGroup.aspx.cs" Inherits="VPR.WebApp.MasterModule.ManageCargoSubGroup" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ManageCargo.aspx.cs" Inherits="VPR.WebApp.MasterModule.ManageCargo" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -13,21 +13,26 @@
             </div>
         </div>
     </div>
-    <div id="headercaption">MANAGE CARGO SUB GROUP</div>
+    <div id="headercaption">MANAGE CARGO</div>
     <center>
     <div style="width:850px;">        
         <fieldset style="width:100%;">
-            <legend>Search Sub Group</legend>
+            <legend>Search Cargo Group</legend>
             <table>
                 <tr>
                     <td>
                         <asp:TextBox ID="txtCargoGroup" runat="server" CssClass="watermark" ForeColor="#747862" ></asp:TextBox>
-                        <cc1:TextBoxWatermarkExtender ID="txtWMEPrdGroup" runat="server" TargetControlID="txtCargoGroup" WatermarkText="Type Cargo Group" WatermarkCssClass="watermark"></cc1:TextBoxWatermarkExtender>
+                       <%-- <cc1:TextBoxWatermarkExtender ID="txtWMECargoGroup" runat="server" TargetControlID="txtCargoGroup" WatermarkText="Type Cargo Group" WatermarkCssClass="watermark"></cc1:TextBoxWatermarkExtender>--%>
+                    </td>
+                     <td>
+                        <asp:TextBox ID="txtCargoSubGroup" runat="server" CssClass="watermark" ForeColor="#747862" ></asp:TextBox>
+                        <%--<cc1:TextBoxWatermarkExtender ID="txtWMECargoSubGroup" runat="server" TargetControlID="txtCargoSubGroup" WatermarkText="Type Cargo Group" WatermarkCssClass="watermark"></cc1:TextBoxWatermarkExtender>--%>
                     </td>
                     <td>
-                        <asp:TextBox ID="txtSubGroup" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
-                        <cc1:TextBoxWatermarkExtender ID="txtWMESubGroup" runat="server" TargetControlID="txtSubGroup" WatermarkText="Type Cargo Sub Group" WatermarkCssClass="watermark"></cc1:TextBoxWatermarkExtender>
+                        <asp:TextBox ID="txtCargo" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
+                        <%--<cc1:TextBoxWatermarkExtender ID="txtWMEName" runat="server" TargetControlID="txtCargo" WatermarkText="Type Cargo Name" WatermarkCssClass="watermark"></cc1:TextBoxWatermarkExtender>--%>
                     </td>
+ 
                     <td><asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="button" Width="100px" OnClick="btnSearch_Click" />
                      <asp:Button ID="btnRefresh" runat="server" Text="Reset" CssClass="button" Width="100px" onclick="btnRefresh_Click"  /></td>
                 </tr>
@@ -53,7 +58,7 @@
                         <asp:ListItem Text="50" Value="50" />
                         <asp:ListItem Text="100" Value="100" />
                     </asp:DropDownList>&nbsp;&nbsp;
-                <asp:Button ID="btnAdd" runat="server" Text="Add New Group" Width="130px" OnClick="btnAdd_Click" />
+                <asp:Button ID="btnAdd" runat="server" Text="Add New Cargo" Width="130px" OnClick="btnAdd_Click" />
             </div>
           <br />            
             <div>
@@ -65,13 +70,13 @@
                     <ContentTemplate>
                     <asp:Label runat="server" ID="lblErrorMsg" Text=""></asp:Label>
                         <asp:GridView ID="gvwLoc" runat="server" AutoGenerateColumns="false" AllowPaging="true"
-                BorderStyle="None" BorderWidth="0" OnPageIndexChanging="gvwLoc_PageIndexChanging" AllowSorting="true" onsorting="gvwLoc_Sorting"
-                OnRowDataBound="gvwLoc_RowDataBound" OnRowCommand="gvwLoc_RowCommand" Width="100%">
-                <pagersettings mode="NumericFirstLast" position="TopAndBottom" />
-                <pagerstyle cssclass="gridviewpager" />
-                <emptydatarowstyle cssclass="gridviewemptydatarow" />
-                <emptydatatemplate>No Cargo Sub Group(s) Found</emptydatatemplate>
-                <columns>
+                        BorderStyle="None" BorderWidth="0" OnPageIndexChanging="gvwLoc_PageIndexChanging" AllowSorting="true" onsorting="gvwLoc_Sorting"
+                        OnRowDataBound="gvwLoc_RowDataBound" OnRowCommand="gvwLoc_RowCommand" Width="100%">
+                        <pagersettings mode="NumericFirstLast" position="TopAndBottom" />
+                        <pagerstyle cssclass="gridviewpager" />
+                        <emptydatarowstyle cssclass="gridviewemptydatarow" />
+                        <emptydatatemplate>No Cargo Name(s) Found</emptydatatemplate>
+                        <columns>
                                 <asp:TemplateField HeaderText="Sl#">
                                     <HeaderStyle CssClass="gridviewheader" />
                                     <ItemStyle CssClass="gridviewitem" Width="5%" />                                    
@@ -83,12 +88,17 @@
                                     <ItemStyle CssClass="gridviewitem" Width="2%" />                                       
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Product Group" SortExpression="CargoGroupName">
+                                <asp:TemplateField HeaderText="Cargo Group" SortExpression="CargoGroupName">
                                     <HeaderStyle CssClass="gridviewheader" />
                                     <ItemStyle CssClass="gridviewitem" Width="20%" />                                       
                                 </asp:TemplateField>
-                               
-                                <asp:TemplateField HeaderText="Sub Group" SortExpression="CargoSubGroupName">
+                                
+                                <asp:TemplateField HeaderText="Cargo Sub Group" SortExpression="CargoSubGroupName">
+                                    <HeaderStyle CssClass="gridviewheader" />
+                                    <ItemStyle CssClass="gridviewitem" Width="20%" />                                       
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Cargo" SortExpression="CargoName">
                                     <HeaderStyle CssClass="gridviewheader" />
                                     <ItemStyle CssClass="gridviewitem" Width="20%" />                                       
                                 </asp:TemplateField>
