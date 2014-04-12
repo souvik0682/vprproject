@@ -281,6 +281,46 @@ namespace VPR.BLL
 
         #endregion
 
+        #region Cargo
+
+        public DataSet GetCargo(int pk_CargoId, string Cargo, string CargoSubGroupName, string CargoGroupName)
+        {
+            string ProcName = "admin.prcGetCargo";
+            DAL.DbManager.DbQuery dquery = new DAL.DbManager.DbQuery(ProcName);
+
+            dquery.AddIntegerParam("@pk_CargoID", pk_CargoId);
+            dquery.AddVarcharParam("@CargoSubGroupName", 30, CargoSubGroupName);
+            dquery.AddVarcharParam("@CargoGroupName", 30, CargoGroupName);
+            dquery.AddVarcharParam("@CargoName", 30, Cargo);
+
+            return dquery.GetTables();
+        }
+
+        public void DeleteCargo(int pk_CargoId)
+        {
+            string ProcName = "admin.prcDeleteCargoSubGroup";
+            DAL.DbManager.DbQuery dquery = new DAL.DbManager.DbQuery(ProcName);
+            dquery.AddIntegerParam("@pk_CargoID", pk_CargoId);
+            dquery.RunActionQuery();
+
+        }
+
+        public int AddEditCargo(int userID, int pk_CargoId, string CargoName, bool isEdit, int fk_CargoGroupID, int fk_CargoSubGroupID)
+        {
+            string ProcName = "admin.prcAddEditCargoSubGroup";
+            DAL.DbManager.DbQuery dquery = new DAL.DbManager.DbQuery(ProcName);
+            dquery.AddIntegerParam("@userID", userID);
+            dquery.AddIntegerParam("@pk_CargoId", pk_CargoId);
+            dquery.AddIntegerParam("@fk_CargoGroupId", fk_CargoGroupID);
+            dquery.AddIntegerParam("@fk_CargoSubGroupId", fk_CargoGroupID);
+            dquery.AddVarcharParam("@CargoName", 200, CargoName);
+            dquery.AddBooleanParam("@isEdit", isEdit);
+
+            return dquery.RunActionQuery();
+
+        }
+
+        #endregion
 
         #region NVOCC/Line
 
