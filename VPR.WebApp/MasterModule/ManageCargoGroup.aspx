@@ -24,10 +24,10 @@
                         <asp:TextBox ID="txtPrdGroup" runat="server" CssClass="watermark" ForeColor="#747862" ></asp:TextBox>
                         <cc1:TextBoxWatermarkExtender ID="txtWMEPrdGroup" runat="server" TargetControlID="txtPrdGroup" WatermarkText="Type Product Group" WatermarkCssClass="watermark"></cc1:TextBoxWatermarkExtender>
                     </td>
-                    <%--<td>
-                        <asp:TextBox ID="txtPortName" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
-                        <cc1:TextBoxWatermarkExtender ID="txtWMEName" runat="server" TargetControlID="txtPortName" WatermarkText="Type Port Name" WatermarkCssClass="watermark"></cc1:TextBoxWatermarkExtender>
-                    </td>--%>
+                    <td>
+                        <asp:TextBox ID="txtCargoType" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
+                        <cc1:TextBoxWatermarkExtender ID="txtWMEType" runat="server" TargetControlID="txtCargoType" WatermarkText="Group Type" WatermarkCssClass="watermark"></cc1:TextBoxWatermarkExtender>
+                    </td>
                     <td><asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="button" Width="100px" OnClick="btnSearch_Click" />
                      <asp:Button ID="btnRefresh" runat="server" Text="Reset" CssClass="button" Width="100px" onclick="btnRefresh_Click"  /></td>
                 </tr>
@@ -65,13 +65,13 @@
                     <ContentTemplate>
                     <asp:Label runat="server" ID="lblErrorMsg" Text=""></asp:Label>
                         <asp:GridView ID="gvwLoc" runat="server" AutoGenerateColumns="false" AllowPaging="true"
-                BorderStyle="None" BorderWidth="0" OnPageIndexChanging="gvwLoc_PageIndexChanging" AllowSorting="true" onsorting="gvwLoc_Sorting"
-                OnRowDataBound="gvwLoc_RowDataBound" OnRowCommand="gvwLoc_RowCommand" Width="100%">
-                <pagersettings mode="NumericFirstLast" position="TopAndBottom" />
-                <pagerstyle cssclass="gridviewpager" />
-                <emptydatarowstyle cssclass="gridviewemptydatarow" />
-                <emptydatatemplate>No Cargo Group(s) Found</emptydatatemplate>
-                <columns>
+                            BorderStyle="None" BorderWidth="0" OnPageIndexChanging="gvwLoc_PageIndexChanging" AllowSorting="true" onsorting="gvwLoc_Sorting"
+                            OnRowDataBound="gvwLoc_RowDataBound" OnRowCommand="gvwLoc_RowCommand" Width="100%">
+                            <pagersettings mode="NumericFirstLast" position="TopAndBottom" />
+                            <pagerstyle cssclass="gridviewpager" />
+                            <emptydatarowstyle cssclass="gridviewemptydatarow" />
+                            <emptydatatemplate>No Cargo Group(s) Found</emptydatatemplate>
+                            <columns>
                                 <asp:TemplateField HeaderText="Sl#">
                                     <HeaderStyle CssClass="gridviewheader" />
                                     <ItemStyle CssClass="gridviewitem" Width="5%" />                                    
@@ -83,7 +83,12 @@
                                     <ItemStyle CssClass="gridviewitem" Width="2%" />                                       
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Product Group" SortExpression="CargoGroupName">
+                                <asp:TemplateField HeaderText="Group Type" SortExpression="CargoGroupType">
+                                    <HeaderStyle CssClass="gridviewheader" />
+                                    <ItemStyle CssClass="gridviewitem" Width="20%" />                                       
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Cargo Group" SortExpression="CargoGroupName">
                                     <HeaderStyle CssClass="gridviewheader" />
                                     <ItemStyle CssClass="gridviewitem" Width="20%" />                                       
                                 </asp:TemplateField>
@@ -103,7 +108,7 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </columns>
-            </asp:GridView>
+                        </asp:GridView>
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </div>

@@ -195,7 +195,7 @@ namespace VPR.WebApp.MasterModule
 
         private void LoadCargoGroupDDL()
         {
-            DataTable dt = new EmailBLL().GetAllCargoGroup();
+            DataTable dt = new CargoBLL().GetAllCargoGroup();
             DataRow dr = dt.NewRow();
             dr["pk_CargoGroupID"] = "0";
             dr["CargoGroupName"] = "--Select--";

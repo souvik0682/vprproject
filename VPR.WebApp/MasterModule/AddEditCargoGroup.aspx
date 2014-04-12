@@ -28,7 +28,17 @@
                         <asp:RequiredFieldValidator ID="rfvName" runat="server" CssClass="errormessage" 
                             ControlToValidate="txtCargoGroupName" Display="Dynamic" Text="This field is Required" ValidationGroup="Save"></asp:RequiredFieldValidator></td>
                 </tr>
-
+                <tr>
+                    <td>
+                        Type
+                    </td>
+                    <td>
+                        <asp:DropDownList ID="ddlType" runat="server">
+                            <asp:ListItem Value="C" Text="Cargo" Selected="True"></asp:ListItem>
+                            <asp:ListItem Value="M" Text="Misc."></asp:ListItem>
+                        </asp:DropDownList>
+                    </td>
+                </tr>
                 <tr>
                     <td colspan="2">
                         <asp:Button ID="btnSave" runat="server" Text="Save" ValidationGroup="Save" OnClick="btnSave_Click" />&nbsp;&nbsp;<asp:Button 

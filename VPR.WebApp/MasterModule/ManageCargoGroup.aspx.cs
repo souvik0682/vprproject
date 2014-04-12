@@ -110,7 +110,8 @@ namespace VPR.WebApp.MasterModule
 
                 e.Row.Cells[0].Text = ((gvwLoc.PageSize * gvwLoc.PageIndex) + e.Row.RowIndex + 1).ToString();
                 e.Row.Cells[1].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pk_CargoGroupID"));
-                e.Row.Cells[2].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "CargoGroupName"));
+                e.Row.Cells[2].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "GroupType"));
+                e.Row.Cells[3].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "CargoGroupName"));
 
                 // Edit link
                 ImageButton btnEdit = (ImageButton)e.Row.FindControl("btnEdit");
@@ -175,6 +176,7 @@ namespace VPR.WebApp.MasterModule
         protected void btnRefresh_Click(object sender, EventArgs e)
         {
             txtPrdGroup.Text = "";
+            txtCargoType.Text = "";
             btnSearch_Click(sender, e);
         }
 
@@ -198,6 +200,7 @@ namespace VPR.WebApp.MasterModule
         private void LoadData(string SortExp, string direction)
         {
             string CargoGroup = string.IsNullOrEmpty(txtPrdGroup.Text) ? "" : txtPrdGroup.Text.Trim();
+            string CargoType = string.IsNullOrEmpty(txtCargoType.Text) ? "" : txtCargoType.Text.Trim();
 
             lblErrorMsg.Text = "";
             if (!ReferenceEquals(Session[Constants.SESSION_SEARCH_CRITERIA], null))
@@ -309,7 +312,7 @@ namespace VPR.WebApp.MasterModule
             criteria.SortExpression = sortExpression;
             criteria.SortDirection = sortDirection;
             criteria.CargoGroup = (txtPrdGroup.Text == "TYPE CARGO GROUP") ? string.Empty : txtPrdGroup.Text.Trim();
-            //criteria.LocName = (txtPortName.Text == "TYPE PORT NAME")? string.Empty : txtPortName.Text.Trim();
+            criteria.CargoGroupType = (txtCargoType.Text == "TYPE CARGO TYPE") ? string.Empty : txtCargoType.Text.Trim();
             Session[Constants.SESSION_SEARCH_CRITERIA] = criteria;
         }
 
