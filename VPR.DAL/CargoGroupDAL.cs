@@ -83,6 +83,12 @@ namespace VPR.DAL
             }
         }
 
+        public static DataTable GetAllCargoGroup()
+        {
+            string ProcName = "uspGetAllCargoOnlyGroups";
+            DAL.DbManager.DbQuery dquery = new DAL.DbManager.DbQuery(ProcName);
+            return dquery.GetTable();
+        }
 
     }
 }
