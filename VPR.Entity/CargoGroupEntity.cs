@@ -56,7 +56,7 @@ namespace VPR.Entity
 
             if (ColumnExists(reader, "pk_CargoGroupID"))
                 if (reader["pk_CargoGroupID"] != DBNull.Value)
-                    this.pk_CargoGroupID = Convert.ToInt32(reader["pk_CargoGroupID"]);
+                    this.CargoGroupID = Convert.ToInt32(reader["pk_CargoGroupID"]);
 
             if (ColumnExists(reader, "fk_CargoGroupID"))
                 if (reader["fk_CargoGroupID"] != DBNull.Value)
