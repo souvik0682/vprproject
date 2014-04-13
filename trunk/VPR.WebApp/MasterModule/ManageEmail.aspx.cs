@@ -13,7 +13,7 @@ using VPR.Utilities.ResourceManager;
 
 namespace VPR.WebApp.MasterModule
 {
-    public partial class ManageEmailGroup : System.Web.UI.Page
+    public partial class ManageEmail : System.Web.UI.Page
     {
         #region Private Member Variables
 
@@ -24,8 +24,8 @@ namespace VPR.WebApp.MasterModule
         private bool _canDelete = false;
         private bool _canView = false;
         private bool _LocationSpecific = true;
-        private int _locId = 0;
-        private bool _hasEditAccess = true;
+        //private int _locId = 0;
+        //private bool _hasEditAccess = true;
 
         #endregion
 
@@ -51,10 +51,10 @@ namespace VPR.WebApp.MasterModule
 
         protected void btnReset_Click(object sender, EventArgs e)
         {
-            txtSubject.Text = "";
+            txtCompany.Text = "";
             txtCargoGroup.Text = "";
-            txtEmailGroup.Text = "";
-            txtCountry.Text = "";
+            txtEmailId.Text = "";
+            txtName.Text = "";
 
             SaveNewPageIndex(0);
             LoadEmailGroup();
@@ -118,15 +118,14 @@ namespace VPR.WebApp.MasterModule
                 GeneralFunctions.ApplyGridViewAlternateItemStyle(e.Row, 6);
                 ScriptManager sManager = ScriptManager.GetCurrent(this);
 
-                e.Row.Cells[0].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "GroupName"));
-                e.Row.Cells[1].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "CountryName"));
-                e.Row.Cells[2].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Subject"));
-                e.Row.Cells[3].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Frequency"));
+                e.Row.Cells[0].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Name"));
+                e.Row.Cells[1].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "EmailId"));
+                e.Row.Cells[2].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Company"));
 
                 //Edit Link
                 ImageButton btnEdit = (ImageButton)e.Row.FindControl("btnEdit");
                 btnEdit.ToolTip = ResourceManager.GetStringWithoutName("ERR00070");
-                btnEdit.CommandArgument = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "EmailGroupId"));
+                btnEdit.CommandArgument = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Id"));
 
                 //Delete link
                 if (_canDelete == true)
@@ -134,7 +133,7 @@ namespace VPR.WebApp.MasterModule
                     ImageButton btnRemove = (ImageButton)e.Row.FindControl("btnRemove");
                     btnRemove.Visible = true;
                     btnRemove.ToolTip = ResourceManager.GetStringWithoutName("ERR00007");
-                    btnRemove.CommandArgument = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "EmailGroupId"));
+                    btnRemove.CommandArgument = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Id"));
                 }
                 else
                 {
@@ -229,7 +228,7 @@ namespace VPR.WebApp.MasterModule
 
                         if (searchCriteria.PageSize > 0) gvImportBL.PageSize = searchCriteria.PageSize;
 
-                        gvImportBL.DataSource = new EmailBLL().GetEmailGroups(searchCriteria);
+                        gvImportBL.DataSource = new EmailBLL().GetEmails(searchCriteria);
 
                         gvImportBL.DataBind();
                     }
@@ -248,7 +247,7 @@ namespace VPR.WebApp.MasterModule
         private void RedirecToAddEditPage(int id)
         {
             string encryptedId = GeneralFunctions.EncryptQueryString(id.ToString());
-            Response.Redirect("~/MasterModule/AddEditEmailGroup.aspx?EmailGroupId=" + encryptedId);
+            Response.Redirect("~/MasterModule/AddEditEmail.aspx?EmailId=" + encryptedId);
         }
 
         private void BuildSearchCriteria(SearchCriteria criteria)
@@ -268,10 +267,10 @@ namespace VPR.WebApp.MasterModule
             criteria.SortExpression = sortExpression;
             criteria.SortDirection = sortDirection;
 
-            criteria.EmailGroup = (txtEmailGroup.Text == "") ? string.Empty : txtEmailGroup.Text.Trim();
+            criteria.EmailId = (txtEmailId.Text == "") ? string.Empty : txtEmailId.Text.Trim();
             criteria.CargoGroup = (txtCargoGroup.Text == "") ? string.Empty : txtCargoGroup.Text.Trim();
-            criteria.Country = (txtCountry.Text == "") ? string.Empty : txtCountry.Text.Trim();
-            criteria.Subject = (txtSubject.Text == "") ? string.Empty : txtSubject.Text.Trim();
+            criteria.Name = (txtName.Text == "") ? string.Empty : txtName.Text.Trim();
+            criteria.Company = (txtCompany.Text == "") ? string.Empty : txtCompany.Text.Trim();
 
             Session[Constants.SESSION_SEARCH_CRITERIA] = criteria;
         }
@@ -293,10 +292,10 @@ namespace VPR.WebApp.MasterModule
                     }
                     else
                     {
-                        txtSubject.Text = criteria.Subject;
                         txtCargoGroup.Text = criteria.CargoGroup;
-                        txtEmailGroup.Text = criteria.EmailGroup;
-                        txtCountry.Text = criteria.Country;
+                        txtCompany.Text = criteria.Company;
+                        txtEmailId.Text = criteria.EmailId;
+                        txtName.Text = criteria.Name;
 
                         gvImportBL.PageIndex = criteria.PageIndex;
                         gvImportBL.PageSize = criteria.PageSize;
@@ -315,7 +314,7 @@ namespace VPR.WebApp.MasterModule
 
         private void SetDefaultSearchCriteria(SearchCriteria criteria)
         {
-            string sortExpression = "EmailGroup";
+            string sortExpression = "Name";
             string sortDirection = "ASC";
 
             criteria.CurrentPage = PageName.EmailGroup;

@@ -28,7 +28,7 @@ namespace VPR.Entity
         public DateTime ModifiedOn { get; set; }
         public int CargoGroupID { get; set; }
 
-        public List<IEmail> EmailList { get; set; }
+        public List<ICargoGroup> CargoGroupList { get; set; }
 
         public EmailGroup()
         {

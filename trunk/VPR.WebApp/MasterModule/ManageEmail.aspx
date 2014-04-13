@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ManageEmailGroup.aspx.cs" Inherits="VPR.WebApp.MasterModule.ManageEmailGroup" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ManageEmail.aspx.cs" Inherits="VPR.WebApp.MasterModule.ManageEmail" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -15,7 +15,7 @@
         </div>
     </div>
     <div id="headercaption">
-        MANAGE EMAIL GROUP</div>
+        MANAGE EMAIL</div>
     <center>
         <div style="width: 850px; ">
             <fieldset style="width: 100%;">
@@ -23,21 +23,21 @@
                 <table>
                     <tr>
                         <td>
-                            <asp:TextBox ID="txtEmailGroup" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
+                            <asp:TextBox ID="txtName" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
                             <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server" FilterType="Custom,UppercaseLetters,LowercaseLetters,Numbers"
-                                FilterMode="InvalidChars" ValidChars=" " TargetControlID="txtEmailGroup">
+                                FilterMode="InvalidChars" ValidChars=" " TargetControlID="txtName">
                             </cc1:FilteredTextBoxExtender>
-                            <cc1:TextBoxWatermarkExtender ID="TextBoxWatermarkExtender4" runat="server" TargetControlID="txtEmailGroup"
-                                WatermarkText="Email Group">
+                            <cc1:TextBoxWatermarkExtender ID="TextBoxWatermarkExtender4" runat="server" TargetControlID="txtName"
+                                WatermarkText="Name">
                             </cc1:TextBoxWatermarkExtender>
                         </td>
                         <td>
-                            <asp:TextBox ID="txtCountry" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
+                            <asp:TextBox ID="txtEmailId" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
                             <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender5" runat="server" FilterType="Custom,UppercaseLetters,LowercaseLetters,Numbers"
-                                FilterMode="InvalidChars" ValidChars=" " TargetControlID="txtCountry">
+                                FilterMode="InvalidChars" ValidChars=" " TargetControlID="txtEmailId">
                             </cc1:FilteredTextBoxExtender>
-                            <cc1:TextBoxWatermarkExtender ID="TextBoxWatermarkExtender5" runat="server" TargetControlID="txtCountry"
-                                WatermarkText="Country">
+                            <cc1:TextBoxWatermarkExtender ID="TextBoxWatermarkExtender5" runat="server" TargetControlID="txtEmailId"
+                                WatermarkText="Email ID">
                             </cc1:TextBoxWatermarkExtender>
                         </td>
                     </tr>
@@ -52,12 +52,12 @@
                             </cc1:TextBoxWatermarkExtender>
                         </td>
                         <td>
-                            <asp:TextBox ID="txtSubject" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
+                            <asp:TextBox ID="txtCompany" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
                             <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender9" runat="server" FilterType="Custom,UppercaseLetters,LowercaseLetters,Numbers"
-                                FilterMode="InvalidChars" ValidChars=" " TargetControlID="txtSubject">
+                                FilterMode="InvalidChars" ValidChars=" " TargetControlID="txtCompany">
                             </cc1:FilteredTextBoxExtender>
-                            <cc1:TextBoxWatermarkExtender ID="TextBoxWatermarkExtender9" runat="server" TargetControlID="txtSubject"
-                                WatermarkText="Subject">
+                            <cc1:TextBoxWatermarkExtender ID="TextBoxWatermarkExtender9" runat="server" TargetControlID="txtCompany"
+                                WatermarkText="Company">
                             </cc1:TextBoxWatermarkExtender>
                         </td>
                     </tr>
@@ -94,7 +94,7 @@
                         <asp:ListItem Text="100" Value="100" />
                     </asp:DropDownList>
                     &nbsp;&nbsp;
-                    <asp:Button ID="btnAdd" runat="server" Text="Add New Email Group" Width="150"
+                    <asp:Button ID="btnAdd" runat="server" Text="Add New Email" Width="150"
                         OnClick="btnAdd_Click" />
                 </div>
                 <div>
@@ -122,28 +122,21 @@
                                         <HeaderStyle CssClass="gridviewheader" />
                                         <ItemStyle CssClass="gridviewitem" Width="25%" />
                                         <HeaderTemplate>
-                                            <asp:LinkButton ID="lnkGroupName" runat="server" CommandName="Sort" CommandArgument="EmailGroup" Text="Group Name"></asp:LinkButton>
+                                            <asp:LinkButton ID="lnkName" runat="server" CommandName="Sort" CommandArgument="Name" Text="Name"></asp:LinkButton>
                                         </HeaderTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField>
                                         <HeaderStyle CssClass="gridviewheader" />
                                         <ItemStyle CssClass="gridviewitem" Width="10%" />
                                         <HeaderTemplate>
-                                            <asp:LinkButton ID="lnkCountry" runat="server" CommandName="Sort" CommandArgument="Country" Text="Country"></asp:LinkButton>
-                                        </HeaderTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField>
-                                        <HeaderStyle CssClass="gridviewheader" />
-                                        <ItemStyle CssClass="gridviewitem" Width="25%" />
-                                        <HeaderTemplate>
-                                            <asp:LinkButton ID="lnkSubject" runat="server" CommandName="Sort" CommandArgument="Subject" Text="Subject"></asp:LinkButton>
+                                            <asp:LinkButton ID="lnkEmail" runat="server" CommandName="Sort" CommandArgument="EmailId" Text="Email ID"></asp:LinkButton>
                                         </HeaderTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField>
                                         <HeaderStyle CssClass="gridviewheader" />
                                         <ItemStyle CssClass="gridviewitem" Width="5%" />
                                         <HeaderTemplate>
-                                            <asp:LinkButton ID="lnkFrequency" runat="server" CommandName="Sort" CommandArgument="Frequency" Text="Frequency"></asp:LinkButton>
+                                            <asp:LinkButton ID="lnkCompany" runat="server" CommandName="Sort" CommandArgument="Company" Text="Company"></asp:LinkButton>
                                         </HeaderTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField>

@@ -14,8 +14,8 @@ namespace VPR.WebApp.MasterModule
 {
     public partial class AddEditEmail : System.Web.UI.Page
     {
-        List<IEmail> dynList;
-        List<IEmail> dynList2;
+        List<ICargoGroup> dynList;
+        List<ICargoGroup> dynList2;
         private int _userId = 0;
         private bool _canAdd = false;
         private bool _canEdit = false;
@@ -25,15 +25,15 @@ namespace VPR.WebApp.MasterModule
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //RetriveParameters();
-            //_userId = UserBLL.GetLoggedInUserId();
-            //_userLocation = UserBLL.GetUserLocation();
-            //CheckUserAccess();
+            RetriveParameters();
+            _userId = UserBLL.GetLoggedInUserId();
+            _userLocation = UserBLL.GetUserLocation();
+            CheckUserAccess();
 
             if (!IsPostBack)
             {
                 LoadCountryDDL();
-
+                
                 if (!ReferenceEquals(Request.QueryString["EmailId"], null))
                 {
                     int EmailId = 0;
@@ -42,15 +42,18 @@ namespace VPR.WebApp.MasterModule
                     if (EmailId > 0)
                     {
                         ViewState["EmailId"] = EmailId;
+                        BindListBox(Convert.ToInt32(ViewState["EmailId"]));
                         LoadForEdit(EmailId);
                     }
                     else
                     {
+                        BindListBox(0);
                         ViewState["EmailId"] = null;
                     }
                 }
                 else
                 {
+                    BindListBox(0);
                     ViewState["EmailId"] = null;
                 }
             }
@@ -115,12 +118,47 @@ namespace VPR.WebApp.MasterModule
 
         private void LoadForEdit(int EmailId)
         {
-            
+            IEmail objGroup = new EmailBLL().GetEmail(EmailId);
+
+            txtSuffix.Text = objGroup.Suffix;
+            txtSalutation.Text = objGroup.Salutation;
+            txtReceiverName.Text = objGroup.Name;
+            txtEmailId.Text = objGroup.EmailId;
+            txtEmailId1.Text = objGroup.EmailId1;
+            txtEmailId2.Text = objGroup.EmailId2;
+            txtEmailId3.Text = objGroup.EmailId3;
+            txtCompanyName.Text = objGroup.Company;
+            txtCompanyAbbr.Text = objGroup.CompanyAbbr;
+            ddlCountry.SelectedValue = objGroup.CountryId.ToString();
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            if (IsValid())
+            {
+                Email emailGroup = new Email();
 
+                if (!ReferenceEquals(ViewState["EmailId"], null))
+                    emailGroup.Id = Convert.ToInt32(ViewState["EmailId"]);
+
+                emailGroup.Suffix = txtSuffix.Text.Trim();
+                emailGroup.Salutation = txtSalutation.Text.Trim();
+                emailGroup.Name = txtReceiverName.Text.Trim();
+                emailGroup.EmailId = txtEmailId.Text.Trim();
+                emailGroup.EmailId1 = txtEmailId1.Text.Trim();
+                emailGroup.EmailId2 = txtEmailId2.Text.Trim();
+                emailGroup.EmailId3 = txtEmailId3.Text.Trim();
+                emailGroup.Company = txtCompanyName.Text.Trim();
+                emailGroup.CompanyAbbr = txtCompanyAbbr.Text.Trim();
+                emailGroup.CountryId = Convert.ToInt32(ddlCountry.SelectedValue);
+
+                if (!ReferenceEquals(ViewState["dynList2"], null))
+                    emailGroup.CargoGroupList = (List<ICargoGroup>)ViewState["dynList2"];
+
+                new EmailBLL().SaveEmail(emailGroup);
+
+                lblMessage.Text = "Email Saved Successfully";
+            }
         }
 
         protected void btnBack_Click(object sender, EventArgs e)
@@ -152,39 +190,39 @@ namespace VPR.WebApp.MasterModule
             {
                 for (int i = ListBox1.Items.Count - 1; i >= 0; i--)
                 {
-                    string emailId = string.Empty;
+                    string cargoGroupName = string.Empty;
 
                     if (ListBox1.Items[i].Selected)
                     {
-                        emailId = ListBox1.Items[i].Text;
+                        cargoGroupName = ListBox1.Items[i].Text;
 
                         ListBox2.Items.Add(ListBox1.Items[i]);
                         //ListBox2.ClearSelection();
                         ListBox1.Items.Remove(ListBox1.Items[i]);
 
-                        List<IEmail> list1 = (List<IEmail>)ViewState["dynList"];
-                        List<IEmail> list2 = (List<IEmail>)ViewState["dynList2"];
+                        List<ICargoGroup> list1 = (List<ICargoGroup>)ViewState["dynList"];
+                        List<ICargoGroup> list2 = (List<ICargoGroup>)ViewState["dynList2"];
 
-                        if (list2.Any(l => l.EmailId == emailId))
+                        if (list2.Any(l => l.CargoGroupName == cargoGroupName))
                         {
                             //list2 = list2.Where(l => l.EmailId == ListBox2.Items[i].Text).Select(l => { l.IsRemoved = true; l.IsAdded = true; return l; }).ToList();
-                            var toUpdate = list2.SingleOrDefault(l => l.EmailId == emailId);
+                            var toUpdate = list2.SingleOrDefault(l => l.CargoGroupName == cargoGroupName);
                             toUpdate.IsRemoved = false;
                             toUpdate.IsAdded = false;
 
-                            list1.RemoveAll(l => l.EmailId == emailId);
+                            list1.RemoveAll(l => l.CargoGroupName == cargoGroupName);
                         }
                         else
                         {
                             //list1 = list1.Where(l => l.EmailId == ListBox1.Items[i].Text).Select(l => { l.IsRemoved = true; l.IsAdded = false; return l; }).ToList();
-                            var toUpdate = list1.SingleOrDefault(l => l.EmailId == emailId);
+                            var toUpdate = list1.SingleOrDefault(l => l.CargoGroupName == cargoGroupName);
                             toUpdate.IsRemoved = true;
                             toUpdate.IsAdded = false;
 
                             //list2 = list2.Where(l => l.EmailId == ListBox2.Items[i].Text).Select(l => { l.IsRemoved = false; l.IsAdded = true; return l; }).ToList();
-                            var item = list1.SingleOrDefault(l => l.EmailId == emailId);
-                            list2.Add(new Email { Id = item.Id, Company = item.Company, EmailId = item.EmailId, IsAdded = item.IsAdded, IsRemoved = item.IsRemoved });
-                            var toUpdate2 = list2.SingleOrDefault(l => l.EmailId == emailId);
+                            var item = list1.SingleOrDefault(l => l.CargoGroupName == cargoGroupName);
+                            list2.Add(new CargoGroupEntity { CargoGroupID = item.CargoGroupID, CargoGroupName = item.CargoGroupName, GroupStatus = item.GroupStatus, IsAdded = item.IsAdded, IsRemoved = item.IsRemoved });
+                            var toUpdate2 = list2.SingleOrDefault(l => l.CargoGroupName == cargoGroupName);
                             toUpdate2.IsRemoved = false;
                             toUpdate2.IsAdded = true;
                         }
@@ -200,42 +238,42 @@ namespace VPR.WebApp.MasterModule
             {
                 for (int i = ListBox2.Items.Count - 1; i >= 0; i--)
                 {
-                    string emailId = string.Empty;
+                    string cargoGroupName = string.Empty;
 
                     if (ListBox2.Items[i].Selected)
                     {
-                        emailId = ListBox2.Items[i].Text;
+                        cargoGroupName = ListBox2.Items[i].Text;
 
                         ListBox1.Items.Add(ListBox2.Items[i]);
                         //ListBox1.ClearSelection();
                         ListBox2.Items.Remove(ListBox2.Items[i]);
 
-                        List<IEmail> list1 = (List<IEmail>)ViewState["dynList"];
-                        List<IEmail> list2 = (List<IEmail>)ViewState["dynList2"];
+                        List<ICargoGroup> list1 = (List<ICargoGroup>)ViewState["dynList"];
+                        List<ICargoGroup> list2 = (List<ICargoGroup>)ViewState["dynList2"];
 
                         //list2 = list2.Where(l => l.Id == Convert.ToInt32(ListBox2.Items[i].Value)).Select(l => { l.IsRemoved = true; l.IsAdded = false; return l; }).ToList();
                         //list1 = list1.Where(l => l.Id == Convert.ToInt32(ListBox1.Items[i].Value)).Select(l => { l.IsRemoved = false; l.IsAdded = true; return l; }).ToList();
 
-                        if (list1.Any(l => l.EmailId == emailId))
+                        if (list1.Any(l => l.CargoGroupName == cargoGroupName))
                         {
                             //list2 = list2.Where(l => l.EmailId == ListBox2.Items[i].Text).Select(l => { l.IsRemoved = true; l.IsAdded = true; return l; }).ToList();
-                            var toUpdate = list1.SingleOrDefault(l => l.EmailId == emailId);
+                            var toUpdate = list1.SingleOrDefault(l => l.CargoGroupName == cargoGroupName);
                             toUpdate.IsRemoved = false;
                             toUpdate.IsAdded = false;
 
-                            list2.RemoveAll(l => l.EmailId == emailId);
+                            list2.RemoveAll(l => l.CargoGroupName == cargoGroupName);
                         }
                         else
                         {
                             //list1 = list1.Where(l => l.EmailId == ListBox1.Items[i].Text).Select(l => { l.IsRemoved = true; l.IsAdded = false; return l; }).ToList();
-                            var toUpdate = list2.SingleOrDefault(l => l.EmailId == emailId);
+                            var toUpdate = list2.SingleOrDefault(l => l.CargoGroupName == cargoGroupName);
                             toUpdate.IsRemoved = true;
                             toUpdate.IsAdded = false;
 
                             //list2 = list2.Where(l => l.EmailId == ListBox2.Items[i].Text).Select(l => { l.IsRemoved = false; l.IsAdded = true; return l; }).ToList();
-                            var item = list2.SingleOrDefault(l => l.EmailId == emailId);
-                            list1.Add(new Email { Id = item.Id, Company = item.Company, EmailId = item.EmailId, IsAdded = item.IsAdded, IsRemoved = item.IsRemoved });
-                            var toUpdate2 = list1.SingleOrDefault(l => l.EmailId == emailId);
+                            var item = list2.SingleOrDefault(l => l.CargoGroupName == cargoGroupName);
+                            list1.Add(new CargoGroupEntity { CargoGroupID = item.CargoGroupID, CargoGroupName = item.CargoGroupName, GroupStatus = item.GroupStatus, IsAdded = item.IsAdded, IsRemoved = item.IsRemoved });
+                            var toUpdate2 = list1.SingleOrDefault(l => l.CargoGroupName == cargoGroupName);
                             toUpdate2.IsRemoved = false;
                             toUpdate2.IsAdded = true;
                         }
@@ -259,37 +297,37 @@ namespace VPR.WebApp.MasterModule
                     //ListBox2.ClearSelection();
                     //ListBox1.Items.Remove(ListBox1.Items[i]);
 
-                    string emailId = string.Empty;
+                    string cargoGroupName = string.Empty;
 
-                    emailId = ListBox1.Items[i].Text;
+                    cargoGroupName = ListBox1.Items[i].Text;
 
                     ListBox2.Items.Add(ListBox1.Items[i]);
                     //ListBox2.ClearSelection();
                     ListBox1.Items.Remove(ListBox1.Items[i]);
 
-                    List<IEmail> list1 = (List<IEmail>)ViewState["dynList"];
-                    List<IEmail> list2 = (List<IEmail>)ViewState["dynList2"];
+                    List<ICargoGroup> list1 = (List<ICargoGroup>)ViewState["dynList"];
+                    List<ICargoGroup> list2 = (List<ICargoGroup>)ViewState["dynList2"];
 
-                    if (list2.Any(l => l.EmailId == emailId))
+                    if (list2.Any(l => l.CargoGroupName == cargoGroupName))
                     {
                         //list2 = list2.Where(l => l.EmailId == ListBox2.Items[i].Text).Select(l => { l.IsRemoved = true; l.IsAdded = true; return l; }).ToList();
-                        var toUpdate = list2.SingleOrDefault(l => l.EmailId == emailId);
+                        var toUpdate = list2.SingleOrDefault(l => l.CargoGroupName == cargoGroupName);
                         toUpdate.IsRemoved = false;
                         toUpdate.IsAdded = false;
 
-                        list1.RemoveAll(l => l.EmailId == emailId);
+                        list1.RemoveAll(l => l.CargoGroupName == cargoGroupName);
                     }
                     else
                     {
                         //list1 = list1.Where(l => l.EmailId == ListBox1.Items[i].Text).Select(l => { l.IsRemoved = true; l.IsAdded = false; return l; }).ToList();
-                        var toUpdate = list1.SingleOrDefault(l => l.EmailId == emailId);
+                        var toUpdate = list1.SingleOrDefault(l => l.CargoGroupName == cargoGroupName);
                         toUpdate.IsRemoved = true;
                         toUpdate.IsAdded = false;
 
                         //list2 = list2.Where(l => l.EmailId == ListBox2.Items[i].Text).Select(l => { l.IsRemoved = false; l.IsAdded = true; return l; }).ToList();
-                        var item = list1.SingleOrDefault(l => l.EmailId == emailId);
-                        list2.Add(new Email { Id = item.Id, Company = item.Company, EmailId = item.EmailId, IsAdded = item.IsAdded, IsRemoved = item.IsRemoved });
-                        var toUpdate2 = list2.SingleOrDefault(l => l.EmailId == emailId);
+                        var item = list1.SingleOrDefault(l => l.CargoGroupName == cargoGroupName);
+                        list2.Add(new CargoGroupEntity { CargoGroupID = item.CargoGroupID, CargoGroupName = item.CargoGroupName, GroupStatus = item.GroupStatus, IsAdded = item.IsAdded, IsRemoved = item.IsRemoved });
+                        var toUpdate2 = list2.SingleOrDefault(l => l.CargoGroupName == cargoGroupName);
                         toUpdate2.IsRemoved = false;
                         toUpdate2.IsAdded = true;
                     }
@@ -306,40 +344,40 @@ namespace VPR.WebApp.MasterModule
                     //ListBox1.ClearSelection();
                     //ListBox2.Items.Remove(ListBox2.Items[i]);
 
-                    string emailId = string.Empty;
+                    string cargoGroupName = string.Empty;
 
-                    emailId = ListBox2.Items[i].Text;
+                    cargoGroupName = ListBox2.Items[i].Text;
 
                     ListBox1.Items.Add(ListBox2.Items[i]);
                     //ListBox1.ClearSelection();
                     ListBox2.Items.Remove(ListBox2.Items[i]);
 
-                    List<IEmail> list1 = (List<IEmail>)ViewState["dynList"];
-                    List<IEmail> list2 = (List<IEmail>)ViewState["dynList2"];
+                    List<ICargoGroup> list1 = (List<ICargoGroup>)ViewState["dynList"];
+                    List<ICargoGroup> list2 = (List<ICargoGroup>)ViewState["dynList2"];
 
                     //list2 = list2.Where(l => l.Id == Convert.ToInt32(ListBox2.Items[i].Value)).Select(l => { l.IsRemoved = true; l.IsAdded = false; return l; }).ToList();
                     //list1 = list1.Where(l => l.Id == Convert.ToInt32(ListBox1.Items[i].Value)).Select(l => { l.IsRemoved = false; l.IsAdded = true; return l; }).ToList();
 
-                    if (list1.Any(l => l.EmailId == emailId))
+                    if (list1.Any(l => l.CargoGroupName == cargoGroupName))
                     {
                         //list2 = list2.Where(l => l.EmailId == ListBox2.Items[i].Text).Select(l => { l.IsRemoved = true; l.IsAdded = true; return l; }).ToList();
-                        var toUpdate = list1.SingleOrDefault(l => l.EmailId == emailId);
+                        var toUpdate = list1.SingleOrDefault(l => l.CargoGroupName == cargoGroupName);
                         toUpdate.IsRemoved = false;
                         toUpdate.IsAdded = false;
 
-                        list2.RemoveAll(l => l.EmailId == emailId);
+                        list2.RemoveAll(l => l.CargoGroupName == cargoGroupName);
                     }
                     else
                     {
                         //list1 = list1.Where(l => l.EmailId == ListBox1.Items[i].Text).Select(l => { l.IsRemoved = true; l.IsAdded = false; return l; }).ToList();
-                        var toUpdate = list2.SingleOrDefault(l => l.EmailId == emailId);
+                        var toUpdate = list2.SingleOrDefault(l => l.CargoGroupName == cargoGroupName);
                         toUpdate.IsRemoved = true;
                         toUpdate.IsAdded = false;
 
                         //list2 = list2.Where(l => l.EmailId == ListBox2.Items[i].Text).Select(l => { l.IsRemoved = false; l.IsAdded = true; return l; }).ToList();
-                        var item = list2.SingleOrDefault(l => l.EmailId == emailId);
-                        list1.Add(new Email { Id = item.Id, Company = item.Company, EmailId = item.EmailId, IsAdded = item.IsAdded, IsRemoved = item.IsRemoved });
-                        var toUpdate2 = list1.SingleOrDefault(l => l.EmailId == emailId);
+                        var item = list2.SingleOrDefault(l => l.CargoGroupName == cargoGroupName);
+                        list1.Add(new CargoGroupEntity { CargoGroupID = item.CargoGroupID, CargoGroupName = item.CargoGroupName, GroupStatus = item.GroupStatus, IsAdded = item.IsAdded, IsRemoved = item.IsRemoved });
+                        var toUpdate2 = list1.SingleOrDefault(l => l.CargoGroupName == cargoGroupName);
                         toUpdate2.IsRemoved = false;
                         toUpdate2.IsAdded = true;
                     }
@@ -350,40 +388,48 @@ namespace VPR.WebApp.MasterModule
             }
         }
 
-        private void BindListBox(int CountryId, int EmailGroupId)
+        private void BindListBox(int EmailId)
         {
-            dynList = new List<IEmail>();
-            dynList = new EmailBLL().GetListOfAvailableEmail(CountryId, EmailGroupId);
+            dynList = new List<ICargoGroup>();
+            dynList = new EmailBLL().GetListOfAvailableCargoGroup(EmailId, true);
             //dynList.Add(new Email { Id = 1, EmailId = "Elevator", Company = "AAA", IsRemoved = false, IsAdded = false });
             //dynList.Add(new Email { Id = 2, EmailId = "Stairs", Company = "BBB", IsRemoved = false, IsAdded = false });
 
             ListBox1.DataSource = dynList;
-            ListBox1.DataValueField = "EmailId";
-            ListBox1.DataTextField = "EmailId";
+            ListBox1.DataValueField = "CargoGroupName";
+            ListBox1.DataTextField = "CargoGroupName";
             ListBox1.DataBind();
 
             ViewState["dynList"] = dynList;
 
-            dynList2 = new List<IEmail>();
-            dynList2 = new EmailBLL().GetListOfTaggedEmail(EmailGroupId);
+            dynList2 = new List<ICargoGroup>();
+            dynList2 = new EmailBLL().GetListOfTaggedCargoGroup(EmailId, true);
             //dynList2.Add(new Email { Id = 1, EmailId = "Souvik", Company = "Wipro", IsRemoved = false, IsAdded = false });
             //dynList2.Add(new Email { Id = 2, EmailId = "Tapas", Company = "CTS", IsRemoved = false, IsAdded = false });
 
             ListBox2.DataSource = dynList2;
-            ListBox2.DataValueField = "EmailId";
-            ListBox2.DataTextField = "EmailId";
+            ListBox2.DataValueField = "CargoGroupName";
+            ListBox2.DataTextField = "CargoGroupName";
             ListBox2.DataBind();
 
             ViewState["dynList2"] = dynList2;
         }
 
-
-        protected void ddlCountry_SelectedIndexChanged(object sender, EventArgs e)
+        private bool IsValid()
         {
-            if (ReferenceEquals(ViewState["EmailGroupId"], null))
-                BindListBox(Convert.ToInt32(ddlCountry.SelectedValue), 0);
-            else
-                BindListBox(Convert.ToInt32(ddlCountry.SelectedValue), Convert.ToInt32(ViewState["EmailGroupId"]));
+            bool isValid = true;
+            lblGroupName.Text = "";
+
+            if (ReferenceEquals(ViewState["EmailId"], null))
+            {
+                if (new EmailBLL().IsEmailExists(txtEmailId.Text.Trim()))
+                {
+                    isValid = false;
+                    lblGroupName.Text = "Email ID not available!";
+                }
+            }
+
+            return isValid;
         }
     }
 }

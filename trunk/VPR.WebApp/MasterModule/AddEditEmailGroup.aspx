@@ -198,7 +198,7 @@
                                             ValidationGroup="Save" Display="Dynamic"></asp:RequiredFieldValidator>
                         </td>
                     </tr>
-                    <%--<tr>
+                    <tr>
                         <td colspan="4" style="padding-top: 10; border: none;">
                             <fieldset style="width: 95%;">
                                 <legend>Tag Email Ids</legend>
@@ -249,7 +249,7 @@
                                 </table>
                             </fieldset>
                         </td>
-                    </tr>--%>
+                    </tr>
                     <tr>
                         <td>
                             <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" ValidationGroup="Save" />
