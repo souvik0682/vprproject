@@ -41,9 +41,9 @@ namespace VPR.BLL
             return EmailDAL.GetEmailGroups(searchCriteria);
         }
 
-        public void DeleteEmailGroup(int EmailGroupId)
+        public void DeleteEmailOrEmailGroup(int Id, bool IsEmail)
         {
-            EmailDAL.DeleteEmailGroup(EmailGroupId);
+            EmailDAL.DeleteEmailOrEmailGroup(Id, IsEmail);
         }
 
         public DataTable GetAllCargoGroup()
