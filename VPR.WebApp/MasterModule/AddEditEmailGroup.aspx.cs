@@ -9,6 +9,7 @@ using VPR.BLL;
 using VPR.Common;
 using System.Data;
 using VPR.Utilities;
+using VPR.Utilities.ResourceManager;
 
 namespace VPR.WebApp.MasterModule
 {
@@ -46,7 +47,7 @@ namespace VPR.WebApp.MasterModule
                 {
                     int GroupId = 0;
                     GroupId = GeneralFunctions.DecryptQueryString(Request.QueryString["EmailGroupId"].ToString()).ToInt();
-
+                    btnBack.OnClientClick = "javascript:return RedirectAfterCancelClick('ManageEmailGroup.aspx','" + ResourceManager.GetStringWithoutName("ERR00017") + "')";
                     if (GroupId > 0)
                     {
                         ViewState["EmailGroupId"] = GroupId;
@@ -101,6 +102,8 @@ namespace VPR.WebApp.MasterModule
                 emailGroup.Attachment = ddlAttachment.SelectedValue;
                 emailGroup.Frequency = ddlMailFrequency.SelectedValue;
                 emailGroup.SendingTime = ddlHour.SelectedValue + ":" + ddlMinutes.SelectedValue;
+                emailGroup.GroupStatus = true;
+                emailGroup.CreatedBy = _userId;
 
                 if (emailGroup.Frequency == "D")
                     emailGroup.SendOn = string.Empty;
@@ -489,7 +492,7 @@ namespace VPR.WebApp.MasterModule
             txtGroupName.Enabled = false;
 
             ddlCountry.SelectedValue = objGroup.CountryId.ToString();
-            ddlCargoGroup.SelectedValue = objGroup.CargoGroupID.ToString();
+            //ddlCargoGroup.SelectedValue = objGroup.CargoGroupID.ToString();
             //ddlCountry_SelectedIndexChanged(this, EventArgs.Empty);
 
             txtMailSubject.Text = objGroup.Subject;

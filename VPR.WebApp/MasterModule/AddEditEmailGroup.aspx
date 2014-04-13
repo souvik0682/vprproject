@@ -21,7 +21,7 @@
                             Group Name<span class="errormessage1">*</span>
                         </td>
                         <td>
-                            <asp:TextBox ID="txtGroupName" runat="server" Width="600px"></asp:TextBox>
+                            <asp:TextBox ID="txtGroupName" runat="server" CssClass="textboxuppercase" MaxLength="50" Width="600px"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvGroupName" runat="server" ControlToValidate="txtGroupName"
                                             ErrorMessage="This field is required*" CssClass="errormessage" ValidationGroup="Save"
                                             Display="Dynamic"></asp:RequiredFieldValidator>
@@ -185,7 +185,7 @@
                             </asp:DropDownList>
                         </td>
                     </tr>
-                    <tr>
+                    <%--<tr>
                         <td>
                             Cargo Group
                         </td>
@@ -197,7 +197,7 @@
                                             ErrorMessage="This field is required" ControlToValidate="ddlCargoGroup" InitialValue="0"
                                             ValidationGroup="Save" Display="Dynamic"></asp:RequiredFieldValidator>
                         </td>
-                    </tr>
+                    </tr>--%>
                     <tr>
                         <td colspan="4" style="padding-top: 10; border: none;">
                             <fieldset style="width: 95%;">
