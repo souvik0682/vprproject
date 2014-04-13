@@ -9,6 +9,7 @@ using VPR.BLL;
 using VPR.Utilities;
 using System.Data;
 using VPR.Entity;
+using VPR.Utilities.ResourceManager;
 
 namespace VPR.WebApp.MasterModule
 {
@@ -38,7 +39,7 @@ namespace VPR.WebApp.MasterModule
                 {
                     int EmailId = 0;
                     EmailId = GeneralFunctions.DecryptQueryString(Request.QueryString["EmailId"].ToString()).ToInt();
-
+                    btnBack.OnClientClick = "javascript:return RedirectAfterCancelClick('ManageEmail.aspx','" + ResourceManager.GetStringWithoutName("ERR00017") + "')";
                     if (EmailId > 0)
                     {
                         ViewState["EmailId"] = EmailId;

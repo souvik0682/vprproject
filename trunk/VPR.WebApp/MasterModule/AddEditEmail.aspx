@@ -124,7 +124,7 @@
                             Country<span class="errormessage1">*</span>
                         </td>
                         <td>
-                            <asp:DropDownList ID="ddlCountry" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCountry_SelectedIndexChanged">
+                            <asp:DropDownList ID="ddlCountry" runat="server" >
                                 <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                             </asp:DropDownList>
                             <asp:RequiredFieldValidator ID="rfvCountry" runat="server" CssClass="errormessage"
