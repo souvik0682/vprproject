@@ -236,9 +236,9 @@ namespace VPR.WebApp.MasterModule
             }
         }
 
-        private void DeleteEmailGroup(int emailGroupId)
+        private void DeleteEmailGroup(int emailId)
         {
-            new EmailBLL().DeleteEmailGroup(emailGroupId);
+            new EmailBLL().DeleteEmailOrEmailGroup(emailId, true);
 
             LoadEmailGroup();
             ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", "<script>javascript:void alert('BL has been deleted successfully!');</script>", false);

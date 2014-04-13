@@ -239,7 +239,7 @@ namespace VPR.WebApp.MasterModule
 
         private void DeleteEmailGroup(int emailGroupId)
         {
-            new EmailBLL().DeleteEmailGroup(emailGroupId);
+            new EmailBLL().DeleteEmailOrEmailGroup(emailGroupId, false);
 
             LoadEmailGroup();
             ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", "<script>javascript:void alert('BL has been deleted successfully!');</script>", false);

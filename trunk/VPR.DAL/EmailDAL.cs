@@ -109,13 +109,14 @@ namespace VPR.DAL
             return lstEg;
         }
 
-        public static void DeleteEmailGroup(int EmailGroupId)
+        public static void DeleteEmailOrEmailGroup(int Id, bool IsEmail)
         {
-            string strExecution = "uspDeleteEmailGroup";
+            string strExecution = "uspDeleteEmailOrEmailGroup";
 
             using (DbQuery oDq = new DbQuery(strExecution))
             {
-                oDq.AddBigIntegerParam("@EmailGroupId", EmailGroupId);
+                oDq.AddIntegerParam("@Id", Id);
+                oDq.AddBooleanParam("@IsEmail", IsEmail);
                 oDq.RunActionQuery();
             }
         }
@@ -136,7 +137,7 @@ namespace VPR.DAL
 
             using (DbQuery oDq = new DbQuery(strExecution))
             {
-                oDq.AddVarcharParam("@GroupName", 200, EmailId);
+                oDq.AddVarcharParam("@EmailID", 200, EmailId);
 
                 return Convert.ToBoolean(oDq.GetScalar());
             }
