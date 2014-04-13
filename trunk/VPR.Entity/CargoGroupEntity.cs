@@ -10,11 +10,17 @@ namespace VPR.Entity
     [Serializable]
     public class CargoGroupEntity : ICargoGroup
     {
-        public int  CargoGroupID { get; set; }
+        public int  pk_CargoGroupID { get; set; }
+
+        public int CargoGroupID { get; set; }
+
+        public int fk_CargoGroupID { get; set; }
 
         public string CargoGroupName { get; set; }
 
         public bool GroupStatus { get; set; }
+
+        public int pk_CargoSubGroupID { get; set; }
 
         public int fk_CargoSubGroupID { get; set; }
 
@@ -46,17 +52,30 @@ namespace VPR.Entity
         {
             if (ColumnExists(reader, "pk_CargoGroupID"))
                 if (reader["pk_CargoGroupID"] != DBNull.Value)
-                    this.CargoGroupID = Convert.ToInt32(reader["pk_CargoGroupID"]);
+                    this.pk_CargoGroupID = Convert.ToInt32(reader["pk_CargoGroupID"]);
+
+            if (ColumnExists(reader, "pk_CargoGroupID"))
+                if (reader["pk_CargoGroupID"] != DBNull.Value)
+                    this.pk_CargoGroupID = Convert.ToInt32(reader["pk_CargoGroupID"]);
+
+            if (ColumnExists(reader, "fk_CargoGroupID"))
+                if (reader["fk_CargoGroupID"] != DBNull.Value)
+                    this.fk_CargoGroupID = Convert.ToInt32(reader["fk_CargoGroupID"]);
 
             if (ColumnExists(reader, "fk_CargoSubGroupID"))
                 if (reader["fk_CargoSubGroupID"] != DBNull.Value)
                     this.fk_CargoSubGroupID = Convert.ToInt32(reader["fk_CargoSubGroupID"]);
+
+            if (ColumnExists(reader, "pk_CargoSubGroupID"))
+                if (reader["pk_CargoSubGroupID"] != DBNull.Value)
+                    this.pk_CargoSubGroupID = Convert.ToInt32(reader["pk_CargoSubGroupID"]);
 
             if (ColumnExists(reader, "CargoGroupName"))
                 if (reader["CargoGroupName"] != DBNull.Value)
                     this.CargoGroupName = Convert.ToString(reader["CargoGroupName"]);
             if (ColumnExists(reader, "GroupStatus"))
                 this.GroupStatus = Convert.ToBoolean(reader["GroupStatus"]);
+           
             if (ColumnExists(reader, "CargoSubGroupName"))
                 if (reader["CargoSubGroupName"] != DBNull.Value)
                     this.CargoSubGroupName = Convert.ToString(reader["CargoSubGroupName"]);
