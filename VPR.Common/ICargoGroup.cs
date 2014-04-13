@@ -7,6 +7,7 @@ namespace VPR.Common
 {
     public interface ICargoGroup : ICommon
     {
+        int pk_CargoGroupID { get; set; }
         int CargoGroupID { get; set; }
 
         string CargoGroupName { get; set; }
@@ -15,7 +16,6 @@ namespace VPR.Common
         bool IsRemoved { get; set; }
 
         bool IsAdded { get; set; }
-        int pk_CargoGroupID { get; set; }
         int fk_CargoGroupID { get; set; }
         string CargoSubGroupName { get; set; }
         int pk_CargoSubGroupID { get; set; }
