@@ -159,6 +159,8 @@ namespace VPR.WebApp.MasterModule
                 new EmailBLL().SaveEmail(emailGroup);
 
                 lblMessage.Text = "Email Saved Successfully";
+                if (ViewState["EmailId"] == null) 
+                    ClearText();
             }
         }
 
@@ -432,5 +434,20 @@ namespace VPR.WebApp.MasterModule
 
             return isValid;
         }
+
+        private void ClearText()
+        {   
+            txtCompanyName.Text = string.Empty;
+            ddlCountry.SelectedIndex = -1;
+            txtEmailId.Text = string.Empty;
+            txtEmailId1.Text = string.Empty;
+            txtEmailId2.Text = string.Empty;
+            txtEmailId3.Text = string.Empty;
+            txtReceiverName.Text = string.Empty;
+            txtSalutation.Text = string.Empty;
+            txtSuffix.Text = string.Empty;
+            BindListBox(0);
+
+        } 
     }
 }
