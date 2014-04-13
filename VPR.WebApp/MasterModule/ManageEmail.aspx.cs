@@ -241,7 +241,7 @@ namespace VPR.WebApp.MasterModule
             new EmailBLL().DeleteEmailOrEmailGroup(emailId, true);
 
             LoadEmailGroup();
-            ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", "<script>javascript:void alert('BL has been deleted successfully!');</script>", false);
+            ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", "<script>javascript:void alert('Email has been deleted successfully!');</script>", false);
         }
 
         private void RedirecToAddEditPage(int id)
