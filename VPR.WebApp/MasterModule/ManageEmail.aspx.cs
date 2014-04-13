@@ -115,7 +115,7 @@ namespace VPR.WebApp.MasterModule
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                GeneralFunctions.ApplyGridViewAlternateItemStyle(e.Row, 6);
+                GeneralFunctions.ApplyGridViewAlternateItemStyle(e.Row, 3);
                 ScriptManager sManager = ScriptManager.GetCurrent(this);
 
                 e.Row.Cells[0].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Name"));
