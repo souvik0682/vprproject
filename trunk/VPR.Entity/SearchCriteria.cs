@@ -151,6 +151,8 @@ namespace VPR.Entity
         public string Country { get; set; }
         public string EmailId { get; set; }
         public string Subject { get; set; }
+        public string Name { get; set; }
+        public string Company { get; set; }
 
         // tapas
         public string CargoGroup { get; set; }

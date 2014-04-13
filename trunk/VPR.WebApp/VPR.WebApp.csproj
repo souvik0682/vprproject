@@ -84,6 +84,7 @@
     <Content Include="MasterModule\AddEditEmail.aspx" />
     <Content Include="MasterModule\AddEditEmailGroup.aspx" />
     <Content Include="MasterModule\AddEditPort.aspx" />
+    <Content Include="MasterModule\ManageEmail.aspx" />
     <Content Include="MasterModule\ManageCargoGroup.aspx" />
     <Content Include="MasterModule\ManageCargoSubGroup.aspx" />
     <Content Include="MasterModule\ManageEmailGroup.aspx" />
@@ -253,6 +254,13 @@
     </Compile>
     <Compile Include="MasterModule\AddEditPort.aspx.designer.cs">
       <DependentUpon>AddEditPort.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterModule\ManageEmail.aspx.cs">
+      <DependentUpon>ManageEmail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterModule\ManageEmail.aspx.designer.cs">
+      <DependentUpon>ManageEmail.aspx</DependentUpon>
     </Compile>
     <Compile Include="MasterModule\ManageCargoGroup.aspx.cs">
       <DependentUpon>ManageCargoGroup.aspx</DependentUpon>
