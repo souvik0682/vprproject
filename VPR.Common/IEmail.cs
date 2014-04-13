@@ -20,6 +20,9 @@ namespace VPR.Common
         int AttachmentId { get; set; }
         bool MailStatus { get; set; }
         string CompanyAbbr { get; set; }
+        string CargoGroup { get; set; }
+
+        List<ICargoGroup> CargoGroupList { get; set; }
 
         bool IsRemoved { get; set; }
         bool IsAdded { get; set; }

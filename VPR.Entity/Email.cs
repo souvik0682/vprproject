@@ -40,6 +40,8 @@ namespace VPR.Entity
 
         public string EmailId3 { get; set; }
 
+        public string CargoGroup { get; set; }
+
         public int CreatedBy { get; set; }
 
         public DateTime CreatedOn { get; set; }
@@ -47,6 +49,8 @@ namespace VPR.Entity
         public int ModifiedBy { get; set; }
 
         public DateTime ModifiedOn { get; set; }
+
+        public List<ICargoGroup> CargoGroupList { get; set; }
 
         public Email()
         {
@@ -84,6 +88,9 @@ namespace VPR.Entity
 
             if (ColumnExists(reader, "CompanyAbbr"))
                 this.CompanyAbbr = Convert.ToString(reader["CompanyAbbr"]);
+
+            if (ColumnExists(reader, "CargoGroup"))
+                this.CargoGroup = Convert.ToString(reader["CargoGroup"]);
 
             if (ColumnExists(reader, "fk_countryID"))
                 if (reader["fk_countryID"] != DBNull.Value)

@@ -58,6 +58,7 @@
                                             ControlToValidate="txtEmailId" Display="Dynamic" CssClass="errormessage"
                                             ErrorMessage="Invalid email format" ValidationGroup="Save"
                                             ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                            <asp:Label ID="lblGroupName" runat="server" CssClass="errormessage1"></asp:Label>
                         </td>
                     </tr>
                     <tr>

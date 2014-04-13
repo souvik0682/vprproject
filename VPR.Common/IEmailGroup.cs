@@ -20,6 +20,6 @@ namespace VPR.Common
         string SendOn { get; set; }
         int CargoGroupID { get; set; }
 
-        List<IEmail> EmailList { get; set; }
+        List<ICargoGroup> CargoGroupList { get; set; }
     }
 }

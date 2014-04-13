@@ -84,7 +84,7 @@ namespace VPR.DAL
 
         public static List<IEmailGroup> GetEmailGroups(SearchCriteria searchCriteria)
         {
-            string strExecution = "[uspGetEmailGroupList]";
+            string strExecution = "uspGetEmailGroupList";
             List<IEmailGroup> lstEg = new List<IEmailGroup>();
 
             using (DbQuery oDq = new DbQuery(strExecution))
@@ -130,24 +130,65 @@ namespace VPR.DAL
         #endregion
 
         #region Email
-
-        public static List<IEmail> GetListOfAvailableEmail(int CountryId, int EmailGroupId)
+        public static bool IsEmailExists(string EmailId)
         {
-            string strExecution = "usp_GetListOfAvailableEmail";
-            List<IEmail> lstEmail = new List<IEmail>();
+            string strExecution = "usp_EmailExists";
 
             using (DbQuery oDq = new DbQuery(strExecution))
             {
-                oDq.AddIntegerParam("@CountryId", CountryId);
+                oDq.AddVarcharParam("@GroupName", 200, EmailId);
 
-                if (EmailGroupId > 0)
-                    oDq.AddIntegerParam("@EmailGroupId", EmailGroupId);
+                return Convert.ToBoolean(oDq.GetScalar());
+            }
+        }
+
+        public static int SaveEmail(IEmail EmailGroup)
+        {
+            int emailGroupId = 0;
+            string strExecution = "usp_SaveEmail";
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                if (EmailGroup.Id > 0)
+                    oDq.AddIntegerParam("@Id", EmailGroup.Id);
+
+                oDq.AddVarcharParam("@Suffix", 500, EmailGroup.Suffix);
+                oDq.AddVarcharParam("@Salutation", 500, EmailGroup.Salutation);
+                oDq.AddVarcharParam("@Name", 500, EmailGroup.Name);
+                oDq.AddVarcharParam("@EmailId", 500, EmailGroup.EmailId);
+                oDq.AddVarcharParam("@EmailId1", 2000, EmailGroup.EmailId1);
+                oDq.AddVarcharParam("@EmailId2", 1, EmailGroup.EmailId2);
+                oDq.AddVarcharParam("@EmailId3", 1, EmailGroup.EmailId3);
+                oDq.AddVarcharParam("@Company", 50, EmailGroup.Company);
+                oDq.AddVarcharParam("@CompanyAbbr", 50, EmailGroup.CompanyAbbr);
+                oDq.AddBooleanParam("@MailStatus", EmailGroup.MailStatus);
+                oDq.AddIntegerParam("@CountryId", EmailGroup.CountryId);
+
+                oDq.AddIntegerParam("@CreatedBy", EmailGroup.CreatedBy);
+                oDq.AddIntegerParam("@ModifiedBy", EmailGroup.ModifiedBy);
+
+                emailGroupId = Convert.ToInt32(oDq.GetScalar());
+                return emailGroupId;
+            }
+        }
+
+        public static List<ICargoGroup> GetListOfAvailableCargoGroup(int Id, bool IsEmail)
+        {
+            string strExecution = "usp_GetListOfAvailableCargoGroup";
+            List<ICargoGroup> lstEmail = new List<ICargoGroup>();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                if (Id > 0)
+                    oDq.AddIntegerParam("@Id", Id);
+
+                oDq.AddBooleanParam("@IsEmail", IsEmail);
 
                 DataTableReader reader = oDq.GetTableReader();
 
                 while (reader.Read())
                 {
-                    IEmail email = new Email(reader);
+                    ICargoGroup email = new CargoGroupEntity(reader);
                     lstEmail.Add(email);
                 }
 
@@ -157,20 +198,21 @@ namespace VPR.DAL
             return lstEmail;
         }
 
-        public static List<IEmail> GetListOfTaggedEmail(int EmailGroupId)
+        public static List<ICargoGroup> GetListOfTaggedCargoGroup(int Id, bool IsEmail)
         {
-            string strExecution = "usp_GetListOfTaggedEmail";
-            List<IEmail> lstEmail = new List<IEmail>();
+            string strExecution = "usp_GetListOfTaggedCargoGroup";
+            List<ICargoGroup> lstEmail = new List<ICargoGroup>();
 
             using (DbQuery oDq = new DbQuery(strExecution))
             {
-                oDq.AddIntegerParam("@EmailGroupId", EmailGroupId);
+                oDq.AddIntegerParam("@Id", Id);
+                oDq.AddBooleanParam("@IsEmail", IsEmail);
 
                 DataTableReader reader = oDq.GetTableReader();
 
                 while (reader.Read())
                 {
-                    IEmail email = new Email(reader);
+                    ICargoGroup email = new CargoGroupEntity(reader);
                     lstEmail.Add(email);
                 }
 
@@ -180,18 +222,65 @@ namespace VPR.DAL
             return lstEmail;
         }
 
-        public static void Tag_Untag_Email(int EmailId, int EmailGroupId, bool IsTag)
+        public static void Tag_Untag_CargoGroup(int CargoGroupId, int Id, bool IsTag, bool IsEmail)
         {
-            string strExecution = "usp_Tag_Untag_Email";
+            string strExecution = "usp_Tag_Untag_CargoGroup";
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@CargoGroupId", CargoGroupId);
+                oDq.AddIntegerParam("@Id", Id);
+                oDq.AddBooleanParam("@IsTag", IsTag);
+                oDq.AddBooleanParam("@IsEmail", IsEmail);
+
+                oDq.RunActionQuery();
+            }
+        }
+
+        public static IEmail GetEmail(int EmailId)
+        {
+            string strExecution = "usp_GetEmail";
+            IEmail objGroup = new Email();
 
             using (DbQuery oDq = new DbQuery(strExecution))
             {
                 oDq.AddIntegerParam("@EmailId", EmailId);
-                oDq.AddIntegerParam("@EmailGroupId", EmailGroupId);
-                oDq.AddBooleanParam("@IsTag", IsTag);
+                DataTableReader reader = oDq.GetTableReader();
 
-                oDq.RunActionQuery();
+                while (reader.Read())
+                {
+                    objGroup = new Email(reader);
+                }
+                reader.Close();
             }
+            return objGroup;
+        }
+
+        public static List<IEmail> GetEmails(SearchCriteria searchCriteria)
+        {
+            string strExecution = "uspGetEmailList";
+            List<IEmail> lstEg = new List<IEmail>();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddVarcharParam("@Name", 500, searchCriteria.Name);
+                oDq.AddVarcharParam("@EmailId", 500, searchCriteria.EmailId);
+                oDq.AddVarcharParam("@Company", 100, searchCriteria.Company);
+                oDq.AddVarcharParam("@CargoGroup", 100, searchCriteria.CargoGroup);
+
+                oDq.AddVarcharParam("@SortExpression", 100, searchCriteria.SortExpression);
+                oDq.AddVarcharParam("@SortDirection", 100, searchCriteria.SortDirection);
+
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    IEmail eg = new Email(reader);
+                    lstEg.Add(eg);
+                }
+                reader.Close();
+            }
+            return lstEg;
         }
 
         #endregion

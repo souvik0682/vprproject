@@ -103,6 +103,15 @@ namespace VPR.WebApp.MasterModule {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
         
         /// <summary>
+        /// lblGroupName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblGroupName;
+        
+        /// <summary>
         /// txtEmailId1 control.
         /// </summary>
         /// <remarks>
@@ -130,15 +139,6 @@ namespace VPR.WebApp.MasterModule {
         protected global::System.Web.UI.WebControls.TextBox txtEmailId2;
         
         /// <summary>
-        /// rfvEmail2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEmail2;
-        
-        /// <summary>
         /// RegularExpressionValidator3 control.
         /// </summary>
         /// <remarks>
@@ -155,15 +155,6 @@ namespace VPR.WebApp.MasterModule {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEmailId3;
-        
-        /// <summary>
-        /// rfvEmail3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEmail3;
         
         /// <summary>
         /// RegularExpressionValidator4 control.
