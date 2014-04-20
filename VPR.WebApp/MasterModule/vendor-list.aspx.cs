@@ -112,13 +112,13 @@ namespace VPR.WebApp.MasterModule
                 e.Row.Cells[0].Text = ((gvwVendor.PageSize * gvwVendor.PageIndex) + e.Row.RowIndex + 1).ToString();
                 //e.Row.Cells[1].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Abbreviation"));
 
-                e.Row.Cells[1].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "VendorType"));
+                e.Row.Cells[1].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "VendorName"));
 
-                e.Row.Cells[2].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "LocationName"));
+                e.Row.Cells[2].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "CountryName"));
 
-                e.Row.Cells[3].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "VendorName"));
+                e.Row.Cells[3].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "State"));
 
-                e.Row.Cells[4].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "VendorAddress"));
+                e.Row.Cells[4].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "VendorAddress1"));
 
                 // Edit link
                 ImageButton btnEdit = (ImageButton)e.Row.FindControl("btnEdit");
@@ -304,7 +304,7 @@ namespace VPR.WebApp.MasterModule
             criteria.SortExpression = sortExpression;
             criteria.SortDirection = sortDirection;
             criteria.LocAbbr = (txtVendorName.Text == ResourceManager.GetStringWithoutName("ERR00017")) ? string.Empty : txtVendorName.Text.Trim();
-            criteria.LocName = (txtLocationName.Text == ResourceManager.GetStringWithoutName("ERR00018")) ? string.Empty : txtLocationName.Text.Trim();
+            criteria.LocName = (txtCountryName.Text == ResourceManager.GetStringWithoutName("ERR00018")) ? string.Empty : txtCountryName.Text.Trim();
             Session[Constants.SESSION_SEARCH_CRITERIA] = criteria;
         }
 
@@ -384,7 +384,7 @@ namespace VPR.WebApp.MasterModule
 
         protected void btnRefresh_Click(object sender, EventArgs e)
         {
-            txtLocationName.Text = string.Empty;
+            txtCountryName.Text = string.Empty;
             txtVendorName.Text = string.Empty;
             LoadAddress();
         }

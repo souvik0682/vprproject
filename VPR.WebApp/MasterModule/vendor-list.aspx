@@ -31,12 +31,12 @@
                             </cc1:TextBoxWatermarkExtender>
                         </td>
                         <td>
-                            <asp:TextBox ID="txtLocationName" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
+                            <asp:TextBox ID="txtCountryName" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
                             <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender2" runat="server" FilterType="Custom,UppercaseLetters,LowercaseLetters,Numbers"
-                                FilterMode="ValidChars" ValidChars=" " TargetControlID="txtLocationName">
+                                FilterMode="ValidChars" ValidChars=" " TargetControlID="txtCountryName">
                             </cc1:FilteredTextBoxExtender>
-                            <cc1:TextBoxWatermarkExtender ID="TextBoxWatermarkExtender2" runat="server" TargetControlID="txtLocationName"
-                                WatermarkText="Location Name">
+                            <cc1:TextBoxWatermarkExtender ID="TextBoxWatermarkExtender2" runat="server" TargetControlID="txtCountryName"
+                                WatermarkText="Country Name">
                             </cc1:TextBoxWatermarkExtender>
                         </td>
                         <td>
@@ -97,27 +97,27 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField>
                                         <HeaderStyle CssClass="gridviewheader" />
-                                        <ItemStyle CssClass="gridviewitem" Width="15%" />
+                                        <ItemStyle CssClass="gridviewitem" Width="25%" />
                                         <HeaderTemplate>
-                                            <asp:LinkButton ID="lnkHType" runat="server" CommandName="Sort" CommandArgument="Type"
-                                                Text="Type"></asp:LinkButton></HeaderTemplate>
+                                            <asp:LinkButton ID="lnkHType" runat="server" CommandName="Sort" CommandArgument="Name"
+                                                Text="Agent Name"></asp:LinkButton></HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="lblType" runat="server"></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Location">
                                         <HeaderStyle CssClass="gridviewheader" />
-                                        <ItemStyle CssClass="gridviewitem" Width="25%" />
+                                        <ItemStyle CssClass="gridviewitem" Width="15%" />
                                         <HeaderTemplate>
-                                            <asp:LinkButton ID="lnkHLoc" runat="server" CommandName="Sort" CommandArgument="Location"
-                                                Text="Location"></asp:LinkButton></HeaderTemplate>
+                                            <asp:LinkButton ID="lnkHLoc" runat="server" CommandName="Sort" CommandArgument="Country"
+                                                Text="Country"></asp:LinkButton></HeaderTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Name">
                                         <HeaderStyle CssClass="gridviewheader" />
-                                        <ItemStyle CssClass="gridviewitem" Width="20%" />
+                                        <ItemStyle CssClass="gridviewitem" Width="15%" />
                                         <HeaderTemplate>
-                                            <asp:LinkButton ID="lnkHName" runat="server" CommandName="Sort" CommandArgument="Name"
-                                                Text="Name"></asp:LinkButton></HeaderTemplate>
+                                            <asp:LinkButton ID="lnkHName" runat="server" CommandName="Sort" CommandArgument="State"
+                                                Text="State"></asp:LinkButton></HeaderTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Address">
                                         <HeaderStyle CssClass="gridviewheader" />
