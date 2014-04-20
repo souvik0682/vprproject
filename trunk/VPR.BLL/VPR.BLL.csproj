@@ -45,6 +45,7 @@
     <Compile Include="DBInteraction.cs" />
     <Compile Include="EmailBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TransactionBLL.cs" />
     <Compile Include="UserBLL.cs" />
     <Compile Include="VendorBLL.cs" />
   </ItemGroup>

@@ -241,7 +241,7 @@ public class AutoComplete : System.Web.Services.WebService {
 
         string sql = @"SELECT PortName collate SQL_Latin1_General_CP1_CI_AS+' | '+portCode collate SQL_Latin1_General_CP1_CI_AS+' | '+
                       (SELECT countryname FROM dbo.mstCountry WHERE countryabbr = LEFT(portCode collate SQL_Latin1_General_CP1_CI_AS,2)) Name
-                      FROM DSR.dbo.mstPort where PortName LIKE @prefixText";
+                      FROM dbo.mstPort where PortName LIKE @prefixText";
 
         SqlDataAdapter da = new SqlDataAdapter(sql, ac.ConnectionString);
         da.SelectCommand.Parameters.Add("@prefixText", SqlDbType.VarChar, 50).Value = prefixText + "%";
@@ -566,20 +566,6 @@ public class AutoComplete : System.Web.Services.WebService {
 
 public class AppCodeClass
 {
-
- //  public string ConnectionString = "Data Source=CHNBAIWEB1V;Initial Catalog=Liner;User Id=sa;Password=Welcome@123;Pooling=true;Connection Timeout=30;Max Pool Size=40;Min Pool Size=5";
-   public string ConnectionString = @"Data Source=tapas-pc;Initial Catalog=Liner06062013;User Id=sa;Password=123456;Pooling=true;Connection Timeout=30;Max Pool Size=40;Min Pool Size=5";
-
-   // public string ConnectionString = "Data Source=WIN-SERVER;Initial Catalog=Liner;User Id=sa;Password=Welcome@123;Pooling=true;Connection Timeout=30;Max Pool Size=40;Min Pool Size=5";
-    //public string ConnectionString = "Data Source=WIN-SERVER;Initial Catalog=Liner;User Id=sa;Password=P@ssw0rd;Pooling=true;Connection Timeout=30;Max Pool Size=40;Min Pool Size=5";
-    
-    //public string ConnectionString = @"Data Source=SOUVIK-PC\SQLEXPRESS;Initial Catalog=NVOCC;Integrated Security=SSPI;";
-
-    //public string ConnectionString = "Data Source=WIN-SERVER;Initial Catalog=Liner;User Id=sa;Password=P@ssw0rd;Pooling=true;Connection Timeout=30;Max Pool Size=40;Min Pool Size=5";
-    //public string ConnectionString = @"Data Source=JOYASREE\SQLEXPRESS;Initial Catalog=Nvocc;User Id=sa;Password=pass;Pooling=true;Connection Timeout=30;Max Pool Size=40;Min Pool Size=5";
-    
-    //public string ConnectionString = @"Data Source=DILP-PC;Initial Catalog=NVOCC;Integrated Security=true;Pooling=true;Connection Timeout=30;Max Pool Size=40;Min Pool Size=5";
-
-    //public string ConnectionString = @"Data Source=SOUVIK-PC\SQLEXPRESS;Initial Catalog=NVOCC;Integrated Security=SSPI;";
+    public string ConnectionString = @"Data Source=SOUVIK-PC\SQLEXPRESS;Initial Catalog=VPR;Integrated Security=SSPI;";
 }
 

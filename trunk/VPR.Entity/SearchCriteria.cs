@@ -153,6 +153,9 @@ namespace VPR.Entity
         public string Subject { get; set; }
         public string Name { get; set; }
         public string Company { get; set; }
+        public string VesselName { get; set; }
+        public string Port { get; set; }
+        public string Berth { get; set; }
 
         // tapas
         public string CargoGroup { get; set; }

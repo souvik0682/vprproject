@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CustomControls\AC_CHA.ascx" />
+    <Content Include="CustomControls\AC_Port.ascx" />
     <Content Include="CustomControls\DatePicker.ascx" />
     <Content Include="Error.aspx" />
     <Content Include="FileNotFound.aspx" />
@@ -156,6 +157,9 @@
     <Content Include="Styles\VPR.css" />
     <Content Include="Styles\StyleSheet.css" />
     <Content Include="Styles\Ufal.png" />
+    <Content Include="Transaction\AddEditVessel.aspx" />
+    <Content Include="Transaction\ManageShipStatus.aspx" />
+    <Content Include="Transaction\ManageVessel.aspx" />
     <Content Include="Unauthorized.aspx" />
     <Content Include="View\AddEditUser.aspx" />
     <Content Include="View\ChangePassword.aspx" />
@@ -188,6 +192,13 @@
     </Compile>
     <Compile Include="CustomControls\AC_CHA.ascx.designer.cs">
       <DependentUpon>AC_CHA.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\AC_Port.ascx.cs">
+      <DependentUpon>AC_Port.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomControls\AC_Port.ascx.designer.cs">
+      <DependentUpon>AC_Port.ascx</DependentUpon>
     </Compile>
     <Compile Include="CustomControls\CustomTextBox.cs">
       <SubType>Code</SubType>
@@ -329,6 +340,27 @@
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Transaction\AddEditVessel.aspx.cs">
+      <DependentUpon>AddEditVessel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transaction\AddEditVessel.aspx.designer.cs">
+      <DependentUpon>AddEditVessel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Transaction\ManageShipStatus.aspx.cs">
+      <DependentUpon>ManageShipStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transaction\ManageShipStatus.aspx.designer.cs">
+      <DependentUpon>ManageShipStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Transaction\ManageVessel.aspx.cs">
+      <DependentUpon>ManageVessel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transaction\ManageVessel.aspx.designer.cs">
+      <DependentUpon>ManageVessel.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Unauthorized.aspx.cs">
       <DependentUpon>Unauthorized.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
