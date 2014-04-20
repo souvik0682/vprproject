@@ -8,6 +8,7 @@ using VPR.Common;
 using VPR.BLL;
 using VPR.Entity;
 using VPR.Utilities;
+using System.Data;
 using VPR.Utilities.ResourceManager;
 
 namespace VPR.WebApp.MasterModule
@@ -40,22 +41,12 @@ namespace VPR.WebApp.MasterModule
             {
                 ListItem Li = null;
                 Li = new ListItem("Select", "0");
-                PopulateDropDown((int)Enums.DropDownPopulationFor.VendorType, ddlVendorType, 0);
-                ddlVendorType.Items.Insert(0, Li);
+                //PopulateDropDown((int)Enums.DropDownPopulationFor.VendorType, ddlVendorType, 0);
+                //ddlVendorType.Items.Insert(0, Li);
 
                 Li = new ListItem("Select", "0");
-                PopulateDropDown((int)Enums.DropDownPopulationFor.Location, ddlLocationID, 0);
-                ddlLocationID.Items.Insert(0, Li);
-
-                #region Salutation
-                foreach (Enums.Salutation r in Enum.GetValues(typeof(Enums.Salutation)))
-                {
-                    Li = new ListItem("Select", "0");
-                    ListItem item = new ListItem(Enum.GetName(typeof(Enums.Salutation), r).Replace('_', '/'), ((int)r).ToString());
-                    ddlSalutation.Items.Add(item);
-                }
-                ddlSalutation.Items.Insert(0, Li);
-                #endregion
+                PopulateDropDown();
+                ddlCountry.Items.Insert(0, Li);
 
                 if (hdnVendorID.Value != "0")
                     LoadData();
@@ -89,48 +80,32 @@ namespace VPR.WebApp.MasterModule
         {
             VendorEntity oVendor = (VendorEntity)VendorBLL.GetVendor(Convert.ToInt32(hdnVendorID.Value));
 
-            ddlVendorType.SelectedIndex =ddlVendorType.Items.IndexOf(ddlVendorType.Items.FindByValue(oVendor.VendorType));
-            if (ddlVendorType.SelectedItem.Text == "CFS/ICD" || ddlVendorType.SelectedItem.Text =="ICD")
-            {
-                txtCfsCode.Enabled = true;
-                rfvCfdCode.Enabled = true;
-                ddlTerminalCode.Enabled = true;
-            }
-            else
-            {
-                txtCfsCode.Enabled = false;
-                rfvCfdCode.Enabled = false;
-                ddlTerminalCode.Enabled = false;
-            }
-            ddlLocationID.SelectedIndex = Convert.ToInt32(ddlLocationID.Items.IndexOf(ddlLocationID.Items.FindByValue(oVendor.LocationName)));
-            PopulateDropDown((int)Enums.DropDownPopulationFor.TerminalCode, ddlTerminalCode, Convert.ToInt32(ddlLocationID.SelectedValue));
-
-            ddlSalutation.SelectedIndex = Convert.ToInt32(ddlSalutation.Items.IndexOf(ddlSalutation.Items.FindByValue(oVendor.VendorSalutation.ToString())));
-            if (ddlTerminalCode.Items.Count > 0)
-            {
-                ddlTerminalCode.SelectedIndex = Convert.ToInt32(ddlTerminalCode.Items.IndexOf(ddlTerminalCode.Items.FindByValue(oVendor.Terminalid.ToString())));
-            }
-
             txtName.Text = oVendor.VendorName;
-            txtAddress.Text = oVendor.VendorAddress;
-            txtCfsCode.Text = oVendor.CFSCode;
-            TxtTAN.Text = oVendor.TANo;
-            TxtPAN.Text = oVendor.PAN;
-            TxtACNo.Text = oVendor.AcNo;
-            TxtAcType.Text = oVendor.AcType;
-            TxtBankName.Text = oVendor.BankName;
-            TxtIEC.Text = oVendor.IEC;
+            txtAddress1.Text = oVendor.VendorAddress1;
+            txtAddress2.Text = oVendor.VendorAddress2;
+            txtPhone.Text = oVendor.Phone;
+            txtCity.Text = oVendor.City;
+            txtState.Text = oVendor.State;
+            ddlCountry.SelectedValue = oVendor.fk_CountryID.ToString();
             TxtEmail.Text = oVendor.EmailID;
-            TxtBIN.Text = oVendor.BIN;
             TxtMob.Text = oVendor.Mobile;
-            TxtCP.Text = oVendor.CP;
-           
             
         }
 
-        void PopulateDropDown(int Number, DropDownList ddl, int? Filter)
+        void PopulateDropDown()
         {
-            CommonBLL.PopulateDropdown(Number, ddl, Filter,0);
+
+
+            DataTable dt = new CommonBLL().GetAllCountry();
+            DataRow dr = dt.NewRow();
+
+            dr["pk_countryID"] = "0";
+            dr["CountryName"] = "--Select--";
+            dt.Rows.InsertAt(dr, 0);
+            ddlCountry.DataValueField = "pk_countryID";
+            ddlCountry.DataTextField = "CountryName";
+            ddlCountry.DataSource = dt;
+            ddlCountry.DataBind();
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -141,29 +116,17 @@ namespace VPR.WebApp.MasterModule
                 oVendorEntity = new VendorEntity();
                 //oUserEntity = (UserEntity)Session[Constants.SESSION_USER_INFO]; // This section has been commented temporarily
 
-                oVendorEntity.VendorType = ddlVendorType.SelectedValue;
-                oVendorEntity.LocationID = Convert.ToInt32(ddlLocationID.SelectedValue);
-                oVendorEntity.VendorSalutation = Convert.ToInt32(ddlSalutation.SelectedValue);
                 oVendorEntity.VendorName = txtName.Text.Trim();
-                oVendorEntity.VendorAddress = txtAddress.Text.Trim();
-                oVendorEntity.CompanyID = 1;//Need to populate from data base. This will be the company ID of the currently loggedin user.
+                oVendorEntity.VendorAddress1 = txtAddress1.Text.Trim();
+                oVendorEntity.VendorAddress2 = txtAddress2.Text.Trim();
                 oVendorEntity.VendorActive = true;
-                oVendorEntity.AcNo = TxtACNo.Text;
-                oVendorEntity.AcType = TxtAcType.Text;
-                oVendorEntity.BankName = TxtBankName.Text;
-                oVendorEntity.BIN = TxtBIN.Text;
+                oVendorEntity.State = txtState.Text;
+                oVendorEntity.City = txtCity.Text;
                 oVendorEntity.EmailID = TxtEmail.Text;
-                oVendorEntity.IEC = TxtIEC.Text;
+                oVendorEntity.Phone = txtPhone.Text;
                 oVendorEntity.Mobile = TxtMob.Text;
-                oVendorEntity.TANo = TxtTAN.Text;
-                oVendorEntity.PAN = TxtPAN.Text;
-                oVendorEntity.CP = TxtCP.Text;
-
-
-                oVendorEntity.CFSCode = txtCfsCode.Text.Trim();
-                if (ddlTerminalCode.Items.Count > 0 && ddlTerminalCode.SelectedIndex > 0)
-                    oVendorEntity.Terminalid = Convert.ToInt32(ddlTerminalCode.SelectedValue);
-
+                oVendorEntity.fk_CountryID = Convert.ToInt32(ddlCountry.SelectedValue);
+     
                 if (hdnVendorID.Value == "0") // Insert
                 {
                     oVendorEntity.CreatedBy = _userId;// oUserEntity.Id;
@@ -197,29 +160,6 @@ namespace VPR.WebApp.MasterModule
 
 
             }
-        }
-
-        protected void ddlLocationID_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            PopulateDropDown((int)Enums.DropDownPopulationFor.TerminalCode, ddlTerminalCode, Convert.ToInt32(ddlLocationID.SelectedValue));
-        }
-
-        protected void ddlVendorType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (ddlVendorType.SelectedItem.Text == "CFS/ICD" || ddlVendorType.SelectedItem.Text == "ICD")
-            {
-                txtCfsCode.Enabled = true;
-                rfvCfdCode.Enabled = true;
-                ddlTerminalCode.Enabled = true;
-            }
-            else
-            {
-                txtCfsCode.Enabled = false;
-                rfvCfdCode.Enabled = false;
-                txtCfsCode.Text = string.Empty;
-                ddlTerminalCode.Enabled = false;
-            }
-
         }
 
         private void RetriveParameters()
@@ -278,25 +218,17 @@ namespace VPR.WebApp.MasterModule
 
         void ClearAll()
         {
-            ddlLocationID.SelectedIndex = 0;
-            ddlSalutation.SelectedIndex = 0;
-            if (ddlTerminalCode.Items.Count > 0)
-                ddlTerminalCode.SelectedIndex = 0;
-            ddlVendorType.SelectedIndex = 0;
-            txtAddress.Text = string.Empty;
-            txtCfsCode.Text = string.Empty;
+            ddlCountry.SelectedIndex = 0;
+
+            txtAddress1.Text = string.Empty;
+            txtAddress2.Text = string.Empty;
             txtName.Text = string.Empty;
             hdnVendorID.Value = "0";
-            TxtBankName.Text = string.Empty;
-            TxtBIN.Text = string.Empty;
+            txtCity.Text = string.Empty;
+            txtState.Text = string.Empty;
             TxtEmail.Text = string.Empty;
             TxtMob.Text = string.Empty;
-            TxtPAN.Text = string.Empty;
-            TxtTAN.Text = string.Empty;
-            TxtACNo.Text = string.Empty;
-            TxtAcType.Text = string.Empty;
-            TxtIEC.Text = string.Empty;
-            TxtCP.Text = string.Empty;
+           
 
         }
     }
