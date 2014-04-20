@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="AddressEntity.cs" />
     <Compile Include="AreaEntity.cs" />
+    <Compile Include="CargoDetails.cs" />
     <Compile Include="CargoGroupEntity.cs" />
     <Compile Include="ContactPersonEntity.cs" />
     <Compile Include="ContainerType.cs" />
@@ -60,7 +61,8 @@
     <Compile Include="UserEntity.cs" />
     <Compile Include="UserPermission.cs" />
     <Compile Include="VendorEntity.cs" />
-    <Compile Include="Vessel.cs" />
+    <Compile Include="VesselEntity.cs" />
+    <Compile Include="VesselStatus.cs" />
     <Compile Include="VoyageEntity.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="AC_Port.ascx.cs" Inherits="EMS.WebApp.CustomControls.AC_Port" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="AC_Port.ascx.cs" Inherits="VPR.WebApp.CustomControls.AC_Port" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <link href="../CustomControls/StyleSheet.css" rel="stylesheet" type="text/css" />
