@@ -451,6 +451,16 @@ namespace VPR.WebApp.Transaction
 
                 new TransactionBLL().SaveVesselCargo(o, lstData);
 
+                if (Convert.ToInt32(ViewState["VesselId"]) > 0)
+                {
+                    Response.Redirect("~/Transaction/ManageVessel.aspx");
+                }
+                else
+                {
+                    string encryptedId = GeneralFunctions.EncryptQueryString("-1");
+                    Response.Redirect("~/Transaction/AddEditVessel.aspx?VesselId=" + encryptedId);
+                }
+
                 lblErr.Text = "Record saved successfully";
             }
         }

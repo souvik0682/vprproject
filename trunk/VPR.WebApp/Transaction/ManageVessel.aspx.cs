@@ -136,6 +136,7 @@ namespace VPR.WebApp.Transaction
                     btnRemove.Visible = true;
                     btnRemove.ToolTip = ResourceManager.GetStringWithoutName("ERR00007");
                     btnRemove.CommandArgument = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "VesselId"));
+                    btnRemove.Attributes.Add("onclick", "javascript:return confirm('Are you sure about delete?');");
                 }
                 else
                 {

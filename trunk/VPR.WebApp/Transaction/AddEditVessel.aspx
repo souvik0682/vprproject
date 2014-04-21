@@ -49,10 +49,10 @@
                                                 </td>
                                                 <td>
                                                     <asp:TextBox ID="txtVoyageNo" runat="server" Width="250px" CssClass="textboxuppercase"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="rfvGroupName" runat="server" ControlToValidate="txtVoyageNo"
+                                                    <%--<asp:RequiredFieldValidator ID="rfvGroupName" runat="server" ControlToValidate="txtVoyageNo"
                                                         ErrorMessage="This field is required*" CssClass="errormessage" ValidationGroup="Save"
                                                         Display="Dynamic"></asp:RequiredFieldValidator>
-                                                    <asp:Label ID="lblVoyage" runat="server" CssClass="errormessage1"></asp:Label>
+                                                    <asp:Label ID="lblVoyage" runat="server" CssClass="errormessage1"></asp:Label>--%>
                                                 </td>
                                                 <td>
                                                     Port:
@@ -84,7 +84,7 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    Arrival Data:
+                                                    ETA:
                                                 </td>
                                                 <td>
                                                     <asp:TextBox ID="txtArrivalDate" runat="server" Width="250px"></asp:TextBox>

@@ -58,24 +58,6 @@ namespace VPR.WebApp.Transaction {
         protected global::System.Web.UI.WebControls.TextBox txtVoyageNo;
         
         /// <summary>
-        /// rfvGroupName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvGroupName;
-        
-        /// <summary>
-        /// lblVoyage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblVoyage;
-        
-        /// <summary>
         /// txtPort control.
         /// </summary>
         /// <remarks>
