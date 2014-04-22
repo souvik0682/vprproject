@@ -162,6 +162,7 @@ namespace VPR.Entity
         public string CargoSubGroup { get; set; }
         public string CargoName { get; set; }
         public string CargoGroupType { get; set; }
+        public string Agent { get; set; }
 
         #endregion
 
@@ -220,6 +221,7 @@ namespace VPR.Entity
             this.CargoGroup = string.Empty;
             this.CargoSubGroup = string.Empty;
             this.CargoGroupType = string.Empty;
+            
         }
 
         #endregion      

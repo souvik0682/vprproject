@@ -16,23 +16,11 @@ namespace VPR.Entity
             set;
         }
 
-        public string VendorType
-        {
-            get;
-            set;
-        }
-
-        public int LocationID
-        {
-            get;
-            set;
-        }
-
-        public int VendorSalutation
-        {
-            get;
-            set;
-        }
+        //public int VendorSalutation
+        //{
+        //    get;
+        //    set;
+        //}
 
         public string VendorName
         {
@@ -40,25 +28,19 @@ namespace VPR.Entity
             set;
         }
 
-        public string VendorAddress
+        public string CountryName
         {
             get;
             set;
         }
 
-        public string CFSCode
+        public string VendorAddress1
         {
             get;
             set;
         }
 
-        public int Terminalid
-        {
-            get;
-            set;
-        }
-
-        public int CompanyID
+        public string VendorAddress2
         {
             get;
             set;
@@ -70,19 +52,19 @@ namespace VPR.Entity
             set;
         }
 
-        public string LocationName
+        public string City
         {
             get;
             set;
         }
 
-        public string BankName
+        public string State
         {
             get;
             set;
         }
 
-        public string BIN
+        public string Phone
         {
             get;
             set;
@@ -100,37 +82,19 @@ namespace VPR.Entity
             set;
         }
 
-        public string PAN
-        {
-            get;
-            set;
-        }
+        //public string PAN
+        //{
+        //    get;
+        //    set;
+        //}
 
-        public string TANo
-        {
-            get;
-            set;
-        }
+        //public string BankName
+        //{
+        //    get;
+        //    set;
+        //}
 
-        public string AcNo
-        {
-            get;
-            set;
-        }
-
-        public string AcType
-        {
-            get;
-            set;
-        }
-
-        public string IEC
-        {
-            get;
-            set;
-        }
-
-        public string CP
+        public int fk_CountryID
         {
             get;
             set;
@@ -176,26 +140,25 @@ namespace VPR.Entity
 
         public VendorEntity(DataTableReader reader)
         {
-            this.CFSCode = Convert.ToString(reader["CFSCode"]);
-            this.CompanyID = Convert.ToInt32(reader["Company"]);
+            //this.CFSCode = Convert.ToString(reader["CFSCode"]);
+            //this.CompanyID = Convert.ToInt32(reader["Company"]);
             //this.LocationID = Convert.ToInt32(reader["Location"]);
-            this.LocationName = Convert.ToString(reader["Location"]);
-            this.Terminalid = Convert.ToInt32(reader["Terminal"]);
-            this.VendorAddress = Convert.ToString(reader["Address"]);
-            this.VendorId = Convert.ToInt32(reader["Id"]);
-            this.VendorName = Convert.ToString(reader["Name"]);
-            this.VendorSalutation = Convert.ToInt32(reader["Salutation"]);
-            this.VendorType = Convert.ToString(reader["Type"]);
-            this.PAN = Convert.ToString(reader["PAN"]);
-            this.TANo = Convert.ToString(reader["TANo"]);
-            this.IEC = Convert.ToString(reader["IEC"]);
-            this.BankName = Convert.ToString(reader["BankName"]);
-            this.BIN = Convert.ToString(reader["BIN"]);
-            this.AcNo = Convert.ToString(reader["AcNo"]);
-            this.AcType = Convert.ToString(reader["AcType"]);
-            this.Mobile = Convert.ToString(reader["Mobile"]);
-            this.CP = Convert.ToString(reader["CP"]);
-            this.EmailID = Convert.ToString(reader["EmailID"]);
+            this.fk_CountryID = Convert.ToInt32(reader["fk_CountryID"]);
+            //this.Terminalid = Convert.ToInt32(reader["Terminal"]);
+            this.VendorAddress1 = Convert.ToString(reader["AgentAddress1"]);
+            this.VendorAddress2 = Convert.ToString(reader["AgentAddress2"]);
+            this.CountryName = Convert.ToString(reader["CountryName"]);
+            this.VendorId = Convert.ToInt32(reader["pk_AgentId"]);
+            this.VendorName = Convert.ToString(reader["AgentName"]);
+            //this.VendorSalutation = Convert.ToInt32(reader["Salutation"]);
+            this.City = Convert.ToString(reader["AgentCity"]);
+            //this.PAN = Convert.ToString(reader["PAN"]);
+            this.State = Convert.ToString(reader["AgentState"]);
+            this.Phone = Convert.ToString(reader["AgentPhone"]);
+            //this.BankName = Convert.ToString(reader["BankName"]);
+            this.EmailID = Convert.ToString(reader["AgentMailID"]);
+            this.Mobile = Convert.ToString(reader["AgentMobile"]);
+          
         }
 
         #endregion
