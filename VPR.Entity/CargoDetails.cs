@@ -14,6 +14,7 @@ namespace VPR.Entity
         public int CargoId { get; set; }
         public int VesselId { get; set; }
         public decimal Quantity { get; set; }
+        public string ActType { get; set; }
         public bool IsDeleted { get; set; }
         public bool IsNew { get; set; }
 
@@ -38,6 +39,10 @@ namespace VPR.Entity
             if (ColumnExists(reader, "quantity"))
                 if (reader["quantity"] != DBNull.Value)
                     this.Quantity = Convert.ToDecimal(reader["quantity"]);
+
+            if (ColumnExists(reader, "ActType"))
+                if (reader["ActType"] != DBNull.Value)
+                    this.ActType = Convert.ToString(reader["ActType"]);
 
             this.IsDeleted = false;
             this.IsNew = false;

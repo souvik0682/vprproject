@@ -31,7 +31,7 @@ namespace VPR.Entity
         public DateTime ModifiedOn { get; set; }
         public string PortName { get; set; }
         public string BerthName { get; set; }
-
+        public string AgentName { get; set; }
 
         public VesselEntity()
         {
@@ -119,6 +119,9 @@ namespace VPR.Entity
 
             if (ColumnExists(reader, "BerthName"))
                 this.BerthName = Convert.ToString(reader["BerthName"]);
+
+            if (ColumnExists(reader, "AgentName"))
+                this.AgentName = Convert.ToString(reader["AgentName"]);
         }
 
         public bool ColumnExists(IDataReader reader, string columnName)
