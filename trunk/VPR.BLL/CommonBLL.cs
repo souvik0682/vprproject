@@ -543,5 +543,27 @@ namespace VPR.BLL
         {
             return CommonDAL.GetAllGroup();
         }
+
+        public BerthEntity GetBerth(int BerthId)
+        {
+            return CommonDAL.GetBerth(BerthId);
+        }
+
+        public void SaveBerth(BerthEntity oBerth)
+        {
+            int BerthId = 0;
+            BerthId = CommonDAL.SaveBerth(oBerth);
+
+        }
+
+        public List<BerthEntity> GetBerths(SearchCriteria searchCriteria)
+        {
+            return CommonDAL.GetBerths(searchCriteria);
+        }
+
+        public void DeleteBerth(int BerthId)
+        {
+            CommonDAL.DeleteBerth(BerthId);
+        }
     }
 }
