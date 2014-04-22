@@ -149,6 +149,7 @@ namespace VPR.DAL
                 oDq.AddIntegerParam("@VesselId", o.VesselId);
                 oDq.AddIntegerParam("@CargoId", o.CargoId);
                 oDq.AddDecimalParam("@Quantity", 12, 2, o.Quantity);
+                oDq.AddVarcharParam("@ActType", 1, o.ActType);
                 oDq.AddIntegerParam("@Type", type);
 
                 cargoVesselId = Convert.ToInt32(oDq.GetScalar());
@@ -165,7 +166,7 @@ namespace VPR.DAL
             {
                 oDq.AddVarcharParam("@VesselName", 500, searchCriteria.VesselName);
                 oDq.AddVarcharParam("@Port", 200, searchCriteria.Port);
-                oDq.AddVarcharParam("@Berth", 200, searchCriteria.Berth);
+                oDq.AddVarcharParam("@Agent", 200, searchCriteria.Agent);
 
                 oDq.AddVarcharParam("@SortExpression", 100, searchCriteria.SortExpression);
                 oDq.AddVarcharParam("@SortDirection", 100, searchCriteria.SortDirection);

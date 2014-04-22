@@ -17,32 +17,29 @@ namespace VPR.DAL
 
         public static int AddEditVndor(IVendor Vendor)
         {
-            string strExecution = "[mst].[spAddEditVendor]";
+            string strExecution = "[admin].[spAddEditAgent]";
             int Result = 0;
 
             using (DbQuery oDq = new DbQuery(strExecution))
             {
-                oDq.AddIntegerParam("@VendorId", Vendor.VendorId);
-                oDq.AddIntegerParam("@CompanyID", Vendor.CompanyID);
-                oDq.AddIntegerParam("@LocationID", Vendor.LocationID);
-                oDq.AddNVarcharParam("@VendorName", Vendor.VendorName);
-                oDq.AddNVarcharParam("@VendorAddress", Vendor.VendorAddress);
-                oDq.AddIntegerParam("@VendorSalutation", Vendor.VendorSalutation);
-                oDq.AddVarcharParam("@VendorType", 5, Vendor.VendorType);
-                oDq.AddVarcharParam("@CFSCode", 10, Vendor.CFSCode);
-                oDq.AddIntegerParam("@Terminalid", Vendor.Terminalid);
-                oDq.AddVarcharParam("@Acno", 20, Vendor.AcNo);
-                oDq.AddVarcharParam("@AcType", 20, Vendor.AcType);
-                oDq.AddVarcharParam("@PAN", 20, Vendor.PAN);
-                oDq.AddVarcharParam("@TANo", 20, Vendor.TANo);
-                oDq.AddVarcharParam("@BIN", 20, Vendor.BIN);
-                oDq.AddVarcharParam("@Mobile", 20, Vendor.Mobile);
-                oDq.AddVarcharParam("@EmailID", 50, Vendor.EmailID);
-                oDq.AddVarcharParam("@BankName", 50, Vendor.BankName);
-                oDq.AddVarcharParam("@IEC", 20, Vendor.IEC);
-                oDq.AddVarcharParam("@CP", 50, Vendor.CP);
+                oDq.AddIntegerParam("@pk_AgentID", Vendor.VendorId);
+                //oDq.AddIntegerParam("@CompanyID", Vendor.CompanyID);
+                //oDq.AddIntegerParam("@LocationID", Vendor.LocationID);
+                oDq.AddNVarcharParam("@AgentName", Vendor.VendorName);
+                oDq.AddVarcharParam("@AgentAddress1", 300, Vendor.VendorAddress1);
+                oDq.AddVarcharParam("@AgentAddress2", 300, Vendor.VendorAddress2);
+                //oDq.AddIntegerParam("@VendorSalutation", Vendor.VendorSalutation);
+                oDq.AddVarcharParam("@AgentCity", 50, Vendor.City);
+                oDq.AddVarcharParam("@AgentState", 50, Vendor.State);
+                oDq.AddIntegerParam("@fk_Countryid", Vendor.fk_CountryID);
+                //oDq.AddVarcharParam("@Acno", 30, Vendor.Phone);
+                oDq.AddVarcharParam("@AgentMobile", 30, Vendor.Mobile);
+                oDq.AddVarcharParam("@AgentMailID", 50, Vendor.EmailID);
+                oDq.AddVarcharParam("@AgentPhone", 30, Vendor.Phone);
+                //oDq.AddVarcharParam("@IEC", 20, Vendor.IEC);
+                //oDq.AddVarcharParam("@CP", 50, Vendor.CP);
 
-                oDq.AddBooleanParam("@VendorActive", Vendor.VendorActive);
+                oDq.AddBooleanParam("@AgentStatus", Vendor.VendorActive);
                 if (Vendor.VendorId <= 0)
                 {
                     oDq.AddIntegerParam("@CreatedBy", Vendor.CreatedBy);
@@ -59,7 +56,7 @@ namespace VPR.DAL
 
         public static List<IVendor> GetVendor(SearchCriteria searchCriteria, int ID)
         {
-            string strExecution = "[mst].[spGetVendor]";
+            string strExecution = "[admin].[spGetVendor]";
             List<IVendor> lstVnd = new List<IVendor>();
 
             //using (DbQuery oDq = new DbQuery(strExecution))
@@ -97,7 +94,7 @@ namespace VPR.DAL
 
         public static IVendor GetVendor(int ID)
         {
-            string strExecution = "[mst].[spGetVendor]";
+            string strExecution = "[admin].[spGetVendor]";
             //List<IVendor> lstVnd = new List<IVendor>();
             IVendor Vnd = null;
             using (DbQuery oDq = new DbQuery(strExecution))
@@ -118,7 +115,7 @@ namespace VPR.DAL
 
         public static int DeleteVndor(int VendorId)
         {
-            string strExecution = "[mst].[spDeleteVendor]";
+            string strExecution = "[admin].[spDeleteVendor]";
             int Result = 0;
 
             using (DbQuery oDq = new DbQuery(strExecution))

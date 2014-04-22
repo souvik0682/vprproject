@@ -991,5 +991,80 @@ namespace VPR.DAL
             DAL.DbManager.DbQuery dquery = new DAL.DbManager.DbQuery(ProcName);
             return dquery.GetTable();
         }
+
+        public static BerthEntity GetBerth(int BerthId)
+        {
+            string strExecution = "usp_GetBerth";
+            BerthEntity o = new BerthEntity();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@BerthId", BerthId);
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    o = new BerthEntity(reader);
+                }
+                reader.Close();
+            }
+            return o;
+        }
+
+     
+
+        public static int SaveBerth(BerthEntity o)
+        {
+            int berthId = 0;
+            string strExecution = "usp_SaveBerth";
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                if (o.BerthId > 0)
+                    oDq.AddIntegerParam("@BerthId", o.BerthId);
+                
+                oDq.AddIntegerParam("@PortId", o.PortId);
+                oDq.AddVarcharParam("@BerthName", 50, o.BerthName);
+
+                berthId = Convert.ToInt32(oDq.GetScalar());
+                return berthId;
+            }
+        }
+
+        public static List<BerthEntity> GetBerths(SearchCriteria searchCriteria)
+        {
+            string strExecution = "uspGetBerthList";
+            List<BerthEntity> lstEg = new List<BerthEntity>();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddVarcharParam("@BerthName", 500, searchCriteria.VesselName);
+                oDq.AddVarcharParam("@Port", 200, searchCriteria.Port);
+
+                oDq.AddVarcharParam("@SortExpression", 100, searchCriteria.SortExpression);
+                oDq.AddVarcharParam("@SortDirection", 100, searchCriteria.SortDirection);
+
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    BerthEntity eg = new BerthEntity(reader);
+                    lstEg.Add(eg);
+                }
+                reader.Close();
+            }
+            return lstEg;
+        }
+
+        public static void DeleteBerth(int BerthId)
+        {
+            string strExecution = "usp_DeleteBerth";
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@BerthId", BerthId);
+                oDq.RunActionQuery();
+            }
+        }
     }
 }
