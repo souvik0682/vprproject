@@ -76,31 +76,40 @@ namespace VPR.WebApp.Transaction {
         protected global::System.Web.UI.WebControls.Label errPort;
         
         /// <summary>
-        /// ddlBerth control.
+        /// txtPreviousPort control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlBerth;
+        protected global::VPR.WebApp.CustomControls.AC_Port txtPreviousPort;
         
         /// <summary>
-        /// rfvBerth control.
+        /// errPreviousPort control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvBerth;
+        protected global::System.Web.UI.WebControls.Label errPreviousPort;
         
         /// <summary>
-        /// txtLOA control.
+        /// txtNextPort control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::VPR.WebApp.CustomControls.CustomTextBox txtLOA;
+        protected global::VPR.WebApp.CustomControls.AC_Port txtNextPort;
+        
+        /// <summary>
+        /// errNextPort control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label errNextPort;
         
         /// <summary>
         /// txtArrivalDate control.
@@ -130,15 +139,6 @@ namespace VPR.WebApp.Transaction {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvMailSendOn;
         
         /// <summary>
-        /// txtBerthDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBerthDate;
-        
-        /// <summary>
         /// txtETC control.
         /// </summary>
         /// <remarks>
@@ -146,6 +146,15 @@ namespace VPR.WebApp.Transaction {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtETC;
+        
+        /// <summary>
+        /// txtLOA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::VPR.WebApp.CustomControls.CustomTextBox txtLOA;
         
         /// <summary>
         /// txtOwnerName control.
@@ -184,42 +193,6 @@ namespace VPR.WebApp.Transaction {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
         
         /// <summary>
-        /// txtPreviousPort control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::VPR.WebApp.CustomControls.AC_Port txtPreviousPort;
-        
-        /// <summary>
-        /// errPreviousPort control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label errPreviousPort;
-        
-        /// <summary>
-        /// txtNextPort control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::VPR.WebApp.CustomControls.AC_Port txtNextPort;
-        
-        /// <summary>
-        /// errNextPort control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label errNextPort;
-        
-        /// <summary>
         /// txtRemarks control.
         /// </summary>
         /// <remarks>
@@ -227,15 +200,6 @@ namespace VPR.WebApp.Transaction {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtRemarks;
-        
-        /// <summary>
-        /// RequiredFieldValidator5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
         
         /// <summary>
         /// gvwCargo control.

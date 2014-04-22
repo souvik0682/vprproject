@@ -67,6 +67,8 @@ namespace VPR.WebApp.Transaction
             {
                 CargoDetails cargo = e.Row.DataItem as CargoDetails;
                 DropDownList ddlCargo = (DropDownList)e.Row.FindControl("ddlCargo");
+                DropDownList ddlActType = (DropDownList)e.Row.FindControl("ddlActType");
+
 
                 DataTable dtCargo = new TransactionBLL().GetAllCargo();
                 DataRow dr = dtCargo.NewRow();
@@ -79,6 +81,30 @@ namespace VPR.WebApp.Transaction
                 ddlCargo.DataBind();
 
                 ddlCargo.SelectedValue = cargo.CargoId.ToString();
+
+                if (ddlAcivity.SelectedValue.ToString() == "L")
+                {
+                    ddlActType.SelectedValue = "L";
+                    ddlActType.Enabled = false;
+                }
+                else if (ddlAcivity.SelectedValue.ToString() == "D")
+                {
+                    ddlActType.SelectedValue = "D";
+                    ddlActType.Enabled = false;
+                }
+
+                else if (ddlAcivity.SelectedValue.ToString() == "B")
+                {
+                    ddlActType.SelectedValue = "D";
+                    ddlActType.Enabled = true;
+                }
+
+                else if (ddlAcivity.SelectedValue.ToString() == "O")
+                {
+                    ddlActType.SelectedValue = "N";
+                    ddlActType.Enabled = true;
+                }
+
 
                 ImageButton btnRemove = (ImageButton)e.Row.FindControl("btnRemove");
                 btnRemove.ImageUrl = "~/Images/remove.png";
@@ -161,6 +187,8 @@ namespace VPR.WebApp.Transaction
             {
                 ViewState["PORTID"] = null;
             }
+
+           
         }
 
         protected void btnAddNew_Click(object sender, EventArgs e)
@@ -180,6 +208,7 @@ namespace VPR.WebApp.Transaction
 
                 HiddenField hdnCargoVesselId = (HiddenField)thisGridViewRow.FindControl("hdnCargoVesselId");
                 DropDownList ddlCargo = (DropDownList)thisGridViewRow.FindControl("ddlCargo");
+                DropDownList ActType = (DropDownList)thisGridViewRow.FindControl("ddlActType");
                 TextBox txtQuantity = (TextBox)thisGridViewRow.FindControl("txtQuantity");
 
                 lstData.Where(d => d.CargoVesselId == Convert.ToInt64(hdnCargoVesselId.Value))
@@ -268,15 +297,15 @@ namespace VPR.WebApp.Transaction
             ddlAgentName.DataSource = dt;
             ddlAgentName.DataBind();
 
-            DataTable dt2 = new TransactionBLL().GetAllBerth();
-            DataRow dr2 = dt2.NewRow();
-            dr2["pk_BerthID"] = "0";
-            dr2["BerthName"] = "--Select--";
-            dt2.Rows.InsertAt(dr2, 0);
-            ddlBerth.DataValueField = "pk_BerthID";
-            ddlBerth.DataTextField = "BerthName";
-            ddlBerth.DataSource = dt2;
-            ddlBerth.DataBind();
+            //DataTable dt2 = new TransactionBLL().GetAllBerth();
+            //DataRow dr2 = dt2.NewRow();
+            //dr2["pk_BerthID"] = "0";
+            //dr2["BerthName"] = "--Select--";
+            //dt2.Rows.InsertAt(dr2, 0);
+            //ddlBerth.DataValueField = "pk_BerthID";
+            //ddlBerth.DataTextField = "BerthName";
+            //ddlBerth.DataSource = dt2;
+            //ddlBerth.DataBind();
         }
 
         private bool ValidateSave()
@@ -325,6 +354,11 @@ namespace VPR.WebApp.Transaction
                 gvwCargo.DataSource = oList.Where(i => i.IsDeleted == false).ToList();
                 gvwCargo.DataBind();
             }
+        }
+
+        private void SetActivity()
+        {
+
         }
 
         private void AddNewRow()
@@ -384,12 +418,12 @@ namespace VPR.WebApp.Transaction
             ViewState["NEXTPORTID"] = o.NextPortId;
             ((TextBox)txtPreviousPort.FindControl("txtPort")).Text = nxtPort;
 
-            ddlBerth.SelectedValue = o.BerthId.ToString();
+            //ddlBerth.SelectedValue = o.BerthId.ToString();
             txtLOA.Text = o.LOA.ToString();
             txtArrivalDate.Text = o.ArrivalDate.ToString("dd-MM-yyyy");
 
-            if (o.BerthDate.HasValue)
-                txtBerthDate.Text = o.BerthDate.Value.ToString("dd-MM-yyyy");
+            //if (o.BerthDate.HasValue)
+            //    txtBerthDate.Text = o.BerthDate.Value.ToString("dd-MM-yyyy");
             if (o.ETC.HasValue)
                 txtETC.Text = o.ETC.Value.ToString("dd-MM-yyyy");
 
@@ -416,7 +450,7 @@ namespace VPR.WebApp.Transaction
                 o.AgentId = Convert.ToInt32(ddlAgentName.SelectedValue);
                 o.ArrivalDate = Convert.ToDateTime(txtArrivalDate.Text.Trim());
                 //o.BerthDate = Convert.ToDateTime(txtBerthDate.Text.Trim());
-                o.BerthId = Convert.ToInt32(ddlBerth.SelectedValue);
+                //o.BerthId = Convert.ToInt32(ddlBerth.SelectedValue);
                 o.CreatedBy = 0;
                 //o.ETC = Convert.ToDateTime(txtETC.Text.Trim());
                 o.LOA = Convert.ToDecimal(txtLOA.Text.Trim());
@@ -438,6 +472,7 @@ namespace VPR.WebApp.Transaction
 
                     HiddenField hdnCargoVesselId = (HiddenField)thisGridViewRow.FindControl("hdnCargoVesselId");
                     DropDownList ddlCargo = (DropDownList)thisGridViewRow.FindControl("ddlCargo");
+                    DropDownList ddlActType = (DropDownList)thisGridViewRow.FindControl("ddlActType");
                     TextBox txtQuantity = (TextBox)thisGridViewRow.FindControl("txtQuantity");
 
                     lstData.Where(d => d.CargoVesselId == Convert.ToInt64(hdnCargoVesselId.Value))
@@ -445,6 +480,7 @@ namespace VPR.WebApp.Transaction
                         {
                             d.CargoId = Convert.ToInt32(ddlCargo.SelectedValue);
                             d.Quantity = Convert.ToDecimal(txtQuantity.Text.Trim());
+                            d.ActType = Convert.ToString(ddlActType.SelectedValue);
                             return d;
                         }).ToList();
                 }
@@ -462,6 +498,42 @@ namespace VPR.WebApp.Transaction
                 }
 
                 lblErr.Text = "Record saved successfully";
+            }
+        }
+
+        protected void ddlAcivity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<CargoDetails> lstData = ViewState["DataSource"] as List<CargoDetails>;
+
+            int totalRows = gvwCargo.Rows.Count;
+
+            for (int r = 0; r < totalRows; r++)
+            {
+                GridViewRow thisGridViewRow = gvwCargo.Rows[r];
+                DropDownList ddlActType = (DropDownList)thisGridViewRow.FindControl("ddlActType");
+
+                if (ddlAcivity.SelectedValue.ToString() == "L")
+                {
+                    ddlActType.SelectedValue = "L";
+                    ddlActType.Enabled = false;
+                }
+                else if (ddlAcivity.SelectedValue.ToString() == "D")
+                {
+                    ddlActType.SelectedValue = "D";
+                    ddlActType.Enabled = false;
+                }
+
+                else if (ddlAcivity.SelectedValue.ToString() == "B")
+                {
+                    //ddlActType.SelectedValue = "D";
+                    ddlActType.Enabled = true;
+                }
+
+                else if (ddlAcivity.SelectedValue.ToString() == "O")
+                {
+                    ddlActType.SelectedValue = "N";
+                    ddlActType.Enabled = false;
+                }
             }
         }
     }

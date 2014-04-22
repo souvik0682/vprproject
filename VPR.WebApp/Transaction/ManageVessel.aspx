@@ -39,15 +39,15 @@
                                 WatermarkText="Port">
                             </cc1:TextBoxWatermarkExtender>
                         </td>
-                    </tr>
-                    <tr>
+<%--                    </tr>
+                    <tr>--%>
                         <td>
-                            <asp:TextBox ID="txtBerth" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
+                            <asp:TextBox ID="txtAgent" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
                             <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender7" runat="server" FilterType="Custom,UppercaseLetters,LowercaseLetters,Numbers"
-                                FilterMode="InvalidChars" ValidChars=" " TargetControlID="txtBerth">
+                                FilterMode="InvalidChars" ValidChars=" " TargetControlID="txtAgent">
                             </cc1:FilteredTextBoxExtender>
-                            <cc1:TextBoxWatermarkExtender ID="TextBoxWatermarkExtender7" runat="server" TargetControlID="txtBerth"
-                                WatermarkText="Berth">
+                            <cc1:TextBoxWatermarkExtender ID="TextBoxWatermarkExtender7" runat="server" TargetControlID="txtAgent"
+                                WatermarkText="Agent">
                             </cc1:TextBoxWatermarkExtender>
                         </td>
                         <td>
@@ -113,7 +113,7 @@
                                 <Columns>
                                     <asp:TemplateField>
                                         <HeaderStyle CssClass="gridviewheader" />
-                                        <ItemStyle CssClass="gridviewitem" Width="25%" />
+                                        <ItemStyle CssClass="gridviewitem" Width="20%" />
                                         <HeaderTemplate>
                                             <asp:LinkButton ID="lnkVesselName" runat="server" CommandName="Sort" CommandArgument="VesselName" Text="Vessel Name"></asp:LinkButton>
                                         </HeaderTemplate>
@@ -122,49 +122,49 @@
                                         <HeaderStyle CssClass="gridviewheader" />
                                         <ItemStyle CssClass="gridviewitem" Width="10%" />
                                         <HeaderTemplate>
-                                            <asp:LinkButton ID="lnkVoyage" runat="server" CommandName="Sort" CommandArgument="VoyageNo" Text="Voyage" Enabled="false"></asp:LinkButton>
+                                            <asp:LinkButton ID="lnkActivity" runat="server" CommandName="Sort" CommandArgument="Activity" Text="Activity" Enabled="false"></asp:LinkButton>
                                         </HeaderTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField>
                                         <HeaderStyle CssClass="gridviewheader" />
-                                        <ItemStyle CssClass="gridviewitem" Width="5%" />
+                                        <ItemStyle CssClass="gridviewitem" Width="15%" />
                                         <HeaderTemplate>
                                             <asp:LinkButton ID="lnkPort" runat="server" CommandName="Sort" CommandArgument="PortName" Text="Port"></asp:LinkButton>
                                         </HeaderTemplate>
                                     </asp:TemplateField>
-                                     <asp:TemplateField>
+                                    <%-- <asp:TemplateField>
                                         <HeaderStyle CssClass="gridviewheader" />
                                         <ItemStyle CssClass="gridviewitem" Width="5%" />
                                         <HeaderTemplate>
                                             <asp:LinkButton ID="lnkBerth" runat="server" CommandName="Sort" CommandArgument="BerthName" Text="Berth"></asp:LinkButton>
                                         </HeaderTemplate>
-                                    </asp:TemplateField>
+                                    </asp:TemplateField>--%>
                                     <asp:TemplateField>
                                         <HeaderStyle CssClass="gridviewheader" />
-                                        <ItemStyle CssClass="gridviewitem" Width="5%" />
+                                        <ItemStyle CssClass="gridviewitem" Width="10%" />
                                         <HeaderTemplate>
                                             <asp:LinkButton ID="lnkLOA" runat="server" CommandName="Sort" CommandArgument="LOA" Text="LOA" Enabled="false"></asp:LinkButton>
                                         </HeaderTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField>
                                         <HeaderStyle CssClass="gridviewheader" />
-                                        <ItemStyle CssClass="gridviewitem" Width="5%" />
+                                        <ItemStyle CssClass="gridviewitem" Width="15%" />
                                         <HeaderTemplate>
-                                            <asp:LinkButton ID="lnkArrivalDate" runat="server" CommandName="Sort" CommandArgument="ArrivalDate" Text="Arrival Date" Enabled="false"></asp:LinkButton>
+                                            <asp:LinkButton ID="lnkArrivalDate" runat="server" CommandName="Sort" CommandArgument="ArrivalDate" Text="ETA" Enabled="false"></asp:LinkButton>
                                         </HeaderTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField>
+                                    <%--<asp:TemplateField>
                                         <HeaderStyle CssClass="gridviewheader" />
                                         <ItemStyle CssClass="gridviewitem" Width="5%" />
                                         <HeaderTemplate>
                                             <asp:LinkButton ID="lnkBerthDate" runat="server" CommandName="Sort" CommandArgument="BerthDate" Text="Berth Date" Enabled="false"></asp:LinkButton>
                                         </HeaderTemplate>
-                                    </asp:TemplateField>
+                                    </asp:TemplateField>--%>
                                     <asp:TemplateField>
                                         <HeaderStyle CssClass="gridviewheader" />
-                                        <ItemStyle CssClass="gridviewitem" Width="5%" />
+                                        <ItemStyle CssClass="gridviewitem" Width="20%" />
                                         <HeaderTemplate>
-                                            <asp:LinkButton ID="lnkETC" runat="server" CommandName="Sort" CommandArgument="ETC" Text="ETC" Enabled="false"></asp:LinkButton>
+                                            <asp:LinkButton ID="lnkETC" runat="server" CommandName="Sort" CommandArgument="Agent" Text="Agent" Enabled="false"></asp:LinkButton>
                                         </HeaderTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField>
