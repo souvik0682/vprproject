@@ -13,11 +13,11 @@
             </div>
         </div>
     </div>
-    <div id="headercaption">MANAGE CARGO GROUP</div>
+    <div id="headercaption">MANAGE GROUP</div>
     <center>
     <div style="width:850px;">        
         <fieldset style="width:100%;">
-            <legend>Search Cargo Group</legend>
+            <legend>Search Group</legend>
             <table>
                 <tr>
                     <td>
