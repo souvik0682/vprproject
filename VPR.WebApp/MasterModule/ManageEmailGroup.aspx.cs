@@ -135,6 +135,7 @@ namespace VPR.WebApp.MasterModule
                     btnRemove.Visible = true;
                     btnRemove.ToolTip = ResourceManager.GetStringWithoutName("ERR00007");
                     btnRemove.CommandArgument = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "EmailGroupId"));
+                    btnRemove.Attributes.Add("onclick", "javascript:return confirm('Are you sure about undelete?');");
                 }
                 else
                 {

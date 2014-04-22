@@ -17,7 +17,7 @@
     <center>
     <div style="width:850px;">        
         <fieldset style="width:100%;">
-            <legend>Search Cargo Group</legend>
+            <legend>Search Cargo</legend>
             <table>
                 <tr>
                     <td>

@@ -13,7 +13,7 @@ using VPR.Utilities.ResourceManager;
 
 namespace VPR.WebApp.MasterModule
 {
-    public partial class ManageEmail : System.Web.UI.Page
+    public partial class ManageBerth : System.Web.UI.Page
     {
         #region Private Member Variables
 
@@ -24,22 +24,23 @@ namespace VPR.WebApp.MasterModule
         private bool _canDelete = false;
         private bool _canView = false;
         private bool _LocationSpecific = true;
-        //private int _locId = 0;
-        //private bool _hasEditAccess = true;
 
         #endregion
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            RetriveParameters();
-            CheckUserAccess();
-            SetAttributes();
-
-            if (!IsPostBack)
             {
-                RetrieveSearchCriteria();
-                LoadEmailGroup();
+                RetriveParameters();
+                CheckUserAccess();
+                SetAttributes();
+
+                if (!IsPostBack)
+                {
+                    RetrieveSearchCriteria();
+                    LoadEmailGroup();
+                }
             }
+
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
@@ -51,11 +52,8 @@ namespace VPR.WebApp.MasterModule
 
         protected void btnReset_Click(object sender, EventArgs e)
         {
-            txtCompany.Text = "";
-            txtCargoGroup.Text = "";
-            txtEmailId.Text = "";
-            txtName.Text = "";
-
+            txtBerthName.Text = "";
+            txtPort.Text = "";
             SaveNewPageIndex(0);
             LoadEmailGroup();
             upBL.Update();
@@ -118,14 +116,13 @@ namespace VPR.WebApp.MasterModule
                 GeneralFunctions.ApplyGridViewAlternateItemStyle(e.Row, 3);
                 ScriptManager sManager = ScriptManager.GetCurrent(this);
 
-                e.Row.Cells[0].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Name"));
-                e.Row.Cells[1].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "EmailId"));
-                e.Row.Cells[2].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Company"));
-
+                e.Row.Cells[0].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "BerthName"));
+                e.Row.Cells[1].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "PortName"));
+       
                 //Edit Link
                 ImageButton btnEdit = (ImageButton)e.Row.FindControl("btnEdit");
                 btnEdit.ToolTip = ResourceManager.GetStringWithoutName("ERR00070");
-                btnEdit.CommandArgument = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Id"));
+                btnEdit.CommandArgument = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "BerthId"));
 
                 //Delete link
                 if (_canDelete == true)
@@ -133,8 +130,7 @@ namespace VPR.WebApp.MasterModule
                     ImageButton btnRemove = (ImageButton)e.Row.FindControl("btnRemove");
                     btnRemove.Visible = true;
                     btnRemove.ToolTip = ResourceManager.GetStringWithoutName("ERR00007");
-                    btnRemove.CommandArgument = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Id"));
-                    btnRemove.Attributes.Add("onclick", "javascript:return confirm('Are you sure about undelete?');");
+                    btnRemove.CommandArgument = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "BerthId"));
                 }
                 else
                 {
@@ -229,7 +225,7 @@ namespace VPR.WebApp.MasterModule
 
                         if (searchCriteria.PageSize > 0) gvImportBL.PageSize = searchCriteria.PageSize;
 
-                        gvImportBL.DataSource = new EmailBLL().GetEmails(searchCriteria);
+                        gvImportBL.DataSource = new CommonBLL().GetBerths(searchCriteria);
 
                         gvImportBL.DataBind();
                     }
@@ -237,9 +233,9 @@ namespace VPR.WebApp.MasterModule
             }
         }
 
-        private void DeleteEmailGroup(int emailId)
+        private void DeleteEmailGroup(int vesselId)
         {
-            new EmailBLL().DeleteEmailOrEmailGroup(emailId, true);
+            new TransactionBLL().DeleteVessel(vesselId);
 
             LoadEmailGroup();
             ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", "<script>javascript:void alert('Email has been deleted successfully!');</script>", false);
@@ -248,7 +244,7 @@ namespace VPR.WebApp.MasterModule
         private void RedirecToAddEditPage(int id)
         {
             string encryptedId = GeneralFunctions.EncryptQueryString(id.ToString());
-            Response.Redirect("~/MasterModule/AddEditEmail.aspx?EmailId=" + encryptedId);
+            Response.Redirect("~/MasterModule/AddEditBerth.aspx?BerthId=" + encryptedId);
         }
 
         private void BuildSearchCriteria(SearchCriteria criteria)
@@ -263,15 +259,13 @@ namespace VPR.WebApp.MasterModule
                 sortExpression = Convert.ToString(ViewState[Constants.SORT_EXPRESSION]);
                 sortDirection = Convert.ToString(ViewState[Constants.SORT_DIRECTION]);
             }
-            
+
             criteria.UserId = _userId;
             criteria.SortExpression = sortExpression;
             criteria.SortDirection = sortDirection;
 
-            criteria.EmailId = (txtEmailId.Text == "") ? string.Empty : txtEmailId.Text.Trim();
-            criteria.CargoGroup = (txtCargoGroup.Text == "") ? string.Empty : txtCargoGroup.Text.Trim();
-            criteria.Name = (txtName.Text == "") ? string.Empty : txtName.Text.Trim();
-            criteria.Company = (txtCompany.Text == "") ? string.Empty : txtCompany.Text.Trim();
+            criteria.VesselName = (txtBerthName.Text == "") ? string.Empty : txtBerthName.Text.Trim();
+            criteria.Port = (txtPort.Text == "") ? string.Empty : txtPort.Text.Trim();
 
             Session[Constants.SESSION_SEARCH_CRITERIA] = criteria;
         }
@@ -293,10 +287,8 @@ namespace VPR.WebApp.MasterModule
                     }
                     else
                     {
-                        txtCargoGroup.Text = criteria.CargoGroup;
-                        txtCompany.Text = criteria.Company;
-                        txtEmailId.Text = criteria.EmailId;
-                        txtName.Text = criteria.Name;
+                        txtBerthName.Text = criteria.Berth;
+                        txtPort.Text = criteria.Port;
 
                         gvImportBL.PageIndex = criteria.PageIndex;
                         gvImportBL.PageSize = criteria.PageSize;
@@ -315,7 +307,7 @@ namespace VPR.WebApp.MasterModule
 
         private void SetDefaultSearchCriteria(SearchCriteria criteria)
         {
-            string sortExpression = "Name";
+            string sortExpression = "VesselName";
             string sortDirection = "ASC";
 
             criteria.CurrentPage = PageName.EmailGroup;
@@ -353,7 +345,5 @@ namespace VPR.WebApp.MasterModule
         }
 
         #endregion
-
-
     }
 }

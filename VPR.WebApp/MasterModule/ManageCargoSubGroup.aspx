@@ -13,7 +13,7 @@
             </div>
         </div>
     </div>
-    <div id="headercaption">MANAGE CARGO SUB GROUP</div>
+    <div id="headercaption">MANAGE SUB GROUP</div>
     <center>
     <div style="width:850px;">        
         <fieldset style="width:100%;">
