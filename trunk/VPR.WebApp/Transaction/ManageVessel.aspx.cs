@@ -49,7 +49,7 @@ namespace VPR.WebApp.Transaction
 
         protected void btnReset_Click(object sender, EventArgs e)
         {
-            txtBerth.Text = "";
+            txtAgent.Text = "";
             txtPort.Text = "";
             txtVesselName.Text = "";
 
@@ -116,13 +116,13 @@ namespace VPR.WebApp.Transaction
                 ScriptManager sManager = ScriptManager.GetCurrent(this);
 
                 e.Row.Cells[0].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "VesselName"));
-                e.Row.Cells[1].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "VoyageNo"));
+                e.Row.Cells[1].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Activity"));
                 e.Row.Cells[2].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "PortName"));
-                e.Row.Cells[3].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "BerthName"));
-                e.Row.Cells[4].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "LOA"));
-                e.Row.Cells[5].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ArrivalDate"));
-                e.Row.Cells[6].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "BerthDate"));
-                e.Row.Cells[7].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ETC"));
+                //e.Row.Cells[3].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "BerthName"));
+                e.Row.Cells[3].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "LOA"));
+                e.Row.Cells[4].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ArrivalDate"));
+                e.Row.Cells[5].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "AgentName"));
+                //e.Row.Cells[7].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ETC"));
 
                 //Edit Link
                 ImageButton btnEdit = (ImageButton)e.Row.FindControl("btnEdit");
@@ -272,7 +272,7 @@ namespace VPR.WebApp.Transaction
 
             criteria.VesselName = (txtVesselName.Text == "") ? string.Empty : txtVesselName.Text.Trim();
             criteria.Port = (txtPort.Text == "") ? string.Empty : txtPort.Text.Trim();
-            criteria.Berth = (txtBerth.Text == "") ? string.Empty : txtBerth.Text.Trim();
+            criteria.Berth = (txtAgent.Text == "") ? string.Empty : txtAgent.Text.Trim();
 
             Session[Constants.SESSION_SEARCH_CRITERIA] = criteria;
         }
@@ -296,7 +296,7 @@ namespace VPR.WebApp.Transaction
                     {
                         txtVesselName.Text = criteria.VesselName;
                         txtPort.Text = criteria.Port;
-                        txtBerth.Text = criteria.Berth;
+                        txtAgent.Text = criteria.Berth;
 
                         gvImportBL.PageIndex = criteria.PageIndex;
                         gvImportBL.PageSize = criteria.PageSize;

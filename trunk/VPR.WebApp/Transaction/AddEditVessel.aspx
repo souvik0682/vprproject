@@ -25,7 +25,8 @@
                                                     Activity:
                                                 </td>
                                                 <td>
-                                                    <asp:DropDownList ID="ddlAcivity" runat="server" TabIndex="1">
+                                                    <asp:DropDownList ID="ddlAcivity" runat="server" TabIndex="1" AutoPostBack = "true"
+                                                        onselectedindexchanged="ddlAcivity_SelectedIndexChanged">
                                                         <asp:ListItem Value="L" Text="Load" Selected="True"></asp:ListItem>
                                                         <asp:ListItem Value="D" Text="Discharge"></asp:ListItem>
                                                         <asp:ListItem Value="B" Text="Load & Discharge"></asp:ListItem>
@@ -64,23 +65,21 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    Berth:
+                                                    Previous Port:
                                                 </td>
                                                 <td>
-                                                    <asp:DropDownList ID="ddlBerth" runat="server">
-                                                        <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                                                    </asp:DropDownList>
-                                                    <asp:RequiredFieldValidator ID="rfvBerth" runat="server" CssClass="errormessage"
-                                                        ErrorMessage="This field is required" ControlToValidate="ddlBerth" InitialValue="0"
-                                                        ValidationGroup="Save" Display="Dynamic"></asp:RequiredFieldValidator>
+                                                    <uc1:AC_Port ID="txtPreviousPort" runat="server" />
+                                                    <asp:Label ID="errPreviousPort" runat="server" CssClass="errormessage1"></asp:Label>
+                                                </td>
+
+                                                <td>
+                                                    Next Port:
                                                 </td>
                                                 <td>
-                                                    LOA:
+                                                    <uc1:AC_Port ID="txtNextPort" runat="server" />
+                                                    <asp:Label ID="errNextPort" runat="server" CssClass="errormessage1"></asp:Label>
                                                 </td>
-                                                <td>
-                                                    <cc2:CustomTextBox ID="txtLOA" runat="server" CssClass="numerictextbox" TabIndex="13"
-                                                        Width="250px" Type="Decimal" MaxLength="15" Precision="12" Scale="2"></cc2:CustomTextBox>
-                                                </td>
+                                               
                                             </tr>
                                             <tr>
                                                 <td>
@@ -95,19 +94,6 @@
                                                         Display="Dynamic"></asp:RequiredFieldValidator>
                                                 </td>
                                                 <td>
-                                                    Berth Date:
-                                                </td>
-                                                <td>
-                                                    <asp:TextBox ID="txtBerthDate" runat="server" Width="250px" Enabled="False"></asp:TextBox>
-                                                    <%--<cc1:CalendarExtender ID="cbeBirthDate" TargetControlID="txtBerthDate" runat="server"
-                                                        Format="dd-MM-yyyy" Enabled="True" />
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtBerthDate"
-                                                        ErrorMessage="This field is required*" CssClass="errormessage" ValidationGroup="Save"
-                                                        Display="Dynamic"></asp:RequiredFieldValidator>--%>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
                                                     ETC:
                                                 </td>
                                                 <td>
@@ -117,6 +103,16 @@
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtETC"
                                                         ErrorMessage="This field is required*" CssClass="errormessage" ValidationGroup="Save"
                                                         Display="Dynamic"></asp:RequiredFieldValidator>--%>
+                                                </td>
+                                            </tr>
+                                            <tr>
+
+                                                 <td>
+                                                    LOA:
+                                                </td>
+                                                <td>
+                                                    <cc2:CustomTextBox ID="txtLOA" runat="server" CssClass="numerictextbox" TabIndex="13"
+                                                        Width="250px" Type="Decimal" MaxLength="15" Precision="12" Scale="2"></cc2:CustomTextBox>
                                                 </td>
                                                 <td>
                                                     Owner Name:
@@ -140,31 +136,17 @@
                                                         ErrorMessage="This field is required" ControlToValidate="ddlAgentName" InitialValue="0"
                                                         ValidationGroup="Save" Display="Dynamic"></asp:RequiredFieldValidator>
                                                 </td>
-                                                <td>
-                                                    Previous Port:
-                                                </td>
-                                                <td>
-                                                    <uc1:AC_Port ID="txtPreviousPort" runat="server" />
-                                                    <asp:Label ID="errPreviousPort" runat="server" CssClass="errormessage1"></asp:Label>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Next Port:
-                                                </td>
-                                                <td>
-                                                    <uc1:AC_Port ID="txtNextPort" runat="server" />
-                                                    <asp:Label ID="errNextPort" runat="server" CssClass="errormessage1"></asp:Label>
-                                                </td>
+
+                                               
                                                 <td>
                                                     Remarks:
                                                 </td>
                                                 <td>
                                                     <asp:TextBox ID="txtRemarks" runat="server" CssClass="textboxuppercase" MaxLength="100"
                                                         Width="250px" TabIndex="2"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtRemarks"
+<%--                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtRemarks"
                                                         ErrorMessage="This field is required*" CssClass="errormessage" ValidationGroup="Save"
-                                                        Display="Dynamic"></asp:RequiredFieldValidator>
+                                                        Display="Dynamic"></asp:RequiredFieldValidator>--%>
                                                 </td>
                                             </tr>
                                         </table>
@@ -180,6 +162,15 @@
                                                 <asp:TemplateField HeaderText="Cargo" HeaderStyle-Width="300">
                                                     <ItemTemplate>
                                                         <asp:DropDownList ID="ddlCargo" runat="server">
+                                                        </asp:DropDownList>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                 <asp:TemplateField HeaderText="ActType" HeaderStyle-Width="80">
+                                                    <ItemTemplate>
+                                                        <asp:DropDownList ID="ddlActType" runat="server">
+                                                        <asp:ListItem Value="N" Text="None" Selected="True"></asp:ListItem>
+                                                        <asp:ListItem Value="D" Text="Discharge"></asp:ListItem>
+                                                        <asp:ListItem Value="L" Text="Loading"></asp:ListItem>
                                                         </asp:DropDownList>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
