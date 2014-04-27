@@ -193,5 +193,94 @@ namespace VPR.DAL
                 oDq.RunActionQuery();
             }
         }
+
+        public static DataTable GetBerths(int VesselId)
+        {
+            string strExecution = "usp_GetBerths";
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                //oDq.AddIntegerParam("@VesselId", VesselId);
+                return oDq.GetTable();
+            }
+        }
+
+        public static List<VesselStatus> GetListVesselPosition(string vesselStatus)
+        {
+            string strExecution = "usp_GetVesselPosition";
+            List<VesselStatus> lstVessel = new List<VesselStatus>();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddVarcharParam("@VesselStatus", 10, vesselStatus);
+
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    VesselStatus vessel = new VesselStatus(reader);
+                    lstVessel.Add(vessel);
+                }
+
+                reader.Close();
+            }
+
+            return lstVessel;
+        }
+
+        public static int PromoteVessel(VesselStatus vessel)
+        {
+            int statusId = 0;
+            string strExecution = "usp_SaveStatus";
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@fk_VesselID", vessel.VesselId);
+
+                if (vessel.Activity == "E")
+                    oDq.AddDateTimeParam("@StatusDate", vessel.ArrivalDate);
+                else if (vessel.Activity == "A")
+                    oDq.AddDateTimeParam("@StatusDate", vessel.BerthDate);
+                else
+                    oDq.AddDateTimeParam("@StatusDate", DateTime.Now);
+
+                oDq.AddDateTimeParam("@BerthDate", vessel.BerthDate);
+                oDq.AddVarcharParam("@Activity", 1, vessel.Activity);
+                oDq.AddIntegerParam("@BerthID", vessel.BerthId);
+                oDq.AddIntegerParam("@UserID", vessel.CreatedBy);
+
+
+                statusId = Convert.ToInt32(oDq.GetScalar());
+                return statusId;
+            }
+        }
+
+        public static int RevertStatus(int statusId)
+        {
+            int id = 0;
+            string strExecution = "usp_RevertStatus";
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@pk_StatusID", statusId);
+
+                id = Convert.ToInt32(oDq.GetScalar());
+                return id;
+            }
+        }
+
+        public static void SaveETCorWTA(int vesselId, DateTime dt, bool isETA)
+        {
+            string strExecution = "usp_SaveETCorETA";
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@vesselId", vesselId);
+                oDq.AddBooleanParam("@isETA", isETA);
+                oDq.AddDateTimeParam("@dt", dt);
+
+                oDq.RunActionQuery();
+            }
+        }
     }
 }
