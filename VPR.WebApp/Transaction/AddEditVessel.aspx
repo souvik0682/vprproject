@@ -22,7 +22,7 @@
                                         <table border="0" cellpadding="1" cellspacing="0" width="100%" class="custtable">
                                             <tr>
                                                 <td>
-                                                    Activity:
+                                                    Activity:<span class="errormessage1">*</span>
                                                 </td>
                                                 <td>
                                                     <asp:DropDownList ID="ddlAcivity" runat="server" TabIndex="1" AutoPostBack = "true"
@@ -34,7 +34,7 @@
                                                     </asp:DropDownList>
                                                 </td>
                                                 <td>
-                                                    Vessel Name:
+                                                    Vessel Name:<span class="errormessage1">*</span>
                                                 </td>
                                                 <td>
                                                     <asp:TextBox ID="txtVesselName" runat="server" CssClass="textboxuppercase" MaxLength="100"
@@ -56,7 +56,7 @@
                                                     <asp:Label ID="lblVoyage" runat="server" CssClass="errormessage1"></asp:Label>--%>
                                                 </td>
                                                 <td>
-                                                    Port:
+                                                    Port:<span class="errormessage1">*</span>
                                                 </td>
                                                 <td>
                                                     <uc1:AC_Port ID="txtPort" runat="server" />
@@ -65,7 +65,7 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    Previous Port:
+                                                    Previous Port:<span class="errormessage1">*</span>
                                                 </td>
                                                 <td>
                                                     <uc1:AC_Port ID="txtPreviousPort" runat="server" />
@@ -73,7 +73,7 @@
                                                 </td>
 
                                                 <td>
-                                                    Next Port:
+                                                    Next Port:<span class="errormessage1">*</span>
                                                 </td>
                                                 <td>
                                                     <uc1:AC_Port ID="txtNextPort" runat="server" />
@@ -83,7 +83,7 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    ETA:
+                                                    ETA:<span class="errormessage1">*</span>
                                                 </td>
                                                 <td>
                                                     <asp:TextBox ID="txtArrivalDate" runat="server" Width="250px"></asp:TextBox>
@@ -108,25 +108,29 @@
                                             <tr>
 
                                                  <td>
-                                                    LOA:
+                                                    LOA:<span class="errormessage1">*</span>
                                                 </td>
                                                 <td>
                                                     <cc2:CustomTextBox ID="txtLOA" runat="server" CssClass="numerictextbox" TabIndex="13"
                                                         Width="250px" Type="Decimal" MaxLength="15" Precision="12" Scale="2"></cc2:CustomTextBox>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtLOA"
+                                                        ErrorMessage="This field is required*" CssClass="errormessage" ValidationGroup="Save"
+                                                        Display="Dynamic">
+                                                     </asp:RequiredFieldValidator>
                                                 </td>
                                                 <td>
                                                     Owner Name:
                                                 </td>
                                                 <td>
                                                     <asp:TextBox ID="txtOwnerName" runat="server" Width="250px" CssClass="textboxuppercase"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtOwnerName"
+<%--                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtOwnerName"
                                                         ErrorMessage="This field is required*" CssClass="errormessage" ValidationGroup="Save"
-                                                        Display="Dynamic"></asp:RequiredFieldValidator>
+                                                        Display="Dynamic"></asp:RequiredFieldValidator>--%>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    Agent Name:
+                                                    Agent Name:<span class="errormessage1">*</span>
                                                 </td>
                                                 <td>
                                                     <asp:DropDownList ID="ddlAgentName" runat="server">

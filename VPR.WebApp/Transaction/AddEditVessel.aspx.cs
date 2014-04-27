@@ -45,12 +45,14 @@ namespace VPR.WebApp.Transaction
                     }
                     else
                     {
+                        ddlAcivity.SelectedIndex = -1;
                         BindGrid(0);
                         ViewState["VesselId"] = 0;
                     }
                 }
                 else
                 {
+                    ddlAcivity.SelectedIndex = -1;
                     BindGrid(0);
                     ViewState["VesselId"] = 0;
                 }
@@ -81,29 +83,31 @@ namespace VPR.WebApp.Transaction
                 ddlCargo.DataBind();
 
                 ddlCargo.SelectedValue = cargo.CargoId.ToString();
+                ddlActType.SelectedValue = cargo.ActType;
+                ddlActType.Enabled = false;
 
-                if (ddlAcivity.SelectedValue.ToString() == "L")
-                {
-                    ddlActType.SelectedValue = "L";
-                    ddlActType.Enabled = false;
-                }
-                else if (ddlAcivity.SelectedValue.ToString() == "D")
-                {
-                    ddlActType.SelectedValue = "D";
-                    ddlActType.Enabled = false;
-                }
+                //if (ddlAcivity.SelectedValue.ToString() == "L")
+                //{
+                //    ddlActType.SelectedValue = "L";
+                //    ddlActType.Enabled = false;
+                //}
+                //else if (ddlAcivity.SelectedValue.ToString() == "D")
+                //{
+                //    ddlActType.SelectedValue = "D";
+                //    ddlActType.Enabled = false;
+                //}
 
-                else if (ddlAcivity.SelectedValue.ToString() == "B")
-                {
-                    ddlActType.SelectedValue = "D";
-                    ddlActType.Enabled = true;
-                }
+                //else if (ddlAcivity.SelectedValue.ToString() == "B")
+                //{
+                //    ddlActType.SelectedValue = "D";
+                //    ddlActType.Enabled = true;
+                //}
 
-                else if (ddlAcivity.SelectedValue.ToString() == "O")
-                {
-                    ddlActType.SelectedValue = "N";
-                    ddlActType.Enabled = true;
-                }
+                //else if (ddlAcivity.SelectedValue.ToString() == "O")
+                //{
+                //    ddlActType.SelectedValue = "N";
+                //    ddlActType.Enabled = true;
+                //}
 
 
                 ImageButton btnRemove = (ImageButton)e.Row.FindControl("btnRemove");
@@ -416,7 +420,7 @@ namespace VPR.WebApp.Transaction
 
             string nxtPort = new TransactionBLL().GetPortNameById(o.NextPortId);
             ViewState["NEXTPORTID"] = o.NextPortId;
-            ((TextBox)txtPreviousPort.FindControl("txtPort")).Text = nxtPort;
+            ((TextBox)txtNextPort.FindControl("txtPort")).Text = nxtPort;
 
             //ddlBerth.SelectedValue = o.BerthId.ToString();
             txtLOA.Text = o.LOA.ToString();
@@ -483,6 +487,7 @@ namespace VPR.WebApp.Transaction
                             d.ActType = Convert.ToString(ddlActType.SelectedValue);
                             return d;
                         }).ToList();
+                    ddlActType.Enabled = false;
                 }
 
                 new TransactionBLL().SaveVesselCargo(o, lstData);
@@ -498,6 +503,8 @@ namespace VPR.WebApp.Transaction
                 }
 
                 lblErr.Text = "Record saved successfully";
+                ddlAcivity.SelectedIndex = -1;
+        
             }
         }
 
