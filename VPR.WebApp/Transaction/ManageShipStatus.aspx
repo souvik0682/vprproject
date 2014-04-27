@@ -18,31 +18,46 @@
                                 <tr>
                                     <td colspan="2" style="padding-top: 10px;">
                                         <cc1:TabContainer ID="tcPP" runat="server" ActiveTabIndex="0">
-                                            <!-- Loading Tab-->
-                                            <cc1:TabPanel ID="tpLoading" runat="server">
+                                            <!-- Expecting Tab-->
+                                            <cc1:TabPanel ID="tpExpecting" runat="server">
                                                 <HeaderTemplate>
-                                                    Loading</HeaderTemplate>
+                                                    Expecting</HeaderTemplate>
                                                 <ContentTemplate>
-                                                    <asp:GridView ID="gvwLoading" runat="server" AutoGenerateColumns="False"
-                                                        BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px"
-                                                        CellPadding="3" DataKeyNames="VesselId" 
-                                                        OnRowDataBound="gvwLoading_RowDataBound">
+                                                    <asp:GridView ID="gvwExpecting" runat="server" AutoGenerateColumns="False" BackColor="White"
+                                                        BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" DataKeyNames="VesselId" OnRowDataBound="gvwExpecting_RowDataBound">
                                                         <FooterStyle BackColor="White" ForeColor="#000066" />
                                                         <Columns>
                                                             <asp:TemplateField>
                                                                 <ItemTemplate>
-                                                                    <asp:CheckBox ID="chkSelect" runat="server" oncheckedchanged="chkSelect_CheckedChanged" AutoPostBack="true" />
+                                                                    <asp:CheckBox ID="chkExpecting" runat="server" OnCheckedChanged="chkExpecting_CheckedChanged"
+                                                                        AutoPostBack="true" />
+                                                                    <asp:HiddenField ID="hdnVesselId" runat="server" Value='<%# Eval("VesselId") %>' />
+                                                                </ItemTemplate>
+                                                                <HeaderStyle Width="25px" />
+                                                            </asp:TemplateField>
+                                                            <asp:BoundField DataField="Activity" HeaderText="Activity" InsertVisible="False"
+                                                                ReadOnly="True" SortExpression="Activity" HeaderStyle-Width="100px" />
+                                                            <asp:BoundField DataField="Vessel" HeaderText="Vessel" InsertVisible="False" ReadOnly="True"
+                                                                SortExpression="Vessel" HeaderStyle-Width="100px" />
+                                                            <asp:BoundField DataField="LOA" HeaderText="LOA" InsertVisible="False" ReadOnly="True"
+                                                                SortExpression="LOA" />
+                                                            <asp:TemplateField HeaderText="ETA" SortExpression="ETA">
+                                                                <ItemTemplate>
+                                                                    <asp:TextBox ID="txtETA" runat="server" Text='<%# Bind("ETA","{0:dd-MM-yyyy}") %>'
+                                                                        Width="80" BorderStyle="None" MaxLength="10" Enabled="false">
+                                                                    </asp:TextBox>
+                                                                    <cc1:CalendarExtender ID="ceETADate" TargetControlID="txtETA" runat="server"
+                                                                        Format="dd-MM-yyyy" Enabled="True" />
+                                                                    <asp:CompareValidator ID="cvETA" runat="server" ControlToValidate="txtETA"
+                                                                        Operator="LessThanEqual" Display="Dynamic" ValueToCompare="<%# DateTime.Today.ToShortDateString() %>"
+                                                                        Type="Date" ToolTip="Date should be less than equals to current date!" ValidationGroup="Save">
+                                                                    </asp:CompareValidator>
+                                                                    <asp:RequiredFieldValidator ID="rfvETA" runat="server" ControlToValidate="txtETA"
+                                                                        Display="Dynamic" ValidationGroup="Save">
+                                                                    </asp:RequiredFieldValidator>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle Width="100px" />
                                                             </asp:TemplateField>
-                                                            <asp:BoundField DataField="Activity" HeaderText="Activity" InsertVisible="False"
-                                                                ReadOnly="True" SortExpression="Activity" />
-                                                            <asp:BoundField DataField="Vessel" HeaderText="Vessel" InsertVisible="False" ReadOnly="True"
-                                                                SortExpression="Vessel" />
-                                                            <asp:BoundField DataField="LOA" HeaderText="LOA" InsertVisible="False" ReadOnly="True"
-                                                                SortExpression="LOA" />
-                                                            <asp:BoundField DataField="BirthNo" HeaderText="Birth No" InsertVisible="False" ReadOnly="True"
-                                                                SortExpression="BirthNo" />
                                                             <asp:TemplateField HeaderText="Arrival Date" SortExpression="ArrivalDate">
                                                                 <ItemTemplate>
                                                                     <asp:TextBox ID="txtArrivalDate" runat="server" Text='<%# Bind("ArrivalDate","{0:dd-MM-yyyy}") %>'
@@ -57,6 +72,13 @@
                                                                     <asp:RequiredFieldValidator ID="rfv1" runat="server" ControlToValidate="txtArrivalDate"
                                                                         Display="Dynamic" ValidationGroup="Save">
                                                                     </asp:RequiredFieldValidator>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle Width="100px" />
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="BirthNo" SortExpression="BirthNo">
+                                                                <ItemTemplate>
+                                                                    <asp:DropDownList ID="ddlBerth" runat="server" Enabled="false">
+                                                                    </asp:DropDownList>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle Width="100px" />
                                                             </asp:TemplateField>
@@ -77,52 +99,25 @@
                                                                 </ItemTemplate>
                                                                 <HeaderStyle Width="100px" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Discharge Date" SortExpression="DischargeDate">
+                                                            <asp:TemplateField HeaderText="ETC" SortExpression="ETC">
                                                                 <ItemTemplate>
-                                                                    <asp:TextBox ID="txtDischargeDate" runat="server" Text='<%# Bind("DischargeDate","{0:dd-MM-yyyy}") %>'
+                                                                    <asp:TextBox ID="txtETC" runat="server" Text='<%# Bind("ETC","{0:dd-MM-yyyy}") %>'
                                                                         Width="80" BorderStyle="None" MaxLength="10" Enabled="false">
                                                                     </asp:TextBox>
-                                                                    <cc1:CalendarExtender ID="ceDischargeDate" TargetControlID="txtDischargeDate" runat="server"
+                                                                    <cc1:CalendarExtender ID="ceDischargeDate" TargetControlID="txtETC" runat="server"
                                                                         Format="dd-MM-yyyy" Enabled="True" />
-                                                                    <asp:CompareValidator ID="cvDischargeDate" runat="server" ControlToValidate="txtDischargeDate"
+                                                                    <asp:CompareValidator ID="cvDischargeDate" runat="server" ControlToValidate="txtETC"
                                                                         Operator="LessThanEqual" Display="Dynamic" ValueToCompare="<%# DateTime.Today.ToShortDateString() %>"
                                                                         Type="Date" ToolTip="Date should be less than equals to current date!" ValidationGroup="Save">
                                                                     </asp:CompareValidator>
-                                                                    <asp:RequiredFieldValidator ID="rfv3" runat="server" ControlToValidate="txtDischargeDate"
+                                                                    <asp:RequiredFieldValidator ID="rfv3" runat="server" ControlToValidate="txtETC"
                                                                         Display="Dynamic" ValidationGroup="Save">
                                                                     </asp:RequiredFieldValidator>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle Width="100px" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Loading Date" SortExpression="LoadingDate">
-                                                                <ItemTemplate>
-                                                                    <asp:TextBox ID="txtLoadingDate" runat="server" Text='<%# Bind("LoadingDate","{0:dd-MM-yyyy}") %>'
-                                                                        Width="80" BorderStyle="None" MaxLength="10" Enabled="false">
-                                                                    </asp:TextBox>
-                                                                    <cc1:CalendarExtender ID="ceLoadingDate" TargetControlID="txtLoadingDate" runat="server"
-                                                                        Format="dd-MM-yyyy" Enabled="True" />
-                                                                    <asp:CompareValidator ID="cvLoadingDate" runat="server" ControlToValidate="txtLoadingDate"
-                                                                        Operator="LessThanEqual" Display="Dynamic" ValueToCompare="<%# DateTime.Today.ToShortDateString() %>"
-                                                                        Type="Date" ToolTip="Date should be less than equals to current date!" ValidationGroup="Save">
-                                                                    </asp:CompareValidator>
-                                                                    <asp:RequiredFieldValidator ID="rfv4" runat="server" ControlToValidate="txtLoadingDate"
-                                                                        Display="Dynamic" ValidationGroup="Save">
-                                                                    </asp:RequiredFieldValidator>
-                                                                </ItemTemplate>
-                                                                <HeaderStyle Width="100px" />
-                                                            </asp:TemplateField>
-                                                            <asp:BoundField DataField="Cargo" HeaderText="Cargo" InsertVisible="False" ReadOnly="True"
-                                                                SortExpression="Cargo" />
-                                                            <asp:BoundField DataField="CargoQuantity" HeaderText="Cargo Quantity" InsertVisible="False"
-                                                                ReadOnly="True" SortExpression="CargoQuantity" />
-                                                            <asp:TemplateField HeaderText="Delete">
-                                                                <ItemStyle CssClass="gridviewitem" Width="8%" HorizontalAlign="Center" VerticalAlign="Middle" />
-                                                                <ItemTemplate>
-                                                                    <asp:ImageButton ID="btnRemove" runat="server" OnClick="btnRemove_Click" ImageUrl="~/Images/remove.png"
-                                                                        Height="16" Width="16" />
-                                                                    <%--<asp:HiddenField ID="hdnContainerId" runat="server" Value='<%# Eval("ContainerId") %>' />--%>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
+                                                            <asp:BoundField DataField="Cargo" HeaderText="Cargo/Quantity" InsertVisible="False" ReadOnly="True"
+                                                                SortExpression="Cargo" HeaderStyle-Width="150px" />
                                                         </Columns>
                                                         <RowStyle ForeColor="#000066" />
                                                         <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
@@ -130,123 +125,8 @@
                                                         <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
                                                     </asp:GridView>
                                                     <br />
-                                                    <asp:Button ID="btnLoaPromote" runat="server" Text="Promote" />
-                                                    <asp:Button ID="btnLoaRevert" runat="server" Text="Revert" />
-                                                </ContentTemplate>
-                                            </cc1:TabPanel>
-                                            <!-- Dscharging Tab-->
-                                            <cc1:TabPanel ID="tpDischarging" runat="server">
-                                                <HeaderTemplate>
-                                                    Dscharging</HeaderTemplate>
-                                                <ContentTemplate>
-                                                    <asp:GridView ID="gvwDischarging" runat="server" AutoGenerateColumns="False"
-                                                        BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px"
-                                                        CellPadding="3" DataKeyNames="VesselId">
-                                                        <FooterStyle BackColor="White" ForeColor="#000066" />
-                                                        <Columns>
-                                                            <asp:TemplateField>
-                                                                <ItemTemplate>
-                                                                    <asp:CheckBox ID="chkDischarging" runat="server" oncheckedchanged="chkDischarging_CheckedChanged" AutoPostBack="true" />
-                                                                </ItemTemplate>
-                                                                <HeaderStyle Width="100px" />
-                                                            </asp:TemplateField>
-                                                            <asp:BoundField DataField="Activity" HeaderText="Activity" InsertVisible="False"
-                                                                ReadOnly="True" SortExpression="Activity" />
-                                                            <asp:BoundField DataField="Vessel" HeaderText="Vessel" InsertVisible="False" ReadOnly="True"
-                                                                SortExpression="Vessel" />
-                                                            <asp:BoundField DataField="LOA" HeaderText="LOA" InsertVisible="False" ReadOnly="True"
-                                                                SortExpression="LOA" />
-                                                            <asp:BoundField DataField="BirthNo" HeaderText="Birth No" InsertVisible="False" ReadOnly="True"
-                                                                SortExpression="BirthNo" />
-                                                            <asp:TemplateField HeaderText="Arrival Date" SortExpression="ArrivalDate">
-                                                                <ItemTemplate>
-                                                                    <asp:TextBox ID="txtArrivalDate" runat="server" Text='<%# Bind("ArrivalDate","{0:dd-MM-yyyy}") %>'
-                                                                        Width="80" BorderStyle="None" MaxLength="10" Enabled="false">
-                                                                    </asp:TextBox>
-                                                                    <cc1:CalendarExtender ID="ceArrivalDate" TargetControlID="txtArrivalDate" runat="server"
-                                                                        Format="dd-MM-yyyy" Enabled="True" />
-                                                                    <asp:CompareValidator ID="cvArrivalDate" runat="server" ControlToValidate="txtArrivalDate"
-                                                                        Operator="LessThanEqual" Display="Dynamic" ValueToCompare="<%# DateTime.Today.ToShortDateString() %>"
-                                                                        Type="Date" ToolTip="Date should be less than equals to current date!" ValidationGroup="Save">
-                                                                    </asp:CompareValidator>
-                                                                    <asp:RequiredFieldValidator ID="rfv1" runat="server" ControlToValidate="txtArrivalDate"
-                                                                        Display="Dynamic" ValidationGroup="Save">
-                                                                    </asp:RequiredFieldValidator>
-                                                                </ItemTemplate>
-                                                                <HeaderStyle Width="100px" />
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Berth Date" SortExpression="BerthDate">
-                                                                <ItemTemplate>
-                                                                    <asp:TextBox ID="txtBerthDate" runat="server" Text='<%# Bind("BerthDate","{0:dd-MM-yyyy}") %>'
-                                                                        Width="80" BorderStyle="None" MaxLength="10" Enabled="false">
-                                                                    </asp:TextBox>
-                                                                    <cc1:CalendarExtender ID="ceBerthDate" TargetControlID="txtBerthDate" runat="server"
-                                                                        Format="dd-MM-yyyy" Enabled="True" />
-                                                                    <asp:CompareValidator ID="cvBerthDate" runat="server" ControlToValidate="txtBerthDate"
-                                                                        Operator="LessThanEqual" Display="Dynamic" ValueToCompare="<%# DateTime.Today.ToShortDateString() %>"
-                                                                        Type="Date" ToolTip="Date should be less than equals to current date!" ValidationGroup="Save">
-                                                                    </asp:CompareValidator>
-                                                                    <asp:RequiredFieldValidator ID="rfv2" runat="server" ControlToValidate="txtBerthDate"
-                                                                        Display="Dynamic" ValidationGroup="Save">
-                                                                    </asp:RequiredFieldValidator>
-                                                                </ItemTemplate>
-                                                                <HeaderStyle Width="100px" />
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Discharge Date" SortExpression="DischargeDate">
-                                                                <ItemTemplate>
-                                                                    <asp:TextBox ID="txtDischargeDate" runat="server" Text='<%# Bind("DischargeDate","{0:dd-MM-yyyy}") %>'
-                                                                        Width="80" BorderStyle="None" MaxLength="10" Enabled="false">
-                                                                    </asp:TextBox>
-                                                                    <cc1:CalendarExtender ID="ceDischargeDate" TargetControlID="txtDischargeDate" runat="server"
-                                                                        Format="dd-MM-yyyy" Enabled="True" />
-                                                                    <asp:CompareValidator ID="cvDischargeDate" runat="server" ControlToValidate="txtDischargeDate"
-                                                                        Operator="LessThanEqual" Display="Dynamic" ValueToCompare="<%# DateTime.Today.ToShortDateString() %>"
-                                                                        Type="Date" ToolTip="Date should be less than equals to current date!" ValidationGroup="Save">
-                                                                    </asp:CompareValidator>
-                                                                    <asp:RequiredFieldValidator ID="rfv3" runat="server" ControlToValidate="txtDischargeDate"
-                                                                        Display="Dynamic" ValidationGroup="Save">
-                                                                    </asp:RequiredFieldValidator>
-                                                                </ItemTemplate>
-                                                                <HeaderStyle Width="100px" />
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Loading Date" SortExpression="LoadingDate">
-                                                                <ItemTemplate>
-                                                                    <asp:TextBox ID="txtLoadingDate" runat="server" Text='<%# Bind("LoadingDate","{0:dd-MM-yyyy}") %>'
-                                                                        Width="80" BorderStyle="None" MaxLength="10" Enabled="false">
-                                                                    </asp:TextBox>
-                                                                    <cc1:CalendarExtender ID="ceLoadingDate" TargetControlID="txtLoadingDate" runat="server"
-                                                                        Format="dd-MM-yyyy" Enabled="True" />
-                                                                    <asp:CompareValidator ID="cvLoadingDate" runat="server" ControlToValidate="txtLoadingDate"
-                                                                        Operator="LessThanEqual" Display="Dynamic" ValueToCompare="<%# DateTime.Today.ToShortDateString() %>"
-                                                                        Type="Date" ToolTip="Date should be less than equals to current date!" ValidationGroup="Save">
-                                                                    </asp:CompareValidator>
-                                                                    <asp:RequiredFieldValidator ID="rfv4" runat="server" ControlToValidate="txtLoadingDate"
-                                                                        Display="Dynamic" ValidationGroup="Save">
-                                                                    </asp:RequiredFieldValidator>
-                                                                </ItemTemplate>
-                                                                <HeaderStyle Width="100px" />
-                                                            </asp:TemplateField>
-                                                            <asp:BoundField DataField="Cargo" HeaderText="Cargo" InsertVisible="False" ReadOnly="True"
-                                                                SortExpression="Cargo" />
-                                                            <asp:BoundField DataField="CargoQuantity" HeaderText="Cargo Quantity" InsertVisible="False"
-                                                                ReadOnly="True" SortExpression="CargoQuantity" />
-                                                            <asp:TemplateField HeaderText="Delete">
-                                                                <ItemStyle CssClass="gridviewitem" Width="8%" HorizontalAlign="Center" VerticalAlign="Middle" />
-                                                                <ItemTemplate>
-                                                                    <asp:ImageButton ID="btnRemove" runat="server" OnClick="btnRemove_Click" ImageUrl="~/Images/remove.png"
-                                                                        Height="16" Width="16" />
-                                                                    <%--<asp:HiddenField ID="hdnContainerId" runat="server" Value='<%# Eval("ContainerId") %>' />--%>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                        </Columns>
-                                                        <RowStyle ForeColor="#000066" />
-                                                        <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
-                                                        <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left" />
-                                                        <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
-                                                    </asp:GridView>
-                                                    <br />
-                                                    <asp:Button ID="btnDisPromote" runat="server" Text="Promote" />
-                                                    <asp:Button ID="btnDisRevert" runat="server" Text="Revert" />
+                                                    <asp:Button ID="btnExpPromote" runat="server" Text="Promote" OnClick="btnExpPromote_Click" />
+                                                    <asp:Button ID="btnSaveETA" runat="server" Text="Save ETA" OnClick="btnSaveETA_Click" />
                                                 </ContentTemplate>
                                             </cc1:TabPanel>
                                             <!-- Awating Tab-->
@@ -254,25 +134,42 @@
                                                 <HeaderTemplate>
                                                     Awating</HeaderTemplate>
                                                 <ContentTemplate>
-                                                    <asp:GridView ID="gvwAwaiting" runat="server" AutoGenerateColumns="False"
-                                                        BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px"
-                                                        CellPadding="3" DataKeyNames="VesselId">
+                                                    <asp:GridView ID="gvwAwaiting" runat="server" AutoGenerateColumns="False" BackColor="White" OnRowDataBound="gvwAwaiting_RowDataBound"
+                                                        BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" DataKeyNames="VesselId">
                                                         <FooterStyle BackColor="White" ForeColor="#000066" />
                                                         <Columns>
                                                             <asp:TemplateField>
                                                                 <ItemTemplate>
-                                                                    <asp:CheckBox ID="chkAwaiting" runat="server" oncheckedchanged="chkAwaiting_CheckedChanged" AutoPostBack="true" />
+                                                                    <asp:CheckBox ID="chkAwaiting" runat="server" OnCheckedChanged="chkAwaiting_CheckedChanged"
+                                                                        AutoPostBack="true" />
+                                                                    <asp:HiddenField ID="hdnVesselId" runat="server" Value='<%# Eval("VesselId") %>' />
+                                                                    <asp:HiddenField ID="hdnStatusId" runat="server" Value='<%# Eval("StatusId") %>' />
+                                                                </ItemTemplate>
+                                                                <HeaderStyle Width="25px" />
+                                                            </asp:TemplateField>
+                                                            <asp:BoundField DataField="Activity" HeaderText="Activity" InsertVisible="False"
+                                                                ReadOnly="True" SortExpression="Activity" HeaderStyle-Width="100px" />
+                                                            <asp:BoundField DataField="Vessel" HeaderText="Vessel" InsertVisible="False" ReadOnly="True"
+                                                                SortExpression="Vessel" HeaderStyle-Width="100px" />
+                                                            <asp:BoundField DataField="LOA" HeaderText="LOA" InsertVisible="False" ReadOnly="True"
+                                                                SortExpression="LOA" />
+                                                            <asp:TemplateField HeaderText="ETA" SortExpression="ETA">
+                                                                <ItemTemplate>
+                                                                    <asp:TextBox ID="txtETA" runat="server" Text='<%# Bind("ETA","{0:dd-MM-yyyy}") %>'
+                                                                        Width="80" BorderStyle="None" MaxLength="10" Enabled="false">
+                                                                    </asp:TextBox>
+                                                                    <cc1:CalendarExtender ID="ceETADate" TargetControlID="txtETA" runat="server"
+                                                                        Format="dd-MM-yyyy" Enabled="True" />
+                                                                    <asp:CompareValidator ID="cvETA" runat="server" ControlToValidate="txtETA"
+                                                                        Operator="LessThanEqual" Display="Dynamic" ValueToCompare="<%# DateTime.Today.ToShortDateString() %>"
+                                                                        Type="Date" ToolTip="Date should be less than equals to current date!" ValidationGroup="Save">
+                                                                    </asp:CompareValidator>
+                                                                    <asp:RequiredFieldValidator ID="rfvETA" runat="server" ControlToValidate="txtETA"
+                                                                        Display="Dynamic" ValidationGroup="Save">
+                                                                    </asp:RequiredFieldValidator>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle Width="100px" />
                                                             </asp:TemplateField>
-                                                            <asp:BoundField DataField="Activity" HeaderText="Activity" InsertVisible="False"
-                                                                ReadOnly="True" SortExpression="Activity" />
-                                                            <asp:BoundField DataField="Vessel" HeaderText="Vessel" InsertVisible="False" ReadOnly="True"
-                                                                SortExpression="Vessel" />
-                                                            <asp:BoundField DataField="LOA" HeaderText="LOA" InsertVisible="False" ReadOnly="True"
-                                                                SortExpression="LOA" />
-                                                            <asp:BoundField DataField="BirthNo" HeaderText="Birth No" InsertVisible="False" ReadOnly="True"
-                                                                SortExpression="BirthNo" />
                                                             <asp:TemplateField HeaderText="Arrival Date" SortExpression="ArrivalDate">
                                                                 <ItemTemplate>
                                                                     <asp:TextBox ID="txtArrivalDate" runat="server" Text='<%# Bind("ArrivalDate","{0:dd-MM-yyyy}") %>'
@@ -287,6 +184,13 @@
                                                                     <asp:RequiredFieldValidator ID="rfv1" runat="server" ControlToValidate="txtArrivalDate"
                                                                         Display="Dynamic" ValidationGroup="Save">
                                                                     </asp:RequiredFieldValidator>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle Width="100px" />
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="BirthNo" SortExpression="BirthNo">
+                                                                <ItemTemplate>
+                                                                    <asp:DropDownList ID="ddlBerth" runat="server" Enabled="false">
+                                                                    </asp:DropDownList>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle Width="100px" />
                                                             </asp:TemplateField>
@@ -307,52 +211,25 @@
                                                                 </ItemTemplate>
                                                                 <HeaderStyle Width="100px" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Discharge Date" SortExpression="DischargeDate">
+                                                            <asp:TemplateField HeaderText="ETC" SortExpression="ETC">
                                                                 <ItemTemplate>
-                                                                    <asp:TextBox ID="txtDischargeDate" runat="server" Text='<%# Bind("DischargeDate","{0:dd-MM-yyyy}") %>'
+                                                                    <asp:TextBox ID="txtETC" runat="server" Text='<%# Bind("ETC","{0:dd-MM-yyyy}") %>'
                                                                         Width="80" BorderStyle="None" MaxLength="10" Enabled="false">
                                                                     </asp:TextBox>
-                                                                    <cc1:CalendarExtender ID="ceDischargeDate" TargetControlID="txtDischargeDate" runat="server"
+                                                                    <cc1:CalendarExtender ID="ceDischargeDate" TargetControlID="txtETC" runat="server"
                                                                         Format="dd-MM-yyyy" Enabled="True" />
-                                                                    <asp:CompareValidator ID="cvDischargeDate" runat="server" ControlToValidate="txtDischargeDate"
+                                                                    <asp:CompareValidator ID="cvDischargeDate" runat="server" ControlToValidate="txtETC"
                                                                         Operator="LessThanEqual" Display="Dynamic" ValueToCompare="<%# DateTime.Today.ToShortDateString() %>"
                                                                         Type="Date" ToolTip="Date should be less than equals to current date!" ValidationGroup="Save">
                                                                     </asp:CompareValidator>
-                                                                    <asp:RequiredFieldValidator ID="rfv3" runat="server" ControlToValidate="txtDischargeDate"
+                                                                    <asp:RequiredFieldValidator ID="rfv3" runat="server" ControlToValidate="txtETC"
                                                                         Display="Dynamic" ValidationGroup="Save">
                                                                     </asp:RequiredFieldValidator>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle Width="100px" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Loading Date" SortExpression="LoadingDate">
-                                                                <ItemTemplate>
-                                                                    <asp:TextBox ID="txtLoadingDate" runat="server" Text='<%# Bind("LoadingDate","{0:dd-MM-yyyy}") %>'
-                                                                        Width="80" BorderStyle="None" MaxLength="10" Enabled="false">
-                                                                    </asp:TextBox>
-                                                                    <cc1:CalendarExtender ID="ceLoadingDate" TargetControlID="txtLoadingDate" runat="server"
-                                                                        Format="dd-MM-yyyy" Enabled="True" />
-                                                                    <asp:CompareValidator ID="cvLoadingDate" runat="server" ControlToValidate="txtLoadingDate"
-                                                                        Operator="LessThanEqual" Display="Dynamic" ValueToCompare="<%# DateTime.Today.ToShortDateString() %>"
-                                                                        Type="Date" ToolTip="Date should be less than equals to current date!" ValidationGroup="Save">
-                                                                    </asp:CompareValidator>
-                                                                    <asp:RequiredFieldValidator ID="rfv4" runat="server" ControlToValidate="txtLoadingDate"
-                                                                        Display="Dynamic" ValidationGroup="Save">
-                                                                    </asp:RequiredFieldValidator>
-                                                                </ItemTemplate>
-                                                                <HeaderStyle Width="100px" />
-                                                            </asp:TemplateField>
-                                                            <asp:BoundField DataField="Cargo" HeaderText="Cargo" InsertVisible="False" ReadOnly="True"
-                                                                SortExpression="Cargo" />
-                                                            <asp:BoundField DataField="CargoQuantity" HeaderText="Cargo Quantity" InsertVisible="False"
-                                                                ReadOnly="True" SortExpression="CargoQuantity" />
-                                                            <asp:TemplateField HeaderText="Delete">
-                                                                <ItemStyle CssClass="gridviewitem" Width="8%" HorizontalAlign="Center" VerticalAlign="Middle" />
-                                                                <ItemTemplate>
-                                                                    <asp:ImageButton ID="btnRemove" runat="server" OnClick="btnRemove_Click" ImageUrl="~/Images/remove.png"
-                                                                        Height="16" Width="16" />
-                                                                    <%--<asp:HiddenField ID="hdnContainerId" runat="server" Value='<%# Eval("ContainerId") %>' />--%>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
+                                                            <asp:BoundField DataField="Cargo" HeaderText="Cargo/Quantity" InsertVisible="False" ReadOnly="True"
+                                                                SortExpression="Cargo" HeaderStyle-Width="100px" />
                                                         </Columns>
                                                         <RowStyle ForeColor="#000066" />
                                                         <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
@@ -360,34 +237,51 @@
                                                         <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
                                                     </asp:GridView>
                                                     <br />
-                                                    <asp:Button ID="btnAwaPromote" runat="server" Text="Promote" />
-                                                    <asp:Button ID="btnAwaRevert" runat="server" Text="Revert" />
+                                                    <asp:Button ID="btnAwaPromote" runat="server" Text="Promote" OnClick="btnAwaPromote_Click" />
+                                                    <asp:Button ID="btnAwaRevert" runat="server" Text="Revert" OnClick="btnAwaRevert_Click" />
                                                 </ContentTemplate>
                                             </cc1:TabPanel>
-                                            <!-- Expecting Tab-->
-                                            <cc1:TabPanel ID="tpExpecting" runat="server">
+                                            <!-- Dscharging Tab-->
+                                            <cc1:TabPanel ID="tpDischarging" runat="server">
                                                 <HeaderTemplate>
-                                                    Expecting</HeaderTemplate>
+                                                    Discharging</HeaderTemplate>
                                                 <ContentTemplate>
-                                                    <asp:GridView ID="gvwExpecting" runat="server" AutoGenerateColumns="False"
-                                                        BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px"
-                                                        CellPadding="3" DataKeyNames="VesselId">
+                                                    <asp:GridView ID="gvwDischarging" runat="server" AutoGenerateColumns="False" BackColor="White" OnRowDataBound="gvwDischarging_RowDataBound"
+                                                        BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" DataKeyNames="VesselId">
                                                         <FooterStyle BackColor="White" ForeColor="#000066" />
                                                         <Columns>
                                                             <asp:TemplateField>
                                                                 <ItemTemplate>
-                                                                    <asp:CheckBox ID="chkExpecting" runat="server" oncheckedchanged="chkExpecting_CheckedChanged" AutoPostBack="true" />
+                                                                    <asp:CheckBox ID="chkDischarging" runat="server" OnCheckedChanged="chkDischarging_CheckedChanged"
+                                                                        AutoPostBack="true" />
+                                                                    <asp:HiddenField ID="hdnVesselId" runat="server" Value='<%# Eval("VesselId") %>' />
+                                                                    <asp:HiddenField ID="hdnStatusId" runat="server" Value='<%# Eval("StatusId") %>' />
+                                                                </ItemTemplate>
+                                                                <HeaderStyle Width="25px" />
+                                                            </asp:TemplateField>
+                                                            <asp:BoundField DataField="Activity" HeaderText="Activity" InsertVisible="False"
+                                                                ReadOnly="True" SortExpression="Activity" HeaderStyle-Width="100px" />
+                                                            <asp:BoundField DataField="Vessel" HeaderText="Vessel" InsertVisible="False" ReadOnly="True"
+                                                                SortExpression="Vessel" HeaderStyle-Width="100px" />
+                                                            <asp:BoundField DataField="LOA" HeaderText="LOA" InsertVisible="False" ReadOnly="True"
+                                                                SortExpression="LOA" />
+                                                            <asp:TemplateField HeaderText="ETA" SortExpression="ETA">
+                                                                <ItemTemplate>
+                                                                    <asp:TextBox ID="txtETA" runat="server" Text='<%# Bind("ETA","{0:dd-MM-yyyy}") %>'
+                                                                        Width="80" BorderStyle="None" MaxLength="10" Enabled="false">
+                                                                    </asp:TextBox>
+                                                                    <cc1:CalendarExtender ID="ceETADate" TargetControlID="txtETA" runat="server"
+                                                                        Format="dd-MM-yyyy" Enabled="True" />
+                                                                    <asp:CompareValidator ID="cvETA" runat="server" ControlToValidate="txtETA"
+                                                                        Operator="LessThanEqual" Display="Dynamic" ValueToCompare="<%# DateTime.Today.ToShortDateString() %>"
+                                                                        Type="Date" ToolTip="Date should be less than equals to current date!" ValidationGroup="Save">
+                                                                    </asp:CompareValidator>
+                                                                    <asp:RequiredFieldValidator ID="rfvETA" runat="server" ControlToValidate="txtETA"
+                                                                        Display="Dynamic" ValidationGroup="Save">
+                                                                    </asp:RequiredFieldValidator>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle Width="100px" />
                                                             </asp:TemplateField>
-                                                            <asp:BoundField DataField="Activity" HeaderText="Activity" InsertVisible="False"
-                                                                ReadOnly="True" SortExpression="Activity" />
-                                                            <asp:BoundField DataField="Vessel" HeaderText="Vessel" InsertVisible="False" ReadOnly="True"
-                                                                SortExpression="Vessel" />
-                                                            <asp:BoundField DataField="LOA" HeaderText="LOA" InsertVisible="False" ReadOnly="True"
-                                                                SortExpression="LOA" />
-                                                            <asp:BoundField DataField="BirthNo" HeaderText="Birth No" InsertVisible="False" ReadOnly="True"
-                                                                SortExpression="BirthNo" />
                                                             <asp:TemplateField HeaderText="Arrival Date" SortExpression="ArrivalDate">
                                                                 <ItemTemplate>
                                                                     <asp:TextBox ID="txtArrivalDate" runat="server" Text='<%# Bind("ArrivalDate","{0:dd-MM-yyyy}") %>'
@@ -402,6 +296,13 @@
                                                                     <asp:RequiredFieldValidator ID="rfv1" runat="server" ControlToValidate="txtArrivalDate"
                                                                         Display="Dynamic" ValidationGroup="Save">
                                                                     </asp:RequiredFieldValidator>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle Width="100px" />
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="BirthNo" SortExpression="BirthNo">
+                                                                <ItemTemplate>
+                                                                    <asp:DropDownList ID="ddlBerth" runat="server" Enabled="false">
+                                                                    </asp:DropDownList>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle Width="100px" />
                                                             </asp:TemplateField>
@@ -422,52 +323,25 @@
                                                                 </ItemTemplate>
                                                                 <HeaderStyle Width="100px" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Discharge Date" SortExpression="DischargeDate">
+                                                            <asp:TemplateField HeaderText="ETC" SortExpression="ETC">
                                                                 <ItemTemplate>
-                                                                    <asp:TextBox ID="txtDischargeDate" runat="server" Text='<%# Bind("DischargeDate","{0:dd-MM-yyyy}") %>'
+                                                                    <asp:TextBox ID="txtETC" runat="server" Text='<%# Bind("ETC","{0:dd-MM-yyyy}") %>'
                                                                         Width="80" BorderStyle="None" MaxLength="10" Enabled="false">
                                                                     </asp:TextBox>
-                                                                    <cc1:CalendarExtender ID="ceDischargeDate" TargetControlID="txtDischargeDate" runat="server"
+                                                                    <cc1:CalendarExtender ID="ceDischargeDate" TargetControlID="txtETC" runat="server"
                                                                         Format="dd-MM-yyyy" Enabled="True" />
-                                                                    <asp:CompareValidator ID="cvDischargeDate" runat="server" ControlToValidate="txtDischargeDate"
+                                                                    <asp:CompareValidator ID="cvDischargeDate" runat="server" ControlToValidate="txtETC"
                                                                         Operator="LessThanEqual" Display="Dynamic" ValueToCompare="<%# DateTime.Today.ToShortDateString() %>"
                                                                         Type="Date" ToolTip="Date should be less than equals to current date!" ValidationGroup="Save">
                                                                     </asp:CompareValidator>
-                                                                    <asp:RequiredFieldValidator ID="rfv3" runat="server" ControlToValidate="txtDischargeDate"
+                                                                    <asp:RequiredFieldValidator ID="rfv3" runat="server" ControlToValidate="txtETC"
                                                                         Display="Dynamic" ValidationGroup="Save">
                                                                     </asp:RequiredFieldValidator>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle Width="100px" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Loading Date" SortExpression="LoadingDate">
-                                                                <ItemTemplate>
-                                                                    <asp:TextBox ID="txtLoadingDate" runat="server" Text='<%# Bind("LoadingDate","{0:dd-MM-yyyy}") %>'
-                                                                        Width="80" BorderStyle="None" MaxLength="10" Enabled="false">
-                                                                    </asp:TextBox>
-                                                                    <cc1:CalendarExtender ID="ceLoadingDate" TargetControlID="txtLoadingDate" runat="server"
-                                                                        Format="dd-MM-yyyy" Enabled="True" />
-                                                                    <asp:CompareValidator ID="cvLoadingDate" runat="server" ControlToValidate="txtLoadingDate"
-                                                                        Operator="LessThanEqual" Display="Dynamic" ValueToCompare="<%# DateTime.Today.ToShortDateString() %>"
-                                                                        Type="Date" ToolTip="Date should be less than equals to current date!" ValidationGroup="Save">
-                                                                    </asp:CompareValidator>
-                                                                    <asp:RequiredFieldValidator ID="rfv4" runat="server" ControlToValidate="txtLoadingDate"
-                                                                        Display="Dynamic" ValidationGroup="Save">
-                                                                    </asp:RequiredFieldValidator>
-                                                                </ItemTemplate>
-                                                                <HeaderStyle Width="100px" />
-                                                            </asp:TemplateField>
-                                                            <asp:BoundField DataField="Cargo" HeaderText="Cargo" InsertVisible="False" ReadOnly="True"
-                                                                SortExpression="Cargo" />
-                                                            <asp:BoundField DataField="CargoQuantity" HeaderText="Cargo Quantity" InsertVisible="False"
-                                                                ReadOnly="True" SortExpression="CargoQuantity" />
-                                                            <asp:TemplateField HeaderText="Delete">
-                                                                <ItemStyle CssClass="gridviewitem" Width="8%" HorizontalAlign="Center" VerticalAlign="Middle" />
-                                                                <ItemTemplate>
-                                                                    <asp:ImageButton ID="btnRemove" runat="server" OnClick="btnRemove_Click" ImageUrl="~/Images/remove.png"
-                                                                        Height="16" Width="16" />
-                                                                    <%--<asp:HiddenField ID="hdnContainerId" runat="server" Value='<%# Eval("ContainerId") %>' />--%>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
+                                                            <asp:BoundField DataField="Cargo" HeaderText="Cargo/Quantity" InsertVisible="False" ReadOnly="True"
+                                                                SortExpression="Cargo" HeaderStyle-Width="100px" />
                                                         </Columns>
                                                         <RowStyle ForeColor="#000066" />
                                                         <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
@@ -475,10 +349,131 @@
                                                         <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
                                                     </asp:GridView>
                                                     <br />
-                                                    <asp:Button ID="btnExpPromote" runat="server" Text="Promote" />
+                                                    <asp:Button ID="btnDisPromote" runat="server" Text="Promote" OnClick="btnDisPromote_Click" />
+                                                    <asp:Button ID="btnDisRevert" runat="server" Text="Revert" OnClick="btnDisRevert_Click" />
+                                                    <asp:Button ID="btnSaveDisETC" runat="server" Text="Save ETC" OnClick="btnSaveDisETC_Click" />
+                                                </ContentTemplate>
+                                            </cc1:TabPanel>
+                                            <!-- Loading Tab-->
+                                            <cc1:TabPanel ID="tpLoading" runat="server">
+                                                <HeaderTemplate>
+                                                    Loading</HeaderTemplate>
+                                                <ContentTemplate>
+                                                    <asp:GridView ID="gvwLoading" runat="server" AutoGenerateColumns="False" BackColor="White"
+                                                        BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" DataKeyNames="VesselId"
+                                                        OnRowDataBound="gvwLoading_RowDataBound">
+                                                        <FooterStyle BackColor="White" ForeColor="#000066" />
+                                                        <Columns>
+                                                            <asp:TemplateField>
+                                                                <ItemTemplate>
+                                                                    <asp:CheckBox ID="chkLoading" runat="server" OnCheckedChanged="chkLoading_CheckedChanged"
+                                                                        AutoPostBack="true" />
+                                                                    <asp:HiddenField ID="hdnVesselId" runat="server" Value='<%# Eval("VesselId") %>' />
+                                                                    <asp:HiddenField ID="hdnStatusId" runat="server" Value='<%# Eval("StatusId") %>' />
+                                                                </ItemTemplate>
+                                                                <HeaderStyle Width="25px" />
+                                                            </asp:TemplateField>
+                                                            <asp:BoundField DataField="Activity" HeaderText="Activity" InsertVisible="False"
+                                                                ReadOnly="True" SortExpression="Activity" HeaderStyle-Width="100px" />
+                                                            <asp:BoundField DataField="Vessel" HeaderText="Vessel" InsertVisible="False" ReadOnly="True"
+                                                                SortExpression="Vessel" HeaderStyle-Width="100px" />
+                                                            <asp:BoundField DataField="LOA" HeaderText="LOA" InsertVisible="False" ReadOnly="True"
+                                                                SortExpression="LOA" />
+                                                            <asp:TemplateField HeaderText="ETA" SortExpression="ETA">
+                                                                <ItemTemplate>
+                                                                    <asp:TextBox ID="txtETA" runat="server" Text='<%# Bind("ETA","{0:dd-MM-yyyy}") %>'
+                                                                        Width="80" BorderStyle="None" MaxLength="10" Enabled="false">
+                                                                    </asp:TextBox>
+                                                                    <cc1:CalendarExtender ID="ceETADate" TargetControlID="txtETA" runat="server"
+                                                                        Format="dd-MM-yyyy" Enabled="True" />
+                                                                    <asp:CompareValidator ID="cvETA" runat="server" ControlToValidate="txtETA"
+                                                                        Operator="LessThanEqual" Display="Dynamic" ValueToCompare="<%# DateTime.Today.ToShortDateString() %>"
+                                                                        Type="Date" ToolTip="Date should be less than equals to current date!" ValidationGroup="Save">
+                                                                    </asp:CompareValidator>
+                                                                    <asp:RequiredFieldValidator ID="rfvETA" runat="server" ControlToValidate="txtETA"
+                                                                        Display="Dynamic" ValidationGroup="Save">
+                                                                    </asp:RequiredFieldValidator>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle Width="100px" />
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Arrival Date" SortExpression="ArrivalDate">
+                                                                <ItemTemplate>
+                                                                    <asp:TextBox ID="txtArrivalDate" runat="server" Text='<%# Bind("ArrivalDate","{0:dd-MM-yyyy}") %>'
+                                                                        Width="80" BorderStyle="None" MaxLength="10" Enabled="false">
+                                                                    </asp:TextBox>
+                                                                    <cc1:CalendarExtender ID="ceArrivalDate" TargetControlID="txtArrivalDate" runat="server"
+                                                                        Format="dd-MM-yyyy" Enabled="True" />
+                                                                    <asp:CompareValidator ID="cvArrivalDate" runat="server" ControlToValidate="txtArrivalDate"
+                                                                        Operator="LessThanEqual" Display="Dynamic" ValueToCompare="<%# DateTime.Today.ToShortDateString() %>"
+                                                                        Type="Date" ToolTip="Date should be less than equals to current date!" ValidationGroup="Save">
+                                                                    </asp:CompareValidator>
+                                                                    <asp:RequiredFieldValidator ID="rfv1" runat="server" ControlToValidate="txtArrivalDate"
+                                                                        Display="Dynamic" ValidationGroup="Save">
+                                                                    </asp:RequiredFieldValidator>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle Width="100px" />
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="BirthNo" SortExpression="BirthNo">
+                                                                <ItemTemplate>
+                                                                    <asp:DropDownList ID="ddlBerth" runat="server" Enabled="false">
+                                                                    </asp:DropDownList>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle Width="100px" />
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Berth Date" SortExpression="BerthDate">
+                                                                <ItemTemplate>
+                                                                    <asp:TextBox ID="txtBerthDate" runat="server" Text='<%# Bind("BerthDate","{0:dd-MM-yyyy}") %>'
+                                                                        Width="80" BorderStyle="None" MaxLength="10" Enabled="false">
+                                                                    </asp:TextBox>
+                                                                    <cc1:CalendarExtender ID="ceBerthDate" TargetControlID="txtBerthDate" runat="server"
+                                                                        Format="dd-MM-yyyy" Enabled="True" />
+                                                                    <asp:CompareValidator ID="cvBerthDate" runat="server" ControlToValidate="txtBerthDate"
+                                                                        Operator="LessThanEqual" Display="Dynamic" ValueToCompare="<%# DateTime.Today.ToShortDateString() %>"
+                                                                        Type="Date" ToolTip="Date should be less than equals to current date!" ValidationGroup="Save">
+                                                                    </asp:CompareValidator>
+                                                                    <asp:RequiredFieldValidator ID="rfv2" runat="server" ControlToValidate="txtBerthDate"
+                                                                        Display="Dynamic" ValidationGroup="Save">
+                                                                    </asp:RequiredFieldValidator>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle Width="100px" />
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="ETC" SortExpression="ETC">
+                                                                <ItemTemplate>
+                                                                    <asp:TextBox ID="txtETC" runat="server" Text='<%# Bind("ETC","{0:dd-MM-yyyy}") %>'
+                                                                        Width="80" BorderStyle="None" MaxLength="10" Enabled="false">
+                                                                    </asp:TextBox>
+                                                                    <cc1:CalendarExtender ID="ceDischargeDate" TargetControlID="txtETC" runat="server"
+                                                                        Format="dd-MM-yyyy" Enabled="True" />
+                                                                    <asp:CompareValidator ID="cvDischargeDate" runat="server" ControlToValidate="txtETC"
+                                                                        Operator="LessThanEqual" Display="Dynamic" ValueToCompare="<%# DateTime.Today.ToShortDateString() %>"
+                                                                        Type="Date" ToolTip="Date should be less than equals to current date!" ValidationGroup="Save">
+                                                                    </asp:CompareValidator>
+                                                                    <asp:RequiredFieldValidator ID="rfv3" runat="server" ControlToValidate="txtETC"
+                                                                        Display="Dynamic" ValidationGroup="Save">
+                                                                    </asp:RequiredFieldValidator>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle Width="100px" />
+                                                            </asp:TemplateField>
+                                                            <asp:BoundField DataField="Cargo" HeaderText="Cargo/Quantity" InsertVisible="False" ReadOnly="True"
+                                                                SortExpression="Cargo" HeaderStyle-Width="100px" />
+                                                        </Columns>
+                                                        <RowStyle ForeColor="#000066" />
+                                                        <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
+                                                        <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left" />
+                                                        <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
+                                                    </asp:GridView>
+                                                    <br />
+                                                    <asp:Button ID="btnLoaPromote" runat="server" Text="Promote" OnClick="btnLoaPromote_Click" />
+                                                    <asp:Button ID="btnLoaRevert" runat="server" Text="Revert" OnClick="btnLoaRevert_Click" />
+                                                    <asp:Button ID="btnSaveLoadETC" runat="server" Text="Save ETC" OnClick="btnSaveLoadETC_Click" />
                                                 </ContentTemplate>
                                             </cc1:TabPanel>
                                         </cc1:TabContainer>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="padding-top: 10px;">
+                                        <asp:Label ID="lblErr" runat="server" CssClass="errormessage"></asp:Label>
                                     </td>
                                 </tr>
                             </table>

@@ -31,76 +31,40 @@ namespace VPR.WebApp.Transaction {
         protected global::AjaxControlToolkit.TabContainer tcPP;
         
         /// <summary>
-        /// tpLoading control.
+        /// tpExpecting control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.TabPanel tpLoading;
+        protected global::AjaxControlToolkit.TabPanel tpExpecting;
         
         /// <summary>
-        /// gvwLoading control.
+        /// gvwExpecting control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvwLoading;
+        protected global::System.Web.UI.WebControls.GridView gvwExpecting;
         
         /// <summary>
-        /// btnLoaPromote control.
+        /// btnExpPromote control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLoaPromote;
+        protected global::System.Web.UI.WebControls.Button btnExpPromote;
         
         /// <summary>
-        /// btnLoaRevert control.
+        /// btnSaveETA control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLoaRevert;
-        
-        /// <summary>
-        /// tpDischarging control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.TabPanel tpDischarging;
-        
-        /// <summary>
-        /// gvwDischarging control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvwDischarging;
-        
-        /// <summary>
-        /// btnDisPromote control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDisPromote;
-        
-        /// <summary>
-        /// btnDisRevert control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDisRevert;
+        protected global::System.Web.UI.WebControls.Button btnSaveETA;
         
         /// <summary>
         /// tpAwating control.
@@ -139,31 +103,103 @@ namespace VPR.WebApp.Transaction {
         protected global::System.Web.UI.WebControls.Button btnAwaRevert;
         
         /// <summary>
-        /// tpExpecting control.
+        /// tpDischarging control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.TabPanel tpExpecting;
+        protected global::AjaxControlToolkit.TabPanel tpDischarging;
         
         /// <summary>
-        /// gvwExpecting control.
+        /// gvwDischarging control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvwExpecting;
+        protected global::System.Web.UI.WebControls.GridView gvwDischarging;
         
         /// <summary>
-        /// btnExpPromote control.
+        /// btnDisPromote control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnExpPromote;
+        protected global::System.Web.UI.WebControls.Button btnDisPromote;
+        
+        /// <summary>
+        /// btnDisRevert control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDisRevert;
+        
+        /// <summary>
+        /// btnSaveDisETC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSaveDisETC;
+        
+        /// <summary>
+        /// tpLoading control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.TabPanel tpLoading;
+        
+        /// <summary>
+        /// gvwLoading control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvwLoading;
+        
+        /// <summary>
+        /// btnLoaPromote control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnLoaPromote;
+        
+        /// <summary>
+        /// btnLoaRevert control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnLoaRevert;
+        
+        /// <summary>
+        /// btnSaveLoadETC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSaveLoadETC;
+        
+        /// <summary>
+        /// lblErr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErr;
         
         /// <summary>
         /// uProgressBL control.

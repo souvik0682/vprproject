@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="AddressEntity.cs" />
     <Compile Include="AreaEntity.cs" />
+    <Compile Include="BerthEntity.cs" />
     <Compile Include="CargoDetails.cs" />
     <Compile Include="CargoGroupEntity.cs" />
     <Compile Include="ContactPersonEntity.cs" />

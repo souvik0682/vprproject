@@ -86,5 +86,36 @@ namespace VPR.BLL
         {
             TransactionDAL.DeleteVessel(vesselId);
         }
+
+        public DataTable GetBerths(int VesselId)
+        {
+            return TransactionDAL.GetBerths(VesselId);
+        }
+
+        public List<VesselStatus> GetListVesselPosition(string vesselStatus)
+        {
+            return TransactionDAL.GetListVesselPosition(vesselStatus);
+        }
+
+        public void PromoteVessels(List<VesselStatus> lstVessel)
+        {
+            foreach (VesselStatus v in lstVessel)
+            {
+                int statusId = TransactionDAL.PromoteVessel(v);
+            }
+        }
+
+        public void RevertVessels(List<int> lstStatus)
+        {
+            foreach (int s in lstStatus)
+            {
+                int statusId = TransactionDAL.RevertStatus(s);
+            }
+        }
+
+        public void SaveETCorWTA(int vesselId, DateTime dt, bool isETA)
+        {
+            TransactionDAL.SaveETCorWTA(vesselId, dt, isETA);
+        }
     }
 }
