@@ -44,7 +44,7 @@ namespace VPR.Entity
                 if (reader["fk_BerthID"] != DBNull.Value)
                     this.BerthId = Convert.ToInt32(reader["fk_BerthID"]);
 
-            if (ColumnExists(reader, "Vact"))
+            if (ColumnExists(reader, "VAct"))
                 this.Activity = Convert.ToString(reader["Vact"]);
 
             if (ColumnExists(reader, "VesselName"))

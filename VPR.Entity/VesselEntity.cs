@@ -13,7 +13,7 @@ namespace VPR.Entity
         public string VesselName { get; set; }
         public int BerthId { get; set; }
         public decimal LOA { get; set; }
-        public DateTime ArrivalDate { get; set; }
+        public DateTime? ArrivalDate { get; set; }
         public DateTime? BerthDate { get; set; }
         public DateTime? ETC { get; set; }
         public string Owner { get; set; }
@@ -32,6 +32,7 @@ namespace VPR.Entity
         public string PortName { get; set; }
         public string BerthName { get; set; }
         public string AgentName { get; set; }
+        public DateTime ETA { get; set; }
 
         public VesselEntity()
         {
@@ -68,6 +69,11 @@ namespace VPR.Entity
             if (ColumnExists(reader, "ArrivalDate"))
                 if (reader["ArrivalDate"] != DBNull.Value)
                     this.ArrivalDate = Convert.ToDateTime(reader["ArrivalDate"]);
+
+
+            if (ColumnExists(reader, "ETA"))
+                if (reader["ETA"] != DBNull.Value)
+                    this.ETA = Convert.ToDateTime(reader["ETA"]);
 
             if (ColumnExists(reader, "BerthDate"))
                 if (reader["BerthDate"] != DBNull.Value)
