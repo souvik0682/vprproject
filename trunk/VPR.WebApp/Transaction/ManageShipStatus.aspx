@@ -36,9 +36,13 @@
                                                                 <HeaderStyle Width="25px" />
                                                             </asp:TemplateField>
                                                             <asp:BoundField DataField="Activity" HeaderText="Activity" InsertVisible="False"
-                                                                ReadOnly="True" SortExpression="Activity" HeaderStyle-Width="100px" />
+                                                                ReadOnly="True" SortExpression="Activity" >
+                                                            <HeaderStyle Width="100px" />
+                                                            </asp:BoundField>
                                                             <asp:BoundField DataField="Vessel" HeaderText="Vessel" InsertVisible="False" ReadOnly="True"
-                                                                SortExpression="Vessel" HeaderStyle-Width="100px" />
+                                                                SortExpression="Vessel" >
+                                                            <HeaderStyle Width="100px" />
+                                                            </asp:BoundField>
                                                             <asp:BoundField DataField="LOA" HeaderText="LOA" InsertVisible="False" ReadOnly="True"
                                                                 SortExpression="LOA" />
                                                             <asp:TemplateField HeaderText="ETA" SortExpression="ETA">
@@ -77,7 +81,7 @@
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="BirthNo" SortExpression="BirthNo">
                                                                 <ItemTemplate>
-                                                                    <asp:DropDownList ID="ddlBerth" runat="server" Enabled="false">
+                                                                    <asp:DropDownList ID="ddlBerth" runat="server" Enabled="false" AutoPostBack = "true" onselectedindexchanged="ddlBerth_SelectedIndexChanged">
                                                                     </asp:DropDownList>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle Width="100px" />
@@ -116,8 +120,11 @@
                                                                 </ItemTemplate>
                                                                 <HeaderStyle Width="100px" />
                                                             </asp:TemplateField>
-                                                            <asp:BoundField DataField="Cargo" HeaderText="Cargo/Quantity" InsertVisible="False" ReadOnly="True"
-                                                                SortExpression="Cargo" HeaderStyle-Width="150px" />
+                                                            <asp:BoundField DataField="Cargo" HeaderText="Cargo/Quantity" 
+                                                                InsertVisible="False" ReadOnly="True"
+                                                                SortExpression="Cargo" >
+                                                            <HeaderStyle Width="150px" />
+                                                            </asp:BoundField>
                                                         </Columns>
                                                         <RowStyle ForeColor="#000066" />
                                                         <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
@@ -189,7 +196,7 @@
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="BirthNo" SortExpression="BirthNo">
                                                                 <ItemTemplate>
-                                                                    <asp:DropDownList ID="ddlBerth" runat="server" Enabled="false">
+                                                                    <asp:DropDownList ID="ddlBerth" runat="server" Enabled="false" AutoPostBack = "true" onselectedindexchanged="ddlBerth_SelectedIndexChanged">
                                                                     </asp:DropDownList>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle Width="100px" />
