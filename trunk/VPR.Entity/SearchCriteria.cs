@@ -163,6 +163,7 @@ namespace VPR.Entity
         public string CargoName { get; set; }
         public string CargoGroupType { get; set; }
         public string Agent { get; set; }
+        public string Banner { get; set; }
 
         #endregion
 
@@ -221,6 +222,7 @@ namespace VPR.Entity
             this.CargoGroup = string.Empty;
             this.CargoSubGroup = string.Empty;
             this.CargoGroupType = string.Empty;
+            this.Banner = string.Empty;
             
         }
 
