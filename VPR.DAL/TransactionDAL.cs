@@ -122,7 +122,7 @@ namespace VPR.DAL
                 oDq.AddVarcharParam("@VesselName", 50, o.VesselName);
                 oDq.AddIntegerParam("@BerthId", o.BerthId);
                 oDq.AddDecimalParam("@LOA", 12, 2, o.LOA);
-                oDq.AddDateTimeParam("@ArrivalDate", o.ArrivalDate);
+                oDq.AddDateTimeParam("@ETA", o.ETA);
                 oDq.AddVarcharParam("@Owner", 50, o.Owner);
                 oDq.AddIntegerParam("@AgentId", o.AgentId);
                 oDq.AddIntegerParam("@PrevPortId", o.PrevPortId);
@@ -200,7 +200,7 @@ namespace VPR.DAL
 
             using (DbQuery oDq = new DbQuery(strExecution))
             {
-                //oDq.AddIntegerParam("@VesselId", VesselId);
+                oDq.AddIntegerParam("@VesselId", VesselId);
                 return oDq.GetTable();
             }
         }
