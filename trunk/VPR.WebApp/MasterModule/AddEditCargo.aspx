@@ -31,7 +31,7 @@
                 </tr>
                 <tr>
                     <td>
-                        Cargo Group<span class="errormessage1">*</span>
+                        Group<span class="errormessage1">*</span>
                     </td>
                     <td>
                         <asp:DropDownList ID="ddlCargoGroup" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCargoGroup_SelectedIndexChanged">
@@ -45,7 +45,7 @@
 
                 <tr>
                     <td>
-                        Cargo Sub Group
+                        Sub Group
                     </td>
                     <td>
                         <asp:DropDownList ID="ddlCargoSubGroup" runat="server">
