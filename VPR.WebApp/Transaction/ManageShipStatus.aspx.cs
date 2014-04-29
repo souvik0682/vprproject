@@ -233,14 +233,17 @@ namespace VPR.WebApp.Transaction
             TextBox txtBerthDate = (TextBox)row.FindControl("txtBerthDate");
             //TextBox txtDischargeDate = (TextBox)row.FindControl("txtDischargeDate");
             //TextBox txtLoadingDate = (TextBox)row.FindControl("txtLoadingDate");
-
+            DropDownList ddlBerth = (DropDownList)row.FindControl("ddlBerth");
+            
             if (((CheckBox)sender).Checked)
             {
-                txtBerthDate.Enabled = true;
-                txtBerthDate.Text = DateTime.Now.ToString("dd-MM-yyyy");
+                ddlBerth.Enabled = true;
+                //txtBerthDate.Enabled = true;
+                //txtBerthDate.Text = DateTime.Now.ToString("dd-MM-yyyy");
             }
             else
             {
+                ddlBerth.Enabled = false;
                 txtBerthDate.Enabled = false;
                 txtBerthDate.Text = string.Empty;
             }
@@ -260,8 +263,8 @@ namespace VPR.WebApp.Transaction
                 txtArrivalDate.Enabled = true;
                 txtArrivalDate.Text = DateTime.Now.ToString("dd-MM-yyyy");
                 txtETA.Enabled = true;
-                txtBerthDate.Enabled = true;
-                txtBerthDate.Text = DateTime.Now.ToString("dd-MM-yyyy");
+                //txtBerthDate.Enabled = true;
+                //txtBerthDate.Text = DateTime.Now.ToString("dd-MM-yyyy");
                 ddlBerth.Enabled = true;
             }
             else
@@ -275,6 +278,25 @@ namespace VPR.WebApp.Transaction
             }
         }
 
+        protected void ddlBerth_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GridViewRow row = (GridViewRow)((DropDownList)sender).NamingContainer;
+
+            TextBox txtBerthDate = (TextBox)row.FindControl("txtBerthDate");
+            DropDownList ddlBerth = (DropDownList)row.FindControl("ddlBerth");
+            
+            if (ddlBerth.SelectedIndex > 0)
+            {
+                txtBerthDate.Enabled = true;
+                txtBerthDate.Text = DateTime.Now.ToString("dd-MM-yyyy");
+            }
+            else
+            {
+                txtBerthDate.Enabled = false;
+                txtBerthDate.Text = string.Empty;
+            }
+
+        }
         //Expecting
         protected void btnExpPromote_Click(object sender, EventArgs e)
         {
@@ -302,7 +324,7 @@ namespace VPR.WebApp.Transaction
                         BerthId = Convert.ToInt32(ddlBerth.SelectedValue),
                         VesselId = Convert.ToInt32(hdnVesselId.Value),
                         ArrivalDate = Convert.ToDateTime(txtArrivalDate.Text),
-                        BerthDate = (txtArrivalDate.Text != string.Empty) ? Convert.ToDateTime(txtArrivalDate.Text) : dte,
+                        BerthDate = (txtBerthDate.Text != string.Empty) ? Convert.ToDateTime(txtBerthDate.Text) : dte,
                         Activity = "E"
                     });
 
@@ -369,7 +391,8 @@ namespace VPR.WebApp.Transaction
                         BerthId = Convert.ToInt32(ddlBerth.SelectedValue),
                         VesselId = Convert.ToInt32(hdnVesselId.Value),
                         ArrivalDate = Convert.ToDateTime(txtArrivalDate.Text),
-                        BerthDate = (txtArrivalDate.Text != string.Empty) ? Convert.ToDateTime(txtArrivalDate.Text) : dte,
+                        BerthDate =  Convert.ToDateTime(txtBerthDate.Text),
+                        //BerthDate = (txtArrivalDate.Text != string.Empty) ? Convert.ToDateTime(txtArrivalDate.Text) : dte,
                         Activity = "A"
                     });
 

@@ -84,7 +84,11 @@ namespace VPR.WebApp.Transaction
 
                 ddlCargo.SelectedValue = cargo.CargoId.ToString();
                 ddlActType.SelectedValue = cargo.ActType;
-                ddlActType.Enabled = false;
+                if (ddlAcivity.SelectedValue.ToString() == "B")
+                    ddlActType.Enabled = true;
+                else
+                    ddlActType.Enabled = false;
+                
 
                 //if (ddlAcivity.SelectedValue.ToString() == "L")
                 //{
@@ -382,12 +386,14 @@ namespace VPR.WebApp.Transaction
                     HiddenField hdnCargoVesselId = (HiddenField)thisGridViewRow.FindControl("hdnCargoVesselId");
                     DropDownList ddlCargo = (DropDownList)thisGridViewRow.FindControl("ddlCargo");
                     TextBox txtQuantity = (TextBox)thisGridViewRow.FindControl("txtQuantity");
+                    DropDownList ddlActType = (DropDownList)thisGridViewRow.FindControl("ddlActType");
 
                     oList.Where(d => d.CargoVesselId == Convert.ToInt64(hdnCargoVesselId.Value))
                         .Select(d =>
                         {
                             d.CargoId = Convert.ToInt32(ddlCargo.SelectedValue);
                             d.Quantity = Convert.ToDecimal(txtQuantity.Text.Trim());
+                            d.ActType = Convert.ToString(ddlActType.SelectedValue);
                             return d;
                         }).ToList();
                 }
@@ -424,7 +430,7 @@ namespace VPR.WebApp.Transaction
 
             //ddlBerth.SelectedValue = o.BerthId.ToString();
             txtLOA.Text = o.LOA.ToString();
-            txtArrivalDate.Text = o.ArrivalDate.ToString("dd-MM-yyyy");
+            txtArrivalDate.Text = o.ETA.ToString("dd-MM-yyyy");
 
             //if (o.BerthDate.HasValue)
             //    txtBerthDate.Text = o.BerthDate.Value.ToString("dd-MM-yyyy");
@@ -452,7 +458,7 @@ namespace VPR.WebApp.Transaction
                 o.VPRorPAS = "V";
                 o.Activity = ddlAcivity.SelectedValue;
                 o.AgentId = Convert.ToInt32(ddlAgentName.SelectedValue);
-                o.ArrivalDate = Convert.ToDateTime(txtArrivalDate.Text.Trim());
+                o.ETA = Convert.ToDateTime(txtArrivalDate.Text.Trim());
                 //o.BerthDate = Convert.ToDateTime(txtBerthDate.Text.Trim());
                 //o.BerthId = Convert.ToInt32(ddlBerth.SelectedValue);
                 o.CreatedBy = 0;

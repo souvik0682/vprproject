@@ -27,8 +27,8 @@
                                                 <td>
                                                     <asp:DropDownList ID="ddlAcivity" runat="server" TabIndex="1" AutoPostBack = "true"
                                                         onselectedindexchanged="ddlAcivity_SelectedIndexChanged">
-                                                        <asp:ListItem Value="L" Text="Load" Selected="True"></asp:ListItem>
-                                                        <asp:ListItem Value="D" Text="Discharge"></asp:ListItem>
+                                                        <asp:ListItem Value="D" Text="Discharge" Selected="True"></asp:ListItem>
+                                                        <asp:ListItem Value="L" Text="Load"></asp:ListItem>
                                                         <asp:ListItem Value="B" Text="Load & Discharge"></asp:ListItem>
                                                         <asp:ListItem Value="O" Text="Others"></asp:ListItem>
                                                     </asp:DropDownList>
@@ -172,9 +172,9 @@
                                                  <asp:TemplateField HeaderText="ActType" HeaderStyle-Width="80">
                                                     <ItemTemplate>
                                                         <asp:DropDownList ID="ddlActType" runat="server">
-                                                        <asp:ListItem Value="N" Text="None" Selected="True"></asp:ListItem>
-                                                        <asp:ListItem Value="D" Text="Discharge"></asp:ListItem>
-                                                        <asp:ListItem Value="L" Text="Loading"></asp:ListItem>
+                                                        <asp:ListItem Value="D" Text="Discharge" Selected="True"></asp:ListItem>
+                                                        <asp:ListItem Value="L" Text="Load"></asp:ListItem>
+                                                        <asp:ListItem Value="N" Text="None"></asp:ListItem>
                                                         </asp:DropDownList>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
