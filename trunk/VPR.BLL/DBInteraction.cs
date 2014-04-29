@@ -658,6 +658,55 @@ namespace VPR.BLL
 
         #endregion
 
+        #region Banner
+        public DataSet GetBanners(int pk_BannerId, string Banner)
+        {
+            string ProcName = "admin.prcGetBanner";
+            DAL.DbManager.DbQuery dquery = new DAL.DbManager.DbQuery(ProcName);
+
+            dquery.AddIntegerParam("@pk_BannerID", pk_BannerId);
+            dquery.AddVarcharParam("@Banner", 300, Banner);
+
+            return dquery.GetTables();
+        }
+
+        public void DeleteBanner(int BannerId)
+        {
+            string ProcName = "admin.prcDeleteBanner";
+            DAL.DbManager.DbQuery dquery = new DAL.DbManager.DbQuery(ProcName);
+            dquery.AddIntegerParam("@pk_BannerID", BannerId);
+            dquery.RunActionQuery();
+
+        }
+
+        public int SaveBanner(int userID, int pk_BannerId, string BannerType, string Banner, string Stdt, string Endt, bool isEdit)
+        {
+            DateTime? stdate;
+            DateTime? endate;
+            if (BannerType == "C")
+            {
+                stdate = null;
+                endate = null;
+            }
+            else
+            {
+                stdate = Convert.ToDateTime(Stdt);
+                endate = Convert.ToDateTime(Endt);
+            }
+            string ProcName = "admin.prcAddEditBanner";
+            DAL.DbManager.DbQuery dquery = new DAL.DbManager.DbQuery(ProcName);
+            dquery.AddIntegerParam("@CreatedBy", userID);
+            dquery.AddIntegerParam("@pk_BannerId", pk_BannerId);
+            dquery.AddVarcharParam("@BannerType", 1, BannerType);
+            dquery.AddVarcharParam("@Banner", 200, Banner);
+            dquery.AddDateTimeParam("@StartDate", stdate);
+            dquery.AddDateTimeParam("@EndDate", endate);
+            //dquery.AddBooleanParam("@isEdit", isEdit);
+
+            return dquery.RunActionQuery();
+
+        }
+        #endregion
         public DataSet GetMLVoyage(int VoyageId, string voyageType, string VesselName, string voyageNo)
         {
             string ProcName = "prcGetMLVoyage";
