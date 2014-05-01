@@ -62,6 +62,7 @@
     <Compile Include="UserEntity.cs" />
     <Compile Include="UserPermission.cs" />
     <Compile Include="VendorEntity.cs" />
+    <Compile Include="Vessel.cs" />
     <Compile Include="VesselEntity.cs" />
     <Compile Include="VesselStatus.cs" />
     <Compile Include="VoyageEntity.cs" />
