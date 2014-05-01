@@ -61,6 +61,7 @@
   <ItemGroup>
     <Content Include="CustomControls\AC_CHA.ascx" />
     <Content Include="CustomControls\AC_Port.ascx" />
+    <Content Include="CustomControls\AutoComplete.asmx" />
     <Content Include="CustomControls\DatePicker.ascx" />
     <Content Include="Error.aspx" />
     <Content Include="FileNotFound.aspx" />
