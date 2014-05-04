@@ -63,6 +63,7 @@
     <Content Include="CustomControls\AC_Port.ascx" />
     <Content Include="CustomControls\AutoComplete.asmx" />
     <Content Include="CustomControls\DatePicker.ascx" />
+    <Content Include="EmailTemplate.htm" />
     <Content Include="Error.aspx" />
     <Content Include="FileNotFound.aspx" />
     <Content Include="Images\bg.jpg" />
@@ -440,6 +441,9 @@
     <Content Include="Site.Master" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Banner\Singapore_Insurance.pdf" />
+    <None Include="DailyReport\Claim.xlsx" />
+    <None Include="DailyReport\Singapore_Insurance.pdf" />
     <None Include="Scripts\css\themes\base\images\Thumbs.db" />
     <None Include="Scripts\jquery-ui-1.8.14.custom.min.js.Prev" />
   </ItemGroup>
