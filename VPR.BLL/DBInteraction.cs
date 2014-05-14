@@ -679,7 +679,7 @@ namespace VPR.BLL
 
         }
 
-        public int SaveBanner(int userID, int pk_BannerId, string BannerType, string Banner, string Stdt, string Endt, bool isEdit)
+        public int SaveBanner(int userID, int pk_BannerId, string BannerType, string Banner, string Stdt, string Endt, string FileName, bool isEdit)
         {
             DateTime? stdate;
             DateTime? endate;
@@ -701,6 +701,7 @@ namespace VPR.BLL
             dquery.AddVarcharParam("@Banner", 200, Banner);
             dquery.AddDateTimeParam("@StartDate", stdate);
             dquery.AddDateTimeParam("@EndDate", endate);
+            dquery.AddVarcharParam("@LinkedFileName", 255, FileName);
             //dquery.AddBooleanParam("@isEdit", isEdit);
 
             return dquery.RunActionQuery();
