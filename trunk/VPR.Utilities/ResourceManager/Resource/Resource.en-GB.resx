@@ -375,4 +375,13 @@
   <data name="ERR00085" xml:space="preserve">
     <value>Freight Payable At is Compulsory field</value>
   </data>
+  <data name="R00058" xml:space="preserve">
+    <value>Click to generate report</value>
+  </data>
+  <data name="R00062" xml:space="preserve">
+    <value>Please select from date</value>
+  </data>
+  <data name="R00063" xml:space="preserve">
+    <value>Please select to date</value>
+  </data>
 </root>
