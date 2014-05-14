@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using VPR.Utilities;
+using VPR.BLL;
 
 using VPR.Utilities.ResourceManager;
 using VPR.Common;
@@ -30,6 +31,7 @@ namespace VPR.WebApp.MasterModule
         {
             if (!IsPostBack)
             {
+
                 BannerID = GeneralFunctions.DecryptQueryString(Request.QueryString["id"]);
                 ClearText();
                 btnBack.OnClientClick = "javascript:return RedirectAfterCancelClick('ManageBanner.aspx','" + ResourceManager.GetStringWithoutName("ERR00017") + "')";
@@ -159,16 +161,27 @@ namespace VPR.WebApp.MasterModule
                     GeneralFunctions.RegisterAlertScript(this, "Banner text must be unique. Please try with another one.");
                     return;
                 }
-            int result = dbinteract.SaveBanner(_userId, Convert.ToInt32(portId), ddlType.SelectedValue.ToString(), txtBanner.Text.Trim().ToUpper(), txtStartDate.Text,txtEndDate.Text, isedit);
 
+            if (fileUpload.HasFile)
+            {
+                var fileName = fileUpload.FileName;
+                var path = Server.MapPath("~/Documents");
+                var newFileName = Guid.NewGuid().ToString();
 
-            if (result > 0)
-            {
-                Response.Redirect("~/MasterModule/ManageBanner.aspx");
-            }
-            else
-            {
-                GeneralFunctions.RegisterAlertScript(this, "Error Occured");
+                if (!string.IsNullOrEmpty(path))
+                {
+                    path += @"\" + newFileName + System.IO.Path.GetExtension(fileName);
+                }
+
+                int result = dbinteract.SaveBanner(_userId, Convert.ToInt32(portId), ddlType.SelectedValue.ToString(), txtBanner.Text.Trim().ToUpper(), txtStartDate.Text, txtEndDate.Text, path, isedit);
+                if (result > 0)
+                {
+                    Response.Redirect("~/MasterModule/ManageBanner.aspx");
+                }
+                else
+                {
+                    GeneralFunctions.RegisterAlertScript(this, "Error Occured");
+                }
             }
         }
 

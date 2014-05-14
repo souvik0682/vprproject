@@ -74,7 +74,7 @@
                         <asp:ListItem Text="100" Value="100" />
                     </asp:DropDownList>
                     &nbsp;&nbsp;
-                    <asp:Button ID="btnAdd" runat="server" Text="Add New Vessel" Width="150"
+                    <asp:Button ID="btnAdd" runat="server" Text="Add New Berth" Width="150"
                         OnClick="btnAdd_Click" />
                 </div>
                 <div>
