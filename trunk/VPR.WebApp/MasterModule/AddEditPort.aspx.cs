@@ -136,7 +136,7 @@ namespace VPR.WebApp.MasterModule
             bool isedit = portId != "-1" ? true : false;
             if (!isedit)
                 // if (dbinteract.GetPort(-1, txtPortCode.Text.Trim(), "").Tables[0].Rows.Count > 0)
-                if (!dbinteract.IsUnique("DSR.dbo.mstPort", "PortCode", txtPortCode.Text.Trim()))
+                if (!dbinteract.IsUnique("dbo.mstPort", "PortCode", txtPortCode.Text.Trim()))
                 {
                     GeneralFunctions.RegisterAlertScript(this, "Port Code must be unique. The given code has already been used for another port. Please try with another one.");
                     return;

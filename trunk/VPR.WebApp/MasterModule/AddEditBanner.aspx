@@ -70,6 +70,17 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>
+                        Upload File:
+                    </td>
+                    <td>
+                        <asp:FileUpload ID="fileUpload" runat="server"></asp:FileUpload> 
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="fileUpload"
+                            ErrorMessage="This field is required*" CssClass="errormessage" ValidationGroup="Save"
+                            Display="Dynamic"></asp:RequiredFieldValidator>
+                    </td>
+                </tr>
+                <tr>
                     <td colspan="2">
                         <asp:Button ID="btnSave" runat="server" Text="Save" ValidationGroup="Save" OnClick="btnSave_Click" />&nbsp;&nbsp;<asp:Button 
                             ID="btnBack" runat="server" CssClass="button" Text="Back" 
