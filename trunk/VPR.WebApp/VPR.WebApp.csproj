@@ -99,6 +99,7 @@
     <Content Include="MasterModule\ManagePort.aspx" />
     <Content Include="MasterModule\vendor-add-edit.aspx" />
     <Content Include="MasterModule\vendor-list.aspx" />
+    <Content Include="ReportGenerator51314.aspx" />
     <Content Include="Scripts\Common.js" />
     <Content Include="Scripts\css\ellipsis-xbl.xml" />
     <Content Include="Scripts\css\images\ui-icons_222222_256x240.png" />
@@ -323,6 +324,13 @@
     </Compile>
     <Compile Include="MasterModule\vendor-list.aspx.designer.cs">
       <DependentUpon>vendor-list.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReportGenerator51314.aspx.cs">
+      <DependentUpon>ReportGenerator51314.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReportGenerator51314.aspx.designer.cs">
+      <DependentUpon>ReportGenerator51314.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
