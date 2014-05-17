@@ -51,6 +51,7 @@
     <Compile Include="IEmailGroup.cs" />
     <Compile Include="IGroupCompany.cs" />
     <Compile Include="ILocation.cs" />
+    <Compile Include="IReport.cs" />
     <Compile Include="IRoleMenu.cs" />
     <Compile Include="IMenu.cs" />
     <Compile Include="ICommon.cs" />

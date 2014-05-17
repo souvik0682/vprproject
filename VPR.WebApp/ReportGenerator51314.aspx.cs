@@ -71,8 +71,10 @@ namespace VPR.WebApp
             rptViewer.LocalReport.SetParameters(new ReportParameter("CompanyName", "BEN LINE AGENCIES (INDIA) PVT. LTD."));
             rptViewer.LocalReport.SetParameters(new ReportParameter("Address", "VESSEL LINE UP AS ON DT. - " + DateTime.Now.ToString("dd/MM/yyyy")));
             byte[] bytes = rptViewer.LocalReport.Render("PDF", null, out mimeType, out encoding, out extension, out streamIds, out warnings);
-            string fileName = HttpContext.Current.Server.MapPath("Files") + @"\Vessel Position- " + DateTime.Now.ToString("dd-MM-yyyy") + ".pdf";
-            using (FileStream fs = new FileStream(fileName, FileMode.Create))
+            string fileName = "VesselPosition-" + DateTime.Now.ToString("dd-MM-yyyy") + ".pdf";
+            string filePath = HttpContext.Current.Server.MapPath("DailyReport") + @"\" + fileName;
+
+            using (FileStream fs = new FileStream(filePath, FileMode.Create))
             {
                 fs.Write(bytes, 0, bytes.Length);
             }
