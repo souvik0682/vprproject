@@ -100,6 +100,8 @@
     <Content Include="MasterModule\vendor-add-edit.aspx" />
     <Content Include="MasterModule\vendor-list.aspx" />
     <Content Include="ReportGenerator51314.aspx" />
+    <Content Include="Reports\CargoReport.aspx" />
+    <Content Include="Reports\RptVesselPosition.aspx" />
     <Content Include="Scripts\Common.js" />
     <Content Include="Scripts\css\ellipsis-xbl.xml" />
     <Content Include="Scripts\css\images\ui-icons_222222_256x240.png" />
@@ -332,6 +334,18 @@
     <Compile Include="ReportGenerator51314.aspx.designer.cs">
       <DependentUpon>ReportGenerator51314.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reports\CargoReport.aspx.cs">
+      <DependentUpon>CargoReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\CargoReport.aspx.designer.cs">
+      <DependentUpon>CargoReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RptVesselPosition.aspx.cs">
+      <DependentUpon>RptVesselPosition.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RptVesselPosition.aspx.designer.cs">
+      <DependentUpon>RptVesselPosition.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -454,6 +468,10 @@
     <None Include="DailyReport\Singapore_Insurance.pdf" />
     <None Include="Scripts\css\themes\base\images\Thumbs.db" />
     <None Include="Scripts\jquery-ui-1.8.14.custom.min.js.Prev" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="RDLC\MainVesselPosition.rdlc" />
+    <EmbeddedResource Include="RDLC\VesselPosition.rdlc" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

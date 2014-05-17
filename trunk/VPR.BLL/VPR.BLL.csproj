@@ -41,8 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CargoBLL.cs" />
     <Compile Include="CommonBLL.cs" />
     <Compile Include="DBInteraction.cs" />
+    <Compile Include="DocumentBAL.cs" />
     <Compile Include="EmailBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportBAL.cs" />
