@@ -34,7 +34,7 @@ namespace EmailScheduler
                 command.ExecuteNonQuery();
                 sqlConnection.Close();
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 Console.WriteLine("SQL Error" + ex.Message.ToString());
             }
@@ -46,23 +46,30 @@ namespace EmailScheduler
             string responseFromServer = string.Empty;
             string line;
 
-            WebRequest request = WebRequest.Create(reportLink);
-            request.Credentials = CredentialCache.DefaultCredentials;
-            WebResponse response = request.GetResponse();
-            Console.WriteLine(((HttpWebResponse)response).StatusDescription);
-            Stream dataStream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(dataStream);
-
-            while ((line = reader.ReadLine()) != null)
+            try
             {
-                if (line.Contains("lblResponse"))
-                    responseFromServer = line;
+                WebRequest request = WebRequest.Create(reportLink);
+                request.Credentials = CredentialCache.DefaultCredentials;
+                WebResponse response = request.GetResponse();
+                Console.WriteLine(((HttpWebResponse)response).StatusDescription);
+                Stream dataStream = response.GetResponseStream();
+                StreamReader reader = new StreamReader(dataStream);
+
+                while ((line = reader.ReadLine()) != null)
+                {
+                    if (line.Contains("lblResponse"))
+                        responseFromServer = line;
+                }
+
+                responseFromServer = responseFromServer.Split('>')[1].Split('<')[0];
+
+                reader.Close();
+                response.Close();
             }
-
-            responseFromServer = responseFromServer.Split('>')[1].Split('<')[0];
-
-            reader.Close();
-            response.Close();
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
             return responseFromServer;
         }
