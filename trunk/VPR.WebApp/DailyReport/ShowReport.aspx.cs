@@ -25,7 +25,7 @@ namespace VPR.WebApp.DailyReport
                 }
                 else
                 {
-                    Response.Redirect(ConfigurationManager.AppSettings["ReportPath"].ToString() + filename);
+                    Response.Redirect(ConfigurationManager.AppSettings["EmailReportLink"].ToString() + filename);
                 }
                 
             }
