@@ -62,6 +62,33 @@ namespace VPR.DAL
           
         }
 
+        public static List<WeeklyReportEntity> GetWeeklyCargoReport(ReportCriteria criteria)
+        {
+            string strExecution = "[usp_RptCargoWeekly]";
+            List<WeeklyReportEntity> lstEntity = new List<WeeklyReportEntity>();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddDateTimeParam("@StartDate", criteria.FromDate);
+                oDq.AddDateTimeParam("@EndDate", criteria.ToDate);
+                oDq.AddIntegerParam("@CargoGroup", criteria.CargoId);
+                oDq.AddIntegerParam("@CountryID", criteria.CountryId);
+
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    lstEntity.Add(new WeeklyReportEntity(reader));
+                }
+
+                reader.Close();
+            }
+
+            return lstEntity;
+
+        }
+
+
         public static DataTable GetAllCargo()
         {
             DataTable dt = new DataTable();
