@@ -32,6 +32,12 @@ namespace VPR.BLL
             //return ReportDAL.GetCargoReport(criteria);
         }
 
+        public static List<WeeklyReportEntity> GetWeeklyCargoReport(ReportCriteria criteria)
+        {
+            return ReportDal.GetWeeklyCargoReport(criteria); //  GetCargoReport(criteria);
+            //return ReportDAL.GetCargoReport(criteria);
+        }
+
         public DataTable GetAllCargo()
         {
             return ReportDal.GetAllCargo();
