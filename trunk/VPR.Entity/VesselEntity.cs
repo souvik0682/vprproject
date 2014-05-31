@@ -11,6 +11,7 @@ namespace VPR.Entity
     {
         public int VesselId { get; set; }
         public string VesselName { get; set; }
+        public int VesselPrefix { get; set; }
         public int BerthId { get; set; }
         public decimal LOA { get; set; }
         public DateTime? ArrivalDate { get; set; }
@@ -20,6 +21,8 @@ namespace VPR.Entity
         public int AgentId { get; set; }
         public int PrevPortId { get; set; }
         public int NextPortId { get; set; }
+        public int JobID { get; set; }
+
         public string Remarks { get; set; }
         public int PortId { get; set; }
         public string Activity { get; set; }
@@ -32,7 +35,12 @@ namespace VPR.Entity
         public string PortName { get; set; }
         public string BerthName { get; set; }
         public string AgentName { get; set; }
+        public string NominatingCo { get; set; }
+        public string AppointingCo { get; set; }
+        public string Shipper { get; set; }
+        public string ActivityName { get; set; }
         public DateTime ETA { get; set; }
+        public DateTime? ETB { get; set; }
 
         public VesselEntity()
         {
@@ -49,7 +57,8 @@ namespace VPR.Entity
                 this.VPRorPAS = Convert.ToString(reader["VPRorPAS"]);
 
             if (ColumnExists(reader, "Activity"))
-                this.Activity = Convert.ToString(reader["Activity"]);
+                if (reader["Activity"] != DBNull.Value)
+                    this.Activity = Convert.ToString(reader["Activity"]);
 
             if (ColumnExists(reader, "fk_PortID"))
                 if (reader["fk_PortID"] != DBNull.Value)
@@ -83,6 +92,10 @@ namespace VPR.Entity
                 if (reader["ETC"] != DBNull.Value)
                     this.ETC = Convert.ToDateTime(reader["ETC"]);
 
+            if (ColumnExists(reader, "ETB"))
+                if (reader["ETB"] != DBNull.Value)
+                    this.ETB = Convert.ToDateTime(reader["ETB"]);
+
             if (ColumnExists(reader, "Owner"))
                 this.Owner = Convert.ToString(reader["Owner"]);
 
@@ -99,7 +112,8 @@ namespace VPR.Entity
                     this.NextPortId = Convert.ToInt32(reader["fk_NextPort"]);
 
             if (ColumnExists(reader, "Remarks"))
-                this.Remarks = Convert.ToString(reader["Remarks"]);
+                if (reader["Remarks"] != DBNull.Value)
+                    this.Remarks = Convert.ToString(reader["Remarks"]);
 
             if (ColumnExists(reader, "fk_UserAdded"))
                 if (reader["fk_UserAdded"] != DBNull.Value)
@@ -118,16 +132,44 @@ namespace VPR.Entity
                     this.ModifiedOn = Convert.ToDateTime(reader["EditedOn"]);
 
             if (ColumnExists(reader, "VoyageNo"))
-                this.VoyageNo = Convert.ToString(reader["VoyageNo"]);
+                if (reader["VoyageNo"] != DBNull.Value)
+                    this.VoyageNo = Convert.ToString(reader["VoyageNo"]);
 
             if (ColumnExists(reader, "PortName"))
-                this.PortName = Convert.ToString(reader["PortName"]);
+                if (reader["PortName"] != DBNull.Value)
+                    this.PortName = Convert.ToString(reader["PortName"]);
 
             if (ColumnExists(reader, "BerthName"))
-                this.BerthName = Convert.ToString(reader["BerthName"]);
+                if (reader["BerthName"] != DBNull.Value)
+                    this.BerthName = Convert.ToString(reader["BerthName"]);
 
             if (ColumnExists(reader, "AgentName"))
-                this.AgentName = Convert.ToString(reader["AgentName"]);
+                if (reader["AgentName"] != DBNull.Value)
+                    this.AgentName = Convert.ToString(reader["AgentName"]);
+
+            if (ColumnExists(reader, "NominatingCO"))
+                if (reader["NominatingCO"] != DBNull.Value)
+                    this.NominatingCo = Convert.ToString(reader["NominatingCO"]);
+
+            if (ColumnExists(reader, "AppointingCO"))
+                if (reader["AppointingCO"] != DBNull.Value)
+                    this.AppointingCo = Convert.ToString(reader["AppointingCO"]);
+            
+            if (ColumnExists(reader, "Shipper"))
+                if (reader["Shipper"] != DBNull.Value)
+                    this.Shipper = Convert.ToString(reader["Shipper"]);
+
+            if (ColumnExists(reader, "fk_JobID"))
+                if (reader["fk_JobID"] != DBNull.Value)
+                    this.JobID = Convert.ToInt32(reader["fk_JobID"]);
+
+            if (ColumnExists(reader, "ActivityName"))
+                if (reader["ActivityName"] != DBNull.Value)
+                    this.ActivityName = Convert.ToString(reader["ActivityName"]);
+
+            if (ColumnExists(reader, "VesselPrefix"))
+                if (reader["VesselPrefix"] != DBNull.Value)
+                    this.VesselPrefix = Convert.ToInt32(reader["VesselPrefix"]);
         }
 
         public bool ColumnExists(IDataReader reader, string columnName)
