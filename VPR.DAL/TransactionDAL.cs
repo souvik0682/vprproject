@@ -34,6 +34,20 @@ namespace VPR.DAL
             return dquery.GetTable();
         }
 
+        public static DataTable GetAllVesselPrefix()
+        {
+            string ProcName = "usp_GetAllVesselPrefix";
+            DAL.DbManager.DbQuery dquery = new DAL.DbManager.DbQuery(ProcName);
+            return dquery.GetTable();
+        }
+
+        public static DataTable GetAllJob()
+        {
+            string ProcName = "usp_GetAllJob";
+            DAL.DbManager.DbQuery dquery = new DAL.DbManager.DbQuery(ProcName);
+            return dquery.GetTable();
+        }
+
         public static int GetPortId(string PortCode)
         {
             string strExecution = "uspGetPortIdByPortCode";
@@ -106,6 +120,44 @@ namespace VPR.DAL
             return o;
         }
 
+        public static VesselEntity GetPASVessel(int VesselId)
+        {
+            string strExecution = "usp_GetPASVessel";
+            VesselEntity o = new VesselEntity();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@VesselId", VesselId);
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    o = new VesselEntity(reader);
+                }
+                reader.Close();
+            }
+            return o;
+        }
+
+        public static VesselEntity GetPASList(int VesselId)
+        {
+            string strExecution = "usp_GetPASVessel";
+            VesselEntity o = new VesselEntity();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@VesselId", VesselId);
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    o = new VesselEntity(reader);
+                }
+                reader.Close();
+            }
+            return o;
+        }
+
         public static int SaveVessel(VesselEntity o)
         {
             int vesselId = 0;
@@ -117,6 +169,7 @@ namespace VPR.DAL
                     oDq.AddIntegerParam("@VesselId", o.VesselId);
 
                 oDq.AddVarcharParam("@VPRorPAS", 1, o.VPRorPAS);
+                oDq.AddIntegerParam("@VesselPrefix", o.VesselPrefix);
                 oDq.AddVarcharParam("@Activity", 2, o.Activity);
                 oDq.AddIntegerParam("@PortId", o.PortId);
                 oDq.AddVarcharParam("@VesselName", 50, o.VesselName);
@@ -130,6 +183,34 @@ namespace VPR.DAL
                 oDq.AddVarcharParam("@Remarks", 5000, o.Remarks);
                 oDq.AddVarcharParam("@VoyageNo", 50, o.VoyageNo);
 
+                oDq.AddIntegerParam("@CreatedBy", o.CreatedBy);
+                oDq.AddIntegerParam("@ModifiedBy", o.ModifiedBy);
+
+                vesselId = Convert.ToInt32(oDq.GetScalar());
+                return vesselId;
+            }
+        }
+
+        public static int SavePASVessel(VesselEntity o)
+        {
+            int vesselId = 0;
+            string strExecution = "usp_SavePASVessel";
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                if (o.VesselId > 0)
+                    oDq.AddIntegerParam("@VesselId", o.VesselId);
+
+                oDq.AddVarcharParam("@VPRorPAS", 1, o.VPRorPAS);
+                oDq.AddVarcharParam("@Activity", 2, o.Activity);
+                oDq.AddIntegerParam("@PortId", o.PortId);
+                oDq.AddVarcharParam("@VesselName", 50, o.VesselName);
+                oDq.AddDateTimeParam("@ETA", o.ETA);
+                oDq.AddVarcharParam("@NominatingCo", 50, o.NominatingCo);
+                oDq.AddVarcharParam("@AppointingCo", 50, o.AppointingCo);
+                oDq.AddVarcharParam("@Shipper", 50, o.Shipper);
+                oDq.AddVarcharParam("@Remarks", 5000, o.Remarks);
+                oDq.AddIntegerParam("@JobId", o.JobID);
                 oDq.AddIntegerParam("@CreatedBy", o.CreatedBy);
                 oDq.AddIntegerParam("@ModifiedBy", o.ModifiedBy);
 
@@ -157,9 +238,9 @@ namespace VPR.DAL
             }
         }
 
-        public static List<VesselEntity> GetVessles(SearchCriteria searchCriteria)
+        public static List<VesselEntity> GetPASList(SearchCriteria searchCriteria)
         {
-            string strExecution = "uspGetVesselList";
+            string strExecution = "uspGetPASList";
             List<VesselEntity> lstEg = new List<VesselEntity>();
 
             using (DbQuery oDq = new DbQuery(strExecution))
@@ -183,13 +264,126 @@ namespace VPR.DAL
             return lstEg;
         }
 
+        public static List<VesselEntity> GetVessles(SearchCriteria searchCriteria)
+        {
+            string strExecution = "uspGetVesselList";
+            List<VesselEntity> lstEg = new List<VesselEntity>();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddVarcharParam("@VesselName", 500, searchCriteria.VesselName);
+                oDq.AddVarcharParam("@Port", 200, searchCriteria.Port);
+                oDq.AddVarcharParam("@Agent", 200, searchCriteria.Agent);
+                oDq.AddVarcharParam("@SortExpression", 100, searchCriteria.SortExpression);
+                oDq.AddVarcharParam("@SortDirection", 100, searchCriteria.SortDirection);
+
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    VesselEntity eg = new VesselEntity(reader);
+                    lstEg.Add(eg);
+                }
+                reader.Close();
+            }
+            return lstEg;
+        }
+
+        public static List<VesselEntity> GetPASVessels(SearchCriteria searchCriteria)
+        {
+            string strExecution = "uspGetPASVesselList";
+            List<VesselEntity> lstEg = new List<VesselEntity>();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddVarcharParam("@VesselName", 500, searchCriteria.VesselName);
+                oDq.AddVarcharParam("@Port", 200, searchCriteria.Port);
+                oDq.AddVarcharParam("@ActivityName", 200, searchCriteria.Agent);
+                oDq.AddVarcharParam("@SortExpression", 100, searchCriteria.SortExpression);
+                oDq.AddVarcharParam("@SortDirection", 100, searchCriteria.SortDirection);
+
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    VesselEntity eg = new VesselEntity(reader);
+                    lstEg.Add(eg);
+                }
+                reader.Close();
+            }
+            return lstEg;
+        }
+
+        public static List<VesselMovementEntity> GetPASVesselMovement(SearchCriteria searchCriteria)
+        {
+            string strExecution = "getPASVesselMovementList";
+            List<VesselMovementEntity> lstEg = new List<VesselMovementEntity>();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@pk_PASTranID", 0);
+                oDq.AddVarcharParam("@SchVesselName", 500, searchCriteria.VesselName);
+                oDq.AddVarcharParam("@SchPortName", 200, searchCriteria.Port);
+                oDq.AddVarcharParam("@SchVesselActivity", 200, searchCriteria.ActivityName);
+                oDq.AddVarcharParam("@SortExpression", 100, searchCriteria.SortExpression);
+                oDq.AddVarcharParam("@SortDirection", 100, searchCriteria.SortDirection);
+
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    VesselMovementEntity eg = new VesselMovementEntity(reader);
+                    lstEg.Add(eg);
+                }
+                reader.Close();
+            }
+            return lstEg;
+        }
+
+        //public static List<PASEntity> GetVessles(SearchCriteria searchCriteria)
+        //{
+        //    string strExecution = "uspGetPAS";
+        //    List<PASEntity> lstEg = new List<PASEntity>();
+
+        //    using (DbQuery oDq = new DbQuery(strExecution))
+        //    {
+        //        oDq.AddVarcharParam("@VesselName", 500, searchCriteria.VesselName);
+        //        oDq.AddVarcharParam("@Port", 200, searchCriteria.Port);
+        //        oDq.AddVarcharParam("@Agent", 200, searchCriteria.Agent);
+
+        //        oDq.AddVarcharParam("@SortExpression", 100, searchCriteria.SortExpression);
+        //        oDq.AddVarcharParam("@SortDirection", 100, searchCriteria.SortDirection);
+
+        //        DataTableReader reader = oDq.GetTableReader();
+
+        //        while (reader.Read())
+        //        {
+        //            PASEntity eg = new PASEntity(reader);
+        //            lstEg.Add(eg);
+        //        }
+        //        reader.Close();
+        //    }
+        //    return lstEg;
+        //}
+
         public static void DeleteVessel(int vesselId)
         {
-            string strExecution = "usp_DeleteVessel";
+            string strExecution = "usp_DeletePASVessel";
 
             using (DbQuery oDq = new DbQuery(strExecution))
             {
                 oDq.AddIntegerParam("@VesselId", vesselId);
+                oDq.RunActionQuery();
+            }
+        }
+
+        public static void DeletePASMovement(int PASMovementId)
+        {
+            string strExecution = "usp_DeletePASMovement";
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@PASTranId", PASMovementId);
                 oDq.RunActionQuery();
             }
         }
@@ -280,6 +474,99 @@ namespace VPR.DAL
                 oDq.AddDateTimeParam("@dt", dt);
 
                 oDq.RunActionQuery();
+            }
+        }
+
+        public static DataTable GetPASVesselList()
+        {
+            string ProcName = "uspGetPASVesselList";
+            DAL.DbManager.DbQuery dquery = new DAL.DbManager.DbQuery(ProcName);
+            dquery.AddVarcharParam("@SortExpression", 10, "");
+            dquery.AddVarcharParam("@SortDirection", 10, "");
+            return dquery.GetTable();
+        }
+
+        public static DataTable GetMovementList()
+        {
+            string ProcName = "uspGetMovementList";
+            DAL.DbManager.DbQuery dquery = new DAL.DbManager.DbQuery(ProcName);
+            //dquery.AddVarcharParam("@SortExpression", 10, "");
+            //dquery.AddVarcharParam("@SortDirection", 10, "");
+            return dquery.GetTable();
+        }
+
+        public static VesselMovementEntity GetPASMovement(int MovementId)
+        {
+            string strExecution = "GetPASMovement";
+            VesselMovementEntity o = new VesselMovementEntity();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@pk_PASTranID", MovementId);
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    o = new VesselMovementEntity(reader);
+                }
+                reader.Close();
+            }
+            return o;
+        }
+
+        public static DataSet GetPortNameByVesselID(Int64 VesselId, int PASTranID)
+      
+        {
+
+            string ProcName = "uspGetPortNameByVesselId";
+            DAL.DbManager.DbQuery dquery = new DAL.DbManager.DbQuery(ProcName);
+
+            dquery.AddBigIntegerParam("@VesselId", VesselId);
+            dquery.AddBigIntegerParam("@PASTranId", PASTranID);
+
+            return dquery.GetTables();
+
+        }
+
+        public static int SavePAS(VesselMovementEntity o)
+        {
+            int vesselId = 0;
+            string strExecution = "usp_SavePAS";
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                if (o.PASTranID > 0)
+                    oDq.AddIntegerParam("@PassTranId", o.PASTranID);
+
+                //oDq.AddVarcharParam("@VesselActivity", 2, o.VesselActivity);
+                oDq.AddIntegerParam("@VesselID", o.VesselId);
+                oDq.AddVarcharParam("@Movement", 1, o.Movement);
+                oDq.AddVarcharParam("@MovementType", 1, o.MovementType);
+                oDq.AddDateTimeParam("@MovementDate", o.MovementDate);
+                oDq.AddIntegerParam("@CreatedBy", o.CreatedBy);
+                oDq.AddIntegerParam("@ModifiedBy", o.ModifiedBy);
+
+                vesselId = Convert.ToInt32(oDq.GetScalar());
+                return vesselId;
+            }
+        }
+
+        public static int SaveCargoPAS(CargoDetails o, int type)
+        {
+            int cargoVesselId = 0;
+            string strExecution = "usp_SaveCargoPAS";
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@CargoVesselID", o.CargoVesselId);
+                oDq.AddIntegerParam("@PASTranID", o.PASTranID);
+                oDq.AddIntegerParam("@CargoId", o.CargoId);
+                oDq.AddDecimalParam("@Quantity", 12, 2, o.Quantity);
+                oDq.AddVarcharParam("@ActType", 1, o.ActType);
+                oDq.AddIntegerParam("@Type", type);
+
+                cargoVesselId = Convert.ToInt32(oDq.GetScalar());
+                return cargoVesselId;
             }
         }
     }
