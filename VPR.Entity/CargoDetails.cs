@@ -15,6 +15,7 @@ namespace VPR.Entity
         public int VesselId { get; set; }
         public decimal Quantity { get; set; }
         public string ActType { get; set; }
+        public int PASTranID { get; set; }
         public bool IsDeleted { get; set; }
         public bool IsNew { get; set; }
 
@@ -31,6 +32,10 @@ namespace VPR.Entity
             if (ColumnExists(reader, "fk_vesselID"))
                 if (reader["fk_vesselID"] != DBNull.Value)
                     this.VesselId = Convert.ToInt32(reader["fk_vesselID"]);
+
+            if (ColumnExists(reader, "fk_PASTranID"))
+                if (reader["fk_PASTranID"] != DBNull.Value)
+                    this.PASTranID = Convert.ToInt32(reader["fk_PASTranID"]);
 
             if (ColumnExists(reader, "fk_cargoID"))
                 if (reader["fk_cargoID"] != DBNull.Value)

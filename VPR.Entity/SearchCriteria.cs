@@ -166,6 +166,7 @@ namespace VPR.Entity
         public string Banner { get; set; }
         public string DocumentName { get; set; }
         public string DocumentType { get; set; }
+        public string ActivityName { get; set; }
 
         #endregion
 
@@ -227,6 +228,7 @@ namespace VPR.Entity
             this.Banner = string.Empty;
             this.DocumentName = string.Empty;
             this.DocumentType = string.Empty;
+            this.ActivityName = string.Empty;
             
         }
 
