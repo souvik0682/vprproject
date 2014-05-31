@@ -30,6 +30,16 @@ namespace VPR.BLL
             return TransactionDAL.GetAllAgent();
         }
 
+        public DataTable GetAllVesselPrefix()
+        {
+            return TransactionDAL.GetAllVesselPrefix();
+        }
+
+        public DataTable GetAllJob()
+        {
+            return TransactionDAL.GetAllJob();
+        }
+
         public int GetPortId(string PortCode)
         {
             return TransactionDAL.GetPortId(PortCode);
@@ -50,10 +60,23 @@ namespace VPR.BLL
             return TransactionDAL.GetVessel(VesselId);
         }
 
+        public VesselEntity GetPASVessel(int VesselId)
+        {
+            return TransactionDAL.GetPASVessel(VesselId);
+        }
+
         public void SaveVesselCargo(VesselEntity oVessel, List<CargoDetails> oList)
         {
             int VesselId = 0;
             VesselId = TransactionDAL.SaveVessel(oVessel);
+
+            SaveCargo(VesselId, oList);
+        }
+
+        public void SaveVesselPASCargo(VesselEntity oVessel, List<CargoDetails> oList)
+        {
+            int VesselId = 0;
+            VesselId = TransactionDAL.SavePASVessel(oVessel);
 
             SaveCargo(VesselId, oList);
         }
@@ -82,9 +105,24 @@ namespace VPR.BLL
             return TransactionDAL.GetVessles(searchCriteria);
         }
 
+        public List<VesselEntity> GetPASVessels(SearchCriteria searchCriteria)
+        {
+            return TransactionDAL.GetPASVessels(searchCriteria);
+        }
+
+        public List<VesselMovementEntity> GetPASVesselMovement(SearchCriteria searchCriteria)
+        {
+            return TransactionDAL.GetPASVesselMovement(searchCriteria);
+        }
+
         public void DeleteVessel(int vesselId)
         {
             TransactionDAL.DeleteVessel(vesselId);
+        }
+
+        public void DeletePASMovement(int PASMovementId)
+        {
+            TransactionDAL.DeletePASMovement(PASMovementId);
         }
 
         public DataTable GetBerths(int VesselId)
@@ -116,6 +154,57 @@ namespace VPR.BLL
         public void SaveETCorWTA(int vesselId, DateTime dt, bool isETA)
         {
             TransactionDAL.SaveETCorWTA(vesselId, dt, isETA);
+        }
+
+        public DataTable GetPASVesselList()
+        {
+            return TransactionDAL.GetPASVesselList();
+        }
+
+        public DataTable GetMovementList()
+        {
+            return TransactionDAL.GetMovementList();
+        }
+        public VesselMovementEntity GetPASMovement(int MovementId)
+        {
+            return TransactionDAL.GetPASMovement(MovementId);
+        }
+
+        public DataSet GetPortNameByVesselID(Int64 VesselId, int PASTranID)
+        {
+            return TransactionDAL.GetPortNameByVesselID(VesselId, PASTranID);
+        }
+        //public List<PASEntity> GetPAS(SearchCriteria searchCriteria)
+        //{
+        //    return TransactionDAL.GetVessles(searchCriteria);
+        //}
+
+        public void SavePAS(VesselMovementEntity oVessel, List<CargoDetails> oList)
+        {
+            int PASTranId = 0;
+            PASTranId = TransactionDAL.SavePAS(oVessel);
+            if (oVessel.Movement.ToInt() != 1 && oVessel.Movement.ToInt() != 2)
+                SaveCargoPAS(PASTranId, oList);
+        }
+
+        private void SaveCargoPAS(int PASTranId, List<CargoDetails> oList)
+        {
+
+            foreach (CargoDetails c in oList)
+            {
+                int type = 0;
+
+                if (c.IsNew)
+                    type = 1;
+                else if (c.IsDeleted)
+                    type = 2;
+                else
+                    type = 3;
+
+                c.PASTranID = PASTranId;
+
+                TransactionDAL.SaveCargoPAS(c, type);
+            }
         }
     }
 }
