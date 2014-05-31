@@ -79,7 +79,7 @@
                                                                 </ItemTemplate>
                                                                 <HeaderStyle Width="100px" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="BirthNo" SortExpression="BirthNo">
+                                                            <asp:TemplateField HeaderText="Berth No" SortExpression="BirthNo">
                                                                 <ItemTemplate>
                                                                     <asp:DropDownList ID="ddlBerth" runat="server" Enabled="false" AutoPostBack = "true" onselectedindexchanged="ddlBerth_SelectedIndexChanged">
                                                                     </asp:DropDownList>
@@ -194,7 +194,7 @@
                                                                 </ItemTemplate>
                                                                 <HeaderStyle Width="100px" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="BirthNo" SortExpression="BirthNo">
+                                                            <asp:TemplateField HeaderText="Berth No" SortExpression="BirthNo">
                                                                 <ItemTemplate>
                                                                     <asp:DropDownList ID="ddlBerth" runat="server" Enabled="false" AutoPostBack = "true" onselectedindexchanged="ddlBerth_SelectedIndexChanged">
                                                                     </asp:DropDownList>
@@ -306,7 +306,7 @@
                                                                 </ItemTemplate>
                                                                 <HeaderStyle Width="100px" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="BirthNo" SortExpression="BirthNo">
+                                                            <asp:TemplateField HeaderText="Berth No" SortExpression="BirthNo">
                                                                 <ItemTemplate>
                                                                     <asp:DropDownList ID="ddlBerth" runat="server" Enabled="false">
                                                                     </asp:DropDownList>
@@ -420,7 +420,7 @@
                                                                 </ItemTemplate>
                                                                 <HeaderStyle Width="100px" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="BirthNo" SortExpression="BirthNo">
+                                                            <asp:TemplateField HeaderText="Berth No" SortExpression="BirthNo">
                                                                 <ItemTemplate>
                                                                     <asp:DropDownList ID="ddlBerth" runat="server" Enabled="false">
                                                                     </asp:DropDownList>

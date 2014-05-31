@@ -10,7 +10,7 @@
 namespace VPR.WebApp.Transaction {
     
     
-    public partial class AddEditVessel {
+    public partial class AddEditPASVessel {
         
         /// <summary>
         /// upExportBL control.
@@ -31,24 +31,6 @@ namespace VPR.WebApp.Transaction {
         protected global::System.Web.UI.WebControls.DropDownList ddlAcivity;
         
         /// <summary>
-        /// ddlVesselPrefix control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlVesselPrefix;
-        
-        /// <summary>
-        /// rfvVesselPrefix control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvVesselPrefix;
-        
-        /// <summary>
         /// txtVesselName control.
         /// </summary>
         /// <remarks>
@@ -58,13 +40,31 @@ namespace VPR.WebApp.Transaction {
         protected global::System.Web.UI.WebControls.TextBox txtVesselName;
         
         /// <summary>
-        /// RequiredFieldValidator2 control.
+        /// rfvMailBody control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvMailBody;
+        
+        /// <summary>
+        /// ddlJob control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlJob;
+        
+        /// <summary>
+        /// rfvJob control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvJob;
         
         /// <summary>
         /// txtPort control.
@@ -83,42 +83,6 @@ namespace VPR.WebApp.Transaction {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label errPort;
-        
-        /// <summary>
-        /// txtPreviousPort control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::VPR.WebApp.CustomControls.AC_Port txtPreviousPort;
-        
-        /// <summary>
-        /// errPreviousPort control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label errPreviousPort;
-        
-        /// <summary>
-        /// txtNextPort control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::VPR.WebApp.CustomControls.AC_Port txtNextPort;
-        
-        /// <summary>
-        /// errNextPort control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label errNextPort;
         
         /// <summary>
         /// txtArrivalDate control.
@@ -157,49 +121,31 @@ namespace VPR.WebApp.Transaction {
         protected global::System.Web.UI.WebControls.TextBox txtETC;
         
         /// <summary>
-        /// txtLOA control.
+        /// txtNom control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::VPR.WebApp.CustomControls.CustomTextBox txtLOA;
+        protected global::System.Web.UI.WebControls.TextBox txtNom;
         
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// txtAppointing control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.TextBox txtAppointing;
         
         /// <summary>
-        /// txtOwnerName control.
+        /// txtShipper control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtOwnerName;
-        
-        /// <summary>
-        /// ddlAgentName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlAgentName;
-        
-        /// <summary>
-        /// RequiredFieldValidator4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
+        protected global::System.Web.UI.WebControls.TextBox txtShipper;
         
         /// <summary>
         /// txtRemarks control.
