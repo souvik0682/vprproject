@@ -13,7 +13,7 @@ using VPR.Common;
 
 namespace VPR.WebApp.Transaction
 {
-    public partial class AddEditVessel : System.Web.UI.Page
+    public partial class AddEditPASVessel : System.Web.UI.Page
     {
         private int _userId = 0;
         private bool _canAdd = false;
@@ -37,7 +37,7 @@ namespace VPR.WebApp.Transaction
                 {
                     int VesselId = 0;
                     VesselId = GeneralFunctions.DecryptQueryString(Request.QueryString["VesselId"].ToString()).ToInt();
-                    btnBack.OnClientClick = "javascript:return RedirectAfterCancelClick('ManageVessel.aspx','" + ResourceManager.GetStringWithoutName("ERR00017") + "')";
+                    btnBack.OnClientClick = "javascript:return RedirectAfterCancelClick('ManagePASVessel.aspx','" + ResourceManager.GetStringWithoutName("ERR00017") + "')";
                     if (VesselId > 0)
                     {
                         ViewState["VesselId"] = VesselId;
@@ -59,10 +59,9 @@ namespace VPR.WebApp.Transaction
             }
 
             txtPort.TextChanged += new EventHandler(txtPort_TextChanged);
-            txtNextPort.TextChanged += new EventHandler(txtNextPort_TextChanged);
-            txtPreviousPort.TextChanged += new EventHandler(txtPreviousPort_TextChanged);
+            //txtNextPort.TextChanged += new EventHandler(txtNextPort_TextChanged);
+            //txtPreviousPort.TextChanged += new EventHandler(txtPreviousPort_TextChanged);
         }
-
         protected void gvwCargo_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -88,7 +87,7 @@ namespace VPR.WebApp.Transaction
                     ddlActType.Enabled = true;
                 else
                     ddlActType.Enabled = false;
-                
+
 
                 //if (ddlAcivity.SelectedValue.ToString() == "L")
                 //{
@@ -122,55 +121,7 @@ namespace VPR.WebApp.Transaction
             }
         }
 
-        void txtPreviousPort_TextChanged(object sender, EventArgs e)
-        {
-            string previousPort = ((TextBox)txtPreviousPort.FindControl("txtPort")).Text;
-
-            if (previousPort != string.Empty)
-            {
-                if (previousPort.Split('|').Length > 1)
-                {
-                    string portCode = previousPort.Split('|')[1].Trim();
-
-                    int portId = new TransactionBLL().GetPortId(portCode);
-
-                    ViewState["PREVIOUSPORTID"] = portId;
-                }
-                else
-                {
-                    ViewState["PREVIOUSPORTID"] = null;
-                }
-            }
-            else
-            {
-                ViewState["PREVIOUSPORTID"] = null;
-            }
-        }
-
-        void txtNextPort_TextChanged(object sender, EventArgs e)
-        {
-            string nextPort = ((TextBox)txtNextPort.FindControl("txtPort")).Text;
-
-            if (nextPort != string.Empty)
-            {
-                if (nextPort.Split('|').Length > 1)
-                {
-                    string portCode = nextPort.Split('|')[1].Trim();
-
-                    int portId = new TransactionBLL().GetPortId(portCode);
-
-                    ViewState["NEXTPORTID"] = portId;
-                }
-                else
-                {
-                    ViewState["NEXTPORTID"] = null;
-                }
-            }
-            else
-            {
-                ViewState["NEXTPORTID"] = null;
-            }
-        }
+        
 
         void txtPort_TextChanged(object sender, EventArgs e)
         {
@@ -196,7 +147,7 @@ namespace VPR.WebApp.Transaction
                 ViewState["PORTID"] = null;
             }
 
-           
+
         }
 
         protected void btnAddNew_Click(object sender, EventArgs e)
@@ -295,25 +246,16 @@ namespace VPR.WebApp.Transaction
 
         private void LoadDDLs()
         {
-            DataTable dt = new TransactionBLL().GetAllAgent();
+            DataTable dt = new TransactionBLL().GetAllJob();
             DataRow dr = dt.NewRow();
-            dr["pk_AgentID"] = "0";
-            dr["AgentName"] = "--Select--";
+            dr["pk_ActivityID"] = "0";
+            dr["ActivityName"] = "--Select--";
             dt.Rows.InsertAt(dr, 0);
-            ddlAgentName.DataValueField = "pk_AgentID";
-            ddlAgentName.DataTextField = "AgentName";
-            ddlAgentName.DataSource = dt;
-            ddlAgentName.DataBind();
+            ddlJob.DataValueField = "pk_ActivityID";
+            ddlJob.DataTextField = "ActivityName";
+            ddlJob.DataSource = dt;
+            ddlJob.DataBind();
 
-            DataTable dt1 = new TransactionBLL().GetAllVesselPrefix();
-            //DataRow dr1 = dt.NewRow();
-            //dr1["pk_AgentID"] = "0";
-            //dr1["AgentName"] = "--Select--";
-            //dt.Rows.InsertAt(dr, 0);
-            ddlVesselPrefix.DataValueField = "pk_VesselPrefixID";
-            ddlVesselPrefix.DataTextField = "VesselPrefix";
-            ddlVesselPrefix.DataSource = dt1;
-            ddlVesselPrefix.DataBind();
             //DataTable dt2 = new TransactionBLL().GetAllBerth();
             //DataRow dr2 = dt2.NewRow();
             //dr2["pk_BerthID"] = "0";
@@ -335,17 +277,7 @@ namespace VPR.WebApp.Transaction
                 errPort.Text = "This field is required";
             }
 
-            if (Convert.ToString(ViewState["PREVIOUSPORTID"]) == string.Empty || Convert.ToString(ViewState["PREVIOUSPORTID"]) == "0")
-            {
-                IsValid = false;
-                errPreviousPort.Text = "This field is required";
-            }
-
-            if (Convert.ToString(ViewState["NEXTPORTID"]) == string.Empty || Convert.ToString(ViewState["NEXTPORTID"]) == "0")
-            {
-                IsValid = false;
-                errNextPort.Text = "This field is required";
-            }
+            
 
             return IsValid;
         }
@@ -419,35 +351,36 @@ namespace VPR.WebApp.Transaction
         private void LoadForEdit(int VesselId)
         {
             VesselEntity o = new VesselEntity();
-            o = new TransactionBLL().GetVessel(VesselId);
+            o = new TransactionBLL().GetPASVessel(VesselId);
 
             ddlAcivity.SelectedValue = o.Activity;
             txtVesselName.Text = o.VesselName;
-            ddlVesselPrefix.SelectedValue = o.VesselPrefix.ToString();
+            //txtVoyageNo.Text = o.VoyageNo;
 
             string port = new TransactionBLL().GetPortNameById(o.PortId);
             ViewState["PORTID"] = o.PortId;
             ((TextBox)txtPort.FindControl("txtPort")).Text = port;
 
-            string prevPort = new TransactionBLL().GetPortNameById(o.PrevPortId);
-            ViewState["PREVIOUSPORTID"] = o.PrevPortId;
-            ((TextBox)txtPreviousPort.FindControl("txtPort")).Text = prevPort;
+            //string prevPort = new TransactionBLL().GetPortNameById(o.PrevPortId);
+            //ViewState["PREVIOUSPORTID"] = o.PrevPortId;
+            //((TextBox)txtPreviousPort.FindControl("txtPort")).Text = prevPort;
 
-            string nxtPort = new TransactionBLL().GetPortNameById(o.NextPortId);
-            ViewState["NEXTPORTID"] = o.NextPortId;
-            ((TextBox)txtNextPort.FindControl("txtPort")).Text = nxtPort;
+            //string nxtPort = new TransactionBLL().GetPortNameById(o.NextPortId);
+            //ViewState["NEXTPORTID"] = o.NextPortId;
+            //((TextBox)txtNextPort.FindControl("txtPort")).Text = nxtPort;
 
-            //ddlBerth.SelectedValue = o.BerthId.ToString();
-            txtLOA.Text = o.LOA.ToString();
+            //txtLOA.Text = o.LOA.ToString();
             txtArrivalDate.Text = o.ETA.ToString("dd-MM-yyyy");
 
-            //if (o.BerthDate.HasValue)
-            //    txtBerthDate.Text = o.BerthDate.Value.ToString("dd-MM-yyyy");
             if (o.ETC.HasValue)
                 txtETC.Text = o.ETC.Value.ToString("dd-MM-yyyy");
 
-            txtOwnerName.Text = o.Owner;
-            ddlAgentName.SelectedValue = o.AgentId.ToString();
+            //txtOwnerName.Text = o.Owner;
+            txtAppointing.Text = o.AppointingCo.ToString();
+            txtNom.Text = o.NominatingCo.ToString();
+            txtShipper.Text = o.Shipper.ToString();
+
+            ddlJob.SelectedValue = o.JobID.ToString();
             txtRemarks.Text = o.Remarks;
 
             BindGrid(VesselId);
@@ -463,22 +396,22 @@ namespace VPR.WebApp.Transaction
                     o.VesselId = Convert.ToInt32(ViewState["VesselId"]);
 
                 o.VesselName = txtVesselName.Text.Trim();
-                o.VesselPrefix = ddlVesselPrefix.SelectedValue.ToInt();
-                //o.VoyageNo = txtVoyageNo.Text.Trim();
-                o.VPRorPAS = "V";
+                o.VPRorPAS = "P";
                 o.Activity = ddlAcivity.SelectedValue;
-                o.AgentId = Convert.ToInt32(ddlAgentName.SelectedValue);
+                o.JobID = Convert.ToInt32(ddlJob.SelectedValue);
                 o.ETA = Convert.ToDateTime(txtArrivalDate.Text.Trim());
                 //o.BerthDate = Convert.ToDateTime(txtBerthDate.Text.Trim());
                 //o.BerthId = Convert.ToInt32(ddlBerth.SelectedValue);
                 o.CreatedBy = 0;
                 //o.ETC = Convert.ToDateTime(txtETC.Text.Trim());
-                o.LOA = Convert.ToDecimal(txtLOA.Text.Trim());
+                //o.LOA = Convert.ToDecimal(txtLOA.Text.Trim());
                 o.ModifiedBy = 0;
-                o.NextPortId = Convert.ToInt32(ViewState["NEXTPORTID"]);
-                o.Owner = txtOwnerName.Text.Trim();
+                o.AppointingCo = txtAppointing.Text.Trim();
+                o.NominatingCo = txtNom.Text.Trim();
+                o.Shipper = txtShipper.Text.Trim();
+
                 o.PortId = Convert.ToInt32(ViewState["PORTID"]);
-                o.PrevPortId = Convert.ToInt32(ViewState["PREVIOUSPORTID"]);
+                //o.PrevPortId = Convert.ToInt32(ViewState["PREVIOUSPORTID"]);
                 o.Remarks = txtRemarks.Text.Trim();
 
                 //Add Cargo Details
@@ -506,21 +439,21 @@ namespace VPR.WebApp.Transaction
                     ddlActType.Enabled = false;
                 }
 
-                new TransactionBLL().SaveVesselCargo(o, lstData);
+                new TransactionBLL().SaveVesselPASCargo(o, lstData);
 
                 if (Convert.ToInt32(ViewState["VesselId"]) > 0)
                 {
-                    Response.Redirect("~/Transaction/ManageVessel.aspx");
+                    Response.Redirect("~/Transaction/ManagePASVessel.aspx");
                 }
                 else
                 {
                     string encryptedId = GeneralFunctions.EncryptQueryString("-1");
-                    Response.Redirect("~/Transaction/AddEditVessel.aspx?VesselId=" + encryptedId);
+                    Response.Redirect("~/Transaction/AddEditPASVessel.aspx?VesselId=" + encryptedId);
                 }
 
                 lblErr.Text = "Record saved successfully";
                 ddlAcivity.SelectedIndex = -1;
-        
+
             }
         }
 

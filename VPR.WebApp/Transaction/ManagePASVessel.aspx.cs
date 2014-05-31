@@ -13,7 +13,7 @@ using VPR.Utilities.ResourceManager;
 
 namespace VPR.WebApp.Transaction
 {
-    public partial class ManageVessel : System.Web.UI.Page
+    public partial class ManagePASVessel : System.Web.UI.Page
     {
         #region Private Member Variables
 
@@ -26,7 +26,6 @@ namespace VPR.WebApp.Transaction
         private bool _LocationSpecific = true;
 
         #endregion
-
         protected void Page_Load(object sender, EventArgs e)
         {
             RetriveParameters();
@@ -39,7 +38,6 @@ namespace VPR.WebApp.Transaction
                 LoadEmailGroup();
             }
         }
-
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             SaveNewPageIndex(0);
@@ -117,12 +115,12 @@ namespace VPR.WebApp.Transaction
 
                 e.Row.Cells[0].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "VesselName"));
                 e.Row.Cells[1].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Activity"));
-                e.Row.Cells[2].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "PortName"));
-                //e.Row.Cells[3].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "BerthName"));
-                e.Row.Cells[3].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "LOA"));
+                e.Row.Cells[2].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ActivityName"));
+                e.Row.Cells[3].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "PortName"));
+                //e.Row.Cells[3].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "LOA"));
                 e.Row.Cells[4].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ETA"));
-                e.Row.Cells[5].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "AgentName"));
-                //e.Row.Cells[7].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ETC"));
+                e.Row.Cells[5].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ETB"));
+                e.Row.Cells[6].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ETC"));
 
                 //Edit Link
                 ImageButton btnEdit = (ImageButton)e.Row.FindControl("btnEdit");
@@ -231,7 +229,7 @@ namespace VPR.WebApp.Transaction
 
                         if (searchCriteria.PageSize > 0) gvImportBL.PageSize = searchCriteria.PageSize;
 
-                        gvImportBL.DataSource = new TransactionBLL().GetVessles(searchCriteria);
+                        gvImportBL.DataSource = new TransactionBLL().GetPASVessels(searchCriteria);
 
                         gvImportBL.DataBind();
                     }
@@ -250,7 +248,7 @@ namespace VPR.WebApp.Transaction
         private void RedirecToAddEditPage(int id)
         {
             string encryptedId = GeneralFunctions.EncryptQueryString(id.ToString());
-            Response.Redirect("~/Transaction/AddEditVessel.aspx?VesselId=" + encryptedId);
+            Response.Redirect("~/Transaction/AddEditPASVessel.aspx?VesselId=" + encryptedId);
         }
 
         private void BuildSearchCriteria(SearchCriteria criteria)
@@ -272,7 +270,7 @@ namespace VPR.WebApp.Transaction
 
             criteria.VesselName = (txtVesselName.Text == "") ? string.Empty : txtVesselName.Text.Trim();
             criteria.Port = (txtPort.Text == "") ? string.Empty : txtPort.Text.Trim();
-            criteria.Berth = (txtAgent.Text == "") ? string.Empty : txtAgent.Text.Trim();
+            criteria.ActivityName = (txtAgent.Text == "") ? string.Empty : txtAgent.Text.Trim();
 
             Session[Constants.SESSION_SEARCH_CRITERIA] = criteria;
         }

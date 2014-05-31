@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
-    CodeBehind="AddEditVessel.aspx.cs" Inherits="VPR.WebApp.Transaction.AddEditVessel" %>
+    CodeBehind="AddEditPASVessel.aspx.cs" Inherits="VPR.WebApp.Transaction.AddEditPASVessel" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <%@ Register Assembly="VPR.WebApp" Namespace="VPR.WebApp.CustomControls" TagPrefix="cc2" %>
@@ -8,7 +8,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="container" runat="server">
     <div id="headercaption">
-        ADD / EDIT VESSEL</div>
+        ADD / EDIT PAS VESSEL</div>
     <center>
         <div style="width: 100%">
             <fieldset style="width: 80%;">
@@ -33,40 +33,29 @@
                                                         <asp:ListItem Value="O" Text="Others"></asp:ListItem>
                                                     </asp:DropDownList>
                                                 </td>
-                                                 <td>
-                                                    Vessel Prefix:<span class="errormessage1">*</span>
-                                                </td>
-                                                <td>
-                                                    <asp:DropDownList ID="ddlVesselPrefix" runat="server">
-                                                        <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                                                    </asp:DropDownList>
-                                                    <asp:RequiredFieldValidator ID="rfvVesselPrefix" runat="server" CssClass="errormessage"
-                                                        ErrorMessage="This field is required" ControlToValidate="ddlVesselPrefix" InitialValue="0"
-                                                        ValidationGroup="Save" Display="Dynamic"></asp:RequiredFieldValidator>
-                                                </td>
-                                            </tr>
-                                            <tr>
                                                 <td>
                                                     Vessel Name:<span class="errormessage1">*</span>
                                                 </td>
                                                 <td>
                                                     <asp:TextBox ID="txtVesselName" runat="server" CssClass="textboxuppercase" MaxLength="100"
                                                         Width="250px" TabIndex="2"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtVesselName"
+                                                    <asp:RequiredFieldValidator ID="rfvMailBody" runat="server" ControlToValidate="txtVesselName"
                                                         ErrorMessage="This field is required*" CssClass="errormessage" ValidationGroup="Save"
                                                         Display="Dynamic"></asp:RequiredFieldValidator>
                                                 </td>
-<%--
+                                            </tr>
+                                            <tr>
                                                 <td>
-                                                    Voyage No:
+                                                    Job:<span class="errormessage1">*</span>
                                                 </td>
                                                 <td>
-                                                    <asp:TextBox ID="txtVoyageNo" runat="server" Width="250px" CssClass="textboxuppercase"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="rfvGroupName" runat="server" ControlToValidate="txtVoyageNo"
-                                                        ErrorMessage="This field is required*" CssClass="errormessage" ValidationGroup="Save"
-                                                        Display="Dynamic"></asp:RequiredFieldValidator>
-                                                    <asp:Label ID="lblVoyage" runat="server" CssClass="errormessage1"></asp:Label>
-                                                </td>--%>
+                                                    <asp:DropDownList ID="ddlJob" runat="server">
+                                                        <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                                    </asp:DropDownList>
+                                                    <asp:RequiredFieldValidator ID="rfvJob" runat="server" CssClass="errormessage"
+                                                        ErrorMessage="This field is required" ControlToValidate="ddlJob" InitialValue="0"
+                                                        ValidationGroup="Save" Display="Dynamic"></asp:RequiredFieldValidator>
+                                                </td>
                                                 <td>
                                                     Port:<span class="errormessage1">*</span>
                                                 </td>
@@ -75,7 +64,7 @@
                                                     <asp:Label ID="errPort" runat="server" CssClass="errormessage1"></asp:Label>
                                                 </td>
                                             </tr>
-                                            <tr>
+                                           <%-- <tr>
                                                 <td>
                                                     Previous Port:<span class="errormessage1">*</span>
                                                 </td>
@@ -92,7 +81,7 @@
                                                     <asp:Label ID="errNextPort" runat="server" CssClass="errormessage1"></asp:Label>
                                                 </td>
                                                
-                                            </tr>
+                                            </tr>--%>
                                             <tr>
                                                 <td>
                                                     ETA:<span class="errormessage1">*</span>
@@ -120,21 +109,20 @@
                                             <tr>
 
                                                  <td>
-                                                    LOA:<span class="errormessage1">*</span>
+                                                    Nominating Company:<span class="errormessage1">*</span>
                                                 </td>
                                                 <td>
-                                                    <cc2:CustomTextBox ID="txtLOA" runat="server" CssClass="numerictextbox" TabIndex="13"
-                                                        Width="250px" Type="Decimal" MaxLength="15" Precision="12" Scale="2"></cc2:CustomTextBox>
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtLOA"
+                                                    <asp:TextBox ID="txtNom" runat="server" Width="250px" MaxLength="100" CssClass="textboxuppercase"></asp:TextBox>
+<%--                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtLOA"
                                                         ErrorMessage="This field is required*" CssClass="errormessage" ValidationGroup="Save"
                                                         Display="Dynamic">
-                                                     </asp:RequiredFieldValidator>
+                                                     </asp:RequiredFieldValidator>--%>
                                                 </td>
                                                 <td>
-                                                    Cargo Owner:
+                                                    Appointing Company:
                                                 </td>
                                                 <td>
-                                                    <asp:TextBox ID="txtOwnerName" runat="server" Width="250px" CssClass="textboxuppercase"></asp:TextBox>
+                                                    <asp:TextBox ID="txtAppointing" runat="server" Width="250px" MaxLength="100" CssClass="textboxuppercase"></asp:TextBox>
 <%--                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtOwnerName"
                                                         ErrorMessage="This field is required*" CssClass="errormessage" ValidationGroup="Save"
                                                         Display="Dynamic"></asp:RequiredFieldValidator>--%>
@@ -142,15 +130,13 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    Agent Name:<span class="errormessage1">*</span>
+                                                    Shipper:
                                                 </td>
                                                 <td>
-                                                    <asp:DropDownList ID="ddlAgentName" runat="server">
-                                                        <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                                                    </asp:DropDownList>
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" CssClass="errormessage"
-                                                        ErrorMessage="This field is required" ControlToValidate="ddlAgentName" InitialValue="0"
-                                                        ValidationGroup="Save" Display="Dynamic"></asp:RequiredFieldValidator>
+                                                    <asp:TextBox ID="txtShipper" runat="server" Width="250px" MaxLength="100" CssClass="textboxuppercase"></asp:TextBox>
+<%--                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtOwnerName"
+                                                        ErrorMessage="This field is required*" CssClass="errormessage" ValidationGroup="Save"
+                                                        Display="Dynamic"></asp:RequiredFieldValidator>--%>
                                                 </td>
 
                                                
