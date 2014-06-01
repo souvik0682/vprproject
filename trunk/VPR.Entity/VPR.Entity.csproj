@@ -56,6 +56,7 @@
     <Compile Include="GroupCompanyEntity.cs" />
     <Compile Include="LocationEntity.cs" />
     <Compile Include="MenuEntity.cs" />
+    <Compile Include="PASEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportCriteria.cs" />
     <Compile Include="ReportEntity.cs" />
@@ -67,9 +68,11 @@
     <Compile Include="VendorEntity.cs" />
     <Compile Include="Vessel.cs" />
     <Compile Include="VesselEntity.cs" />
+    <Compile Include="VesselMovementEntity.cs" />
     <Compile Include="VesselPosition.cs" />
     <Compile Include="VesselStatus.cs" />
     <Compile Include="VoyageEntity.cs" />
+    <Compile Include="WeeklyReportEntity.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VPR.Common\VPR.Common.csproj">

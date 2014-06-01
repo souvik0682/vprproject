@@ -19,24 +19,39 @@ namespace EmailScheduler
 
         private static void SendEmail()
         {
+            string dbConnectionString = string.Empty;
+            string reportLink = string.Empty;
+            string attachmentFileName = string.Empty;
+
             try
             {
-                string dbConnectionString = ConfigurationSettings.AppSettings["connString"];
-                string reportLink = ConfigurationSettings.AppSettings["reportLink"];
-                string attachmentFileName = GetReport();
+                dbConnectionString = System.Configuration.ConfigurationSettings.AppSettings["connString"];
+                reportLink = System.Configuration.ConfigurationSettings.AppSettings["reportLink"];
+                attachmentFileName = GetReport();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("APP Error:" + e.InnerException.ToString());
+                Console.WriteLine(attachmentFileName);
+                Console.ReadLine();
+            }
 
+            try
+            {
                 SqlConnection sqlConnection = new SqlConnection(dbConnectionString);
                 SqlCommand command = new SqlCommand("usp_SendDailyEmail", sqlConnection);
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("@ReportLink", SqlDbType.VarChar).Value = reportLink;
-                command.Parameters.Add("@AttachmentFile", SqlDbType.DateTime).Value = attachmentFileName;
+                command.Parameters.Add("@AttachmentFile", SqlDbType.VarChar).Value = attachmentFileName;
                 sqlConnection.Open();
                 command.ExecuteNonQuery();
                 sqlConnection.Close();
             }
             catch (Exception ex)
             {
-                Console.WriteLine("SQL Error" + ex.Message.ToString());
+                Console.WriteLine("SQL Error:" + ex.InnerException.ToString());
+                Console.WriteLine(attachmentFileName);
+                Console.ReadLine();
             }
         }
 
@@ -66,9 +81,9 @@ namespace EmailScheduler
                 reader.Close();
                 response.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.InnerException.ToString());
             }
 
             return responseFromServer;

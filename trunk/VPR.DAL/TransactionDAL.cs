@@ -274,6 +274,7 @@ namespace VPR.DAL
                 oDq.AddVarcharParam("@VesselName", 500, searchCriteria.VesselName);
                 oDq.AddVarcharParam("@Port", 200, searchCriteria.Port);
                 oDq.AddVarcharParam("@Agent", 200, searchCriteria.Agent);
+                oDq.AddVarcharParam("@VesselStatus", 1, searchCriteria.VesselStatus);
                 oDq.AddVarcharParam("@SortExpression", 100, searchCriteria.SortExpression);
                 oDq.AddVarcharParam("@SortDirection", 100, searchCriteria.SortDirection);
 

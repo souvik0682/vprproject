@@ -22,6 +22,12 @@
                 <table>
                     <tr>
                         <td>
+                            <asp:DropDownList ID="ddlVesselStatus" runat="server" Height="25px">
+                                <asp:ListItem Text="Sailed" Value="S" Selected="True"></asp:ListItem>
+                                <asp:ListItem Text="Non-Sailed" Value="N"></asp:ListItem>
+                            </asp:DropDownList>
+                        </td>
+                        <td>
                             <asp:TextBox ID="txtVesselName" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
                             <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server" FilterType="Custom,UppercaseLetters,LowercaseLetters,Numbers"
                                 FilterMode="InvalidChars" ValidChars=" " TargetControlID="txtVesselName">
@@ -56,7 +62,7 @@
                     </tr>
                     
                     <tr>
-                        <td>
+                        <td colspan="4">
                             <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="button" 
                                 Width="100px" onclick="btnSearch_Click"/>
                             &nbsp;&nbsp;&nbsp;

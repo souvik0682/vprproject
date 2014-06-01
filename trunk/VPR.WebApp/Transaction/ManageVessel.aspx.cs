@@ -52,6 +52,7 @@ namespace VPR.WebApp.Transaction
             txtAgent.Text = "";
             txtPort.Text = "";
             txtVesselName.Text = "";
+            ddlVesselStatus.SelectedValue = "S";
 
             SaveNewPageIndex(0);
             LoadEmailGroup();
@@ -273,6 +274,7 @@ namespace VPR.WebApp.Transaction
             criteria.VesselName = (txtVesselName.Text == "") ? string.Empty : txtVesselName.Text.Trim();
             criteria.Port = (txtPort.Text == "") ? string.Empty : txtPort.Text.Trim();
             criteria.Berth = (txtAgent.Text == "") ? string.Empty : txtAgent.Text.Trim();
+            criteria.VesselStatus = ddlVesselStatus.SelectedValue;
 
             Session[Constants.SESSION_SEARCH_CRITERIA] = criteria;
         }
@@ -297,6 +299,7 @@ namespace VPR.WebApp.Transaction
                         txtVesselName.Text = criteria.VesselName;
                         txtPort.Text = criteria.Port;
                         txtAgent.Text = criteria.Berth;
+                        ddlVesselStatus.SelectedValue = criteria.VesselStatus;
 
                         gvImportBL.PageIndex = criteria.PageIndex;
                         gvImportBL.PageSize = criteria.PageSize;
