@@ -234,7 +234,7 @@ namespace VPR.WebApp.Transaction
             //TextBox txtDischargeDate = (TextBox)row.FindControl("txtDischargeDate");
             //TextBox txtLoadingDate = (TextBox)row.FindControl("txtLoadingDate");
             DropDownList ddlBerth = (DropDownList)row.FindControl("ddlBerth");
-            
+
             if (((CheckBox)sender).Checked)
             {
                 ddlBerth.Enabled = true;
@@ -284,7 +284,7 @@ namespace VPR.WebApp.Transaction
 
             TextBox txtBerthDate = (TextBox)row.FindControl("txtBerthDate");
             DropDownList ddlBerth = (DropDownList)row.FindControl("ddlBerth");
-            
+
             if (ddlBerth.SelectedIndex > 0)
             {
                 txtBerthDate.Enabled = true;
@@ -340,10 +340,15 @@ namespace VPR.WebApp.Transaction
 
                 lblErr.Text = "Vessle(s) promoted successfully!";
             }
+            else
+            {
+                lblErr.Text = "Nothing selected!";
+            }
         }
         protected void btnSaveETA_Click(object sender, EventArgs e)
         {
             int totalRows = gvwExpecting.Rows.Count;
+            bool IsSelected = false;
 
             for (int r = 0; r < totalRows; r++)
             {
@@ -357,11 +362,16 @@ namespace VPR.WebApp.Transaction
                     TextBox txtETA = (TextBox)thisGridViewRow.FindControl("txtETA");
 
                     new TransactionBLL().SaveETCorWTA(Convert.ToInt32(hdnVesselId.Value), Convert.ToDateTime(txtETA.Text.Trim()), true);
+                    IsSelected = true;
                 }
             }
 
             LoadGrid();
-            lblErr.Text = "ETA(s) saved successfully!";
+
+            if (IsSelected)
+                lblErr.Text = "ETA(s) saved successfully!";
+            else
+                lblErr.Text = "Nothing selected!";
         }
 
         //Awaiting
@@ -391,7 +401,7 @@ namespace VPR.WebApp.Transaction
                         BerthId = Convert.ToInt32(ddlBerth.SelectedValue),
                         VesselId = Convert.ToInt32(hdnVesselId.Value),
                         ArrivalDate = Convert.ToDateTime(txtArrivalDate.Text),
-                        BerthDate =  Convert.ToDateTime(txtBerthDate.Text),
+                        BerthDate = Convert.ToDateTime(txtBerthDate.Text),
                         //BerthDate = (txtArrivalDate.Text != string.Empty) ? Convert.ToDateTime(txtArrivalDate.Text) : dte,
                         Activity = "A"
                     });
@@ -407,6 +417,10 @@ namespace VPR.WebApp.Transaction
                 LoadGrid();
 
                 lblErr.Text = "Vessle(s) promoted successfully!";
+            }
+            else
+            {
+                lblErr.Text = "Nothing selected!";
             }
         }
         protected void btnAwaRevert_Click(object sender, EventArgs e)
@@ -436,6 +450,10 @@ namespace VPR.WebApp.Transaction
                 LoadGrid();
 
                 lblErr.Text = "Vessle(s) promoted successfully!";
+            }
+            else
+            {
+                lblErr.Text = "Nothing selected!";
             }
         }
 
@@ -484,6 +502,10 @@ namespace VPR.WebApp.Transaction
 
                 lblErr.Text = "Vessle(s) promoted successfully!";
             }
+            else
+            {
+                lblErr.Text = "Nothing selected!";
+            }
         }
         protected void btnDisRevert_Click(object sender, EventArgs e)
         {
@@ -513,10 +535,15 @@ namespace VPR.WebApp.Transaction
 
                 lblErr.Text = "Vessle(s) promoted successfully!";
             }
+            else
+            {
+                lblErr.Text = "Nothing selected!";
+            }
         }
         protected void btnSaveDisETC_Click(object sender, EventArgs e)
         {
             int totalRows = gvwDischarging.Rows.Count;
+            bool IsSelected = false;
 
             for (int r = 0; r < totalRows; r++)
             {
@@ -530,11 +557,16 @@ namespace VPR.WebApp.Transaction
                     TextBox txtETC = (TextBox)thisGridViewRow.FindControl("txtETC");
 
                     new TransactionBLL().SaveETCorWTA(Convert.ToInt32(hdnVesselId.Value), Convert.ToDateTime(txtETC.Text.Trim()), false);
+                    IsSelected = true;
                 }
             }
 
             LoadGrid();
-            lblErr.Text = "ETC(s) saved successfully!";
+
+            if (IsSelected)
+                lblErr.Text = "ETC(s) saved successfully!";
+            else
+                lblErr.Text = "Nothing selected!";
         }
 
         //Loading
@@ -582,6 +614,10 @@ namespace VPR.WebApp.Transaction
 
                 lblErr.Text = "Vessle(s) promoted successfully!";
             }
+            else
+            {
+                lblErr.Text = "Nothing selected!";
+            }
         }
         protected void btnLoaRevert_Click(object sender, EventArgs e)
         {
@@ -611,10 +647,15 @@ namespace VPR.WebApp.Transaction
 
                 lblErr.Text = "Vessle(s) promoted successfully!";
             }
+            else
+            {
+                lblErr.Text = "Nothing selected!";
+            }
         }
         protected void btnSaveLoadETC_Click(object sender, EventArgs e)
         {
             int totalRows = gvwLoading.Rows.Count;
+            bool IsSelected = false;
 
             for (int r = 0; r < totalRows; r++)
             {
@@ -632,7 +673,11 @@ namespace VPR.WebApp.Transaction
             }
 
             LoadGrid();
-            lblErr.Text = "ETC(s) saved successfully!";
+
+            if (IsSelected)
+                lblErr.Text = "ETC(s) saved successfully!";
+            else
+                lblErr.Text = "Nothing selected!";
         }
     }
 }
