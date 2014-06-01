@@ -23,8 +23,8 @@
                     <tr>
                         <td>
                             <asp:DropDownList ID="ddlVesselStatus" runat="server" Height="25px">
-                                <asp:ListItem Text="Sailed" Value="S" Selected="True"></asp:ListItem>
-                                <asp:ListItem Text="Non-Sailed" Value="N"></asp:ListItem>
+                                <asp:ListItem Text="Sailed" Value="S"></asp:ListItem>
+                                <asp:ListItem Text="Non-Sailed" Value="N" Selected="True"></asp:ListItem>
                             </asp:DropDownList>
                         </td>
                         <td>
