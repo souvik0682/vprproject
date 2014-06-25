@@ -20,8 +20,11 @@ namespace VPR.DAL
 
             using (DbQuery oDq = new DbQuery(strExecution))
             {
-                //oDq.AddBooleanParam("@IsActiveOnly", isActiveOnly);
-                //oDq.AddVarcharParam("@SchUserName", 10, searchCriteria.UserName);
+                oDq.AddVarcharParam("@ActivityStatus", 10, searchCriteria.ActivityName);
+                oDq.AddIntegerParam("@Port", searchCriteria.portID);
+
+                //oDq.AddVarcharParam("@ActivityDate", 10, searchCriteria.UserName);
+                
                 DataTableReader reader = oDq.GetTableReader();
 
                 while (reader.Read())
@@ -46,7 +49,10 @@ namespace VPR.DAL
                 oDq.AddDateTimeParam("@StartDate", criteria.FromDate);
                 oDq.AddDateTimeParam("@EndDate", criteria.ToDate);
                 oDq.AddIntegerParam("@CargoID", criteria.CargoId);
-                oDq.AddIntegerParam("@CountryID", criteria.CountryId);
+                oDq.AddVarcharParam("@CountryName", 2, criteria.CountryName);
+                oDq.AddIntegerParam("@CargoGroupID", criteria.CargoGroupId);
+                oDq.AddIntegerParam("@PortID", criteria.PortId);
+                oDq.AddVarcharParam("@Activity", 1, criteria.Activity);
 
                 DataTableReader reader = oDq.GetTableReader();
 
@@ -71,8 +77,11 @@ namespace VPR.DAL
             {
                 oDq.AddDateTimeParam("@StartDate", criteria.FromDate);
                 oDq.AddDateTimeParam("@EndDate", criteria.ToDate);
-                oDq.AddIntegerParam("@CargoGroup", criteria.CargoId);
-                oDq.AddIntegerParam("@CountryID", criteria.CountryId);
+                oDq.AddIntegerParam("@CargoID", criteria.CargoId);
+                oDq.AddVarcharParam("@CountryName", 2, criteria.CountryName);
+                oDq.AddIntegerParam("@CargoGroupID", criteria.CargoGroupId);
+                oDq.AddIntegerParam("@PortID", criteria.PortId);
+                oDq.AddVarcharParam("@Activity", 1, criteria.Activity);
 
                 DataTableReader reader = oDq.GetTableReader();
 
@@ -89,7 +98,7 @@ namespace VPR.DAL
         }
 
 
-        public static DataTable GetAllCargo()
+        public static DataTable GetAllCargoGroup()
         {
             DataTable dt = new DataTable();
 
@@ -101,6 +110,42 @@ namespace VPR.DAL
             //using (DbQuery oDq = new DbQuery(strExecution))
             {
                   dt = oDq.GetTable();
+            }
+
+            return dt;
+        }
+
+        public static DataTable GetAllCargo(int GroupID)
+        {
+            DataTable dt = new DataTable();
+
+            string strExecution = "prcGetOnlyCargo";
+            //DateTime dt1 = string.IsNullOrEmpty(StockDate) ? DateTime.Now : Convert.ToDateTime(StockDate);
+            //DataSet ds = new DataSet();
+            using (DbQuery oDq = new DbQuery(strExecution))
+
+            //using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@CargoGroupID", GroupID);
+                dt = oDq.GetTable();
+            }
+
+            return dt;
+        }
+
+        public static DataTable GetAllPorts(string Country)
+        {
+            DataTable dt = new DataTable();
+
+            string strExecution = "prcGetAllPorts";
+            //DateTime dt1 = string.IsNullOrEmpty(StockDate) ? DateTime.Now : Convert.ToDateTime(StockDate);
+            //DataSet ds = new DataSet();
+            using (DbQuery oDq = new DbQuery(strExecution))
+
+            //using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddVarcharParam("@CountryName", 2, Country);
+                dt = oDq.GetTable();
             }
 
             return dt;
@@ -122,6 +167,47 @@ namespace VPR.DAL
 
             return dt;
         }
+
+        public static DataTable GetPASExcelReport(DateTime StartDate, int CargoID, int PortID, string CountryAbbr)
+        {
+            string strExecution = "[dbo].[usp_RptDailyPASReport]";
+            DataTable dt = new DataTable();
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddDateTimeParam("@PASDate", StartDate);
+                oDq.AddIntegerParam("@CargoID", CargoID);
+                oDq.AddIntegerParam("@PortID", PortID);
+                oDq.AddVarcharParam("@CountryAbbr", 2, CountryAbbr);
+                dt = oDq.GetTable();
+            }
+            return dt;
+        }
+
+        public static List<VesselPosition> GetVPR(ReportCriteria criteria)
+        {
+            string strExecution = "[usp_RptVPR]";
+            List<VesselPosition> lstEntity = new List<VesselPosition>();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+
+                oDq.AddIntegerParam("@PortNo", criteria.PortId);
+                oDq.AddVarcharParam("@ActivityStatus", 20, criteria.Activity);
+
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    lstEntity.Add(new VesselPosition(reader));
+                }
+
+                reader.Close();
+            }
+
+            return lstEntity;
+
+        }
+
         public void Dispose()
         {
             this.Dispose();

@@ -34,6 +34,13 @@ namespace VPR.DAL
             return dquery.GetTable();
         }
 
+        public static DataTable GetPortWithTransaction()
+        {
+            string ProcName = "usp_getPortWithTransaction";
+            DAL.DbManager.DbQuery dquery = new DAL.DbManager.DbQuery(ProcName);
+            return dquery.GetTable();
+        }
+
         public static DataTable GetAllVesselPrefix()
         {
             string ProcName = "usp_GetAllVesselPrefix";
@@ -204,6 +211,9 @@ namespace VPR.DAL
                 oDq.AddVarcharParam("@VPRorPAS", 1, o.VPRorPAS);
                 oDq.AddVarcharParam("@Activity", 2, o.Activity);
                 oDq.AddIntegerParam("@PortId", o.PortId);
+                oDq.AddIntegerParam("@PrevPortId", o.PrevPortId);
+                oDq.AddIntegerParam("@NxtPortId", o.NextPortId);
+                oDq.AddVarcharParam("@Owner", 50, o.Owner);
                 oDq.AddVarcharParam("@VesselName", 50, o.VesselName);
                 oDq.AddDateTimeParam("@ETA", o.ETA);
                 oDq.AddVarcharParam("@NominatingCo", 50, o.NominatingCo);
