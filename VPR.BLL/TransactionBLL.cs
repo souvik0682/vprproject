@@ -30,6 +30,11 @@ namespace VPR.BLL
             return TransactionDAL.GetAllAgent();
         }
 
+        public DataTable GetPortWithTransaction()
+        {
+            return TransactionDAL.GetPortWithTransaction();
+        }
+
         public DataTable GetAllVesselPrefix()
         {
             return TransactionDAL.GetAllVesselPrefix();

@@ -38,14 +38,36 @@ namespace VPR.BLL
             //return ReportDAL.GetCargoReport(criteria);
         }
 
-        public DataTable GetAllCargo()
+        public DataTable GetAllCargoGroup()
         {
-            return ReportDal.GetAllCargo();
+            return ReportDal.GetAllCargoGroup();
+        }
+
+        public DataTable GetAllCargo(int GroupID)
+        {
+            return ReportDal.GetAllCargo(GroupID);
+        }
+
+        public DataTable GetAllPorts(string Country)
+        {
+            return ReportDal.GetAllPorts(Country);
         }
 
         public DataTable GetAllCountry()
         {
             return ReportDal.GetAllCountry();
+        }
+
+        public DataTable GetPASExcelReport(DateTime TranDate, int CargoID, int PortID, string CountryAbbr)
+        {
+            return ReportDal.GetPASExcelReport(TranDate, CargoID, PortID, CountryAbbr);
+        }
+
+        public static List<VesselPosition> GetVPR(ReportCriteria criteria)
+        {
+            return ReportDal.GetVPR(criteria);
+            //return ReportDal.GetVPR(criteria);
+            //return ReportDAL.GetCargoReport(criteria);
         }
     }
 }
