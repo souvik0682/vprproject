@@ -38,21 +38,63 @@
                             <asp:TextBox ID="txtToDt" runat="server" Width="150" MaxLength="10"></asp:TextBox>
                             <cc1:calendarextender ID="ceToDt" runat="server" TargetControlID="txtToDt"></cc1:calendarextender>   
                         </td>
-                    </tr>
-                    <tr>
-                        <td style="padding-right:15px;">Select Cargo:<span class="errormessage">*</span></td> 
-                        <td>                                        
-                            <asp:DropDownList ID="ddlCargo" runat="server" AutoPostBack="true" onselectedindexchanged="ddlCargo_SelectedIndexChanged">
+                        <td class="style1">
+                            Vessel Activity:<span class="errormessage1">*</span>
+                        </td>
+                      
+                        <td>
+                            <asp:DropDownList ID="ddlActivity" runat="server" TabIndex="1">
+                                <asp:ListItem Value="0" Text="All" Selected="True"></asp:ListItem>
+                                <asp:ListItem Value="D" Text="Discharge"></asp:ListItem>
+                                <asp:ListItem Value="L" Text="Load"></asp:ListItem>
                             </asp:DropDownList>
                         </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right:15px;">Select Cargo Group:<span class="errormessage">*</span></td> 
+                        <td>                                        
+                            <asp:DropDownList ID="ddlCargoGroup" runat="server"  Width="150" AutoPostBack="true" onselectedindexchanged="ddlCargoGroup_SelectedIndexChanged">
+                            </asp:DropDownList>
+                        </td>
+                        
                         <td style="padding-right:15px;">Select Country:<span class="errormessage">*</span></td> 
                         <td>                                        
-                            <asp:DropDownList ID="ddlCountry" runat="server" AutoPostBack="true" 
+                            <asp:DropDownList ID="ddlCountry" runat="server"  Width="150" AutoPostBack="true" 
                                 onselectedindexchanged="ddlCountry_SelectedIndexChanged">
                             </asp:DropDownList>
                         </td>
-                        <td><asp:Button ID="btnShow" runat="server" Text="Show" CssClass="button" ValidationGroup="Show" OnClick="btnShow_Click" /></td>
+                        
+                        <%--<td><asp:Button ID="btnShow" runat="server" Text="Show" CssClass="button" ValidationGroup="Show" OnClick="btnShow_Click" /></td>--%>
                     </tr>
+                     <tr>
+                        <td style="padding-right:15px;">Select Cargo:<span class="errormessage">*</span></td> 
+                        <td>                                        
+                            <asp:DropDownList ID="ddlCargo" runat="server"  Width="150" AutoPostBack="true" onselectedindexchanged="ddlCargo_SelectedIndexChanged">
+                            </asp:DropDownList>
+                        </td>
+                        <td style="padding-right:15px;">Select Port:<span class="errormessage">*</span></td> 
+                        <td>                                        
+                            <asp:DropDownList ID="ddlPort" runat="server"  Width="150" AutoPostBack="true" 
+                                onselectedindexchanged="ddlPort_SelectedIndexChanged">
+                            </asp:DropDownList>
+                        </td>
+                       
+                        <td><asp:Button ID="btnShow" runat="server" Text="Show" CssClass="button" ValidationGroup="Show" OnClick="btnShow_Click" /></td>
+                        <%--<td><asp:Button ID="Button1" runat="server" Text="Show" CssClass="button" ValidationGroup="Show" OnClick="btnShow_Click" /></td>--%>
+                    </tr>
+                    <%--<tr>
+                        <td class="style1">
+                            Vessel Activity:<span class="errormessage1">*</span>
+                        </td>
+                        <td>
+                            <asp:DropDownList ID="ddlActivity" runat="server" TabIndex="1">
+                                <asp:ListItem Value="0" Text="All" Selected="True"></asp:ListItem>
+                                <asp:ListItem Value="D" Text="Discharge"></asp:ListItem>
+                                <asp:ListItem Value="L" Text="Load"></asp:ListItem>
+                            </asp:DropDownList>
+                        </td>
+                       
+                    </tr>--%>
                     <tr>
                         <td>&nbsp;</td>
                         <td><asp:RequiredFieldValidator ID="rfvFromDt" runat="server" CssClass="errormessage" ControlToValidate="txtFromDt" Display="Dynamic" ForeColor="" SetFocusOnError="True" ValidationGroup="Show"></asp:RequiredFieldValidator></td>

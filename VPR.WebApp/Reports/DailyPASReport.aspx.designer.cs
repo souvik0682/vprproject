@@ -10,7 +10,7 @@
 namespace VPR.WebApp.Reports {
     
     
-    public partial class RptVesselPosition {
+    public partial class DailyPASReport {
         
         /// <summary>
         /// lblError control.
@@ -22,13 +22,40 @@ namespace VPR.WebApp.Reports {
         protected global::System.Web.UI.WebControls.Label lblError;
         
         /// <summary>
-        /// ddlActivity control.
+        /// txtMovementDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlActivity;
+        protected global::System.Web.UI.WebControls.TextBox txtMovementDate;
+        
+        /// <summary>
+        /// ceMovementDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender ceMovementDate;
+        
+        /// <summary>
+        /// ddlCargo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCargo;
+        
+        /// <summary>
+        /// ddlCountry control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCountry;
         
         /// <summary>
         /// ddlPort control.
@@ -49,21 +76,12 @@ namespace VPR.WebApp.Reports {
         protected global::System.Web.UI.WebControls.Button btnShow;
         
         /// <summary>
-        /// lblMsg control.
+        /// rfvMovementDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMsg;
-        
-        /// <summary>
-        /// rptViewer control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.Reporting.WebForms.ReportViewer rptViewer;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvMovementDate;
     }
 }

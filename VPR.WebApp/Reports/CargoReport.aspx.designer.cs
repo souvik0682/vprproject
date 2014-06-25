@@ -67,13 +67,22 @@ namespace VPR.WebApp.Reports {
         protected global::AjaxControlToolkit.CalendarExtender ceToDt;
         
         /// <summary>
-        /// ddlCargo control.
+        /// ddlActivity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCargo;
+        protected global::System.Web.UI.WebControls.DropDownList ddlActivity;
+        
+        /// <summary>
+        /// ddlCargoGroup control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCargoGroup;
         
         /// <summary>
         /// ddlCountry control.
@@ -83,6 +92,24 @@ namespace VPR.WebApp.Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCountry;
+        
+        /// <summary>
+        /// ddlCargo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCargo;
+        
+        /// <summary>
+        /// ddlPort control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlPort;
         
         /// <summary>
         /// btnShow control.
