@@ -209,6 +209,32 @@ namespace VPR.BLL
 
         #region Location
 
+        public void DeleteLocation(int locId, int modifiedBy)
+        {
+            CommonDAL.DeleteLocation(locId, modifiedBy);
+        }
+
+        public string SaveLocation(ILocation loc, int modifiedBy)
+        {
+            int result = 0;
+            string errMessage = string.Empty;
+            result = CommonDAL.SaveLocation(loc, modifiedBy);
+
+            switch (result)
+            {
+                case 1:
+                    errMessage = ResourceManager.GetStringWithoutName("ERR00011");
+                    break;
+                case 2:
+                    errMessage = ResourceManager.GetStringWithoutName("ERR00012");
+                    break;
+                default:
+                    break;
+            }
+
+            return errMessage;
+        }
+
         private void SetDefaultSearchCriteriaForLocation(SearchCriteria searchCriteria)
         {
             searchCriteria.SortExpression = "Location";
@@ -244,10 +270,10 @@ namespace VPR.BLL
             return CommonDAL.GetLocation(locId, 'N', searchCriteria);
         }
 
-        public void SaveLocation(ILocation loc, int modifiedBy)
-        {
-            CommonDAL.SaveLocation(loc, modifiedBy);
-        }
+        //public void SaveLocation(ILocation loc, int modifiedBy)
+        //{
+        //    CommonDAL.SaveLocation(loc, modifiedBy);
+        //}
 
         //public void DeleteLocation(int locId, int modifiedBy)
         //{
