@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RptVesselPosition.aspx.cs" Inherits="VPR.WebApp.Reports.RptVesselPosition" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="VPRwithParameter.aspx.cs" Inherits="VPR.WebApp.Reports.VPRwithParameter" %>
 
 <%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
     Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
@@ -29,8 +29,8 @@
                         </td>
                         <td>
                             <asp:DropDownList ID="ddlActivity" runat="server" TabIndex="1">
-                                <asp:ListItem Value="0" Text="All" Selected="True"></asp:ListItem>
-                                <asp:ListItem Value="A" Text="Expected Arrival"></asp:ListItem>
+<%--                                <asp:ListItem Value="0" Text="All" Selected="True"></asp:ListItem>--%>
+                                <asp:ListItem Value="E" Text="Expected Arrival"></asp:ListItem>
                                 <asp:ListItem Value="B" Text="Awaiting Berth"></asp:ListItem>
                                 <asp:ListItem Value="D" Text="Discharging"></asp:ListItem>
                                 <asp:ListItem Value="L" Text="Loading"></asp:ListItem>
@@ -40,7 +40,8 @@
                             Port:<span class="errormessage1">*</span>
                         </td>
                         <td>
-                            <asp:DropDownList ID="ddlPort" runat="server"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlPort" runat="server" 
+                                onselectedindexchanged="ddlPort_SelectedIndexChanged"></asp:DropDownList>
                         </td>
                     </tr>
      
@@ -51,7 +52,7 @@
                     </tr>
                  </table>
             </fieldset>
-            <fieldset style="width:1020px;" runat="server">
+            <fieldset id="Fieldset1" style="width:1020px;" runat="server">
                 <legend> Vessel Position</legend>
                 <div style="padding: 10px;">
                     <asp:Label ID="lblMsg" runat="server" Text=""></asp:Label>
