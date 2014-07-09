@@ -14,6 +14,10 @@ namespace VPR.Entity
         public string PortName { get; set; }
         public string CargoName { get; set; }
         public int Vessels { get; set; }
+        public decimal QtyDsch { get; set; }
+        public decimal QtyLoad { get; set; }
+        public int VslDsch { get; set; }
+        public int VslLoad { get; set; }
 
         public WeeklyReportEntity()
         {
@@ -42,6 +46,23 @@ namespace VPR.Entity
             if (ColumnExists(reader, "Vessels"))
                 if (reader["Vessels"] != DBNull.Value)
                     this.Vessels = Convert.ToInt32(reader["Vessels"]);
+
+            if (ColumnExists(reader, "QtyDsch"))
+                if (reader["QtyDsch"] != DBNull.Value)
+                    this.QtyDsch = Convert.ToDecimal(reader["QtyDsch"]);
+
+            if (ColumnExists(reader, "QtyLoad"))
+                if (reader["QtyLoad"] != DBNull.Value)
+                    this.QtyLoad = Convert.ToDecimal(reader["QtyLoad"]);
+
+            if (ColumnExists(reader, "VslDsch"))
+                if (reader["VslDsch"] != DBNull.Value)
+                    this.VslDsch = Convert.ToInt32(reader["VslDsch"]);
+
+            if (ColumnExists(reader, "VslLoad"))
+                if (reader["VslLoad"] != DBNull.Value)
+                    this.VslLoad = Convert.ToInt32(reader["VslLoad"]);
+
 
         }
 
