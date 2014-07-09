@@ -20,7 +20,7 @@ namespace VPR.DAL
 
             using (DbQuery oDq = new DbQuery(strExecution))
             {
-                oDq.AddVarcharParam("@ActivityStatus", 10, searchCriteria.ActivityName);
+                oDq.AddVarcharParam("@VesselActivity", 10, searchCriteria.ActivityName);
                 oDq.AddIntegerParam("@Port", searchCriteria.portID);
 
                 //oDq.AddVarcharParam("@ActivityDate", 10, searchCriteria.UserName);
@@ -51,6 +51,7 @@ namespace VPR.DAL
                 oDq.AddIntegerParam("@CargoID", criteria.CargoId);
                 oDq.AddVarcharParam("@CountryName", 2, criteria.CountryName);
                 oDq.AddIntegerParam("@CargoGroupID", criteria.CargoGroupId);
+                oDq.AddIntegerParam("@CargoSubGroupID", criteria.SubGroupID);
                 oDq.AddIntegerParam("@PortID", criteria.PortId);
                 oDq.AddVarcharParam("@Activity", 1, criteria.Activity);
 
@@ -115,7 +116,25 @@ namespace VPR.DAL
             return dt;
         }
 
-        public static DataTable GetAllCargo(int GroupID)
+        public static DataTable GetAllCargoSubGroup(int GroupID)
+        {
+            DataTable dt = new DataTable();
+
+            string strExecution = "prcGetCargoSubGroup";
+            //DateTime dt1 = string.IsNullOrEmpty(StockDate) ? DateTime.Now : Convert.ToDateTime(StockDate);
+            //DataSet ds = new DataSet();
+            using (DbQuery oDq = new DbQuery(strExecution))
+
+            //using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@GroupID", GroupID);
+                dt = oDq.GetTable();
+            }
+
+            return dt;
+        }
+
+        public static DataTable GetAllCargo(int GroupID, int SubGroupID)
         {
             DataTable dt = new DataTable();
 
@@ -127,6 +146,7 @@ namespace VPR.DAL
             //using (DbQuery oDq = new DbQuery(strExecution))
             {
                 oDq.AddIntegerParam("@CargoGroupID", GroupID);
+                oDq.AddIntegerParam("@SubGroupID", SubGroupID);
                 dt = oDq.GetTable();
             }
 
@@ -168,13 +188,14 @@ namespace VPR.DAL
             return dt;
         }
 
-        public static DataTable GetPASExcelReport(DateTime StartDate, int CargoID, int PortID, string CountryAbbr)
+        public static DataTable GetPASExcelReport(DateTime StartDate, DateTime EndDate, int CargoID, int PortID, string CountryAbbr)
         {
             string strExecution = "[dbo].[usp_RptDailyPASReport]";
             DataTable dt = new DataTable();
             using (DbQuery oDq = new DbQuery(strExecution))
             {
                 oDq.AddDateTimeParam("@PASDate", StartDate);
+                oDq.AddDateTimeParam("@PASDate1", EndDate);
                 oDq.AddIntegerParam("@CargoID", CargoID);
                 oDq.AddIntegerParam("@PortID", PortID);
                 oDq.AddVarcharParam("@CountryAbbr", 2, CountryAbbr);
