@@ -224,7 +224,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>VESSESL AT BIRTH FOR  LOADING</Value>
+                <Value>VESSEL AT BERTH FOR  LOADING</Value>
                 <Style>
                   <FontFamily>Calibri</FontFamily>
                   <FontSize>11pt</FontSize>
@@ -257,7 +257,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>VESSESL AT ANCHORE </Value>
+                <Value>VESSEL AT ANCHORE </Value>
                 <Style>
                   <FontFamily>Calibri</FontFamily>
                   <FontSize>11pt</FontSize>
@@ -276,7 +276,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>BIRTH FOR  </Value>
+                <Value>BERTH FOR  </Value>
                 <Style>
                   <FontFamily>Calibri</FontFamily>
                   <FontSize>11pt</FontSize>
@@ -310,7 +310,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>VESSESL AT BIRTH FOR  DISCHARGE</Value>
+                <Value>VESSEL AT BERTH FOR  DISCHARGE</Value>
                 <Style>
                   <FontFamily>Calibri</FontFamily>
                   <FontSize>11pt</FontSize>
@@ -344,7 +344,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>VESSESL EXPECTED TO ARRIVE PORT</Value>
+                <Value>VESSEL EXPECTED TO ARRIVE PORT</Value>
                 <Style>
                   <FontFamily>Calibri</FontFamily>
                   <FontSize>11pt</FontSize>

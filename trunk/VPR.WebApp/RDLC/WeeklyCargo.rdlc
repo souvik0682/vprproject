@@ -1491,6 +1491,10 @@
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="SubGroup">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <Width>9.11125in</Width>
   <Page>
@@ -1595,6 +1599,7 @@
                   <Value>COUNTRY: </Value>
                   <Style>
                     <FontFamily>Calibri</FontFamily>
+                    <FontSize>8pt</FontSize>
                   </Style>
                 </TextRun>
                 <TextRun>
@@ -1602,12 +1607,14 @@
                   <Value>=Parameters!Country.Value</Value>
                   <Style>
                     <FontFamily>Calibri</FontFamily>
+                    <FontSize>8pt</FontSize>
                   </Style>
                 </TextRun>
                 <TextRun>
-                  <Value>                         PORT : </Value>
+                  <Value>                                PORT : </Value>
                   <Style>
                     <FontFamily>Calibri</FontFamily>
+                    <FontSize>8pt</FontSize>
                   </Style>
                 </TextRun>
                 <TextRun>
@@ -1615,12 +1622,14 @@
                   <Value>=Parameters!Port.Value</Value>
                   <Style>
                     <FontFamily>Calibri</FontFamily>
+                    <FontSize>8pt</FontSize>
                   </Style>
                 </TextRun>
                 <TextRun>
-                  <Value>                                               CARGO : </Value>
+                  <Value>                                         CARGO : </Value>
                   <Style>
                     <FontFamily>Calibri</FontFamily>
+                    <FontSize>8pt</FontSize>
                   </Style>
                 </TextRun>
                 <TextRun>
@@ -1628,12 +1637,14 @@
                   <Value>=Parameters!Cargo.Value</Value>
                   <Style>
                     <FontFamily>Calibri</FontFamily>
+                    <FontSize>8pt</FontSize>
                   </Style>
                 </TextRun>
                 <TextRun>
-                  <Value>                                                      GROUP : </Value>
+                  <Value>                                                 GROUP : </Value>
                   <Style>
                     <FontFamily>Calibri</FontFamily>
+                    <FontSize>8pt</FontSize>
                   </Style>
                 </TextRun>
                 <TextRun>
@@ -1641,6 +1652,22 @@
                   <Value>=Parameters!CargoGroup.Value</Value>
                   <Style>
                     <FontFamily>Calibri</FontFamily>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value>                                                         Sub : </Value>
+                  <Style>
+                    <FontFamily>Calibri</FontFamily>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Label>SubGroup</Label>
+                  <Value>=Parameters!SubGroup.Value</Value>
+                  <Style>
+                    <FontFamily>Calibri</FontFamily>
+                    <FontSize>8pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
