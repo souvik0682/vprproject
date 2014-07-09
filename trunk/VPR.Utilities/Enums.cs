@@ -10,7 +10,7 @@ namespace VPR.Utilities
         public enum DropDownPopulationFor
         {
             VendorType = 1,
-            Location = 2,
+            Country = 2,
             TerminalCode = 3,
             Port = 4,
             ContainerSize = 5,
