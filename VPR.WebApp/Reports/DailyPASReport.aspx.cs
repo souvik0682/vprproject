@@ -42,7 +42,7 @@ namespace VPR.WebApp.Reports
                     //LoadCargoGroup();
                     LoadCargo(0);
                     LoadCountry();
-                    LoadPort("");
+                    //LoadPort("");
                 }
                 catch (Exception ex)
                 {
@@ -50,7 +50,7 @@ namespace VPR.WebApp.Reports
                     //ToggleErrorPanel(true, ex.Message);
                 }
             }
-
+            txtPort.TextChanged += new EventHandler(txtPort_TextChanged);
 
         }
 
@@ -61,6 +61,7 @@ namespace VPR.WebApp.Reports
                 //btnShow.ToolTip = ResourceManager.GetStringWithoutName("R00058");
                 
                 ceMovementDate.Format = Convert.ToString(ConfigurationManager.AppSettings["DateFormat"]);
+                ceMovementDate1.Format = Convert.ToString(ConfigurationManager.AppSettings["DateFormat"]);
                 rfvMovementDate.ErrorMessage = ResourceManager.GetStringWithoutName("R00062");
             }
         }
@@ -101,7 +102,7 @@ namespace VPR.WebApp.Reports
 
         private void LoadCargo(int GroupID)
         {
-            DataTable dt = new ReportBAL().GetAllCargo(GroupID);
+            DataTable dt = new ReportBAL().GetAllCargo(GroupID, 0);
             DataRow dr = dt.NewRow();
             dr["pk_CargoId"] = "0";
             dr["CargoName"] = "All Cargo";
@@ -112,18 +113,18 @@ namespace VPR.WebApp.Reports
             ddlCargo.DataBind();
         }
 
-        private void LoadPort(string Country)
-        {
-            DataTable dt = new ReportBAL().GetAllPorts(Country);
-            DataRow dr = dt.NewRow();
-            dr["pk_PortId"] = "0";
-            dr["PortName"] = "All Ports";
-            dt.Rows.InsertAt(dr, 0);
-            ddlPort.DataValueField = "pk_PortId";
-            ddlPort.DataTextField = "PortName";
-            ddlPort.DataSource = dt;
-            ddlPort.DataBind();
-        }
+        //private void LoadPort(string Country)
+        //{
+        //    DataTable dt = new ReportBAL().GetAllPorts(Country);
+        //    DataRow dr = dt.NewRow();
+        //    dr["pk_PortId"] = "0";
+        //    dr["PortName"] = "All Ports";
+        //    dt.Rows.InsertAt(dr, 0);
+        //    ddlPort.DataValueField = "pk_PortId";
+        //    ddlPort.DataTextField = "PortName";
+        //    ddlPort.DataSource = dt;
+        //    ddlPort.DataBind();
+        //}
 
         private void LoadCountry()
         {
@@ -145,16 +146,25 @@ namespace VPR.WebApp.Reports
             try
             {
                 DateTime dt1 = DateTime.Today;
+                DateTime dt2 = DateTime.Today;
                 DataTable dtExcel = new DataTable();
                 string CountryAbbr;
 
-                dt1 = Convert.ToDateTime(txtMovementDate.Text.Trim());
+                dt1 = Convert.ToDateTime(txtMovementDate1.Text.Trim());
+                dt2 = Convert.ToDateTime(txtMovementDate2.Text.Trim());
                 if (ddlCountry.SelectedIndex == 0)
                     CountryAbbr = "0";
                 else
                     CountryAbbr = ddlCountry.SelectedItem.ToString().Substring(0, 2);
 
-                dtExcel = cls.GetPASExcelReport(dt1, Convert.ToInt32(ddlCargo.SelectedValue), Convert.ToInt32(ddlPort.SelectedValue), CountryAbbr);
+                string Port = ((TextBox)txtPort.FindControl("txtPort")).Text;
+                int PortID = 0;
+                if (Port != string.Empty)
+                {
+                    PortID = Convert.ToInt32(ViewState["PORTID"]);
+                    //PortName = new TransactionBLL().GetOnlyPortNameById(portid);
+                }
+                dtExcel = cls.GetPASExcelReport(dt1, dt2, Convert.ToInt32(ddlCargo.SelectedValue), PortID, CountryAbbr);
 
                 //dtExcel.Columns.Remove("fk_NVOCCID");
                 //dtExcel.Columns.Remove("fk_MainLineVesselID");
@@ -234,13 +244,39 @@ namespace VPR.WebApp.Reports
 
         protected void ddlCountry_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadPort(ddlCountry.SelectedItem.ToString().Substring(0, 2));
+            //LoadPort(ddlCountry.SelectedItem.ToString().Substring(0, 2));
         }
 
-        protected void ddlPort_SelectedIndexChanged(object sender, EventArgs e)
+        void txtPort_TextChanged(object sender, EventArgs e)
         {
+            string port = ((TextBox)txtPort.FindControl("txtPort")).Text;
+
+            if (port != string.Empty)
+            {
+                if (port.Split('|').Length > 1)
+                {
+                    string portCode = port.Split('|')[1].Trim();
+
+                    int portId = new TransactionBLL().GetPortId(portCode);
+
+                    ViewState["PORTID"] = portId;
+                }
+                else
+                {
+                    ViewState["PORTID"] = null;
+                }
+            }
+            else
+            {
+                ViewState["PORTID"] = null;
+            }
+
 
         }
+        //protected void ddlPort_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+
+        //}
 
     }
 }

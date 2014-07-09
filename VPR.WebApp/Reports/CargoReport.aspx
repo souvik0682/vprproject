@@ -51,12 +51,24 @@
                         </td>
                     </tr>
                     <tr>
-                        <td style="padding-right:15px;">Select Cargo Group:<span class="errormessage">*</span></td> 
+                        <td style="padding-right:15px;">Select Group:<span class="errormessage">*</span></td> 
                         <td>                                        
                             <asp:DropDownList ID="ddlCargoGroup" runat="server"  Width="150" AutoPostBack="true" onselectedindexchanged="ddlCargoGroup_SelectedIndexChanged">
                             </asp:DropDownList>
                         </td>
                         
+                        <td style="padding-right:15px;">Select Sub Group:<span class="errormessage">*</span></td> 
+                        <td>                                        
+                            <asp:DropDownList ID="ddlSubGroup" runat="server"  Width="150" AutoPostBack="true" onselectedindexchanged="ddlSubGroup_SelectedIndexChanged">
+                            </asp:DropDownList>
+                        </td>
+                        <td style="padding-right:15px;">Select Cargo:<span class="errormessage">*</span></td> 
+                        <td>                                        
+                            <asp:DropDownList ID="ddlCargo" runat="server"  Width="150" AutoPostBack="true" onselectedindexchanged="ddlCargo_SelectedIndexChanged">
+                            </asp:DropDownList>
+                        </td>
+                     </tr>
+                     <tr>
                         <td style="padding-right:15px;">Select Country:<span class="errormessage">*</span></td> 
                         <td>                                        
                             <asp:DropDownList ID="ddlCountry" runat="server"  Width="150" AutoPostBack="true" 
@@ -65,13 +77,7 @@
                         </td>
                         
                         <%--<td><asp:Button ID="btnShow" runat="server" Text="Show" CssClass="button" ValidationGroup="Show" OnClick="btnShow_Click" /></td>--%>
-                    </tr>
-                     <tr>
-                        <td style="padding-right:15px;">Select Cargo:<span class="errormessage">*</span></td> 
-                        <td>                                        
-                            <asp:DropDownList ID="ddlCargo" runat="server"  Width="150" AutoPostBack="true" onselectedindexchanged="ddlCargo_SelectedIndexChanged">
-                            </asp:DropDownList>
-                        </td>
+  
                         <td style="padding-right:15px;">Select Port:<span class="errormessage">*</span></td> 
                         <td>                                        
                             <asp:DropDownList ID="ddlPort" runat="server"  Width="150" AutoPostBack="true" 

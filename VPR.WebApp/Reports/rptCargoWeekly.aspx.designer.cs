@@ -85,13 +85,13 @@ namespace VPR.WebApp.Reports {
         protected global::System.Web.UI.WebControls.DropDownList ddlCargoGroup;
         
         /// <summary>
-        /// ddlCountry control.
+        /// ddlSubGroup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCountry;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSubGroup;
         
         /// <summary>
         /// ddlCargo control.
@@ -101,6 +101,15 @@ namespace VPR.WebApp.Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCargo;
+        
+        /// <summary>
+        /// ddlCountry control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCountry;
         
         /// <summary>
         /// ddlPort control.
