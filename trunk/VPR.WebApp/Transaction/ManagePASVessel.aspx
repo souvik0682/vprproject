@@ -24,7 +24,7 @@
                         <td>
                             <asp:TextBox ID="txtVesselName" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
                             <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server" FilterType="Custom,UppercaseLetters,LowercaseLetters,Numbers"
-                                FilterMode="InvalidChars" ValidChars=" " TargetControlID="txtVesselName">
+                                FilterMode="InvalidChars" TargetControlID="txtVesselName">
                             </cc1:FilteredTextBoxExtender>
                             <cc1:TextBoxWatermarkExtender ID="TextBoxWatermarkExtender4" runat="server" TargetControlID="txtVesselName"
                                 WatermarkText="Vessel Name">
@@ -33,7 +33,7 @@
                         <td>
                             <asp:TextBox ID="txtPort" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
                             <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender5" runat="server" FilterType="Custom,UppercaseLetters,LowercaseLetters,Numbers"
-                                FilterMode="InvalidChars" ValidChars=" " TargetControlID="txtPort">
+                                FilterMode="InvalidChars" TargetControlID="txtPort">
                             </cc1:FilteredTextBoxExtender>
                             <cc1:TextBoxWatermarkExtender ID="TextBoxWatermarkExtender5" runat="server" TargetControlID="txtPort"
                                 WatermarkText="Port">
@@ -42,11 +42,11 @@
 <%--                    </tr>
                     <tr>--%>
                         <td>
-                            <asp:TextBox ID="txtAgent" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
+                            <asp:TextBox ID="txtActivity" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
                             <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender7" runat="server" FilterType="Custom,UppercaseLetters,LowercaseLetters,Numbers"
-                                FilterMode="InvalidChars" ValidChars=" " TargetControlID="txtAgent">
+                                FilterMode="InvalidChars" TargetControlID="txtActivity">
                             </cc1:FilteredTextBoxExtender>
-                            <cc1:TextBoxWatermarkExtender ID="TextBoxWatermarkExtender7" runat="server" TargetControlID="txtAgent"
+                            <cc1:TextBoxWatermarkExtender ID="TextBoxWatermarkExtender7" runat="server" TargetControlID="txtActivity"
                                 WatermarkText="Job">
                             </cc1:TextBoxWatermarkExtender>
                         </td>

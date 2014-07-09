@@ -26,6 +26,7 @@ namespace VPR.WebApp.Transaction
             RetriveParameters();
             _userId = UserBLL.GetLoggedInUserId();
             _userLocation = UserBLL.GetUserLocation();
+            txtPortName.Enabled = false;
             CheckUserAccess();
 
             if (!IsPostBack)
@@ -333,7 +334,7 @@ namespace VPR.WebApp.Transaction
             ddlMovement.SelectedValue = o.Movement.ToString();
             ddlMovementType.SelectedValue = o.MovementType.ToString();
             ddlMovement.Enabled = false;
-
+            ddlVessel.Enabled = false;
             if (o.Movement != "1" && o.Movement != "2")
                 BindGrid(o.VesselId.ToInt(), PASTranId);
         }
@@ -441,17 +442,26 @@ namespace VPR.WebApp.Transaction
         protected void ddlVessel_SelectedIndexChanged(object sender, EventArgs e)
         {
             int CurMovement = 0;
+            string Act = "";
             LoadMovement();
             DataSet ds = new TransactionBLL().GetPortNameByVesselID(ddlVessel.SelectedValue.ToInt(), PASTranId);
             txtPortName.Text = ds.Tables[0].Rows[0]["Name"].ToString();
             ddlActivity.SelectedValue = ds.Tables[0].Rows[0]["Activity"].ToString();
             ddlMovement.SelectedValue = ds.Tables[1].Rows[0]["NextMove"].ToString();
+            Act = ds.Tables[0].Rows[0]["Activity"].ToString();
             CurMovement = ds.Tables[1].Rows[0]["NextMove"].ToInt();
             for (int r = 0; r < CurMovement - 1; r++)
             {
                 //ddlMovement.Items.RemoveAt(r);
                 ddlMovement.Items[r].Attributes.Add("disabled", "disabled");
             }
+            
+            if (Act == "D")
+                ddlMovement.Items[3].Attributes.Add("disabled", "disabled");
+
+            if (Act == "L")
+                ddlMovement.Items[2].Attributes.Add("disabled", "disabled");
+
             //txtPortName.Text = new TransactionBLL().GetPortNameByVesselID(ddlVessel.SelectedValue.ToInt());
             if (CurMovement != 1 && CurMovement != 2)
                 BindGrid(ddlVessel.SelectedValue.ToInt(), 0);

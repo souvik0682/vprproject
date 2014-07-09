@@ -59,8 +59,8 @@ namespace VPR.WebApp.Transaction
             }
 
             txtPort.TextChanged += new EventHandler(txtPort_TextChanged);
-            //txtNextPort.TextChanged += new EventHandler(txtNextPort_TextChanged);
-            //txtPreviousPort.TextChanged += new EventHandler(txtPreviousPort_TextChanged);
+            txtNextPort.TextChanged += new EventHandler(txtNextPort_TextChanged);
+            txtPreviousPort.TextChanged += new EventHandler(txtPreviousPort_TextChanged);
         }
         protected void gvwCargo_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -148,6 +148,56 @@ namespace VPR.WebApp.Transaction
             }
 
 
+        }
+
+        void txtPreviousPort_TextChanged(object sender, EventArgs e)
+        {
+            string previousPort = ((TextBox)txtPreviousPort.FindControl("txtPort")).Text;
+
+            if (previousPort != string.Empty)
+            {
+                if (previousPort.Split('|').Length > 1)
+                {
+                    string portCode = previousPort.Split('|')[1].Trim();
+
+                    int portId = new TransactionBLL().GetPortId(portCode);
+
+                    ViewState["PREVIOUSPORTID"] = portId;
+                }
+                else
+                {
+                    ViewState["PREVIOUSPORTID"] = null;
+                }
+            }
+            else
+            {
+                ViewState["PREVIOUSPORTID"] = null;
+            }
+        }
+
+        void txtNextPort_TextChanged(object sender, EventArgs e)
+        {
+            string nextPort = ((TextBox)txtNextPort.FindControl("txtPort")).Text;
+
+            if (nextPort != string.Empty)
+            {
+                if (nextPort.Split('|').Length > 1)
+                {
+                    string portCode = nextPort.Split('|')[1].Trim();
+
+                    int portId = new TransactionBLL().GetPortId(portCode);
+
+                    ViewState["NEXTPORTID"] = portId;
+                }
+                else
+                {
+                    ViewState["NEXTPORTID"] = null;
+                }
+            }
+            else
+            {
+                ViewState["NEXTPORTID"] = null;
+            }
         }
 
         protected void btnAddNew_Click(object sender, EventArgs e)
@@ -256,6 +306,17 @@ namespace VPR.WebApp.Transaction
             ddlJob.DataSource = dt;
             ddlJob.DataBind();
 
+            DataTable dtc1 = new ReportBAL().GetAllCountry();
+            ddlNCountry.DataValueField = "pk_CountryId";
+            ddlNCountry.DataTextField = "CountryName";
+            ddlNCountry.DataSource = dtc1;
+            ddlNCountry.DataBind();
+
+            DataTable dtc2 = new ReportBAL().GetAllCountry();
+            ddlACountry.DataValueField = "pk_CountryId";
+            ddlACountry.DataTextField = "CountryName";
+            ddlACountry.DataSource = dtc2;
+            ddlACountry.DataBind();
             //DataTable dt2 = new TransactionBLL().GetAllBerth();
             //DataRow dr2 = dt2.NewRow();
             //dr2["pk_BerthID"] = "0";
@@ -361,13 +422,13 @@ namespace VPR.WebApp.Transaction
             ViewState["PORTID"] = o.PortId;
             ((TextBox)txtPort.FindControl("txtPort")).Text = port;
 
-            //string prevPort = new TransactionBLL().GetPortNameById(o.PrevPortId);
-            //ViewState["PREVIOUSPORTID"] = o.PrevPortId;
-            //((TextBox)txtPreviousPort.FindControl("txtPort")).Text = prevPort;
+            string prevPort = new TransactionBLL().GetPortNameById(o.PrevPortId);
+            ViewState["PREVIOUSPORTID"] = o.PrevPortId;
+            ((TextBox)txtPreviousPort.FindControl("txtPort")).Text = prevPort;
 
-            //string nxtPort = new TransactionBLL().GetPortNameById(o.NextPortId);
-            //ViewState["NEXTPORTID"] = o.NextPortId;
-            //((TextBox)txtNextPort.FindControl("txtPort")).Text = nxtPort;
+            string nxtPort = new TransactionBLL().GetPortNameById(o.NextPortId);
+            ViewState["NEXTPORTID"] = o.NextPortId;
+            ((TextBox)txtNextPort.FindControl("txtPort")).Text = nxtPort;
 
             //txtLOA.Text = o.LOA.ToString();
             txtArrivalDate.Text = o.ETA.ToString("dd-MM-yyyy");
@@ -375,6 +436,10 @@ namespace VPR.WebApp.Transaction
             if (o.ETC.HasValue)
                 txtETC.Text = o.ETC.Value.ToString("dd-MM-yyyy");
 
+            if (o.ETB.HasValue)
+                txtBerthDate.Text = o.ETB.Value.ToString("dd-MM-yyyy");
+
+            txtOPA.Text = o.Owner;
             //txtOwnerName.Text = o.Owner;
             txtAppointing.Text = o.AppointingCo.ToString();
             txtNom.Text = o.NominatingCo.ToString();
@@ -382,6 +447,8 @@ namespace VPR.WebApp.Transaction
 
             ddlJob.SelectedValue = o.JobID.ToString();
             txtRemarks.Text = o.Remarks;
+            ddlNCountry.SelectedValue = o.NominatingCountry.ToString();
+            ddlACountry.SelectedValue = o.AppointingCountry.ToString();
 
             BindGrid(VesselId);
         }
@@ -409,10 +476,14 @@ namespace VPR.WebApp.Transaction
                 o.AppointingCo = txtAppointing.Text.Trim();
                 o.NominatingCo = txtNom.Text.Trim();
                 o.Shipper = txtShipper.Text.Trim();
+                o.Owner = txtOPA.Text.Trim();
 
                 o.PortId = Convert.ToInt32(ViewState["PORTID"]);
-                //o.PrevPortId = Convert.ToInt32(ViewState["PREVIOUSPORTID"]);
+                o.PrevPortId = Convert.ToInt32(ViewState["PREVIOUSPORTID"]);
+                o.NextPortId = Convert.ToInt32(ViewState["NEXTPORTID"]);
                 o.Remarks = txtRemarks.Text.Trim();
+                o.NominatingCountry = Convert.ToInt32(ddlNCountry.SelectedValue);
+                o.AppointingCountry = Convert.ToInt32(ddlACountry.SelectedValue);
 
                 //Add Cargo Details
                 List<CargoDetails> lstData = ViewState["DataSource"] as List<CargoDetails>;

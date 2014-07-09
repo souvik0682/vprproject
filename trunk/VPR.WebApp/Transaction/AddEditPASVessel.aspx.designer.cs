@@ -85,6 +85,42 @@ namespace VPR.WebApp.Transaction {
         protected global::System.Web.UI.WebControls.Label errPort;
         
         /// <summary>
+        /// txtPreviousPort control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::VPR.WebApp.CustomControls.AC_Port txtPreviousPort;
+        
+        /// <summary>
+        /// errPreviousPort control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label errPreviousPort;
+        
+        /// <summary>
+        /// txtNextPort control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::VPR.WebApp.CustomControls.AC_Port txtNextPort;
+        
+        /// <summary>
+        /// errNextPort control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label errNextPort;
+        
+        /// <summary>
         /// txtArrivalDate control.
         /// </summary>
         /// <remarks>
@@ -121,6 +157,42 @@ namespace VPR.WebApp.Transaction {
         protected global::System.Web.UI.WebControls.TextBox txtETC;
         
         /// <summary>
+        /// cbeETC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender cbeETC;
+        
+        /// <summary>
+        /// txtBerthDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBerthDate;
+        
+        /// <summary>
+        /// CalendarExtender1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender1;
+        
+        /// <summary>
+        /// txtOPA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtOPA;
+        
+        /// <summary>
         /// txtNom control.
         /// </summary>
         /// <remarks>
@@ -130,6 +202,15 @@ namespace VPR.WebApp.Transaction {
         protected global::System.Web.UI.WebControls.TextBox txtNom;
         
         /// <summary>
+        /// ddlNCountry control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlNCountry;
+        
+        /// <summary>
         /// txtAppointing control.
         /// </summary>
         /// <remarks>
@@ -137,6 +218,15 @@ namespace VPR.WebApp.Transaction {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtAppointing;
+        
+        /// <summary>
+        /// ddlACountry control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlACountry;
         
         /// <summary>
         /// txtShipper control.

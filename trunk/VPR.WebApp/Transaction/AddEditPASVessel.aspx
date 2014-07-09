@@ -49,7 +49,7 @@
                                                     Job:<span class="errormessage1">*</span>
                                                 </td>
                                                 <td>
-                                                    <asp:DropDownList ID="ddlJob" runat="server">
+                                                    <asp:DropDownList ID="ddlJob" runat="server" TabIndex="3">
                                                         <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                     </asp:DropDownList>
                                                     <asp:RequiredFieldValidator ID="rfvJob" runat="server" CssClass="errormessage"
@@ -60,16 +60,16 @@
                                                     Port:<span class="errormessage1">*</span>
                                                 </td>
                                                 <td>
-                                                    <uc1:AC_Port ID="txtPort" runat="server" />
+                                                    <uc1:AC_Port ID="txtPort" runat="server" TabIndex="4"/>
                                                     <asp:Label ID="errPort" runat="server" CssClass="errormessage1"></asp:Label>
                                                 </td>
                                             </tr>
-                                           <%-- <tr>
+                                            <tr>
                                                 <td>
                                                     Previous Port:<span class="errormessage1">*</span>
                                                 </td>
                                                 <td>
-                                                    <uc1:AC_Port ID="txtPreviousPort" runat="server" />
+                                                    <uc1:AC_Port ID="txtPreviousPort" runat="server" TabIndex="5"/>
                                                     <asp:Label ID="errPreviousPort" runat="server" CssClass="errormessage1"></asp:Label>
                                                 </td>
 
@@ -77,17 +77,17 @@
                                                     Next Port:<span class="errormessage1">*</span>
                                                 </td>
                                                 <td>
-                                                    <uc1:AC_Port ID="txtNextPort" runat="server" />
+                                                    <uc1:AC_Port ID="txtNextPort" runat="server" TabIndex="6"/>
                                                     <asp:Label ID="errNextPort" runat="server" CssClass="errormessage1"></asp:Label>
                                                 </td>
                                                
-                                            </tr>--%>
+                                            </tr>
                                             <tr>
                                                 <td>
                                                     ETA:<span class="errormessage1">*</span>
                                                 </td>
                                                 <td>
-                                                    <asp:TextBox ID="txtArrivalDate" runat="server" Width="250px"></asp:TextBox>
+                                                    <asp:TextBox ID="txtArrivalDate" runat="server" Width="250px" TabIndex="7"></asp:TextBox>
                                                     <cc1:CalendarExtender ID="cbeArrivalDate" TargetControlID="txtArrivalDate" runat="server"
                                                         Format="dd-MM-yyyy" Enabled="True" />
                                                     <asp:RequiredFieldValidator ID="rfvMailSendOn" runat="server" ControlToValidate="txtArrivalDate"
@@ -99,6 +99,30 @@
                                                 </td>
                                                 <td>
                                                     <asp:TextBox ID="txtETC" runat="server" Width="250px" Enabled="False"></asp:TextBox>
+                                                    <cc1:CalendarExtender ID="cbeETC" TargetControlID="txtETC" runat="server" Format="dd-MM-yyyy"
+                                                        Enabled="True" />
+<%--                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtETC"
+                                                        ErrorMessage="This field is required*" CssClass="errormessage" ValidationGroup="Save"
+                                                        Display="Dynamic"></asp:RequiredFieldValidator>--%>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    ETB:<span class="errormessage1">*</span>
+                                                </td>
+                                                <td>
+                                                    <asp:TextBox ID="txtBerthDate" runat="server" Width="250px"  Enabled="False" ></asp:TextBox>
+                                                    <cc1:CalendarExtender ID="CalendarExtender1" TargetControlID="txtBerthDate" runat="server"
+                                                        Format="dd-MM-yyyy"/>
+       <%--                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtBerthDate"
+                                                        ErrorMessage="This field is required*" CssClass="errormessage" ValidationGroup="Save"
+                                                        Display="Dynamic"></asp:RequiredFieldValidator>--%>
+                                                </td>
+                                                <td>
+                                                    OPA:
+                                                </td>
+                                                <td>
+                                                    <asp:TextBox ID="txtOPA" runat="server" Width="250px" Enabled="True"></asp:TextBox>
                                                     <%--<cc1:CalendarExtender ID="cbeETC" TargetControlID="txtETC" runat="server" Format="dd-MM-yyyy"
                                                         Enabled="True" />
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtETC"
@@ -119,6 +143,16 @@
                                                      </asp:RequiredFieldValidator>--%>
                                                 </td>
                                                 <td>
+                                                    Country of Nom Company:
+                                                </td>
+                                                <td>
+                                                    <asp:DropDownList ID="ddlNCountry" runat="server" TabIndex="5"  Width="250px">
+                                                    </asp:DropDownList>
+                                                </td>
+ 
+                                            </tr>
+                                            <tr>
+                                                <td>
                                                     Appointing Company:
                                                 </td>
                                                 <td>
@@ -127,6 +161,14 @@
                                                         ErrorMessage="This field is required*" CssClass="errormessage" ValidationGroup="Save"
                                                         Display="Dynamic"></asp:RequiredFieldValidator>--%>
                                                 </td>
+                                                <td>
+                                                    Country of App Company:
+                                                </td>
+                                                <td>
+                                                    <asp:DropDownList ID="ddlACountry" runat="server" TabIndex="6"  Width="250px">
+                                                    </asp:DropDownList>
+                                                </td>
+ 
                                             </tr>
                                             <tr>
                                                 <td>

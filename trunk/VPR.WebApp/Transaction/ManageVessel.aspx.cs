@@ -121,7 +121,7 @@ namespace VPR.WebApp.Transaction
                 e.Row.Cells[2].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "PortName"));
                 //e.Row.Cells[3].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "BerthName"));
                 e.Row.Cells[3].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "LOA"));
-                e.Row.Cells[4].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ETA"));
+                e.Row.Cells[4].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ArrivalDate")).Split(' ')[0];
                 e.Row.Cells[5].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "AgentName"));
                 //e.Row.Cells[7].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ETC"));
 
@@ -273,7 +273,7 @@ namespace VPR.WebApp.Transaction
 
             criteria.VesselName = (txtVesselName.Text == "") ? string.Empty : txtVesselName.Text.Trim();
             criteria.Port = (txtPort.Text == "") ? string.Empty : txtPort.Text.Trim();
-            criteria.Berth = (txtAgent.Text == "") ? string.Empty : txtAgent.Text.Trim();
+            criteria.AgentName = (txtAgent.Text == "") ? string.Empty : txtAgent.Text.Trim();
             criteria.VesselStatus = ddlVesselStatus.SelectedValue;
 
             Session[Constants.SESSION_SEARCH_CRITERIA] = criteria;
@@ -298,7 +298,7 @@ namespace VPR.WebApp.Transaction
                     {
                         txtVesselName.Text = criteria.VesselName;
                         txtPort.Text = criteria.Port;
-                        txtAgent.Text = criteria.Berth;
+                        txtAgent.Text = criteria.AgentName;
                         ddlVesselStatus.SelectedValue = criteria.VesselStatus;
 
                         gvImportBL.PageIndex = criteria.PageIndex;

@@ -195,7 +195,7 @@ namespace VPR.WebApp.Transaction
             if (((CheckBox)sender).Checked)
             {
                 txtLoadingDate.Enabled = true;
-                txtLoadingDate.Text = DateTime.Now.ToString("dd-MM-yyyy");
+                //txtLoadingDate.Text = DateTime.Now.ToString("dd-MM-yyyy");
             }
             else
             {
@@ -216,7 +216,7 @@ namespace VPR.WebApp.Transaction
             if (((CheckBox)sender).Checked)
             {
                 txtDischargeDate.Enabled = true;
-                txtDischargeDate.Text = DateTime.Now.ToString("dd-MM-yyyy");
+                //txtDischargeDate.Text = DateTime.Now.ToString("dd-MM-yyyy");
             }
             else
             {
@@ -261,7 +261,7 @@ namespace VPR.WebApp.Transaction
             if (((CheckBox)sender).Checked)
             {
                 txtArrivalDate.Enabled = true;
-                txtArrivalDate.Text = DateTime.Now.ToString("dd-MM-yyyy");
+                //txtArrivalDate.Text = DateTime.Now.ToString("dd-MM-yyyy");
                 txtETA.Enabled = true;
                 //txtBerthDate.Enabled = true;
                 //txtBerthDate.Text = DateTime.Now.ToString("dd-MM-yyyy");
@@ -288,7 +288,7 @@ namespace VPR.WebApp.Transaction
             if (ddlBerth.SelectedIndex > 0)
             {
                 txtBerthDate.Enabled = true;
-                txtBerthDate.Text = DateTime.Now.ToString("dd-MM-yyyy");
+                //txtBerthDate.Text = DateTime.Now.ToString("dd-MM-yyyy");
             }
             else
             {
