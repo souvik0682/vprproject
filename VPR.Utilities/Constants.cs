@@ -35,6 +35,7 @@ namespace VPR.Utilities
     public enum PageName
     {
         UserMaster = 28,
+        LocationMaster = 2,
         AddressMaster = 32,
         CountryMaster = 38,
         PortMaster = 39,
@@ -70,7 +71,7 @@ namespace VPR.Utilities
         public const string NOT_AVAILABLE_TEXT = "Not Available";
         public const string SORT_EXPRESSION = "SortExpression";
         public const string SORT_DIRECTION = "SortDirection";
-        public const string DEFAULT_PASSWORD = "nvocc";
+        public const string DEFAULT_PASSWORD = "vpr";
         public const int DEFAULT_COMPANY_ID = 1;
 
         #endregion
