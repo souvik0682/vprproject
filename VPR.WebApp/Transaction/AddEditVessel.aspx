@@ -37,7 +37,7 @@
                                                     Vessel Prefix:<span class="errormessage1">*</span>
                                                 </td>
                                                 <td>
-                                                    <asp:DropDownList ID="ddlVesselPrefix" runat="server">
+                                                    <asp:DropDownList ID="ddlVesselPrefix" runat="server" TabIndex="2">
                                                         <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                     </asp:DropDownList>
                                                     <asp:RequiredFieldValidator ID="rfvVesselPrefix" runat="server" CssClass="errormessage"
@@ -51,7 +51,7 @@
                                                 </td>
                                                 <td>
                                                     <asp:TextBox ID="txtVesselName" runat="server" CssClass="textboxuppercase" MaxLength="100"
-                                                        Width="250px" TabIndex="2"></asp:TextBox>
+                                                        Width="250px" TabIndex="3"></asp:TextBox>
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtVesselName"
                                                         ErrorMessage="This field is required*" CssClass="errormessage" ValidationGroup="Save"
                                                         Display="Dynamic"></asp:RequiredFieldValidator>
@@ -71,7 +71,7 @@
                                                     Port:<span class="errormessage1">*</span>
                                                 </td>
                                                 <td>
-                                                    <uc1:AC_Port ID="txtPort" runat="server" />
+                                                    <uc1:AC_Port ID="txtPort" runat="server" TabIndex="4"/>
                                                     <asp:Label ID="errPort" runat="server" CssClass="errormessage1"></asp:Label>
                                                 </td>
                                             </tr>
@@ -80,7 +80,7 @@
                                                     Previous Port:<span class="errormessage1">*</span>
                                                 </td>
                                                 <td>
-                                                    <uc1:AC_Port ID="txtPreviousPort" runat="server" />
+                                                    <uc1:AC_Port ID="txtPreviousPort" runat="server" TabIndex="5"/>
                                                     <asp:Label ID="errPreviousPort" runat="server" CssClass="errormessage1"></asp:Label>
                                                 </td>
 
@@ -88,7 +88,7 @@
                                                     Next Port:<span class="errormessage1">*</span>
                                                 </td>
                                                 <td>
-                                                    <uc1:AC_Port ID="txtNextPort" runat="server" />
+                                                    <uc1:AC_Port ID="txtNextPort" runat="server" TabIndex="6"/>
                                                     <asp:Label ID="errNextPort" runat="server" CssClass="errormessage1"></asp:Label>
                                                 </td>
                                                
@@ -98,7 +98,7 @@
                                                     ETA:<span class="errormessage1">*</span>
                                                 </td>
                                                 <td>
-                                                    <asp:TextBox ID="txtArrivalDate" runat="server" Width="250px"></asp:TextBox>
+                                                    <asp:TextBox ID="txtArrivalDate" runat="server" Width="250px" TabIndex="7"></asp:TextBox>
                                                     <cc1:CalendarExtender ID="cbeArrivalDate" TargetControlID="txtArrivalDate" runat="server"
                                                         Format="dd-MM-yyyy" Enabled="True" />
                                                     <asp:RequiredFieldValidator ID="rfvMailSendOn" runat="server" ControlToValidate="txtArrivalDate"
@@ -109,22 +109,45 @@
                                                     ETC:
                                                 </td>
                                                 <td>
-                                                    <asp:TextBox ID="txtETC" runat="server" Width="250px" Enabled="False"></asp:TextBox>
-                                                    <%--<cc1:CalendarExtender ID="cbeETC" TargetControlID="txtETC" runat="server" Format="dd-MM-yyyy"
+                                                    <asp:TextBox ID="txtETC" runat="server" Width="250px" Enabled="False" TabIndex="8"></asp:TextBox>
+                                                    <cc1:CalendarExtender ID="cbeETC" TargetControlID="txtETC" runat="server" Format="dd-MM-yyyy"
                                                         Enabled="True" />
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtETC"
+                                                    <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtETC"
                                                         ErrorMessage="This field is required*" CssClass="errormessage" ValidationGroup="Save"
                                                         Display="Dynamic"></asp:RequiredFieldValidator>--%>
                                                 </td>
                                             </tr>
                                             <tr>
-
+                                                <td>
+                                                    ETB:<span class="errormessage1">*</span>
+                                                </td>
+                                                <td>
+                                                    <asp:TextBox ID="txtBerthDate" runat="server" Width="250px" Enabled="False" TabIndex="9"></asp:TextBox>
+                                                    <cc1:CalendarExtender ID="CalendarExtender1" TargetControlID="txtBerthDate" runat="server"
+                                                        Format="dd-MM-yyyy" Enabled="True" />
+                                                    <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtBerthDate"
+                                                        ErrorMessage="This field is required*" CssClass="errormessage" ValidationGroup="Save"
+                                                        Display="Dynamic"></asp:RequiredFieldValidator>--%>
+                                                </td>
+                                                <td>
+                                                    Sailed Date:
+                                                </td>
+                                                <td>
+                                                    <asp:TextBox ID="txtSailDate" runat="server" Width="250px" Enabled="False" TabIndex="10"></asp:TextBox>
+                                                    <cc1:CalendarExtender ID="cbeSailDate" TargetControlID="txtSailDate" runat="server" Format="dd-MM-yyyy"
+                                                        Enabled="True" />
+<%--                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtETC"
+                                                        ErrorMessage="This field is required*" CssClass="errormessage" ValidationGroup="Save"
+                                                        Display="Dynamic"></asp:RequiredFieldValidator>--%>
+                                                </td>
+                                            </tr>
+                                            <tr>
                                                  <td>
                                                     LOA:<span class="errormessage1">*</span>
                                                 </td>
                                                 <td>
-                                                    <cc2:CustomTextBox ID="txtLOA" runat="server" CssClass="numerictextbox" TabIndex="13"
-                                                        Width="250px" Type="Decimal" MaxLength="15" Precision="12" Scale="2"></cc2:CustomTextBox>
+                                                    <cc2:CustomTextBox ID="txtLOA" runat="server" CssClass="numerictextbox" TabIndex="11"
+                                                        Width="250px" Type="Decimal" Precision="3" Scale="2"></cc2:CustomTextBox>
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtLOA"
                                                         ErrorMessage="This field is required*" CssClass="errormessage" ValidationGroup="Save"
                                                         Display="Dynamic">
@@ -134,7 +157,7 @@
                                                     Cargo Owner:
                                                 </td>
                                                 <td>
-                                                    <asp:TextBox ID="txtOwnerName" runat="server" Width="250px" CssClass="textboxuppercase"></asp:TextBox>
+                                                    <asp:TextBox ID="txtOwnerName" runat="server" Width="250px" CssClass="textboxuppercase" TabIndex="12"></asp:TextBox>
 <%--                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtOwnerName"
                                                         ErrorMessage="This field is required*" CssClass="errormessage" ValidationGroup="Save"
                                                         Display="Dynamic"></asp:RequiredFieldValidator>--%>
@@ -145,7 +168,7 @@
                                                     Agent Name:<span class="errormessage1">*</span>
                                                 </td>
                                                 <td>
-                                                    <asp:DropDownList ID="ddlAgentName" runat="server">
+                                                    <asp:DropDownList ID="ddlAgentName" runat="server" TabIndex="13">
                                                         <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                     </asp:DropDownList>
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" CssClass="errormessage"
@@ -158,8 +181,8 @@
                                                     Remarks:
                                                 </td>
                                                 <td>
-                                                    <asp:TextBox ID="txtRemarks" runat="server" CssClass="textboxuppercase" MaxLength="100"
-                                                        Width="250px" TabIndex="2"></asp:TextBox>
+                                                    <asp:TextBox ID="txtRemarks" runat="server" CssClass="textboxuppercase" MaxLength="100 "
+                                                        Width="250px" TabIndex="14"></asp:TextBox>
 <%--                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtRemarks"
                                                         ErrorMessage="This field is required*" CssClass="errormessage" ValidationGroup="Save"
                                                         Display="Dynamic"></asp:RequiredFieldValidator>--%>

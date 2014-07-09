@@ -47,7 +47,7 @@ namespace VPR.WebApp.Transaction
 
         protected void btnReset_Click(object sender, EventArgs e)
         {
-            txtAgent.Text = "";
+            txtActivity.Text = "";
             txtPort.Text = "";
             txtVesselName.Text = "";
 
@@ -118,9 +118,9 @@ namespace VPR.WebApp.Transaction
                 e.Row.Cells[2].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ActivityName"));
                 e.Row.Cells[3].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "PortName"));
                 //e.Row.Cells[3].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "LOA"));
-                e.Row.Cells[4].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ETA"));
-                e.Row.Cells[5].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ETB"));
-                e.Row.Cells[6].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ETC"));
+                e.Row.Cells[4].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ETA")).Split(' ')[0];
+                e.Row.Cells[5].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ETB")).Split(' ')[0];
+                e.Row.Cells[6].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ETC")).Split(' ')[0];
 
                 //Edit Link
                 ImageButton btnEdit = (ImageButton)e.Row.FindControl("btnEdit");
@@ -270,7 +270,7 @@ namespace VPR.WebApp.Transaction
 
             criteria.VesselName = (txtVesselName.Text == "") ? string.Empty : txtVesselName.Text.Trim();
             criteria.Port = (txtPort.Text == "") ? string.Empty : txtPort.Text.Trim();
-            criteria.ActivityName = (txtAgent.Text == "") ? string.Empty : txtAgent.Text.Trim();
+            criteria.ActivityName = (txtActivity.Text == "") ? string.Empty : txtActivity.Text.Trim();
 
             Session[Constants.SESSION_SEARCH_CRITERIA] = criteria;
         }
@@ -294,7 +294,7 @@ namespace VPR.WebApp.Transaction
                     {
                         txtVesselName.Text = criteria.VesselName;
                         txtPort.Text = criteria.Port;
-                        txtAgent.Text = criteria.Berth;
+                        txtActivity.Text = criteria.ActivityName;
 
                         gvImportBL.PageIndex = criteria.PageIndex;
                         gvImportBL.PageSize = criteria.PageSize;

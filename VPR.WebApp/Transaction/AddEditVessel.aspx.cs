@@ -446,10 +446,26 @@ namespace VPR.WebApp.Transaction
             if (o.ETC.HasValue)
                 txtETC.Text = o.ETC.Value.ToString("dd-MM-yyyy");
 
+            if (o.BerthDate.HasValue)
+                txtBerthDate.Text = o.BerthDate.Value.ToString("dd-MM-yyyy");
+
+            if (o.SailDate.HasValue)
+                txtSailDate.Text = o.SailDate.Value.ToString("dd-MM-yyyy");
+
             txtOwnerName.Text = o.Owner;
             ddlAgentName.SelectedValue = o.AgentId.ToString();
             txtRemarks.Text = o.Remarks;
-
+            if (o.ActivityStatus == "S")
+            {
+                txtBerthDate.Enabled = true;
+                txtArrivalDate.Enabled = true;
+                txtSailDate.Enabled = true;
+                txtETC.Enabled = true;
+                ddlAcivity.Enabled = false;
+                txtPort.EnableViewState = false;
+                
+            }
+            
             BindGrid(VesselId);
         }
 

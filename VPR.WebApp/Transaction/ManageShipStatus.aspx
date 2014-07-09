@@ -86,7 +86,7 @@
                                                                 </ItemTemplate>
                                                                 <HeaderStyle Width="100px" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Berth Date" SortExpression="BerthDate">
+                                                            <asp:TemplateField HeaderText="ETB" SortExpression="BerthDate">
                                                                 <ItemTemplate>
                                                                     <asp:TextBox ID="txtBerthDate" runat="server" Text='<%# Bind("BerthDate","{0:dd-MM-yyyy}") %>'
                                                                         Width="80" BorderStyle="None" MaxLength="10" Enabled="false">
@@ -201,7 +201,7 @@
                                                                 </ItemTemplate>
                                                                 <HeaderStyle Width="100px" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Berth Date" SortExpression="BerthDate">
+                                                            <asp:TemplateField HeaderText="ETB" SortExpression="BerthDate">
                                                                 <ItemTemplate>
                                                                     <asp:TextBox ID="txtBerthDate" runat="server" Text='<%# Bind("BerthDate","{0:dd-MM-yyyy}") %>'
                                                                         Width="80" BorderStyle="None" MaxLength="10" Enabled="false">
