@@ -193,24 +193,6 @@ namespace VPR.WebApp.MasterModule {
         protected global::System.Web.UI.WebControls.DropDownList ddlDayOfWeek;
         
         /// <summary>
-        /// ddlCargoGroup control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCargoGroup;
-        
-        /// <summary>
-        /// rfvCargoGroup control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCargoGroup;
-        
-        /// <summary>
         /// ListBox1 control.
         /// </summary>
         /// <remarks>
