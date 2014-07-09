@@ -205,8 +205,7 @@
                                 <table>
                                     <tr>
                                         <td>
-                                            Available Emails
-                                            <br />
+                                            Available Sub Groups<br />
                                             <asp:ListBox ID="ListBox1" runat="server" Height="150px" Width="150px" SelectionMode="Multiple">
                                             </asp:ListBox>
                                         </td>
@@ -235,8 +234,7 @@
                                             </table>
                                         </td>
                                         <td>
-                                            Tagged Emails
-                                            <br />
+                                            Tagged Sub Groups<br />
                                             <asp:ListBox ID="ListBox2" runat="server" Height="150px" Width="150px" SelectionMode="Multiple">
                                             </asp:ListBox>
                                         </td>
