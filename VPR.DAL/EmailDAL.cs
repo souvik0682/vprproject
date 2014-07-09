@@ -175,7 +175,7 @@ namespace VPR.DAL
 
         public static List<ICargoGroup> GetListOfAvailableCargoGroup(int Id, bool IsEmail)
         {
-            string strExecution = "usp_GetListOfAvailableCargoGroup";
+            string strExecution = "usp_GetListOfAvailableCargoSubGroup";
             List<ICargoGroup> lstEmail = new List<ICargoGroup>();
 
             using (DbQuery oDq = new DbQuery(strExecution))
@@ -201,7 +201,7 @@ namespace VPR.DAL
 
         public static List<ICargoGroup> GetListOfTaggedCargoGroup(int Id, bool IsEmail)
         {
-            string strExecution = "usp_GetListOfTaggedCargoGroup";
+            string strExecution = "usp_GetListOfTaggedCargoSubGroup";
             List<ICargoGroup> lstEmail = new List<ICargoGroup>();
 
             using (DbQuery oDq = new DbQuery(strExecution))

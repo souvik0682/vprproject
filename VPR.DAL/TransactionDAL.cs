@@ -85,6 +85,22 @@ namespace VPR.DAL
             return portName;
         }
 
+        public static string GetOnlyPortNameById(Int64 PortId)
+        {
+            string strExecution = "uspGetPortNameOnlyByPortId";
+            string portName = string.Empty;
+
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddBigIntegerParam("@PortId", PortId);
+
+                portName = Convert.ToString(oDq.GetScalar());
+            }
+
+            return portName;
+        }
+
         public static List<CargoDetails> GetListOfCargo(int VesselId)
         {
             string strExecution = "usp_GetCargoDetails";
@@ -221,6 +237,8 @@ namespace VPR.DAL
                 oDq.AddVarcharParam("@Shipper", 50, o.Shipper);
                 oDq.AddVarcharParam("@Remarks", 5000, o.Remarks);
                 oDq.AddIntegerParam("@JobId", o.JobID);
+                oDq.AddIntegerParam("@NomCountryID", o.NominatingCountry);
+                oDq.AddIntegerParam("@AppCountryID", o.AppointingCountry);
                 oDq.AddIntegerParam("@CreatedBy", o.CreatedBy);
                 oDq.AddIntegerParam("@ModifiedBy", o.ModifiedBy);
 
@@ -283,7 +301,7 @@ namespace VPR.DAL
             {
                 oDq.AddVarcharParam("@VesselName", 500, searchCriteria.VesselName);
                 oDq.AddVarcharParam("@Port", 200, searchCriteria.Port);
-                oDq.AddVarcharParam("@Agent", 200, searchCriteria.Agent);
+                oDq.AddVarcharParam("@Agent", 200, searchCriteria.AgentName);
                 oDq.AddVarcharParam("@VesselStatus", 1, searchCriteria.VesselStatus);
                 oDq.AddVarcharParam("@SortExpression", 100, searchCriteria.SortExpression);
                 oDq.AddVarcharParam("@SortDirection", 100, searchCriteria.SortDirection);
@@ -309,7 +327,7 @@ namespace VPR.DAL
             {
                 oDq.AddVarcharParam("@VesselName", 500, searchCriteria.VesselName);
                 oDq.AddVarcharParam("@Port", 200, searchCriteria.Port);
-                oDq.AddVarcharParam("@ActivityName", 200, searchCriteria.Agent);
+                oDq.AddVarcharParam("@ActivityName", 200, searchCriteria.ActivityName);
                 oDq.AddVarcharParam("@SortExpression", 100, searchCriteria.SortExpression);
                 oDq.AddVarcharParam("@SortDirection", 100, searchCriteria.SortDirection);
 
