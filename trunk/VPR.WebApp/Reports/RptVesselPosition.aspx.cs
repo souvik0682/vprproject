@@ -99,7 +99,7 @@ namespace VPR.WebApp.Reports
             DataTable dt = new TransactionBLL().GetPortWithTransaction();
             DataRow dr = dt.NewRow();
             dr["pk_PortID"] = "0";
-            dr["PortName"] = "--Select--";
+            dr["PortName"] = "All Ports";
             dt.Rows.InsertAt(dr, 0);
             ddlPort.DataValueField = "pk_PortID";
             ddlPort.DataTextField = "PortName";

@@ -44,9 +44,9 @@ namespace VPR.WebApp.Reports
                     CheckUserAccess();
                     SetAttributes();
                     LoadCargoGroup();
-                    LoadCargo(0);
+                    LoadCargo(0, 0);
                     LoadCountry();
-                    LoadPort("");
+                    //LoadPort("");
                 }
                 catch (Exception ex)
                 {
@@ -113,9 +113,15 @@ namespace VPR.WebApp.Reports
             reportManager.AddParameter("Cargo", Convert.ToString(ddlCargo.SelectedItem));
             reportManager.AddParameter("Country", Convert.ToString(ddlCountry.SelectedItem));
             reportManager.AddParameter("CargoGroup", Convert.ToString(ddlCargoGroup.SelectedItem));
-            reportManager.AddParameter("Port", Convert.ToString(ddlPort.SelectedItem));
+            if (ddlPort.Items.Count > 0)
+                reportManager.AddParameter("Port", Convert.ToString(ddlPort.SelectedItem));
+            else
+                reportManager.AddParameter("Port", "All Ports");
 
-
+            if (ddlSubGroup.Items.Count > 0)
+                reportManager.AddParameter("SubGroup", Convert.ToString(ddlSubGroup.SelectedItem));
+            else
+                reportManager.AddParameter("SubGroup", "All Sub Group");
             //rptViewer.LocalReport.SetParameters(new ReportParameter("CompanyName", Convert.ToString(ConfigurationManager.AppSettings["CompanyName"])));
             reportManager.AddDataSource(dsGeneral);
             reportManager.Show();
@@ -129,7 +135,15 @@ namespace VPR.WebApp.Reports
             criteria.CountryId = Convert.ToInt32(ddlCountry.SelectedValue);
             criteria.CargoId = Convert.ToInt32(ddlCargo.SelectedValue);
             criteria.CargoGroupId = Convert.ToInt32(ddlCargoGroup.SelectedValue);
-            criteria.PortId = Convert.ToInt32(ddlPort.SelectedValue);
+            if (ddlSubGroup.Items.Count > 0)
+                criteria.SubGroupID = Convert.ToInt32(ddlSubGroup.SelectedValue);
+            else
+                criteria.SubGroupID = 0;
+
+            if (ddlPort.Items.Count > 0)
+                criteria.PortId = Convert.ToInt32(ddlPort.SelectedValue);
+            else
+                criteria.PortId = 0;
             criteria.Activity = ddlActivity.SelectedValue;
             if (ddlCountry.SelectedIndex == 0)
                 criteria.CountryName = "0";
@@ -150,9 +164,9 @@ namespace VPR.WebApp.Reports
             ddlCargoGroup.DataBind();
         }
 
-        private void LoadCargo(int GroupID)
+        private void LoadCargo(int GroupID, int SubGroupID)
         {
-            DataTable dt = new ReportBAL().GetAllCargo(GroupID);
+            DataTable dt = new ReportBAL().GetAllCargo(GroupID, SubGroupID);
             DataRow dr = dt.NewRow();
             dr["pk_CargoId"] = "0";
             dr["CargoName"] = "All Cargo";
@@ -190,6 +204,19 @@ namespace VPR.WebApp.Reports
             ddlCountry.DataBind();
         }
 
+        private void LoadCargoSubGroup(int CargoGroupID)
+        {
+            DataTable dt = new ReportBAL().GetAllCargoSubGroup(CargoGroupID);
+            DataRow dr = dt.NewRow();
+            dr["pk_CargoSubGroupId"] = "0";
+            dr["CargoSubGroupName"] = "All Sub Groups";
+            dt.Rows.InsertAt(dr, 0);
+            ddlSubGroup.DataValueField = "pk_CargoSubGroupId";
+            ddlSubGroup.DataTextField = "CargoSubGroupName";
+            ddlSubGroup.DataSource = dt;
+            ddlSubGroup.DataBind();
+        }
+
         protected void ddlCargo_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -207,7 +234,13 @@ namespace VPR.WebApp.Reports
 
         protected void ddlCargoGroup_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadCargo(Convert.ToInt32(ddlCargoGroup.SelectedValue));
+            LoadCargoSubGroup(Convert.ToInt16(ddlCargoGroup.SelectedValue));
+            LoadCargo(Convert.ToInt32(ddlCargoGroup.SelectedValue), 0);
+        }
+
+        protected void ddlSubGroup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadCargo(Convert.ToInt32(ddlCargoGroup.SelectedValue), Convert.ToInt32(ddlSubGroup.SelectedValue));
         }
 
         //private void ToggleErrorPanel(bool isVisible, string errorMessage)

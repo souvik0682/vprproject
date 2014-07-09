@@ -12,7 +12,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="container" runat="server">
-<center>
+    <center>
 
         <div id="headercaption">
            Total Vessel Position
@@ -24,11 +24,11 @@
                 <legend> Total Vessel Position </legend>
                 <table width="100%">
                     <tr>
-                        <td class="style1">
+ <%--                       <td class="style1" >
                             Activity Status:<span class="errormessage1">*</span>
-                        </td>
+                        </td>--%>
                         <td>
-                            <asp:DropDownList ID="ddlActivity" runat="server" TabIndex="1">
+                            <asp:DropDownList ID="ddlActivity" runat="server" TabIndex="1" Visible = "false">
                                 <asp:ListItem Value="0" Text="All" Selected="True"></asp:ListItem>
                                 <asp:ListItem Value="A" Text="Expected Arrival"></asp:ListItem>
                                 <asp:ListItem Value="B" Text="Awaiting Berth"></asp:ListItem>
@@ -40,11 +40,9 @@
                             Port:<span class="errormessage1">*</span>
                         </td>
                         <td>
-                            <asp:DropDownList ID="ddlPort" runat="server"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlPort" runat="server" Visible = "true"></asp:DropDownList>
                         </td>
-                    </tr>
-     
-                    <tr>            
+         
                         <td style="text-align: right; " class="style1">
                             <asp:Button ID="btnShow" runat="server" OnClick="btnShow_Click" Text="Show Report"  />
                         </td>

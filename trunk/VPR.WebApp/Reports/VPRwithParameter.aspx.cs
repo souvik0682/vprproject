@@ -38,7 +38,7 @@ namespace VPR.WebApp.Reports
             {
                 RetriveParameters();
                 CheckUserAccess();
-                LoadDDLs();
+                //LoadDDLs();
             }
         }
 
@@ -72,12 +72,12 @@ namespace VPR.WebApp.Reports
             }
         }
 
-        private void SetDefaultSearchCriteria(SearchCriteria criteria)
-        {
-            criteria.portID = Convert.ToInt32(ddlPort.SelectedValue);
-            criteria.ActivityName = ddlActivity.SelectedItem.ToString();
-            //criteria.BLDate = txtMovementDate.toda();
-        }
+        //private void SetDefaultSearchCriteria(SearchCriteria criteria)
+        //{
+        //    criteria.portID = Convert.ToInt32(ViewState["PORTID"]);  // Convert.ToInt32(ddlPort.SelectedValue);
+        //    criteria.ActivityName = ddlActivity.SelectedItem.ToString();
+        //    //criteria.BLDate = txtMovementDate.toda();
+        //}
 
         
         private void GenerateReport()
@@ -94,8 +94,10 @@ namespace VPR.WebApp.Reports
             //reportManager.AddParameter("ToDate", txtToDt.Text.Trim());
             //reportManager.AddParameter("Cargo", Convert.ToString(ddlCargo.SelectedItem));
             //reportManager.AddParameter("Country", Convert.ToString(ddlCountry.SelectedItem));
+
             reportManager.AddParameter("Activity", Convert.ToString(ddlActivity.SelectedItem));
-            reportManager.AddParameter("PortNo", Convert.ToString(ddlPort.SelectedItem));
+            //criteria.PortId = Convert.ToInt32(ViewState["PORTID"]);
+            reportManager.AddParameter("PortNo", Convert.ToString(ViewState["PORTID"]));
 
 
             //rptViewer.LocalReport.SetParameters(new ReportParameter("CompanyName", Convert.ToString(ConfigurationManager.AppSettings["CompanyName"])));
@@ -103,18 +105,18 @@ namespace VPR.WebApp.Reports
             reportManager.Show();
         }
 
-        private void LoadDDLs()
-        {
-            DataTable dt = new TransactionBLL().GetPortWithTransaction();
-            DataRow dr = dt.NewRow();
-            dr["pk_PortID"] = "0";
-            dr["PortName"] = "--Select--";
-            dt.Rows.InsertAt(dr, 0);
-            ddlPort.DataValueField = "pk_PortID";
-            ddlPort.DataTextField = "PortName";
-            ddlPort.DataSource = dt;
-            ddlPort.DataBind();
-        }
+        //private void LoadDDLs()
+        //{
+        //    DataTable dt = new TransactionBLL().GetPortWithTransaction();
+        //    DataRow dr = dt.NewRow();
+        //    dr["pk_PortID"] = "0";
+        //    dr["PortName"] = "--Select--";
+        //    dt.Rows.InsertAt(dr, 0);
+        //    ddlPort.DataValueField = "pk_PortID";
+        //    ddlPort.DataTextField = "PortName";
+        //    ddlPort.DataSource = dt;
+        //    ddlPort.DataBind();
+        //}
 
         private void BuildCriteria(ReportCriteria criteria)
         {
@@ -122,7 +124,7 @@ namespace VPR.WebApp.Reports
             //criteria.CountryId = Convert.ToInt32(ddlCountry.SelectedValue);
             //criteria.CargoId = Convert.ToInt32(ddlCargo.SelectedValue);
             //criteria.CargoGroupId = Convert.ToInt32(ddlCargoGroup.SelectedValue);
-            criteria.PortId = Convert.ToInt32(ddlPort.SelectedValue);
+            criteria.PortId = Convert.ToInt32(ViewState["PORTID"]);  // Convert.ToInt32(ddlPort.SelectedValue);
             criteria.Activity = ddlActivity.SelectedValue;
             //if (ddlCountry.SelectedIndex == 0)
             //    criteria.CountryName = "0";
@@ -130,8 +132,30 @@ namespace VPR.WebApp.Reports
             //    criteria.CountryName = ddlCountry.SelectedItem.ToString().Substring(0, 2);
         }
 
-        protected void ddlPort_SelectedIndexChanged(object sender, EventArgs e)
+        void txtPort_TextChanged(object sender, EventArgs e)
         {
+            string port = ((TextBox)txtPort.FindControl("txtPort")).Text;
+
+            if (port != string.Empty)
+            {
+                if (port.Split('|').Length > 1)
+                {
+                    string portCode = port.Split('|')[1].Trim();
+
+                    int portId = new TransactionBLL().GetPortId(portCode);
+
+                    ViewState["PORTID"] = portId;
+                }
+                else
+                {
+                    ViewState["PORTID"] = null;
+                }
+            }
+            else
+            {
+                ViewState["PORTID"] = null;
+            }
+
 
         }
 

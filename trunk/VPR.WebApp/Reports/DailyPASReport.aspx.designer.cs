@@ -22,13 +22,13 @@ namespace VPR.WebApp.Reports {
         protected global::System.Web.UI.WebControls.Label lblError;
         
         /// <summary>
-        /// txtMovementDate control.
+        /// txtMovementDate1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMovementDate;
+        protected global::System.Web.UI.WebControls.TextBox txtMovementDate1;
         
         /// <summary>
         /// ceMovementDate control.
@@ -38,6 +38,24 @@ namespace VPR.WebApp.Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.CalendarExtender ceMovementDate;
+        
+        /// <summary>
+        /// txtMovementDate2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMovementDate2;
+        
+        /// <summary>
+        /// ceMovementDate1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender ceMovementDate1;
         
         /// <summary>
         /// ddlCargo control.
@@ -58,13 +76,22 @@ namespace VPR.WebApp.Reports {
         protected global::System.Web.UI.WebControls.DropDownList ddlCountry;
         
         /// <summary>
-        /// ddlPort control.
+        /// txtPort control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPort;
+        protected global::VPR.WebApp.CustomControls.AC_Port txtPort;
+        
+        /// <summary>
+        /// errPort control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label errPort;
         
         /// <summary>
         /// btnShow control.
@@ -83,5 +110,14 @@ namespace VPR.WebApp.Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvMovementDate;
+        
+        /// <summary>
+        /// rfvMovementDate1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvMovementDate1;
     }
 }

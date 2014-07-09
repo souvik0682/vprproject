@@ -1,4 +1,4 @@
-﻿<%@ Page Title=":: VPR :: Cargo Wise Vessel" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="rptCargoWeekly.aspx.cs" Inherits="VPR.WebApp.Reports.rptCargoWeekly" %>
+﻿<%@ Page Title=":: VPR :: Periodic Vessel Summary" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="rptCargoWeekly.aspx.cs" Inherits="VPR.WebApp.Reports.rptCargoWeekly" %>
 <%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
     Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
@@ -24,7 +24,7 @@
     </div>
     <div style="width:900px;margin: 0 auto;">
         <fieldset style="width: 878px;">
-            <legend>Search Criteria</legend>
+            <legend>Report Criteria</legend>
             <div style="padding:10px;">
                 <table border="0" cellpadding="0" cellspacing="0">
                     <tr>
@@ -38,6 +38,9 @@
                             <asp:TextBox ID="txtToDt" runat="server" Width="150" MaxLength="10"></asp:TextBox>
                             <cc1:calendarextender ID="ceToDt" runat="server" TargetControlID="txtToDt"></cc1:calendarextender>   
                         </td>
+                        <td class="style1">
+                            Vessel Activity:<span class="errormessage1">*</span>
+                        </td>
                         <td>
                             <asp:DropDownList ID="ddlActivity" runat="server" TabIndex="1">
                                 <asp:ListItem Value="0" Text="All" Selected="True"></asp:ListItem>
@@ -47,26 +50,33 @@
                         </td>
                     </tr>
                     <tr>
-                        <td style="padding-right:15px;">Select Cargo Group:<span class="errormessage">*</span></td> 
+                        <td style="padding-right:15px;">Select Group:<span class="errormessage">*</span></td> 
                         <td>                                        
                             <asp:DropDownList ID="ddlCargoGroup" runat="server"  Width="150" AutoPostBack="true" onselectedindexchanged="ddlCargoGroup_SelectedIndexChanged">
                             </asp:DropDownList>
                         </td>
-                       
+
+                        <td style="padding-right:15px;">Select Sub Group:<span class="errormessage">*</span></td> 
+                        <td>                                        
+                            <asp:DropDownList ID="ddlSubGroup" runat="server"  Width="150" AutoPostBack="true" onselectedindexchanged="ddlSubGroup_SelectedIndexChanged">
+                            </asp:DropDownList>
+                        </td>
+
+                        <td style="padding-right:15px;">Select Cargo:<span class="errormessage">*</span></td> 
+                        <td>                                        
+                            <asp:DropDownList ID="ddlCargo" runat="server" Width="150" AutoPostBack="true" onselectedindexchanged="ddlCargo_SelectedIndexChanged">
+                            </asp:DropDownList>
+                        </td>
+                      
+                    </tr>
+                    <tr>
                         <td style="padding-right:15px;">Select Country:<span class="errormessage">*</span></td> 
                         <td>                                        
                             <asp:DropDownList ID="ddlCountry" runat="server" Width="150" AutoPostBack="true" 
                                 onselectedindexchanged="ddlCountry_SelectedIndexChanged">
                             </asp:DropDownList>
                         </td>
-                      
-                    </tr>
-                    <tr>
-                        <td style="padding-right:15px;">Select Cargo:<span class="errormessage">*</span></td> 
-                        <td>                                        
-                            <asp:DropDownList ID="ddlCargo" runat="server" Width="150" AutoPostBack="true" onselectedindexchanged="ddlCargo_SelectedIndexChanged">
-                            </asp:DropDownList>
-                        </td>
+
                         <td style="padding-right:15px;">Select Port:<span class="errormessage">*</span></td> 
                         <td>                                        
                             <asp:DropDownList ID="ddlPort" runat="server"  Width="150" AutoPostBack="true" 
