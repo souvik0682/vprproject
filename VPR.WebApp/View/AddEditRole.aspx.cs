@@ -27,9 +27,9 @@ namespace VPR.WebApp.View
         {
             Home = 1,
             Master = 2,
-            Import = 17,
-            Finance = 40,
-            Logistic = 66,
+            VPR = 14,
+            PAS = 17,
+            Report = 18,
             Export = 92,
             Change_Password = 110
         };
@@ -71,6 +71,14 @@ namespace VPR.WebApp.View
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 PopulateControlsForGridView(gvwFin, e.Row);
+            }
+        }
+
+        protected void gvwLog_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                PopulateControlsForGridView(gvwLog, e.Row);
             }
         }
 
@@ -210,14 +218,14 @@ namespace VPR.WebApp.View
             gvwMst.DataSource = userBll.GetMenuByRole(_roleId, (int)MainMenuItem.Master);
             gvwMst.DataBind();
 
-            gvwImp.DataSource = userBll.GetMenuByRole(_roleId, (int)MainMenuItem.Import);
+            gvwImp.DataSource = userBll.GetMenuByRole(_roleId, (int)MainMenuItem.VPR);
             gvwImp.DataBind();
 
-            gvwFin.DataSource = userBll.GetMenuByRole(_roleId, (int)MainMenuItem.Finance);
+            gvwFin.DataSource = userBll.GetMenuByRole(_roleId, (int)MainMenuItem.PAS);
             gvwFin.DataBind();
 
-            //gvwLog.DataSource = userBll.GetMenuByRole(_roleId, (int)MainMenuItem.Logistic);
-            //gvwLog.DataBind();
+            gvwLog.DataSource = userBll.GetMenuByRole(_roleId, (int)MainMenuItem.Report);
+            gvwLog.DataBind();
 
             //gvwExp.DataSource = userBll.GetMenuByRole(_roleId, (int)MainMenuItem.Export);
             //gvwExp.DataBind();

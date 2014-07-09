@@ -94,6 +94,24 @@ namespace VPR.WebApp.View {
         protected global::System.Web.UI.WebControls.GridView gvwFin;
         
         /// <summary>
+        /// tpReports control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.TabPanel tpReports;
+        
+        /// <summary>
+        /// gvwLog control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvwLog;
+        
+        /// <summary>
         /// btnSave control.
         /// </summary>
         /// <remarks>
