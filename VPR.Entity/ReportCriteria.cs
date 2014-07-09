@@ -16,6 +16,12 @@ namespace VPR.Entity
         public int CountryId { get; set; }
         public string TransactionType { get; set; }
         public int CargoId { get; set; }
+        public int CargoGroupId { get; set; }
+        public int SubGroupID { get; set; }
+        public int PortId { get; set; }
+        public string CountryName { get; set; }
+        public string Activity { get; set; }
+
 
         #endregion
 

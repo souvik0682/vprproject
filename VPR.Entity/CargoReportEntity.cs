@@ -22,6 +22,10 @@ namespace VPR.Entity
         public string Owner { get; set; }
         public string CargoName { get; set; }
         public string GroupName { get; set; }
+        public string AgentName { get; set; }
+        public decimal LOA { get; set; }
+        public string BerthNo { get; set; }
+        public string Remarks { get; set; }
         //public bool IsDeleted { get; set; }
         //public bool IsNew { get; set; }
 
@@ -76,6 +80,10 @@ namespace VPR.Entity
                 if (reader["Owner"] != DBNull.Value)
                     this.Owner = Convert.ToString(reader["Owner"]);
 
+            if (ColumnExists(reader, "AgentName"))
+                if (reader["AgentName"] != DBNull.Value)
+                    this.AgentName = Convert.ToString(reader["AgentName"]);
+
             if (ColumnExists(reader, "CargoName"))
                 if (reader["CargoName"] != DBNull.Value)
                     this.CargoName = Convert.ToString(reader["CargoName"]);
@@ -83,6 +91,19 @@ namespace VPR.Entity
             if (ColumnExists(reader, "GroupName"))
                 if (reader["GroupName"] != DBNull.Value)
                     this.GroupName = Convert.ToString(reader["GroupName"]);
+
+            if (ColumnExists(reader, "LOA"))
+                if (reader["LOA"] != DBNull.Value)
+                    this.LOA = Convert.ToDecimal(reader["LOA"]);
+
+            if (ColumnExists(reader, "BerthName"))
+                if (reader["BerthName"] != DBNull.Value)
+                    this.BerthNo = Convert.ToString(reader["BerthName"]);
+
+            if (ColumnExists(reader, "Remarks"))
+                if (reader["Remarks"] != DBNull.Value)
+                    this.Remarks = Convert.ToString(reader["Remarks"]);
+
 
             //this.IsDeleted = false;
             //this.IsNew = false;

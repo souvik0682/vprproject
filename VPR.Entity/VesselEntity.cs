@@ -39,8 +39,13 @@ namespace VPR.Entity
         public string AppointingCo { get; set; }
         public string Shipper { get; set; }
         public string ActivityName { get; set; }
+        public string ActivityStatus { get; set; }
         public DateTime ETA { get; set; }
         public DateTime? ETB { get; set; }
+        public DateTime? SailDate { get; set; }
+        public int NominatingCountry { get; set; }
+        public int AppointingCountry { get; set; }
+
 
         public VesselEntity()
         {
@@ -79,7 +84,6 @@ namespace VPR.Entity
                 if (reader["ArrivalDate"] != DBNull.Value)
                     this.ArrivalDate = Convert.ToDateTime(reader["ArrivalDate"]);
 
-
             if (ColumnExists(reader, "ETA"))
                 if (reader["ETA"] != DBNull.Value)
                     this.ETA = Convert.ToDateTime(reader["ETA"]);
@@ -95,6 +99,10 @@ namespace VPR.Entity
             if (ColumnExists(reader, "ETB"))
                 if (reader["ETB"] != DBNull.Value)
                     this.ETB = Convert.ToDateTime(reader["ETB"]);
+
+            if (ColumnExists(reader, "SailingDate"))
+                if (reader["SailingDate"] != DBNull.Value)
+                    this.SailDate = Convert.ToDateTime(reader["SailingDate"]);
 
             if (ColumnExists(reader, "Owner"))
                 this.Owner = Convert.ToString(reader["Owner"]);
@@ -167,9 +175,21 @@ namespace VPR.Entity
                 if (reader["ActivityName"] != DBNull.Value)
                     this.ActivityName = Convert.ToString(reader["ActivityName"]);
 
+            if (ColumnExists(reader, "ActivityStatus"))
+                if (reader["ActivityStatus"] != DBNull.Value)
+                    this.ActivityStatus = Convert.ToString(reader["ActivityStatus"]);
+
             if (ColumnExists(reader, "VesselPrefix"))
                 if (reader["VesselPrefix"] != DBNull.Value)
                     this.VesselPrefix = Convert.ToInt32(reader["VesselPrefix"]);
+
+            if (ColumnExists(reader, "NomCountryID"))
+                if (reader["NomCountryID"] != DBNull.Value)
+                    this.NominatingCountry = Convert.ToInt32(reader["NomCountryID"]);
+
+            if (ColumnExists(reader, "AppCountryID"))
+                if (reader["AppCountryID"] != DBNull.Value)
+                    this.AppointingCountry = Convert.ToInt32(reader["AppCountryID"]);
         }
 
         public bool ColumnExists(IDataReader reader, string columnName)

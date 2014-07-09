@@ -155,6 +155,7 @@ namespace VPR.Entity
         public string Company { get; set; }
         public string VesselName { get; set; }
         public string Port { get; set; }
+        public Int32 portID { get; set; }
         public string Berth { get; set; }
         public string VesselStatus { get; set; }
 
@@ -230,6 +231,7 @@ namespace VPR.Entity
             this.DocumentName = string.Empty;
             this.DocumentType = string.Empty;
             this.ActivityName = string.Empty;
+            this.portID = 0;
             
         }
 
