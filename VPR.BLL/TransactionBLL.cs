@@ -55,6 +55,12 @@ namespace VPR.BLL
             return TransactionDAL.GetPortNameById(PortId);
         }
 
+        public string GetOnlyPortNameById(Int64 PortId)
+        {
+            return TransactionDAL.GetOnlyPortNameById(PortId);
+        }
+
+
         public List<CargoDetails> GetListOfCargo(int VesselId)
         {
             return TransactionDAL.GetListOfCargo(VesselId);

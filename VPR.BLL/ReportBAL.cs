@@ -32,6 +32,11 @@ namespace VPR.BLL
             //return ReportDAL.GetCargoReport(criteria);
         }
 
+        public DataTable GetEmailIDs(ReportCriteria criteria)
+        {
+            return ReportDal.GetEmailIDs(criteria);
+        }
+
         public static List<WeeklyReportEntity> GetWeeklyCargoReport(ReportCriteria criteria)
         {
             return ReportDal.GetWeeklyCargoReport(criteria); //  GetCargoReport(criteria);
@@ -43,9 +48,19 @@ namespace VPR.BLL
             return ReportDal.GetAllCargoGroup();
         }
 
-        public DataTable GetAllCargo(int GroupID)
+        public DataTable GetAllCargoSubGroup(int GroupID)
         {
-            return ReportDal.GetAllCargo(GroupID);
+            return ReportDal.GetAllCargoSubGroup(GroupID);
+        }
+
+        public DataTable GetAllMailGroup(int SubGroupID)
+        {
+            return ReportDal.GetAllMailGroup(SubGroupID);
+        }
+
+        public DataTable GetAllCargo(int GroupID, int SubGroupID)
+        {
+            return ReportDal.GetAllCargo(GroupID, SubGroupID);
         }
 
         public DataTable GetAllPorts(string Country)
@@ -58,9 +73,9 @@ namespace VPR.BLL
             return ReportDal.GetAllCountry();
         }
 
-        public DataTable GetPASExcelReport(DateTime TranDate, int CargoID, int PortID, string CountryAbbr)
+        public DataTable GetPASExcelReport(DateTime TranDate, DateTime TranDate1, int CargoID, int PortID, string CountryAbbr)
         {
-            return ReportDal.GetPASExcelReport(TranDate, CargoID, PortID, CountryAbbr);
+            return ReportDal.GetPASExcelReport(TranDate, TranDate1, CargoID, PortID, CountryAbbr);
         }
 
         public static List<VesselPosition> GetVPR(ReportCriteria criteria)
