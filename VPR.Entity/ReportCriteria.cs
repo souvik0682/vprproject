@@ -21,7 +21,7 @@ namespace VPR.Entity
         public int PortId { get; set; }
         public string CountryName { get; set; }
         public string Activity { get; set; }
-
+        public int EmailGroupID { get; set; }
 
         #endregion
 
