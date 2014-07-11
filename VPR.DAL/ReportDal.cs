@@ -110,7 +110,25 @@ namespace VPR.DAL
 
             //using (DbQuery oDq = new DbQuery(strExecution))
             {
-                  dt = oDq.GetTable();
+                 dt = oDq.GetTable();
+            }
+
+            return dt;
+        }
+
+        public static DataTable GetAllMailGroup(int SubGroupID)
+        {
+            DataTable dt = new DataTable();
+
+            string strExecution = "prcGetOnlyMailGroup";
+            //DateTime dt1 = string.IsNullOrEmpty(StockDate) ? DateTime.Now : Convert.ToDateTime(StockDate);
+            //DataSet ds = new DataSet();
+            using (DbQuery oDq = new DbQuery(strExecution))
+
+            //using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@SubGroupID", SubGroupID);
+                dt = oDq.GetTable();
             }
 
             return dt;
@@ -227,6 +245,24 @@ namespace VPR.DAL
 
             return lstEntity;
 
+        }
+
+        public static DataTable GetEmailIDs(ReportCriteria criteria)
+        {
+            string strExecution = "[dbo].[GetMailIDFromEmailGroup]";
+            DataTable myDataTable;
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@EmailGroupID", criteria.EmailGroupID);
+                oDq.AddIntegerParam("@CountryId", criteria.CountryId);
+                oDq.AddIntegerParam("@CargoGroupId", criteria.CargoGroupId);
+                oDq.AddIntegerParam("@CargoSubGroupID", criteria.SubGroupID);
+
+
+                myDataTable = oDq.GetTable();
+            }
+            return myDataTable;
         }
 
         public void Dispose()
