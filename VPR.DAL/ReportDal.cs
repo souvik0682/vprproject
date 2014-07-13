@@ -265,6 +265,20 @@ namespace VPR.DAL
             return myDataTable;
         }
 
+        public static void SendForceEmail(int EmailGroupId, string EmailIds, string AttachmentFileName)
+        {
+            string strExecution = "[dbo].[usp_SendForceEmail]";
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@EmailGroupId", EmailGroupId);
+                oDq.AddVarcharParam("@EmailIds", 2000, EmailIds);
+                oDq.AddVarcharParam("@AttachmentFile", 500, AttachmentFileName);
+
+                oDq.RunActionQuery();
+            }
+        }
+
         public void Dispose()
         {
             this.Dispose();

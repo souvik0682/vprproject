@@ -84,5 +84,10 @@ namespace VPR.BLL
             //return ReportDal.GetVPR(criteria);
             //return ReportDAL.GetCargoReport(criteria);
         }
+
+        public void SendForceEmail(int EmailGroupId, string EmailIds, string AttachmentFileName)
+        {
+            ReportDal.SendForceEmail(EmailGroupId, EmailIds, AttachmentFileName);
+        }
     }
 }
