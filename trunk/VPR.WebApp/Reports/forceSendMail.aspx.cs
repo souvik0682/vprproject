@@ -39,13 +39,13 @@ namespace VPR.WebApp.Reports
 
                 try
                 {
-                    RetriveParameters();
-                    CheckUserAccess();
+                    //RetriveParameters();
+                    //CheckUserAccess();
                     //SetAttributes();
                     LoadCargoGroup();
-                    //LoadCargo(0, 0);
                     LoadCountry();
-                    //LoadPort("");
+                    pnlContainer.Attributes.CssStyle["display"] = "none";
+                    lblMessage.Attributes.CssStyle["display"] = "none";
                 }
                 catch (Exception ex)
                 {
@@ -61,7 +61,7 @@ namespace VPR.WebApp.Reports
             try
             {
                 GenerateReport();
-                ModalPopupExtender1.Show();
+                //ModalPopupExtender1.Show();
             }
             catch (Exception ex)
             {
@@ -100,45 +100,27 @@ namespace VPR.WebApp.Reports
 
         private void GenerateReport()
         {
-            var cls = new ReportBAL();
-            //LocalReportManager reportManager = new LocalReportManager(rptViewer, "CargoReport", ConfigurationManager.AppSettings["ReportNamespace"].ToString(), ConfigurationManager.AppSettings["ReportPath"].ToString());
             ReportCriteria criteria = new ReportCriteria();
             BuildCriteria(criteria);
             DataTable dtFilteredContainer = new DataTable();
             ReportBAL emailBLL = new ReportBAL();
 
             dtFilteredContainer = emailBLL.GetEmailIDs(criteria);
-            ViewState["Email"] = dtFilteredContainer;
-            gvMail.DataSource = dtFilteredContainer;
-            gvMail.DataBind();
-            //ReportDataSource dsGeneral = new ReportDataSource("DataSetCargoReport", lstcargoReport);
 
-
-            //ContainerTranBLL oContainerTranBLL = new ContainerTranBLL();
-            //dtFilteredContainer = oContainerTranBLL.GetContainerTransactionListFiltered(Convert.ToInt16(ddlFromStatus.SelectedValue), EmptyYardId, Convert.ToDateTime(txtDate.Text), Convert.ToInt16(ddlLine.SelectedValue));
-            //ViewState["Container"] = dtFilteredContainer;
-            //gvContainer.DataSource = dtFilteredContainer;
-            //gvContainer.DataBind();
-
-            //reportManager.AddParameter("CompanyName", Convert.ToString(ConfigurationManager.AppSettings["CompanyName"]));
-            //reportManager.AddParameter("FromDate", txtFromDt.Text.Trim());
-            //reportManager.AddParameter("ToDate", txtToDt.Text.Trim());
-            //reportManager.AddParameter("Cargo", Convert.ToString(ddlCargo.SelectedItem));
-            //reportManager.AddParameter("Country", Convert.ToString(ddlCountry.SelectedItem));
-            //reportManager.AddParameter("CargoGroup", Convert.ToString(ddlCargoGroup.SelectedItem));
-            //if (ddlPort.Items.Count > 0)
-            //    reportManager.AddParameter("Port", Convert.ToString(ddlPort.SelectedItem));
-            //else
-            //    reportManager.AddParameter("Port", "All Ports");
-
-            //if (ddlSubGroup.Items.Count > 0)
-            //    reportManager.AddParameter("SubGroup", Convert.ToString(ddlSubGroup.SelectedItem));
-            //else
-            //    reportManager.AddParameter("SubGroup", "All Sub Group");
-            ////rptViewer.LocalReport.SetParameters(new ReportParameter("CompanyName", Convert.ToString(ConfigurationManager.AppSettings["CompanyName"])));
-            //reportManager.AddDataSource(dsGeneral);
-            //reportManager.Show();
-
+            if (dtFilteredContainer != null && dtFilteredContainer.Rows.Count > 0)
+            {
+                gvMail.DataSource = dtFilteredContainer;
+                gvMail.DataBind();
+                pnlContainer.Attributes.CssStyle["display"] = "";
+                lblMessage.Attributes.CssStyle["display"] = "none";
+            }
+            else
+            {
+                gvMail.DataSource = null;
+                gvMail.DataBind();
+                pnlContainer.Attributes.CssStyle["display"] = "none";
+                lblMessage.Attributes.CssStyle["display"] = "";
+            }
         }
 
         private void BuildCriteria(ReportCriteria criteria)
@@ -163,7 +145,7 @@ namespace VPR.WebApp.Reports
             DataTable dt = new ReportBAL().GetAllCargoGroup();
             DataRow dr = dt.NewRow();
             dr["pk_CargoGroupId"] = "0";
-            dr["CargoGroupName"] = "All Groups";
+            dr["CargoGroupName"] = "-- Select --";
             dt.Rows.InsertAt(dr, 0);
             ddlCargoGroup.DataValueField = "pk_CargoGroupId";
             ddlCargoGroup.DataTextField = "CargoGroupName";
@@ -176,7 +158,7 @@ namespace VPR.WebApp.Reports
             DataTable dt = new ReportBAL().GetAllMailGroup(SubGroupID);
             DataRow dr = dt.NewRow();
             dr["pk_EmailGroupId"] = "0";
-            dr["GroupName"] = "All Email Groups";
+            dr["GroupName"] = "-- Select --";
             dt.Rows.InsertAt(dr, 0);
             ddlEmailGroup.DataValueField = "pk_EmailGroupId";
             ddlEmailGroup.DataTextField = "GroupName";
@@ -190,7 +172,7 @@ namespace VPR.WebApp.Reports
             DataTable dt = new ReportBAL().GetAllCountry();
             DataRow dr = dt.NewRow();
             dr["pk_CountryId"] = "0";
-            dr["CountryName"] = "All Country";
+            dr["CountryName"] = "-- Select --";
             dt.Rows.InsertAt(dr, 0);
             ddlCountry.DataValueField = "pk_CountryId";
             ddlCountry.DataTextField = "CountryName";
@@ -203,7 +185,7 @@ namespace VPR.WebApp.Reports
             DataTable dt = new ReportBAL().GetAllCargoSubGroup(CargoGroupID);
             DataRow dr = dt.NewRow();
             dr["pk_CargoSubGroupId"] = "0";
-            dr["CargoSubGroupName"] = "All Sub Groups";
+            dr["CargoSubGroupName"] = "-- Select --";
             dt.Rows.InsertAt(dr, 0);
             ddlSubGroup.DataValueField = "pk_CargoSubGroupId";
             ddlSubGroup.DataTextField = "CargoSubGroupName";
@@ -237,12 +219,42 @@ namespace VPR.WebApp.Reports
         {
             try
             {
-                //GenerateReport();
+                lblError.Text = "";
+
+                string attachmentFileName = string.Empty;
+                string emailIds = string.Empty;
+                int emailGroupId = Convert.ToInt32(ddlEmailGroup.SelectedValue);
+
+                foreach (GridViewRow row in gvMail.Rows)
+                {
+                    CheckBox ChkBoxRows = (CheckBox)row.FindControl("chkEmp");
+
+                    if (ChkBoxRows.Checked == true)
+                    {
+                        HiddenField hdnEmailId = (HiddenField)row.FindControl("hdnEmailId");
+                        emailIds += "," + hdnEmailId.Value;
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(emailIds))
+                {
+                    emailIds = emailIds.Remove(0, 1);
+
+                    //Send Email : EmailGroupId, EmailIds, AttachmentFile
+                    new ReportBAL().SendForceEmail(emailGroupId, emailIds, attachmentFileName);
+                    lblError.Text = "Email(s) sent successfully!";
+                    lblError.ForeColor = System.Drawing.Color.Green;
+                }
+                else
+                {
+                    lblError.Text = "Please select Email(s)!";
+                    lblError.ForeColor = System.Drawing.Color.Red;
+                }
             }
             catch (Exception ex)
             {
-                //ReportBAL.HandleException(ex, this.Server.MapPath(this.Request.ApplicationPath).Replace("/", "\\"));
-                //ToggleErrorPanel(true, ex.Message);
+                lblError.Text = "Error while sending Email(s)!";
+                lblError.ForeColor = System.Drawing.Color.Red;
             }
         }
 
@@ -251,9 +263,12 @@ namespace VPR.WebApp.Reports
 
         }
 
-        protected void ddlddlEmailGroup_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ddlEmailGroup_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            gvMail.DataSource = null;
+            gvMail.DataBind();
+            pnlContainer.Attributes.CssStyle["display"] = "none";
+            //lblMessage.Attributes.CssStyle["display"] = "";
         }
 
         //void fillContainer(int EmptyYardId)
@@ -266,5 +281,21 @@ namespace VPR.WebApp.Reports
         //    gvContainer.DataBind();
         //}
 
+        protected void chkboxSelectAll_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox ChkBoxHeader = (CheckBox)gvMail.HeaderRow.FindControl("chkboxSelectAll");
+            foreach (GridViewRow row in gvMail.Rows)
+            {
+                CheckBox ChkBoxRows = (CheckBox)row.FindControl("chkEmp");
+                if (ChkBoxHeader.Checked == true)
+                {
+                    ChkBoxRows.Checked = true;
+                }
+                else
+                {
+                    ChkBoxRows.Checked = false;
+                }
+            }
+        }
     }
 }
