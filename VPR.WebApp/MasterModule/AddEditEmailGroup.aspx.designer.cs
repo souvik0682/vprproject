@@ -85,13 +85,13 @@ namespace VPR.WebApp.MasterModule {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvMailSubject;
         
         /// <summary>
-        /// txtMailBody control.
+        /// ckeMailBody control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMailBody;
+        protected global::CKEditor.NET.CKEditorControl ckeMailBody;
         
         /// <summary>
         /// rfvMailBody control.

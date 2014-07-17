@@ -98,7 +98,7 @@ namespace VPR.WebApp.MasterModule
                 emailGroup.CountryId = Convert.ToInt32(ddlCountry.SelectedValue);
                 //emailGroup.CargoGroupID = Convert.ToInt32(ddlCargoGroup.SelectedValue);
                 emailGroup.Subject = txtMailSubject.Text.Trim();
-                emailGroup.MailBody = txtMailBody.Text.Trim();
+                emailGroup.MailBody = ckeMailBody.Text.Trim();
                 emailGroup.Attachment = ddlAttachment.SelectedValue;
                 emailGroup.Frequency = ddlMailFrequency.SelectedValue;
                 emailGroup.SendingTime = ddlHour.SelectedValue + ":" + ddlMinutes.SelectedValue;
@@ -496,7 +496,7 @@ namespace VPR.WebApp.MasterModule
             //ddlCountry_SelectedIndexChanged(this, EventArgs.Empty);
 
             txtMailSubject.Text = objGroup.Subject;
-            txtMailBody.Text = objGroup.MailBody;
+            ckeMailBody.Text = objGroup.MailBody;
             ddlAttachment.SelectedValue = objGroup.Attachment;
             ddlMailFrequency.SelectedValue = objGroup.Frequency;
 
