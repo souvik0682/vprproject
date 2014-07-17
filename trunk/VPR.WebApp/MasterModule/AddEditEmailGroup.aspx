@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="True"
     CodeBehind="AddEditEmailGroup.aspx.cs" Inherits="VPR.WebApp.MasterModule.AddEditEmailGroup" %>
-
+<%@Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor"%>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <%@ Register Assembly="VPR.WebApp" Namespace="VPR.WebApp.CustomControls" TagPrefix="cc2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -57,8 +57,9 @@
                             Mail Body<span class="errormessage1">*</span>
                         </td>
                         <td>
-                            <asp:TextBox ID="txtMailBody" runat="server" Width="600px" TextMode="MultiLine" Rows="10"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="rfvMailBody" runat="server" ControlToValidate="txtMailBody"
+                            <CKEditor:CKEditorControl ID="ckeMailBody" BasePath="~/ckeditor" runat="server"></CKEditor:CKEditorControl>
+                            <%--<asp:TextBox ID="txtMailBody" runat="server" Width="600px" TextMode="MultiLine" Rows="10"></asp:TextBox>--%>
+                            <asp:RequiredFieldValidator ID="rfvMailBody" runat="server" ControlToValidate="ckeMailBody"
                                             ErrorMessage="This field is required*" CssClass="errormessage" ValidationGroup="Save"
                                             Display="Dynamic"></asp:RequiredFieldValidator>
                         </td>
