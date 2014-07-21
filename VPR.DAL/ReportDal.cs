@@ -20,11 +20,14 @@ namespace VPR.DAL
 
             using (DbQuery oDq = new DbQuery(strExecution))
             {
-                oDq.AddVarcharParam("@VesselActivity", 10, searchCriteria.ActivityName);
-                oDq.AddIntegerParam("@Port", searchCriteria.portID);
+                if (!ReferenceEquals(searchCriteria, null))
+                {
+                    oDq.AddVarcharParam("@VesselActivity", 10, searchCriteria.ActivityName);
+                    oDq.AddIntegerParam("@Port", searchCriteria.portID);
 
-                //oDq.AddVarcharParam("@ActivityDate", 10, searchCriteria.UserName);
-                
+                    //oDq.AddVarcharParam("@ActivityDate", 10, searchCriteria.UserName);
+                }
+
                 DataTableReader reader = oDq.GetTableReader();
 
                 while (reader.Read())
