@@ -115,6 +115,7 @@
         <RepeatRowHeaders>true</RepeatRowHeaders>
         <DataSetName>DistinctPortName</DataSetName>
         <Top>0.17781in</Top>
+        <Left>0.09355cm</Left>
         <Height>0.25in</Height>
         <Width>6in</Width>
         <Style>
@@ -137,57 +138,20 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
   </ReportParameters>
-  <Width>6.02916in</Width>
+  <Width>6.13198in</Width>
   <Page>
     <PageHeader>
-      <Height>1.11053in</Height>
+      <Height>1.1522in</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
-        <Textbox Name="Textbox2">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>VESSEL POSITION</Value>
-                  <Style>
-                    <FontFamily>Calibri</FontFamily>
-                    <FontSize>12pt</FontSize>
-                    <FontWeight>Bold</FontWeight>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Center</TextAlign>
-              </Style>
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox2</rd:DefaultName>
-          <Top>1.58777cm</Top>
-          <Left>0.09229cm</Left>
-          <Height>0.57354cm</Height>
-          <Width>15.14771cm</Width>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
         <Image Name="CompanyLogo">
           <Source>Embedded</Source>
           <Value>logo_benline</Value>
           <Sizing>FitProportional</Sizing>
-          <Top>1.27027cm</Top>
-          <Left>5.06385in</Left>
+          <Left>2.63193in</Left>
           <Height>0.48542in</Height>
           <Width>0.89932in</Width>
-          <ZIndex>1</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -214,11 +178,11 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>locationaddress</rd:DefaultName>
-          <Top>0.81139cm</Top>
-          <Left>0cm</Left>
+          <Top>2.04436cm</Top>
+          <Left>0.16761cm</Left>
           <Height>0.6cm</Height>
-          <Width>15.24cm</Width>
-          <ZIndex>2</ZIndex>
+          <Width>15.40761cm</Width>
+          <ZIndex>1</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -250,10 +214,11 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox17</rd:DefaultName>
-          <Top>0cm</Top>
+          <Top>1.23297cm</Top>
+          <Left>0.16761cm</Left>
           <Height>0.25in</Height>
-          <Width>6in</Width>
-          <ZIndex>3</ZIndex>
+          <Width>6.03683in</Width>
+          <ZIndex>2</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -265,11 +230,11 @@
           </Style>
         </Textbox>
         <Line Name="Line1">
-          <Top>1.04108in</Top>
-          <Left>0cm</Left>
+          <Top>1.08275in</Top>
+          <Left>0.16761cm</Left>
           <Height>0cm</Height>
           <Width>15.24cm</Width>
-          <ZIndex>4</ZIndex>
+          <ZIndex>3</ZIndex>
           <Style>
             <Border>
               <Style>Solid</Style>
