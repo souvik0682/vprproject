@@ -224,11 +224,12 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>VESSEL AT BERTH FOR  LOADING</Value>
+                <Value>VESSELS AT BERTH FOR  LOADING</Value>
                 <Style>
                   <FontFamily>Calibri</FontFamily>
                   <FontSize>11pt</FontSize>
                   <FontWeight>Bold</FontWeight>
+                  <Color>White</Color>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -244,6 +245,7 @@
           <Border>
             <Style>None</Style>
           </Border>
+          <BackgroundColor>Blue</BackgroundColor>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
           <PaddingTop>2pt</PaddingTop>
@@ -257,30 +259,12 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>VESSEL AT ANCHORE </Value>
+                <Value>VESSELS AT WAITING FOR BERTH  </Value>
                 <Style>
                   <FontFamily>Calibri</FontFamily>
                   <FontSize>11pt</FontSize>
                   <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>AWAITING </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Calibri</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>BERTH FOR  </Value>
-                <Style>
-                  <FontFamily>Calibri</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
+                  <Color>White</Color>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -297,6 +281,7 @@
           <Border>
             <Style>None</Style>
           </Border>
+          <BackgroundColor>Blue</BackgroundColor>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
           <PaddingTop>2pt</PaddingTop>
@@ -310,11 +295,12 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>VESSEL AT BERTH FOR  DISCHARGE</Value>
+                <Value>VESSELS AT BERTH FOR  DISCHARGE</Value>
                 <Style>
                   <FontFamily>Calibri</FontFamily>
                   <FontSize>11pt</FontSize>
                   <FontWeight>Bold</FontWeight>
+                  <Color>White</Color>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -331,6 +317,7 @@
           <Border>
             <Style>None</Style>
           </Border>
+          <BackgroundColor>Blue</BackgroundColor>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
           <PaddingTop>2pt</PaddingTop>
@@ -344,11 +331,12 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>VESSEL EXPECTED TO ARRIVE PORT</Value>
+                <Value>VESSELS EXPECTED TO ARRIVE PORT</Value>
                 <Style>
                   <FontFamily>Calibri</FontFamily>
                   <FontSize>11pt</FontSize>
                   <FontWeight>Bold</FontWeight>
+                  <Color>White</Color>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -365,6 +353,7 @@
           <Border>
             <Style>None</Style>
           </Border>
+          <BackgroundColor>Blue</BackgroundColor>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
           <PaddingTop>2pt</PaddingTop>
@@ -479,7 +468,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Names</Value>
+                              <Value>Activity / Cargo / Quantity</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
@@ -1019,10 +1008,13 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Names</Value>
+                              <Value>Activity / Cargo / Quantity</Value>
                               <Style>
+                                <FontStyle>Normal</FontStyle>
                                 <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
+                                <TextDecoration>None</TextDecoration>
+                                <Color>#000000</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1515,10 +1507,13 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Names</Value>
+                              <Value>Activity / Cargo / Quantity</Value>
                               <Style>
+                                <FontStyle>Normal</FontStyle>
                                 <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
+                                <TextDecoration>None</TextDecoration>
+                                <Color>#000000</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1842,10 +1837,13 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Names</Value>
+                              <Value>Activity / Cargo / Quantity</Value>
                               <Style>
+                                <FontStyle>Normal</FontStyle>
                                 <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
+                                <TextDecoration>None</TextDecoration>
+                                <Color>#000000</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -2142,7 +2140,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
         <Top>0.10938in</Top>
-        <Left>0.05in</Left>
+        <Left>0.06251in</Left>
         <Height>0.25in</Height>
         <Width>6.5in</Width>
         <ZIndex>8</ZIndex>
