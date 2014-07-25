@@ -119,7 +119,7 @@
                                                         Display="Dynamic"></asp:RequiredFieldValidator>--%>
                                                 </td>
                                                 <td>
-                                                    OPA:
+                                                    OPA (If Any):
                                                 </td>
                                                 <td>
                                                     <asp:TextBox ID="txtOPA" runat="server" Width="250px" Enabled="True"></asp:TextBox>
@@ -147,6 +147,7 @@
                                                 </td>
                                                 <td>
                                                     <asp:DropDownList ID="ddlNCountry" runat="server" TabIndex="5"  Width="250px">
+                                                     <asp:ListItem Value="0" Text="--None--"></asp:ListItem>
                                                     </asp:DropDownList>
                                                 </td>
  
@@ -166,13 +167,14 @@
                                                 </td>
                                                 <td>
                                                     <asp:DropDownList ID="ddlACountry" runat="server" TabIndex="6"  Width="250px">
+                                                    <asp:ListItem Value="0" Text="--None--"></asp:ListItem>
                                                     </asp:DropDownList>
                                                 </td>
  
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    Shipper:
+                                                    Shipper/Receiver:
                                                 </td>
                                                 <td>
                                                     <asp:TextBox ID="txtShipper" runat="server" Width="250px" MaxLength="100" CssClass="textboxuppercase"></asp:TextBox>

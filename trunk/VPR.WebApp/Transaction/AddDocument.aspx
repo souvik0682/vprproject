@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddDocument.aspx.cs" Inherits="VPR.WebApp.Transaction.AddDocument" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+<%@ Register Assembly="VPR.WebApp" Namespace="VPR.WebApp.CustomControls" TagPrefix="cc2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         .style1
@@ -66,60 +67,77 @@ hdnPort.value = e.get_value();
                                                     Port:
                                                 </td>
                                                 <td>
-                                                       <asp:TextBox ID="txtPort" runat="server" CssClass="textboxuppercase" MaxLength="100"
+                                                    <asp:TextBox ID="txtPortText" runat="server" CssClass="textboxuppercase" 
+                                                        MaxLength="100" TabIndex="3" Visible="false" Width="250px" Enabled="false"></asp:TextBox>
+                                                    <asp:TextBox ID="txtPort" runat="server" CssClass="textboxuppercase" MaxLength="100"
                                                         Width="250px" TabIndex="2"></asp:TextBox>
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtPort"
                                                         ErrorMessage="This field is required*" CssClass="errormessage" ValidationGroup="Save"
-                                                        Display="Dynamic"></asp:RequiredFieldValidator>   <cc1:AutoCompleteExtender runat="server" BehaviorID="AutoCompleteEx" ID="autoComplete1"
-                                    TargetControlID="txtPort" ServicePath="~/CustomControls/AutoComplete.asmx" ServiceMethod="GetPortList"
-                                    MinimumPrefixLength="2" CompletionInterval="100" EnableCaching="true" CompletionSetCount="20"
-                                    CompletionListCssClass="autocomplete_completionListElement" CompletionListItemCssClass="autocomplete_listItem"
-                                    CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem" DelimiterCharacters=";, :"
-                                    ShowOnlyCurrentWordInCompletionListItem="true" OnClientItemSelected="AutoCompleteItemSelected">
-                                    <Animations>
-                                        <OnShow>
-                                            <Sequence>
-                                                <%-- Make the completion list transparent and then show it --%>
-                                                <OpacityAction Opacity="0" />
-                                                <HideAction Visible="true" />
+                                                        Display="Dynamic"></asp:RequiredFieldValidator>   
+                                                    <cc1:AutoCompleteExtender runat="server" BehaviorID="AutoCompleteEx" ID="autoComplete1"
+                                                        TargetControlID="txtPort" ServicePath="~/CustomControls/AutoComplete.asmx" ServiceMethod="GetPortList"
+                                                        MinimumPrefixLength="2" CompletionInterval="100" EnableCaching="true" CompletionSetCount="20"
+                                                        CompletionListCssClass="autocomplete_completionListElement" CompletionListItemCssClass="autocomplete_listItem"
+                                                        CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem" DelimiterCharacters=";, :"
+                                                        ShowOnlyCurrentWordInCompletionListItem="true" OnClientItemSelected="AutoCompleteItemSelected">
+                                                        <Animations>
+                                                            <OnShow>
+                                                                <Sequence>
+                                                                    <%-- Make the completion list transparent and then show it --%>
+                                                                    <OpacityAction Opacity="0" />
+                                                                    <HideAction Visible="true" />
                             
-                                                <%--Cache the original size of the completion list the first time
-                                                    the animation is played and then set it to zero --%>
-                                                <ScriptAction Script="
-                                                    // Cache the size and setup the initial size
-                                                    var behavior = $find('AutoCompleteEx');
-                                                    if (!behavior._height) {
-                                                        var target = behavior.get_completionList();
-                                                        behavior._height = target.offsetHeight - 2;
-                                                        target.style.height = '0px';
-                                                    }" />
+                                                                    <%--Cache the original size of the completion list the first time
+                                                                        the animation is played and then set it to zero --%>
+                                                                    <ScriptAction Script="
+                                                                        // Cache the size and setup the initial size
+                                                                        var behavior = $find('AutoCompleteEx');
+                                                                        if (!behavior._height) {
+                                                                            var target = behavior.get_completionList();
+                                                                            behavior._height = target.offsetHeight - 2;
+                                                                            target.style.height = '0px';
+                                                                        }" />
                             
-                                                <%-- Expand from 0px to the appropriate size while fading in --%>
-                                                <Parallel Duration=".4">
-                                                    <FadeIn />
-                                                    <Length PropertyKey="height" StartValue="0" EndValueScript="$find('AutoCompleteEx')._height" />
-                                                </Parallel>
-                                            </Sequence>
-                                        </OnShow>
-                                        <OnHide>
-                                            <%-- Collapse down to 0px and fade out --%>
-                                            <Parallel Duration=".4">
-                                                <FadeOut />
-                                                <Length PropertyKey="height" StartValueScript="$find('AutoCompleteEx')._height" EndValue="0" />
-                                            </Parallel>
-                                        </OnHide>
-                                    </Animations>
-                                </cc1:AutoCompleteExtender>
+                                                                    <%-- Expand from 0px to the appropriate size while fading in --%>
+                                                                    <Parallel Duration=".4">
+                                                                        <FadeIn />
+                                                                        <Length PropertyKey="height" StartValue="0" EndValueScript="$find('AutoCompleteEx')._height" />
+                                                                    </Parallel>
+                                                                </Sequence>
+                                                            </OnShow>
+                                                            <OnHide>
+                                                                <%-- Collapse down to 0px and fade out --%>
+                                                                <Parallel Duration=".4">
+                                                                    <FadeOut />
+                                                                    <Length PropertyKey="height" StartValueScript="$find('AutoCompleteEx')._height" EndValue="0" />
+                                                                </Parallel>
+                                                            </OnHide>
+                                                        </Animations>
+                                                    </cc1:AutoCompleteExtender>
                                                 </td>
                                             </tr>
-                                             <tr>
-                                                <td class="style1">
-                                                    Upload File
-:
+                                            <tr>
+                                                <td>
+                                                    Scope:<span class="errormessage1">*</span>
                                                 </td>
                                                 <td>
-                                                      <asp:FileUpload ID="fileUpload" runat="server"></asp:FileUpload> 
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="fileUpload"
+                                                    <asp:DropDownList ID="ddlScope" runat="server" >
+                                                        <asp:ListItem Value="G" Text="Global" Selected="True"></asp:ListItem>
+                                                        <asp:ListItem Value="P" Text="Port Only"></asp:ListItem>
+                                                    </asp:DropDownList>
+                                                </td>
+                                               
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                
+                                                    <asp:Label ID="lblUpload" runat="server" Text="Upload File :">
+                                                    </asp:Label>
+                                                </td>
+                                                <td>
+                                                    
+                                                    <asp:FileUpload ID="fileUpload" runat="server"></asp:FileUpload> 
+                                                    <asp:RequiredFieldValidator ID="rfvFileUpload" runat="server" ControlToValidate="fileUpload"
                                                         ErrorMessage="This field is required*" CssClass="errormessage" ValidationGroup="Save"
                                                         Display="Dynamic"></asp:RequiredFieldValidator>
                                                 </td>
@@ -127,7 +145,6 @@ hdnPort.value = e.get_value();
                                         </table>
                                     </td>
                                 </tr>
-                                
                                 <tr>
                                     <td colspan="2" style="padding-top: 10px;">
                                         <asp:Button ID="btnSave" runat="server" Text="Save" ValidationGroup="Save" 
@@ -140,6 +157,7 @@ hdnPort.value = e.get_value();
                                 </tr>
                             </table>
                         </div>
+               </fieldset>
         </div>
     </center>
 </asp:Content>

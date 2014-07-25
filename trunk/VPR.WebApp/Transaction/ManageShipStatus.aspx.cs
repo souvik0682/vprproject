@@ -19,13 +19,28 @@ namespace VPR.WebApp.Transaction
         private bool _canEdit = false;
         private bool _canDelete = false;
         private bool _canView = false;
-        private int _userLocation = 0;
+        //private int _userLocation = 0;
+        private bool _LocationSpecific = true;
+        private int _userPort = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             RetriveParameters();
             _userId = UserBLL.GetLoggedInUserId();
-            _userLocation = UserBLL.GetUserLocation();
+            _LocationSpecific = UserBLL.GetUserLocationSpecific();
+            _userPort = UserBLL.GetUserPort();
+
+            if (_LocationSpecific == true)
+            {
+                _userPort = UserBLL.GetUserPort();
+                //_userLocation = UserBLL.GetUserLoc(_userId);
+            }
+            else
+            {
+                _userPort = 0;
+                //_userLocation = 0;
+            }
+            //_userLocation = UserBLL.GetUserLoc(_userId);
             //CheckUserAccess();
 
             if (!IsPostBack)
@@ -36,25 +51,26 @@ namespace VPR.WebApp.Transaction
 
         private void LoadGrid()
         {
-            List<VesselStatus> oLoadingList = new TransactionBLL().GetListVesselPosition("L");
+            List<VesselStatus> oLoadingList = new TransactionBLL().GetListVesselPosition("L", _userPort);
             gvwLoading.DataSource = oLoadingList;
             gvwLoading.DataBind();
 
-            List<VesselStatus> oDischargingList = new TransactionBLL().GetListVesselPosition("D");
+            List<VesselStatus> oDischargingList = new TransactionBLL().GetListVesselPosition("D", _userPort);
             gvwDischarging.DataSource = oDischargingList;
             gvwDischarging.DataBind();
 
-            List<VesselStatus> oAwaitingList = new TransactionBLL().GetListVesselPosition("A");
+            List<VesselStatus> oAwaitingList = new TransactionBLL().GetListVesselPosition("A", _userPort);
             gvwAwaiting.DataSource = oAwaitingList;
             gvwAwaiting.DataBind();
 
-            List<VesselStatus> oExpectingList = new TransactionBLL().GetListVesselPosition("E");
+            List<VesselStatus> oExpectingList = new TransactionBLL().GetListVesselPosition("E", _userPort);
             gvwExpecting.DataSource = oExpectingList;
             gvwExpecting.DataBind();
         }
         private void RetriveParameters()
         {
             _userId = UserBLL.GetLoggedInUserId();
+            _LocationSpecific = UserBLL.GetUserLocationSpecific();
 
             //Get user permission.
             UserBLL.GetUserPermission(out _canAdd, out _canEdit, out _canDelete, out _canView);
@@ -75,16 +91,16 @@ namespace VPR.WebApp.Transaction
                     Response.Redirect("~/Unauthorized.aspx");
                 }
 
-                if (user.UserRole.Id != (int)UserRole.Admin)
-                {
+                //if (user.UserRole.Id != (int)UserRole.Admin)
+                //{
 
-                    //ddlLocation.Enabled = false;
-                }
-                else
-                {
-                    _userLocation = 0;
-                    //ddlLocation.Enabled = true;
-                }
+                //    //ddlLocation.Enabled = false;
+                //}
+                //else
+                //{
+                //    _userLocation = 0;
+                //    //ddlLocation.Enabled = true;
+                //}
 
                 if (!_canEdit)
                 {

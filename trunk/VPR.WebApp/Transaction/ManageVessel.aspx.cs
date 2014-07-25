@@ -24,11 +24,14 @@ namespace VPR.WebApp.Transaction
         private bool _canDelete = false;
         private bool _canView = false;
         private bool _LocationSpecific = true;
+        //private int _userLocation = 0;
 
         #endregion
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            _userId = UserBLL.GetLoggedInUserId();
+           
             RetriveParameters();
             CheckUserAccess();
             SetAttributes();
@@ -194,6 +197,7 @@ namespace VPR.WebApp.Transaction
             _userId = UserBLL.GetLoggedInUserId();
             _LocationSpecific = UserBLL.GetUserLocationSpecific();
 
+
             IUser user = new UserBLL().GetUser(_userId);
 
             if (!ReferenceEquals(user, null))
@@ -226,7 +230,7 @@ namespace VPR.WebApp.Transaction
 
                     if (!ReferenceEquals(searchCriteria, null))
                     {
-                        BuildSearchCriteria(searchCriteria);
+                        BuildSearchCriteria(searchCriteria, user.PortID);
 
                         gvImportBL.PageIndex = searchCriteria.PageIndex;
 
@@ -254,7 +258,7 @@ namespace VPR.WebApp.Transaction
             Response.Redirect("~/Transaction/AddEditVessel.aspx?VesselId=" + encryptedId);
         }
 
-        private void BuildSearchCriteria(SearchCriteria criteria)
+        private void BuildSearchCriteria(SearchCriteria criteria, int PortID)
         {
             string sortExpression = string.Empty;
             string sortDirection = string.Empty;
@@ -267,6 +271,16 @@ namespace VPR.WebApp.Transaction
                 sortDirection = Convert.ToString(ViewState[Constants.SORT_DIRECTION]);
             }
 
+            if (_LocationSpecific == true)
+            {
+                criteria.portID = PortID;
+                //criteria.LocationID = UserBLL.GetUserLoc(_userId);
+            }
+            else
+            {
+                criteria.portID = 0;
+                //criteria.LocationID = 0;
+            }
             criteria.UserId = _userId;
             criteria.SortExpression = sortExpression;
             criteria.SortDirection = sortDirection;
