@@ -20,13 +20,16 @@ namespace VPR.WebApp.Transaction
         private bool _canEdit = false;
         private bool _canDelete = false;
         private bool _canView = false;
-        private int _userLocation = 0;
+        private int _userPort = 0;
+        private bool _LocationSpecific = true;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             RetriveParameters();
             _userId = UserBLL.GetLoggedInUserId();
-            _userLocation = UserBLL.GetUserLocation();
+            _LocationSpecific = UserBLL.GetUserLocationSpecific();
+            _userPort = UserBLL.GetUserPort();
+
             CheckUserAccess();
 
             if (!IsPostBack)
@@ -273,14 +276,23 @@ namespace VPR.WebApp.Transaction
                     Response.Redirect("~/Unauthorized.aspx");
                 }
 
-                if (user.UserRole.Id != (int)UserRole.Admin)
+                if (_LocationSpecific == true)
+                //if (user.UserRole.Id != (int)UserRole.Admin)
                 {
-
-                    //ddlLocation.Enabled = false;
+                    txtPort.EnableViewState = false;
+                    string port = new TransactionBLL().GetPortNameById(_userPort);
+                    ViewState["PORTID"] = _userPort;
+                    ((TextBox)txtPort.FindControl("txtPort")).Text = port;
+                    txtPort.Visible = false;
+                    txtPortText.Visible = true;
+                    txtPortText.Text = port;
+                     //ddlLocation.Enabled = false;
                 }
                 else
                 {
-                    _userLocation = 0;
+                    _userPort = 0;
+                    txtPort.EnableViewState = true;
+                    //_userLocation = 0;
                     //ddlLocation.Enabled = true;
                 }
 
@@ -304,6 +316,17 @@ namespace VPR.WebApp.Transaction
             ddlAgentName.DataTextField = "AgentName";
             ddlAgentName.DataSource = dt;
             ddlAgentName.DataBind();
+
+            //DataTable dt2 = new TransactionBLL().GetAllLocation();
+            ////DataRow dr2 = dt2.NewRow();
+            ////dr2["pk_LocID"] = "0";
+            ////dr2["LocName"] = "--Select--";
+            ////dt2.Rows.InsertAt(dr, 0);
+            //ddlLocation.DataValueField = "pk_LocID";
+            //ddlLocation.DataTextField = "LocName";
+            //ddlLocation.DataSource = dt2;
+            //ddlLocation.DataBind();
+            //ddlLocation.SelectedIndex = 0;
 
             DataTable dt1 = new TransactionBLL().GetAllVesselPrefix();
             //DataRow dr1 = dt.NewRow();
@@ -452,6 +475,7 @@ namespace VPR.WebApp.Transaction
             if (o.SailDate.HasValue)
                 txtSailDate.Text = o.SailDate.Value.ToString("dd-MM-yyyy");
 
+            //ddlLocation.SelectedValue = o.LocID.ToString();
             txtOwnerName.Text = o.Owner;
             ddlAgentName.SelectedValue = o.AgentId.ToString();
             txtRemarks.Text = o.Remarks;
@@ -489,6 +513,12 @@ namespace VPR.WebApp.Transaction
                 //o.BerthId = Convert.ToInt32(ddlBerth.SelectedValue);
                 o.CreatedBy = 0;
                 //o.ETC = Convert.ToDateTime(txtETC.Text.Trim());
+                if (txtETC.Text.Trim() != "")
+                    o.ETC = Convert.ToDateTime(txtETC.Text.Trim());
+                if (txtBerthDate.Text.Trim() != "")
+                    o.BerthDate = Convert.ToDateTime(txtBerthDate.Text.Trim());
+                if (txtSailDate.Text.Trim() != "")
+                    o.SailDate = Convert.ToDateTime(txtSailDate.Text.Trim());
                 o.LOA = Convert.ToDecimal(txtLOA.Text.Trim());
                 o.ModifiedBy = 0;
                 o.NextPortId = Convert.ToInt32(ViewState["NEXTPORTID"]);
@@ -496,6 +526,7 @@ namespace VPR.WebApp.Transaction
                 o.PortId = Convert.ToInt32(ViewState["PORTID"]);
                 o.PrevPortId = Convert.ToInt32(ViewState["PREVIOUSPORTID"]);
                 o.Remarks = txtRemarks.Text.Trim();
+                //o.LocID =  Convert.ToInt32(ddlLocation.SelectedValue);
 
                 //Add Cargo Details
                 List<CargoDetails> lstData = ViewState["DataSource"] as List<CargoDetails>;

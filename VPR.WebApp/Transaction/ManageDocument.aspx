@@ -89,7 +89,8 @@
                     <asp:Button ID="btnRefresh" runat="server" Text="Reset" CssClass="button" Width="100px" onclick="btnRefresh_Click"  /></td>
                 </tr>
             </table>              
-        </fieldset>        <fieldset id="fsList" runat="server" style="width:100%;min-height:100px;">
+        </fieldset>        
+        <fieldset id="fsList" runat="server" style="width:100%;min-height:100px;">
             <legend>Document List</legend>
             <div style="float:right;padding-bottom:5px;margin-top: -10px">
                 Results Per Page:<asp:DropDownList ID="ddlPaging" runat="server" Width="50px" AutoPostBack="true" 
@@ -106,15 +107,14 @@
             <div>
                     <asp:Label runat="server" ID="lblErrorMsg" Text=""></asp:Label>
                         <asp:GridView ID="gvwLoc" runat="server" AutoGenerateColumns="false" AllowPaging="true"
-                BorderStyle="None" BorderWidth="0" OnPageIndexChanging="gvwLoc_PageIndexChanging" AllowSorting="true"
-                DataKeyNames="pk_DocumentID"
-                OnRowDataBound="gvwLoc_RowDataBound" OnRowCommand="gvwLoc_RowCommand" Width="100%" onsorting="gvwLoc_Sorting" 
-                            >
-                <pagersettings mode="NumericFirstLast" position="TopAndBottom" />
-                <pagerstyle cssclass="gridviewpager" />
-                <emptydatarowstyle cssclass="gridviewemptydatarow" />
-                <emptydatatemplate>No Document(s) Found</emptydatatemplate>
-                <columns>
+                                BorderStyle="None" BorderWidth="0" OnPageIndexChanging="gvwLoc_PageIndexChanging" AllowSorting="true"
+                                DataKeyNames="pk_DocumentID"
+                                OnRowDataBound="gvwLoc_RowDataBound" OnRowCommand="gvwLoc_RowCommand" Width="100%" onsorting="gvwLoc_Sorting">
+                                <pagersettings mode="NumericFirstLast" position="TopAndBottom" />
+                                <pagerstyle cssclass="gridviewpager" />
+                                <emptydatarowstyle cssclass="gridviewemptydatarow" />
+                                <emptydatatemplate>No Document(s) Found</emptydatatemplate>
+                                <columns>
                                 <asp:TemplateField HeaderText="Sl#">
                                     <HeaderStyle CssClass="gridviewheader" />
                                     <ItemStyle CssClass="gridviewitem" Width="5%" />                                    
@@ -128,7 +128,7 @@
 
                                 <asp:TemplateField HeaderText="Doc Type" SortExpression="DocType" >
                                     <HeaderStyle CssClass="gridviewheader" />
-                                    <ItemStyle CssClass="gridviewitem" Width="20%" />                                       
+                                    <ItemStyle CssClass="gridviewitem" Width="15%" />                                       
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Port" SortExpression="Port">
                                     <HeaderStyle CssClass="gridviewheader" />
@@ -139,12 +139,24 @@
                                     <HeaderStyle CssClass="gridviewheader" />
                                     <ItemStyle CssClass="gridviewitem" Width="20%" />                                       
                                 </asp:TemplateField>
+                                 <asp:TemplateField HeaderText="Scope" SortExpression="Scope" >
+                                    <HeaderStyle CssClass="gridviewheader" />
+                                    <ItemStyle CssClass="gridviewitem" Width="10%" />                                       
+                                </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Download">
                                     <HeaderStyle CssClass="gridviewheader" />
                                     <ItemStyle CssClass="gridviewitem" Width="5%"   VerticalAlign="Middle" HorizontalAlign="Center"/><ItemTemplate>   
                                                              
                                         <asp:ImageButton ID="btnDownload" runat="server" CommandName="Download" ImageUrl="~/Images/FileDownloads.ico" Height="16" Width="16" />
                                     </ItemTemplate>                                       
+                                </asp:TemplateField>
+                                <asp:TemplateField  HeaderText="Edit">
+                                    <HeaderStyle CssClass="gridviewheader" />
+                                    <ItemStyle CssClass="gridviewitem" Width="5%" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    <ItemTemplate>
+                                        <asp:ImageButton ID="btnEdit" runat="server" CommandName="Edit" ImageUrl="~/Images/edit.png"
+                                            Height="16" Width="16" />
+                                    </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField  HeaderText="Remove">
                                     <HeaderStyle CssClass="gridviewheader" />
@@ -153,8 +165,9 @@
                                         <asp:ImageButton ID="btnRemove" runat="server" CommandName="Remove" ImageUrl="~/Images/remove.png" Height="16" Width="16" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
+
                             </columns>
-            </asp:GridView>
+                    </asp:GridView>
                 
             </div>
         </fieldset>

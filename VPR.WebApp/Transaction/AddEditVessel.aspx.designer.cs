@@ -67,6 +67,15 @@ namespace VPR.WebApp.Transaction {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
         
         /// <summary>
+        /// txtPortText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPortText;
+        
+        /// <summary>
         /// txtPort control.
         /// </summary>
         /// <remarks>

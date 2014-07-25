@@ -307,12 +307,20 @@ namespace VPR.WebApp.Transaction
             ddlJob.DataBind();
 
             DataTable dtc1 = new ReportBAL().GetAllCountry();
+            DataRow dr1 = dtc1.NewRow();
+            dr1["pk_CountryId"] = "0";
+            dr1["CountryName"] = "--None--";
+            dtc1.Rows.InsertAt(dr1, 0);
             ddlNCountry.DataValueField = "pk_CountryId";
             ddlNCountry.DataTextField = "CountryName";
             ddlNCountry.DataSource = dtc1;
             ddlNCountry.DataBind();
 
             DataTable dtc2 = new ReportBAL().GetAllCountry();
+            DataRow dr2 = dtc2.NewRow();
+            dr2["pk_CountryId"] = "0";
+            dr2["CountryName"] = "--None--";
+            dtc2.Rows.InsertAt(dr2, 0);
             ddlACountry.DataValueField = "pk_CountryId";
             ddlACountry.DataTextField = "CountryName";
             ddlACountry.DataSource = dtc2;
@@ -444,6 +452,13 @@ namespace VPR.WebApp.Transaction
             txtAppointing.Text = o.AppointingCo.ToString();
             txtNom.Text = o.NominatingCo.ToString();
             txtShipper.Text = o.Shipper.ToString();
+            if (o.ActivityStatus == "S")
+            {
+                txtBerthDate.Enabled = true;
+                txtETC.Enabled = true;
+                ddlAcivity.Enabled = false;
+                txtPort.EnableViewState = false;
+            }
 
             ddlJob.SelectedValue = o.JobID.ToString();
             txtRemarks.Text = o.Remarks;
@@ -472,6 +487,11 @@ namespace VPR.WebApp.Transaction
                 o.CreatedBy = 0;
                 //o.ETC = Convert.ToDateTime(txtETC.Text.Trim());
                 //o.LOA = Convert.ToDecimal(txtLOA.Text.Trim());
+                if (txtETC.Text.Trim() != "")
+                    o.ETC = Convert.ToDateTime(txtETC.Text.Trim());
+                if (txtBerthDate.Text.Trim() != "")
+                    o.BerthDate = Convert.ToDateTime(txtBerthDate.Text.Trim());
+
                 o.ModifiedBy = 0;
                 o.AppointingCo = txtAppointing.Text.Trim();
                 o.NominatingCo = txtNom.Text.Trim();
@@ -484,6 +504,7 @@ namespace VPR.WebApp.Transaction
                 o.Remarks = txtRemarks.Text.Trim();
                 o.NominatingCountry = Convert.ToInt32(ddlNCountry.SelectedValue);
                 o.AppointingCountry = Convert.ToInt32(ddlACountry.SelectedValue);
+              
 
                 //Add Cargo Details
                 List<CargoDetails> lstData = ViewState["DataSource"] as List<CargoDetails>;

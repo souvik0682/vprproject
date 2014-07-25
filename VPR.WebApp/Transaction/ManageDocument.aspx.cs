@@ -25,6 +25,8 @@ namespace VPR.WebApp.Transaction
         private bool _canEdit = false;
         private bool _canDelete = false;
         private bool _canView = false;
+        private int _userPort = 0;
+        private bool _LocationSpecific = true;
 
         #endregion
 
@@ -59,7 +61,10 @@ namespace VPR.WebApp.Transaction
         }
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Transaction/AddDocument.aspx");
+            RedirecToAddEditPage(-1);
+            //string encryptedId = GeneralFunctions.EncryptQueryString(id.ToString());
+            //Response.Redirect("~/Transaction/AddDocument.aspx?DoclId=" + encryptedId);
+            //Response.Redirect("~/Transaction/AddDocument.aspx");
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
@@ -78,6 +83,7 @@ namespace VPR.WebApp.Transaction
             SearchCriteria searchCriteria = (SearchCriteria)Session[Constants.SESSION_SEARCH_CRITERIA];
             LoadData(searchCriteria.SortExpression, searchCriteria.SortDirection);
         }
+
         protected void gvwLoc_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName.Equals("Sort"))
@@ -130,6 +136,10 @@ namespace VPR.WebApp.Transaction
             {
                 DocumentBAL.DeleteDocument(Convert.ToInt32(e.CommandArgument));
             }
+            else if (e.CommandName == "Edit")
+            {
+                RedirecToAddEditPage(Convert.ToInt32(e.CommandArgument));
+            }
         }
 
         private static string MimeType(string Extension)
@@ -148,9 +158,9 @@ namespace VPR.WebApp.Transaction
         private void RetriveParameters()
         {
             _userId = UserBLL.GetLoggedInUserId();
-
-            //Get user permission.
             UserBLL.GetUserPermission(out _canAdd, out _canEdit, out _canDelete, out _canView);
+            _LocationSpecific = UserBLL.GetUserLocationSpecific();
+            _userPort = UserBLL.GetUserPort();
         }
 
         private void CheckUserAccess()
@@ -202,37 +212,56 @@ namespace VPR.WebApp.Transaction
                 e.Row.Cells[2].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "DocumentType"));
                 e.Row.Cells[3].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "PortName"));
                 e.Row.Cells[4].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "DocumentName"));
-                // Edit link
+                if (Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Scope")) == "G")
+                    e.Row.Cells[5].Text = "Global";
+                else
+                    e.Row.Cells[5].Text = "Port Only";
+                // Download link
                 ImageButton btnDownload = (ImageButton)e.Row.FindControl("btnDownload");
+                btnDownload.ToolTip = "Click here to Download";
                 btnDownload.CommandArgument = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pk_DocumentID"));
+
+                // Edit link
+                ImageButton btnEdit = (ImageButton)e.Row.FindControl("btnEdit");
+                btnEdit.ToolTip = ResourceManager.GetStringWithoutName("ERR00070");
+                btnEdit.CommandArgument = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pk_DocumentId"));
 
                 //Delete link
                 ImageButton btnRemove = (ImageButton)e.Row.FindControl("btnRemove");
-                btnRemove.ToolTip = "Click here to Download";
+                btnRemove.ToolTip = "Click here to Delete";
                 btnRemove.CommandArgument = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pk_DocumentID"));
 
                 if (_canDelete == true)
                 {
                     btnRemove.Visible = true;
                     btnRemove.ToolTip = ResourceManager.GetStringWithoutName("ERR00007");
-
+                    btnRemove.Attributes.Add("onclick", "javascript:return confirm('Are you sure about delete?');");
                 }
                 else
                 {
                     //ImageButton btnRemove = (ImageButton)e.Row.FindControl("btnRemove");
                     btnRemove.Visible = false;
                 }
-                if (_hasEditAccess)
+
+
+                if (_canEdit)
                 {
                     btnRemove.OnClientClick = "javascript:return confirm('" + ResourceManager.GetStringWithoutName("ERR00014") + "');";
+                    btnEdit.Visible = true;
                 }
                 else
                 {
                     btnRemove.OnClientClick = "javascript:alert('" + ResourceManager.GetStringWithoutName("ERR00008") + "');return false;";
+                    btnEdit.Visible = false;
+                }
+
+                if (_LocationSpecific && Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "fk_PortID")) != _userPort)
+                {
+                    btnEdit.Visible = false;
+                    btnRemove.Visible = false;
                 }
             }
         }
-
 
         protected void ddlPaging_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -271,6 +300,8 @@ namespace VPR.WebApp.Transaction
                     string documentName = string.IsNullOrEmpty(txtDocumentName.Text) ? null : txtDocumentName.Text;
                     int? port = string.IsNullOrEmpty(hdnPort.Value) ? (int?)null : Convert.ToInt32(hdnPort.Value);
                     int? documentType = ddlDocumentType.SelectedValue == "0" ? (int?)null : Convert.ToInt32(ddlDocumentType.SelectedValue);
+                    if (_LocationSpecific == true)
+                        port = _userPort;
                     try
                     {
                         System.Data.DataSet ds = DocumentBAL.GetDocuments(documentType, documentName, port);
@@ -304,7 +335,7 @@ namespace VPR.WebApp.Transaction
         private void RedirecToAddEditPage(int id)
         {
             string encryptedId = GeneralFunctions.EncryptQueryString(id.ToString());
-
+            Response.Redirect("~/Transaction/AddDocument.aspx?DocId=" + encryptedId);
             //Response.Redirect("~/MasterModule/AddEditCountry.aspx?id=" + encryptedId);
         }
 
@@ -401,5 +432,7 @@ namespace VPR.WebApp.Transaction
         {
             Response.Redirect("~/Transaction/ManageDocument.aspx");
         }
+
+
     }
 }

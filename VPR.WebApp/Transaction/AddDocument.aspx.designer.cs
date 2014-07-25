@@ -58,6 +58,15 @@ namespace VPR.WebApp.Transaction {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
         
         /// <summary>
+        /// txtPortText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPortText;
+        
+        /// <summary>
         /// txtPort control.
         /// </summary>
         /// <remarks>
@@ -85,6 +94,24 @@ namespace VPR.WebApp.Transaction {
         protected global::AjaxControlToolkit.AutoCompleteExtender autoComplete1;
         
         /// <summary>
+        /// ddlScope control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlScope;
+        
+        /// <summary>
+        /// lblUpload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblUpload;
+        
+        /// <summary>
         /// fileUpload control.
         /// </summary>
         /// <remarks>
@@ -94,13 +121,13 @@ namespace VPR.WebApp.Transaction {
         protected global::System.Web.UI.WebControls.FileUpload fileUpload;
         
         /// <summary>
-        /// RequiredFieldValidator3 control.
+        /// rfvFileUpload control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvFileUpload;
         
         /// <summary>
         /// btnSave control.

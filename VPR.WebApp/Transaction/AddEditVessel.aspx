@@ -71,9 +71,13 @@
                                                     Port:<span class="errormessage1">*</span>
                                                 </td>
                                                 <td>
+                                                    <asp:TextBox ID="txtPortText" runat="server" CssClass="textboxuppercase" 
+                                                        MaxLength="100" TabIndex="3" Visible="false" Width="250px" Enabled="false"></asp:TextBox>
                                                     <uc1:AC_Port ID="txtPort" runat="server" TabIndex="4"/>
                                                     <asp:Label ID="errPort" runat="server" CssClass="errormessage1"></asp:Label>
                                                 </td>
+                                                <td>
+                                                    &nbsp;</td>
                                             </tr>
                                             <tr>
                                                 <td>
@@ -168,7 +172,7 @@
                                                     Agent Name:<span class="errormessage1">*</span>
                                                 </td>
                                                 <td>
-                                                    <asp:DropDownList ID="ddlAgentName" runat="server" TabIndex="13">
+                                                    <asp:DropDownList ID="ddlAgentName" runat="server" TabIndex="13" Width="250">
                                                         <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                     </asp:DropDownList>
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" CssClass="errormessage"
@@ -188,6 +192,19 @@
                                                         Display="Dynamic"></asp:RequiredFieldValidator>--%>
                                                 </td>
                                             </tr>
+                                            <%--<tr>
+                                                <td>
+                                                    Location:<span class="errormessage1">*</span>
+                                                </td>
+                                                <td>
+                                                    <asp:DropDownList ID="ddlLocation" runat="server" TabIndex="13" Width="250">
+                                                        <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                                    </asp:DropDownList>
+                                                    <asp:RequiredFieldValidator ID="rfvLocation" runat="server" CssClass="errormessage"
+                                                        ErrorMessage="This field is required" ControlToValidate="ddlLocation" InitialValue="0"
+                                                        ValidationGroup="Save" Display="Dynamic"></asp:RequiredFieldValidator>
+                                                </td>
+                                            </tr>--%>
                                         </table>
                                     </td>
                                 </tr>
