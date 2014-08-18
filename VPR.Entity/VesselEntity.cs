@@ -45,7 +45,7 @@ namespace VPR.Entity
         public DateTime? SailDate { get; set; }
         public int NominatingCountry { get; set; }
         public int AppointingCountry { get; set; }
-
+        public int LocID { get; set; }
 
         public VesselEntity()
         {
@@ -190,6 +190,10 @@ namespace VPR.Entity
             if (ColumnExists(reader, "AppCountryID"))
                 if (reader["AppCountryID"] != DBNull.Value)
                     this.AppointingCountry = Convert.ToInt32(reader["AppCountryID"]);
+
+            if (ColumnExists(reader, "fk_LocationID"))
+                if (reader["fk_LocationID"] != DBNull.Value)
+                    this.LocID = Convert.ToInt32(reader["fk_LocationID"]);
         }
 
         public bool ColumnExists(IDataReader reader, string columnName)

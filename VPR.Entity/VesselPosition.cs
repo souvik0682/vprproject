@@ -26,6 +26,7 @@ namespace VPR.Entity
         public string NextPort { get; set; }
         public string AgentName { get; set; }
         public decimal LOA { get; set; }
+        public string ETA { get; set; }
 
         public VesselPosition(DataTableReader reader)
         {
@@ -34,6 +35,7 @@ namespace VPR.Entity
             this.Names = Convert.ToString(reader["CargoPlanned"]);
             this.ArrivalDate = Convert.ToString(reader["ArrivalDate"]);
             this.BerthDate = Convert.ToString(reader["BerthDate"]);
+            this.ETA = Convert.ToString(reader["ETA"]);
             this.ETC = Convert.ToString(reader["ETC"]);
             this.Remarks = Convert.ToString(reader["Remarks"]);
             this.PortName = Convert.ToString(reader["PortName"]);

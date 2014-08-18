@@ -22,6 +22,7 @@ namespace VPR.Entity
         public string CountryName { get; set; }
         public string Activity { get; set; }
         public int EmailGroupID { get; set; }
+        public string AttachedFile { get; set; }
 
         #endregion
 

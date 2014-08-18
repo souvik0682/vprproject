@@ -68,6 +68,18 @@ namespace VPR.Entity
             set;
         }
 
+        public int PortID
+        {
+            get;
+            set;
+        }
+
+        public string PortName
+        {
+            get;
+            set;
+        }
+
         #endregion
 
         #region IRole Members
@@ -153,14 +165,22 @@ namespace VPR.Entity
             this.UserRole.Name = Convert.ToString(reader["RoleName"]);
 
             this.UserLocation = new LocationEntity();
-            this.UserLocation.Id = Convert.ToInt32(reader["LocId"]);
-            this.UserLocation.Name = Convert.ToString(reader["LocName"]);
+            //this.UserLocation.Id = Convert.ToInt32(reader["LocId"]);
+            //this.UserLocation.Name = Convert.ToString(reader["LocName"]);
 
             //if (ColumnExists(reader, "locationSpecific"))
             //    this.UserlocationSpecific = Convert.ToBoolean(reader["locationSpecific"]);
 
             if (reader["EmailId"] != DBNull.Value)
                 this.EmailId = Convert.ToString(reader["EmailId"]);
+
+            if (ColumnExists(reader, "PortName"))
+                if (reader["PortName"] != DBNull.Value)
+                    this.PortName = Convert.ToString(reader["PortName"]);
+
+            if (ColumnExists(reader, "PortID"))
+                if (reader["PortID"] != DBNull.Value)
+                    this.PortID = Convert.ToInt32(reader["PortID"]);
 
             if (ColumnExists(reader, "UserActive") && reader["UserActive"] != DBNull.Value) this.IsActive = Convert.ToBoolean(reader["UserActive"]);
             if (ColumnExists(reader, "AllowMutipleLocation") && reader["AllowMutipleLocation"] != DBNull.Value) this.AllowMutipleLocation = Convert.ToBoolean(reader["AllowMutipleLocation"]);
