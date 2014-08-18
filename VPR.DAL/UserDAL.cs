@@ -35,6 +35,22 @@ namespace VPR.DAL
             return result;
         }
 
+        public static int GetUserLoc(int user)
+        {
+            string strExecution = "[admin].[GetUserLoc]";
+            int result = 0;
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@UserId", user);
+                oDq.AddIntegerParam("@Result", result, QueryParameterDirection.Output);
+                oDq.RunActionQuery();
+                result = Convert.ToInt32(oDq.GetParaValue("@Result"));
+            }
+
+            return result;
+        }
+
         public static void ValidateUser(IUser user)
         {
             string strExecution = "[admin].[uspValidateUser]";
@@ -51,10 +67,14 @@ namespace VPR.DAL
                     user.FirstName = Convert.ToString(reader["FirstName"]);
                     user.LastName = Convert.ToString(reader["LastName"]);
                     user.UserRole.Id = Convert.ToInt32(reader["RoleId"]);
-                    user.UserLocation.Id = Convert.ToInt32(reader["LocId"]);
+                    //user.UserLocation.Id = Convert.ToInt32(reader["LocId"]);
                     user.EmailId = Convert.ToString(reader["emailID"]);
                     user.AllowMutipleLocation = Convert.ToBoolean(reader["AllowMutipleLocation"]);
                     user.UserlocationSpecific = Convert.ToBoolean(reader["locationSpecific"]);
+                    if (reader["fk_PortID"] != DBNull.Value)
+                        user.PortID = Convert.ToInt32(reader["fk_PortID"]);
+                    else
+                        user.PortID = 0;
 
                 }
 
@@ -125,7 +145,8 @@ namespace VPR.DAL
                 oDq.AddVarcharParam("@FirstName", 30, user.FirstName);
                 oDq.AddVarcharParam("@LastName", 30, user.LastName);
                 oDq.AddIntegerParam("@RoleId", user.UserRole.Id);
-                oDq.AddIntegerParam("@LocId", user.UserLocation.Id);
+                oDq.AddIntegerParam("@PortID", user.PortID);
+                //oDq.AddIntegerParam("@LocId", user.UserLocation.Id);
                 oDq.AddVarcharParam("@EmailId", 50, user.EmailId);
                 oDq.AddBooleanParam("@IsActive", user.IsActive);
                 oDq.AddBooleanParam("@AllowMutipleLocation", user.AllowMutipleLocation);

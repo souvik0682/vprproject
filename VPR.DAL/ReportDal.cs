@@ -85,6 +85,7 @@ namespace VPR.DAL
                 oDq.AddVarcharParam("@CountryName", 2, criteria.CountryName);
                 oDq.AddIntegerParam("@CargoGroupID", criteria.CargoGroupId);
                 oDq.AddIntegerParam("@PortID", criteria.PortId);
+                oDq.AddIntegerParam("@SubGroup", criteria.SubGroupID);
                 oDq.AddVarcharParam("@Activity", 1, criteria.Activity);
 
                 DataTableReader reader = oDq.GetTableReader();
@@ -209,7 +210,7 @@ namespace VPR.DAL
             return dt;
         }
 
-        public static DataTable GetPASExcelReport(DateTime StartDate, DateTime EndDate, int CargoID, int PortID, string CountryAbbr)
+        public static DataTable GetPASExcelReport(DateTime StartDate, DateTime EndDate, int CargoID, int PortID, string CountryAbbr, string Status)
         {
             string strExecution = "[dbo].[usp_RptDailyPASReport]";
             DataTable dt = new DataTable();
@@ -220,6 +221,7 @@ namespace VPR.DAL
                 oDq.AddIntegerParam("@CargoID", CargoID);
                 oDq.AddIntegerParam("@PortID", PortID);
                 oDq.AddVarcharParam("@CountryAbbr", 2, CountryAbbr);
+                oDq.AddVarcharParam("@Status", 1, Status);
                 dt = oDq.GetTable();
             }
             return dt;

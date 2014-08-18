@@ -18,7 +18,7 @@ namespace VPR.DAL
         #region Document
 
 
-        public static int SaveDocument(int DocumentType, string DocumentName, int PortID, string LinkedFileName,int UploadedBy)
+        public static int SaveDocument(int DocumentType, string DocumentName, int PortID, string LinkedFileName,int UploadedBy, string Scope)
         {
             string strExecution = "[dbo].[CreateDocuments]";
             int result = 0;
@@ -29,7 +29,27 @@ namespace VPR.DAL
                 oDq.AddIntegerParam("@DocumentTypeID", DocumentType);
                 oDq.AddVarcharParam("@LinkedFileName", 255, LinkedFileName);
                 oDq.AddDateTimeParam("@UploadDate", System.DateTime.Now);
+                oDq.AddVarcharParam("@Scope", 1, Scope);
                 oDq.AddIntegerParam("@UploadedBy", UploadedBy);
+                oDq.AddIntegerParam("@Result", result, QueryParameterDirection.Return);
+                oDq.RunActionQuery();
+                result = Convert.ToInt32(oDq.GetParaValue("@Result"));
+            }
+
+            return result;
+        }
+
+        public static int EditSaveDocument(int DocumentType, string DocumentName, int PortID, string Scope, int DocumentID)
+        {
+            string strExecution = "[dbo].[sp_EditDocuments]";
+            int result = 0;
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@DocumentID", DocumentID);
+                oDq.AddIntegerParam("@PortID", PortID);
+                oDq.AddVarcharParam("@DocumentName", 255, DocumentName);
+                oDq.AddIntegerParam("@DocumentTypeID", DocumentType);
+                oDq.AddVarcharParam("@Scope", 1, Scope);
                 oDq.AddIntegerParam("@Result", result, QueryParameterDirection.Return);
                 oDq.RunActionQuery();
                 result = Convert.ToInt32(oDq.GetParaValue("@Result"));
