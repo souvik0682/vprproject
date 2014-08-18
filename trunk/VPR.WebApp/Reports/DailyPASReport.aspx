@@ -58,6 +58,16 @@
                             <uc1:AC_Port ID="txtPort" runat="server" TabIndex="4"/>
                             <asp:Label ID="errPort" runat="server" CssClass="errormessage1"></asp:Label>
                         </td>
+                        <td style="padding-right:15px;">Vessel Status:<span class="errormessage">*</span></td> 
+                        <td>
+                            <asp:DropDownList ID="ddlActivity" runat="server" TabIndex="1">
+                                <asp:ListItem Value="O" Text="Open" Selected="True"></asp:ListItem>
+                                <asp:ListItem Value="S" Text="Sailed"></asp:ListItem>
+                                <asp:ListItem Value="A" Text="All"></asp:ListItem>
+                            </asp:DropDownList>
+                        </td>
+                     </tr>  
+                     <tr>
 <%--                        <td>                                        
                             <asp:DropDownList ID="ddlPort" runat="server"  Width="150" AutoPostBack="true" 
                                 onselectedindexchanged="ddlPort_SelectedIndexChanged">

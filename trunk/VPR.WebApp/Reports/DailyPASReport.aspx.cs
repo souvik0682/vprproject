@@ -164,7 +164,7 @@ namespace VPR.WebApp.Reports
                     PortID = Convert.ToInt32(ViewState["PORTID"]);
                     //PortName = new TransactionBLL().GetOnlyPortNameById(portid);
                 }
-                dtExcel = cls.GetPASExcelReport(dt1, dt2, Convert.ToInt32(ddlCargo.SelectedValue), PortID, CountryAbbr);
+                dtExcel = cls.GetPASExcelReport(dt1, dt2, Convert.ToInt32(ddlCargo.SelectedValue), PortID, CountryAbbr, ddlActivity.SelectedValue);
 
                 //dtExcel.Columns.Remove("fk_NVOCCID");
                 //dtExcel.Columns.Remove("fk_MainLineVesselID");

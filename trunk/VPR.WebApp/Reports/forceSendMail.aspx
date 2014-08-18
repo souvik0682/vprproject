@@ -5,7 +5,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="container" runat="Server">
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+
         <ContentTemplate>
             <div>
                 <div id="headercaption">
@@ -56,6 +56,15 @@
                                     <asp:RequiredFieldValidator ID="rfvEmailGroup" runat="server" CssClass="errormessage"
                                         ErrorMessage="This field is required" ControlToValidate="ddlEmailGroup" InitialValue="0"
                                         ValidationGroup="vgSave" Display="Dynamic"></asp:RequiredFieldValidator>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <asp:Label ID="lblUpload" runat="server" Text="Attach File :">
+                                    </asp:Label>
+                                </td>
+                                <td>
+                                    <asp:FileUpload ID="fileUpload" runat="server"></asp:FileUpload> 
                                 </td>
                             </tr>
                             <tr>
@@ -123,5 +132,5 @@
                 </center>
             </div>
         </ContentTemplate>
-    </asp:UpdatePanel>
+
 </asp:Content>
