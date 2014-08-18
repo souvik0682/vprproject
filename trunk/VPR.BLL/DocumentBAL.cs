@@ -17,10 +17,16 @@ namespace VPR.BLL
 {
     public class DocumentBAL
     {
-        public static int SaveDocument(int DocumentType, string DocumentName, int PortID, string LinkedFileName, int UploadedBy)
+        public static int SaveDocument(int DocumentType, string DocumentName, int PortID, string LinkedFileName, int UploadedBy, string Scope)
         {
-            return DocumentDAL.SaveDocument(DocumentType, DocumentName, PortID, LinkedFileName, UploadedBy);
+            return DocumentDAL.SaveDocument(DocumentType, DocumentName, PortID, LinkedFileName, UploadedBy, Scope);
         }
+
+        public static int EditSaveDocument(int DocumentType, string DocumentName, int PortID, string Scope, int DocID)
+        {
+            return DocumentDAL.EditSaveDocument(DocumentType, DocumentName, PortID, Scope, DocID);
+        }
+
         public static bool DeleteDocument(int DocumentID)
         {
             return DocumentDAL.DeleteDocument(DocumentID);

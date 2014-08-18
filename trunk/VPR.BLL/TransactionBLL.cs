@@ -30,6 +30,11 @@ namespace VPR.BLL
             return TransactionDAL.GetAllAgent();
         }
 
+        public DataTable GetAllLocation()
+        {
+            return TransactionDAL.GetAllLocation();
+        }
+
         public DataTable GetPortWithTransaction()
         {
             return TransactionDAL.GetPortWithTransaction();
@@ -88,8 +93,8 @@ namespace VPR.BLL
         {
             int VesselId = 0;
             VesselId = TransactionDAL.SavePASVessel(oVessel);
-
-            SaveCargo(VesselId, oList);
+            if (oVessel.Activity != "O")
+                SaveCargo(VesselId, oList);
         }
 
         private void SaveCargo(int VesselId, List<CargoDetails> oList)
@@ -141,9 +146,9 @@ namespace VPR.BLL
             return TransactionDAL.GetBerths(VesselId);
         }
 
-        public List<VesselStatus> GetListVesselPosition(string vesselStatus)
+        public List<VesselStatus> GetListVesselPosition(string vesselStatus, int UserPort)
         {
-            return TransactionDAL.GetListVesselPosition(vesselStatus);
+            return TransactionDAL.GetListVesselPosition(vesselStatus, UserPort);
         }
 
         public void PromoteVessels(List<VesselStatus> lstVessel)
