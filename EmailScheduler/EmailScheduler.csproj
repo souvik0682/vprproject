@@ -51,6 +51,12 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VPR.BLL\VPR.BLL.csproj">
+      <Project>{07295C3E-C8A6-48F0-AC84-824D50F9DD5A}</Project>
+      <Name>VPR.BLL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
