@@ -105,6 +105,7 @@
           <TablixMembers>
             <TablixMember>
               <Group Name="Details">
+                <DocumentMapLabel>=Fields!PortName.Value</DocumentMapLabel>
                 <PageBreak>
                   <BreakLocation>Between</BreakLocation>
                 </PageBreak>
@@ -138,7 +139,7 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
   </ReportParameters>
-  <Width>6.13198in</Width>
+  <Width>7.03683in</Width>
   <Page>
     <PageHeader>
       <Height>1.1522in</Height>
