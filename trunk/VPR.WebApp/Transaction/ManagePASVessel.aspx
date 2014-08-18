@@ -21,6 +21,7 @@
                 <legend>Search</legend>
                 <table>
                     <tr>
+
                         <td>
                             <asp:TextBox ID="txtVesselName" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
                             <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server" FilterType="Custom,UppercaseLetters,LowercaseLetters,Numbers"
@@ -49,6 +50,13 @@
                             <cc1:TextBoxWatermarkExtender ID="TextBoxWatermarkExtender7" runat="server" TargetControlID="txtActivity"
                                 WatermarkText="Job">
                             </cc1:TextBoxWatermarkExtender>
+                        </td>
+                        <td>
+                            <asp:DropDownList ID="ddlVesselStatus" runat="server" Height="25px" 
+                                onselectedindexchanged="ddlVesselStatus_SelectedIndexChanged">
+                                <asp:ListItem Text="Sailed" Value="S"></asp:ListItem>
+                                <asp:ListItem Text="Non-Sailed" Value="N" Selected="True"></asp:ListItem>
+                            </asp:DropDownList>
                         </td>
                         <td>
                             &nbsp;

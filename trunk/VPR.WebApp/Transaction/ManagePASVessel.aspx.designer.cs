@@ -94,6 +94,15 @@ namespace VPR.WebApp.Transaction {
         protected global::AjaxControlToolkit.TextBoxWatermarkExtender TextBoxWatermarkExtender7;
         
         /// <summary>
+        /// ddlVesselStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlVesselStatus;
+        
+        /// <summary>
         /// btnSearch control.
         /// </summary>
         /// <remarks>

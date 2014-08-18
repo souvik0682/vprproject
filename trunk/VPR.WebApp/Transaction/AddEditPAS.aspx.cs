@@ -332,7 +332,7 @@ namespace VPR.WebApp.Transaction
             txtMovementDate.Text = o.MovementDate.Value.ToString("dd-MM-yyyy");
             ddlVessel.SelectedValue = o.VesselId.ToString();
             ddlMovement.SelectedValue = o.Movement.ToString();
-            ddlMovementType.SelectedValue = o.MovementType.ToString();
+            //ddlMovementType.SelectedValue = o.MovementType.ToString();
             ddlMovement.Enabled = false;
             ddlVessel.Enabled = false;
             if (o.Movement != "1" && o.Movement != "2")
@@ -349,10 +349,10 @@ namespace VPR.WebApp.Transaction
                     o.PASTranID = Convert.ToInt32(ViewState["PASTranId"]);
 
                 o.MovementDate = Convert.ToDateTime(txtMovementDate.Text.Trim());
-                o.MovementType = Convert.ToString(ddlMovementType.SelectedValue);
+                //o.MovementType = Convert.ToString(ddlMovementType.SelectedValue);
                 o.Movement = Convert.ToString(ddlMovement.SelectedValue);
                 o.VesselId = Convert.ToInt32(ddlVessel.SelectedValue);
-              
+                o.MovementType = "A";
                 //o.BerthDate = Convert.ToDateTime(txtBerthDate.Text.Trim());
                 //o.BerthId = Convert.ToInt32(ddlBerth.SelectedValue);
                 o.CreatedBy = 0;
@@ -461,6 +461,13 @@ namespace VPR.WebApp.Transaction
 
             if (Act == "L")
                 ddlMovement.Items[2].Attributes.Add("disabled", "disabled");
+
+            if (Act == "O")
+            {
+                ddlMovement.Items[2].Attributes.Add("disabled", "disabled");
+                ddlMovement.Items[3].Attributes.Add("disabled", "disabled");
+
+            }
 
             //txtPortName.Text = new TransactionBLL().GetPortNameByVesselID(ddlVessel.SelectedValue.ToInt());
             if (CurMovement != 1 && CurMovement != 2)

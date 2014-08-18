@@ -389,7 +389,7 @@ namespace VPR.WebApp.Transaction
 
                 int totalRows = gvwCargo.Rows.Count;
 
-                for (int r = 0; r < totalRows; r++)
+                for (int r = 0; r < totalRows; r++) 
                 {
                     GridViewRow thisGridViewRow = gvwCargo.Rows[r];
 
@@ -410,7 +410,7 @@ namespace VPR.WebApp.Transaction
 
                 var min = oList.Min(i => i.CargoVesselId);
 
-                oList.Add(new CargoDetails { CargoVesselId = (min.ToInt() - 1), CargoId = 0, IsNew = true });
+                oList.Add(new CargoDetails { CargoVesselId = (min.ToInt() - 1), CargoId = 0, IsNew = true, ActType = ddlAcivity.SelectedValue });
 
                 gvwCargo.DataSource = oList;
                 gvwCargo.DataBind();
@@ -447,6 +447,15 @@ namespace VPR.WebApp.Transaction
             if (o.ETB.HasValue)
                 txtBerthDate.Text = o.ETB.Value.ToString("dd-MM-yyyy");
 
+            if (o.ArrivalDate.HasValue)
+                txtActArr.Text = o.ArrivalDate.Value.ToString("dd-MM-yyyy");
+
+            if (o.BerthDate.HasValue)
+                txtActBerth.Text = o.BerthDate.Value.ToString("dd-MM-yyyy");
+
+            if (o.SailDate.HasValue)
+                txtActSail.Text = o.SailDate.Value.ToString("dd-MM-yyyy");
+
             txtOPA.Text = o.Owner;
             //txtOwnerName.Text = o.Owner;
             txtAppointing.Text = o.AppointingCo.ToString();
@@ -454,8 +463,11 @@ namespace VPR.WebApp.Transaction
             txtShipper.Text = o.Shipper.ToString();
             if (o.ActivityStatus == "S")
             {
-                txtBerthDate.Enabled = true;
-                txtETC.Enabled = true;
+                txtActArr.Enabled = true;
+                txtActBerth.Enabled = true;
+                txtActSail.Enabled = true;
+                //txtBerthDate.Enabled = true;
+                //txtETC.Enabled = true;
                 ddlAcivity.Enabled = false;
                 txtPort.EnableViewState = false;
             }
@@ -490,7 +502,16 @@ namespace VPR.WebApp.Transaction
                 if (txtETC.Text.Trim() != "")
                     o.ETC = Convert.ToDateTime(txtETC.Text.Trim());
                 if (txtBerthDate.Text.Trim() != "")
-                    o.BerthDate = Convert.ToDateTime(txtBerthDate.Text.Trim());
+                    o.ETB = Convert.ToDateTime(txtBerthDate.Text.Trim());
+
+                if (txtActArr.Text.Trim() != "")
+                    o.ArrivalDate = Convert.ToDateTime(txtActArr.Text.Trim());
+
+                if (txtActBerth.Text.Trim() != "")
+                    o.BerthDate = Convert.ToDateTime(txtActBerth.Text.Trim());
+
+                if (txtActSail.Text.Trim() != "")
+                    o.SailDate = Convert.ToDateTime(txtActSail.Text.Trim());
 
                 o.ModifiedBy = 0;
                 o.AppointingCo = txtAppointing.Text.Trim();

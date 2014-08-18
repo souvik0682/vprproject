@@ -94,13 +94,61 @@
                                                         ErrorMessage="This field is required*" CssClass="errormessage" ValidationGroup="Save"
                                                         Display="Dynamic"></asp:RequiredFieldValidator>
                                                 </td>
+                                               <td>
+                                                    Arrival Date:
+                                                </td>
+                                                <td>
+                                                    <asp:TextBox ID="txtActArr" runat="server" Width="250px" TabIndex="8" Enabled="False"></asp:TextBox>
+                                                    <cc1:CalendarExtender ID="cbeActArr" TargetControlID="txtActArr" runat="server"
+                                                        Format="dd-MM-yyyy" Enabled="true" />
+<%--                                                    <asp:RequiredFieldValidator ID="rfvActArr" runat="server" ControlToValidate="txtActArr"
+                                                        ErrorMessage="This field is required*" CssClass="errormessage" ValidationGroup="Save"
+                                                        Display="Dynamic"></asp:RequiredFieldValidator>--%>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    ETB:
+                                                </td>
+                                                <td>
+                                                    <asp:TextBox ID="txtBerthDate" runat="server" Width="250px"  Enabled="true" ></asp:TextBox>
+                                                    <cc1:CalendarExtender ID="cbeBerth" TargetControlID="txtBerthDate" runat="server"
+                                                        Format="dd-MM-yyyy"/>
+       <%--                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtBerthDate"
+                                                        ErrorMessage="This field is required*" CssClass="errormessage" ValidationGroup="Save"
+                                                        Display="Dynamic"></asp:RequiredFieldValidator>--%>
+                                                </td>
+                                                <td>
+                                                    Berth Date:
+                                                </td>
+                                                <td>
+                                                    <asp:TextBox ID="txtActBerth" runat="server" Width="250px"  Enabled="False" ></asp:TextBox>
+                                                    <cc1:CalendarExtender ID="cbeActBerth" TargetControlID="txtActBerth" runat="server"
+                                                        Format="dd-MM-yyyy"/>
+       <%--                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtBerthDate"
+                                                        ErrorMessage="This field is required*" CssClass="errormessage" ValidationGroup="Save"
+                                                        Display="Dynamic"></asp:RequiredFieldValidator>--%>
+                                                </td>
+                                            </tr>
+                                            <tr>
                                                 <td>
                                                     ETC:
                                                 </td>
                                                 <td>
-                                                    <asp:TextBox ID="txtETC" runat="server" Width="250px" Enabled="False"></asp:TextBox>
+                                                    <asp:TextBox ID="txtETC" runat="server" Width="250px" Enabled="true"></asp:TextBox>
                                                     <cc1:CalendarExtender ID="cbeETC" TargetControlID="txtETC" runat="server" Format="dd-MM-yyyy"
                                                         Enabled="True" />
+<%--                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtETC"
+                                                        ErrorMessage="This field is required*" CssClass="errormessage" ValidationGroup="Save"
+                                                        Display="Dynamic"></asp:RequiredFieldValidator>--%>
+                                                </td>
+                                                <td>
+                                                    Sail Date:
+                                                </td>
+                                                <td>
+                                                    <asp:TextBox ID="txtActSail" runat="server" Width="250px" Enabled="False"></asp:TextBox>
+                                                    <cc1:CalendarExtender ID="cbeActSail" TargetControlID="txtActSail" runat="server" Format="dd-MM-yyyy"
+                                                        Enabled="false" />
 <%--                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtETC"
                                                         ErrorMessage="This field is required*" CssClass="errormessage" ValidationGroup="Save"
                                                         Display="Dynamic"></asp:RequiredFieldValidator>--%>
@@ -108,21 +156,10 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    ETB:<span class="errormessage1">*</span>
-                                                </td>
-                                                <td>
-                                                    <asp:TextBox ID="txtBerthDate" runat="server" Width="250px"  Enabled="False" ></asp:TextBox>
-                                                    <cc1:CalendarExtender ID="CalendarExtender1" TargetControlID="txtBerthDate" runat="server"
-                                                        Format="dd-MM-yyyy"/>
-       <%--                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtBerthDate"
-                                                        ErrorMessage="This field is required*" CssClass="errormessage" ValidationGroup="Save"
-                                                        Display="Dynamic"></asp:RequiredFieldValidator>--%>
-                                                </td>
-                                                <td>
                                                     OPA (If Any):
                                                 </td>
                                                 <td>
-                                                    <asp:TextBox ID="txtOPA" runat="server" Width="250px" Enabled="True"></asp:TextBox>
+                                                    <asp:TextBox ID="txtOPA" runat="server" Width="250px" Enabled="True" CssClass="textboxuppercase"></asp:TextBox>
                                                     <%--<cc1:CalendarExtender ID="cbeETC" TargetControlID="txtETC" runat="server" Format="dd-MM-yyyy"
                                                         Enabled="True" />
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtETC"
@@ -173,6 +210,7 @@
  
                                             </tr>
                                             <tr>
+                                                
                                                 <td>
                                                     Shipper/Receiver:
                                                 </td>

@@ -51,6 +51,7 @@
                                                         <asp:ListItem Value="D" Text="Discharge" Selected="True"></asp:ListItem>
                                                         <asp:ListItem Value="L" Text="Load"></asp:ListItem>
                                                         <asp:ListItem Value="B" Text="Load & Discharge"></asp:ListItem>
+                                                        <asp:ListItem Value="O" Text="Others"></asp:ListItem>
                                                     </asp:DropDownList>
                                                 </td>
 
@@ -76,7 +77,7 @@
                                                         <asp:ListItem Value="5" Text="Sailed"></asp:ListItem>--%>
                                                     </asp:DropDownList>
                                                 </td>
-                                                <td>
+ <%--                                               <td>
                                                     Movement Type:<span class="errormessage1">*</span>
                                                 </td>
                                                 <td>
@@ -84,7 +85,7 @@
                                                         <asp:ListItem Value="E" Text="Expected" Selected="True"></asp:ListItem>
                                                         <asp:ListItem Value="A" Text="Actual"></asp:ListItem>
                                                     </asp:DropDownList>
-                                                </td>
+                                                </td>--%>
                                                 
                                             </tr>
 
