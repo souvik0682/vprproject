@@ -138,6 +138,8 @@ namespace VPR.WebApp.Reports
                 criteria.EmailGroupID = Convert.ToInt32(ddlEmailGroup.SelectedValue);
             else
                 criteria.EmailGroupID = 0;
+
+            
         }
 
         private void LoadCargoGroup()
@@ -224,6 +226,18 @@ namespace VPR.WebApp.Reports
                 string attachmentFileName = string.Empty;
                 string emailIds = string.Empty;
                 int emailGroupId = Convert.ToInt32(ddlEmailGroup.SelectedValue);
+                if (fileUpload.HasFile)
+                {
+                    var fileName = fileUpload.FileName;
+                    var path = Server.MapPath("~/Documents/ForceSendMail");
+                    if (!string.IsNullOrEmpty(path))
+                    {
+                        path += @"\" + fileName;
+                        //path += @"\" + fileName + System.IO.Path.GetExtension(fileName);
+                        fileUpload.PostedFile.SaveAs(path);
+                        attachmentFileName = fileName;
+                    }
+                }
 
                 foreach (GridViewRow row in gvMail.Rows)
                 {
