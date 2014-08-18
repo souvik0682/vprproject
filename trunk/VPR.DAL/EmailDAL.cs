@@ -43,7 +43,7 @@ namespace VPR.DAL
                 oDq.AddVarcharParam("@GroupName", 500, EmailGroup.GroupName);
                 oDq.AddIntegerParam("@CountryId", EmailGroup.CountryId);
                 oDq.AddVarcharParam("@Subject", 500, EmailGroup.Subject);
-                oDq.AddVarcharParam("@MailBody", 2000, EmailGroup.MailBody);
+                oDq.AddVarcharParam("@MailBody", 25000, EmailGroup.MailBody);
                 oDq.AddVarcharParam("@Attachment", 1, EmailGroup.Attachment);
                 oDq.AddVarcharParam("@Frequency", 1, EmailGroup.Frequency);
 
@@ -282,6 +282,24 @@ namespace VPR.DAL
                 reader.Close();
             }
             return lstEg;
+        }
+
+        public static void SaveBulkEmail(string xmlDoc, int modifiedBy, out int rowsAffected, out int dupCount)
+        {
+            string strExecution = "[dbo].[uspImportEmail]";
+            dupCount = 0;
+            rowsAffected = 0;
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
+                oDq.AddNTextParam("@XMLDoc", xmlDoc);
+                oDq.AddIntegerParam("@RowsAffected", rowsAffected, QueryParameterDirection.Output);
+                oDq.AddIntegerParam("@DupCount", dupCount, QueryParameterDirection.Output);
+                oDq.RunActionQuery();
+                rowsAffected = Convert.ToInt32(oDq.GetParaValue("@RowsAffected"));
+                dupCount = Convert.ToInt32(oDq.GetParaValue("@DupCount"));
+            }
         }
 
         #endregion

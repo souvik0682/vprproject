@@ -34,6 +34,13 @@ namespace VPR.DAL
             return dquery.GetTable();
         }
 
+        public static DataTable GetAllLocation()
+        {
+            string ProcName = "GetAllLocation";
+            DAL.DbManager.DbQuery dquery = new DAL.DbManager.DbQuery(ProcName);
+            return dquery.GetTable();
+        }
+
         public static DataTable GetPortWithTransaction()
         {
             string ProcName = "usp_getPortWithTransaction";
@@ -199,13 +206,16 @@ namespace VPR.DAL
                 oDq.AddIntegerParam("@BerthId", o.BerthId);
                 oDq.AddDecimalParam("@LOA", 12, 2, o.LOA);
                 oDq.AddDateTimeParam("@ETA", o.ETA);
+                oDq.AddDateTimeParam("@ETB", o.BerthDate);
+                oDq.AddDateTimeParam("@ETC", o.ETC);
+                oDq.AddDateTimeParam("@SailDate", o.SailDate);
                 oDq.AddVarcharParam("@Owner", 50, o.Owner);
                 oDq.AddIntegerParam("@AgentId", o.AgentId);
                 oDq.AddIntegerParam("@PrevPortId", o.PrevPortId);
                 oDq.AddIntegerParam("@NxtPortId", o.NextPortId);
                 oDq.AddVarcharParam("@Remarks", 5000, o.Remarks);
                 oDq.AddVarcharParam("@VoyageNo", 50, o.VoyageNo);
-
+                oDq.AddIntegerParam("@LocID", o.LocID);
                 oDq.AddIntegerParam("@CreatedBy", o.CreatedBy);
                 oDq.AddIntegerParam("@ModifiedBy", o.ModifiedBy);
 
@@ -232,6 +242,11 @@ namespace VPR.DAL
                 oDq.AddVarcharParam("@Owner", 50, o.Owner);
                 oDq.AddVarcharParam("@VesselName", 50, o.VesselName);
                 oDq.AddDateTimeParam("@ETA", o.ETA);
+                oDq.AddDateTimeParam("@ETB", o.ETB);
+                oDq.AddDateTimeParam("@ETC", o.ETC);
+                oDq.AddDateTimeParam("@ArrivalDate", o.ArrivalDate);
+                oDq.AddDateTimeParam("@BerthDate", o.BerthDate);
+                oDq.AddDateTimeParam("@SailDate", o.SailDate);
                 oDq.AddVarcharParam("@NominatingCo", 50, o.NominatingCo);
                 oDq.AddVarcharParam("@AppointingCo", 50, o.AppointingCo);
                 oDq.AddVarcharParam("@Shipper", 50, o.Shipper);
@@ -303,6 +318,8 @@ namespace VPR.DAL
                 oDq.AddVarcharParam("@Port", 200, searchCriteria.Port);
                 oDq.AddVarcharParam("@Agent", 200, searchCriteria.AgentName);
                 oDq.AddVarcharParam("@VesselStatus", 1, searchCriteria.VesselStatus);
+                oDq.AddIntegerParam("@PortID", searchCriteria.portID);
+                //oDq.AddIntegerParam("@LocationID", searchCriteria.LocationID);
                 oDq.AddVarcharParam("@SortExpression", 100, searchCriteria.SortExpression);
                 oDq.AddVarcharParam("@SortDirection", 100, searchCriteria.SortDirection);
 
@@ -328,6 +345,7 @@ namespace VPR.DAL
                 oDq.AddVarcharParam("@VesselName", 500, searchCriteria.VesselName);
                 oDq.AddVarcharParam("@Port", 200, searchCriteria.Port);
                 oDq.AddVarcharParam("@ActivityName", 200, searchCriteria.ActivityName);
+                oDq.AddVarcharParam("@VesselStatus", 200, searchCriteria.StringOption1);
                 oDq.AddVarcharParam("@SortExpression", 100, searchCriteria.SortExpression);
                 oDq.AddVarcharParam("@SortDirection", 100, searchCriteria.SortDirection);
 
@@ -428,7 +446,7 @@ namespace VPR.DAL
             }
         }
 
-        public static List<VesselStatus> GetListVesselPosition(string vesselStatus)
+        public static List<VesselStatus> GetListVesselPosition(string vesselStatus, int UserPort)
         {
             string strExecution = "usp_GetVesselPosition";
             List<VesselStatus> lstVessel = new List<VesselStatus>();
@@ -436,6 +454,7 @@ namespace VPR.DAL
             using (DbQuery oDq = new DbQuery(strExecution))
             {
                 oDq.AddVarcharParam("@VesselStatus", 10, vesselStatus);
+                oDq.AddIntegerParam("@UserLoc", UserPort);
 
                 DataTableReader reader = oDq.GetTableReader();
 
