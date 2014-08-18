@@ -54,7 +54,7 @@
                 <asp:Button ID="btnAdd" runat="server" Text="Add New User" Width="130px" OnClick="btnAdd_Click" />
             </div>
             <div>
-                <span class="errormessage">* Indicates Inactive User(s)</span>
+                <%--<span class="errormessage">* Indicates Inactive User(s)</span>--%>
             </div><br />            
             <div>
                 <asp:UpdatePanel ID="upUser" runat="server" UpdateMode="Conditional">
@@ -99,7 +99,7 @@
                             <asp:TemplateField>
                                 <HeaderStyle CssClass="gridviewheader" />
                                 <ItemStyle CssClass="gridviewitem" Width="13%" />       
-                                <HeaderTemplate><asp:LinkButton ID="lnkHLoc" runat="server" CommandName="Sort" CommandArgument="LocName" Text="Location"></asp:LinkButton></HeaderTemplate>                             
+                                <HeaderTemplate><asp:LinkButton ID="lnkHLoc" runat="server" CommandName="Sort" CommandArgument="LocName" Text="Port"></asp:LinkButton></HeaderTemplate>                             
                             </asp:TemplateField>
                             <asp:TemplateField>
                                 <HeaderStyle CssClass="gridviewheader" />

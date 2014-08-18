@@ -112,22 +112,22 @@ namespace VPR.WebApp.View {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl spnRole;
         
         /// <summary>
-        /// ddlLoc control.
+        /// txtPort control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlLoc;
+        protected global::VPR.WebApp.CustomControls.AC_Port txtPort;
         
         /// <summary>
-        /// spnLoc control.
+        /// errPort control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spnLoc;
+        protected global::System.Web.UI.WebControls.Label errPort;
         
         /// <summary>
         /// chkActive control.
