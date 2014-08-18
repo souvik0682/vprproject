@@ -148,6 +148,60 @@ namespace VPR.WebApp.Transaction {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvMailSendOn;
         
         /// <summary>
+        /// txtActArr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtActArr;
+        
+        /// <summary>
+        /// cbeActArr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender cbeActArr;
+        
+        /// <summary>
+        /// txtBerthDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBerthDate;
+        
+        /// <summary>
+        /// cbeBerth control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender cbeBerth;
+        
+        /// <summary>
+        /// txtActBerth control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtActBerth;
+        
+        /// <summary>
+        /// cbeActBerth control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender cbeActBerth;
+        
+        /// <summary>
         /// txtETC control.
         /// </summary>
         /// <remarks>
@@ -166,22 +220,22 @@ namespace VPR.WebApp.Transaction {
         protected global::AjaxControlToolkit.CalendarExtender cbeETC;
         
         /// <summary>
-        /// txtBerthDate control.
+        /// txtActSail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBerthDate;
+        protected global::System.Web.UI.WebControls.TextBox txtActSail;
         
         /// <summary>
-        /// CalendarExtender1 control.
+        /// cbeActSail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender1;
+        protected global::AjaxControlToolkit.CalendarExtender cbeActSail;
         
         /// <summary>
         /// txtOPA control.

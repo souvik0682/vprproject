@@ -432,7 +432,7 @@ namespace VPR.WebApp.Transaction
 
                 var min = oList.Min(i => i.CargoVesselId);
 
-                oList.Add(new CargoDetails { CargoVesselId = (min.ToInt() - 1), CargoId = 0, IsNew = true });
+                oList.Add(new CargoDetails { CargoVesselId = (min.ToInt() - 1), CargoId = 0, IsNew = true, ActType = ddlAcivity.SelectedValue });
 
                 gvwCargo.DataSource = oList;
                 gvwCargo.DataBind();

@@ -125,8 +125,8 @@ namespace VPR.WebApp.Transaction
                 e.Row.Cells[1].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "PortName"));
                 e.Row.Cells[2].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "VesselActivity"));
                 e.Row.Cells[3].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Movement"));
-                e.Row.Cells[4].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "MovementType"));
-                e.Row.Cells[5].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "MovementDate")).Split(' ')[0];
+                //e.Row.Cells[4].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "MovementType"));
+                e.Row.Cells[4].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "MovementDate")).Split(' ')[0];
                 //e.Row.Cells[7].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ETC"));
 
                 //Edit Link

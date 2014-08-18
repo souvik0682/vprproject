@@ -271,6 +271,7 @@ namespace VPR.WebApp.Transaction
             criteria.VesselName = (txtVesselName.Text == "") ? string.Empty : txtVesselName.Text.Trim();
             criteria.Port = (txtPort.Text == "") ? string.Empty : txtPort.Text.Trim();
             criteria.ActivityName = (txtActivity.Text == "") ? string.Empty : txtActivity.Text.Trim();
+            criteria.StringOption1 = ddlVesselStatus.SelectedValue;
 
             Session[Constants.SESSION_SEARCH_CRITERIA] = criteria;
         }
@@ -299,6 +300,7 @@ namespace VPR.WebApp.Transaction
                         gvImportBL.PageIndex = criteria.PageIndex;
                         gvImportBL.PageSize = criteria.PageSize;
                         ddlPaging.SelectedValue = criteria.PageSize.ToString();
+                        ddlVesselStatus.SelectedValue = "N";
                         isCriteriaExists = true;
                     }
                 }
@@ -351,5 +353,10 @@ namespace VPR.WebApp.Transaction
         }
 
         #endregion
+
+        protected void ddlVesselStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadEmailGroup();
+        }
     }
 }
