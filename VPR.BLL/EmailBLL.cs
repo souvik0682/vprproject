@@ -100,6 +100,12 @@ namespace VPR.BLL
             return EmailDAL.GetEmails(searchCriteria);
         }
 
+        public void SaveBulkEmail(List<EmailImport> lstEmail, int modifiedBy, out int rowsAffected, out int dupCount)
+        {
+            string xmlDoc = GeneralFunctions.Serialize(lstEmail);
+            EmailDAL.SaveBulkEmail(xmlDoc, modifiedBy, out rowsAffected, out dupCount);
+        }
+
         #endregion
     }
 }

@@ -73,6 +73,24 @@ namespace VPR.BLL
                 if (!ReferenceEquals(user, null))
                 {
                     uloc = user.UserLocation.Id;
+                    //uloc = user.PortID;
+                }
+            }
+
+            return uloc;
+        }
+
+        public static int GetUserPort()
+        {
+            int uloc = 0;
+
+            if (!ReferenceEquals(System.Web.HttpContext.Current.Session[Constants.SESSION_USER_INFO], null))
+            {
+                IUser user = (IUser)System.Web.HttpContext.Current.Session[Constants.SESSION_USER_INFO];
+
+                if (!ReferenceEquals(user, null))
+                {
+                    uloc = user.PortID;
                 }
             }
 
@@ -122,6 +140,11 @@ namespace VPR.BLL
             SearchCriteria searchCriteria = new SearchCriteria();
             SetDefaultSearchCriteriaForUser(searchCriteria);
             return UserDAL.GetUser(userId, false, searchCriteria);
+        }
+
+        public static int GetUserLoc(int userID)
+        {
+            return UserDAL.GetUserLoc(userID);
         }
 
         public static System.Data.DataSet GetUserById(int userId)

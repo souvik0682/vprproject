@@ -73,9 +73,9 @@ namespace VPR.BLL
             return ReportDal.GetAllCountry();
         }
 
-        public DataTable GetPASExcelReport(DateTime TranDate, DateTime TranDate1, int CargoID, int PortID, string CountryAbbr)
+        public DataTable GetPASExcelReport(DateTime TranDate, DateTime TranDate1, int CargoID, int PortID, string CountryAbbr, string Status)
         {
-            return ReportDal.GetPASExcelReport(TranDate, TranDate1, CargoID, PortID, CountryAbbr);
+            return ReportDal.GetPASExcelReport(TranDate, TranDate1, CargoID, PortID, CountryAbbr, Status);
         }
 
         public static List<VesselPosition> GetVPR(ReportCriteria criteria)
