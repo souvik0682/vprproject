@@ -18,5 +18,7 @@ namespace VPR.Common
         bool IsActive { get; set; }
         bool AllowMutipleLocation { get; set; }
         bool UserlocationSpecific { get; set; }
+        int PortID { get; set; }
+        string PortName { get; set; }
      }
 }
