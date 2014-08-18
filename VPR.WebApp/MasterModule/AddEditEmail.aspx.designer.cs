@@ -31,15 +31,6 @@ namespace VPR.WebApp.MasterModule {
         protected global::System.Web.UI.WebControls.TextBox txtSuffix;
         
         /// <summary>
-        /// rfvSuffix control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvSuffix;
-        
-        /// <summary>
         /// txtSalutation control.
         /// </summary>
         /// <remarks>
@@ -175,15 +166,6 @@ namespace VPR.WebApp.MasterModule {
         protected global::System.Web.UI.WebControls.TextBox txtCompanyName;
         
         /// <summary>
-        /// RequiredFieldValidator1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-        
-        /// <summary>
         /// txtCompanyAbbr control.
         /// </summary>
         /// <remarks>
@@ -191,15 +173,6 @@ namespace VPR.WebApp.MasterModule {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCompanyAbbr;
-        
-        /// <summary>
-        /// RequiredFieldValidator2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
         
         /// <summary>
         /// ddlCountry control.

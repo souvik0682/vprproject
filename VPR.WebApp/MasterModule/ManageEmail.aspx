@@ -120,21 +120,21 @@
                                 <Columns>
                                     <asp:TemplateField>
                                         <HeaderStyle CssClass="gridviewheader" />
-                                        <ItemStyle CssClass="gridviewitem" Width="25%" />
+                                        <ItemStyle CssClass="gridviewitem" Width="12%" />
                                         <HeaderTemplate>
                                             <asp:LinkButton ID="lnkName" runat="server" CommandName="Sort" CommandArgument="Name" Text="Name"></asp:LinkButton>
                                         </HeaderTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField>
                                         <HeaderStyle CssClass="gridviewheader" />
-                                        <ItemStyle CssClass="gridviewitem" Width="10%" />
+                                        <ItemStyle CssClass="gridviewitem" Width="15%" />
                                         <HeaderTemplate>
                                             <asp:LinkButton ID="lnkEmail" runat="server" CommandName="Sort" CommandArgument="EmailId" Text="Email ID"></asp:LinkButton>
                                         </HeaderTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField>
                                         <HeaderStyle CssClass="gridviewheader" />
-                                        <ItemStyle CssClass="gridviewitem" Width="5%" />
+                                        <ItemStyle CssClass="gridviewitem" Width="10%" />
                                         <HeaderTemplate>
                                             <asp:LinkButton ID="lnkCompany" runat="server" CommandName="Sort" CommandArgument="Company" Text="Company"></asp:LinkButton>
                                         </HeaderTemplate>
