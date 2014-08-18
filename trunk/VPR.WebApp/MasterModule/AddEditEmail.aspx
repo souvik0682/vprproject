@@ -14,13 +14,13 @@
                 <table style="width: 100%;">
                     <tr>
                         <td>
-                            Suffix<span class="errormessage1">*</span>
+                            Suffix
                         </td>
                         <td>
                             <asp:TextBox ID="txtSuffix" runat="server" Width="150px"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="rfvSuffix" runat="server" ControlToValidate="txtSuffix"
+                            <%--<asp:RequiredFieldValidator ID="rfvSuffix" runat="server" ControlToValidate="txtSuffix"
                                             ErrorMessage="This field is required*" CssClass="errormessage" ValidationGroup="Save"
-                                            Display="Dynamic"></asp:RequiredFieldValidator>
+                                            Display="Dynamic"></asp:RequiredFieldValidator>--%>
                         </td>
                     </tr>
                     <tr>
@@ -99,24 +99,24 @@
                     </tr>
                     <tr>
                         <td>
-                            Company Name<span class="errormessage1">*</span>
+                            Company Name
                         </td>
                         <td>
                             <asp:TextBox ID="txtCompanyName" runat="server" Width="350px"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtCompanyName"
+<%--                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtCompanyName"
                                             ErrorMessage="This field is required*" CssClass="errormessage" ValidationGroup="Save"
-                                            Display="Dynamic"></asp:RequiredFieldValidator>
+                                            Display="Dynamic"></asp:RequiredFieldValidator>--%>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            Company Abbr.<span class="errormessage1">*</span>
+                            Company Abbr.
                         </td>
                         <td>
                             <asp:TextBox ID="txtCompanyAbbr" runat="server" Width="350px"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtCompanyAbbr"
+             <%--               <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtCompanyAbbr"
                                             ErrorMessage="This field is required*" CssClass="errormessage" ValidationGroup="Save"
-                                            Display="Dynamic"></asp:RequiredFieldValidator>
+                                            Display="Dynamic"></asp:RequiredFieldValidator>--%>
                         </td>
                     </tr>
                     <tr>
