@@ -1,4 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddEditUser.aspx.cs" Inherits="VPR.WebApp.View.AddEditUser" MasterPageFile="~/Site.Master" Title=":: Liner :: Add / Edit User" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+<%@ Register Assembly="VPR.WebApp" Namespace="VPR.WebApp.CustomControls" TagPrefix="cc2" %>
+<%@ Register Src="~/CustomControls/AC_Port.ascx" TagName="AC_Port" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">    
     <script src="../Scripts/Common.js" type="text/javascript"></script>
 </asp:Content>
@@ -50,12 +54,17 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Location:<span class="errormessage1">*</span></td>
-                    <td>
+                    <td>Port:<span class="errormessage1">*</span></td>
+                      <td>
+                        <uc1:AC_Port ID="txtPort" runat="server" TabIndex="4"/>
+                        <asp:Label ID="errPort" runat="server" CssClass="errormessage1"></asp:Label>
+                    </td>
+
+          <%--          <td>
                         <asp:DropDownList ID="ddlLoc" runat="server"></asp:DropDownList><br />
                         <span id="spnLoc" runat="server" class="errormessage" style="display:none;"></span>
-                        <%--<asp:RequiredFieldValidator ID="rfvLoc" runat="server" CssClass="errormessage" ControlToValidate="ddlLoc" InitialValue="0" Display="Dynamic" ValidationGroup="Save"></asp:RequiredFieldValidator>--%>
-                    </td>
+                        
+                    </td>--%>
                 </tr>
                 <%--<tr>
                     <td>Allow Multiple Location:<span class="errormessage1">*</span></td>

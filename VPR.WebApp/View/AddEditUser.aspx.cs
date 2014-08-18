@@ -37,9 +37,10 @@ namespace VPR.WebApp.View
             if (!IsPostBack)
             {
                 PopulateRole();
-                PopulateLocation();
+                //PopulateLocation();
                 LoadData();
             }
+            txtPort.TextChanged += new EventHandler(txtPort_TextChanged);
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -47,23 +48,49 @@ namespace VPR.WebApp.View
             SaveUser();
         }
 
-        protected void ddlRole_SelectedIndexChanged(object sender, EventArgs e)
+        //protected void ddlRole_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    ddlLoc.Enabled = false;
+        //    //ddlMultiLoc.Enabled = false;
+
+        //    IRole role = new UserBLL().GetRole(Convert.ToInt32(ddlRole.SelectedValue));
+
+        //    if (!ReferenceEquals(role, null))
+        //    {
+        //        if (role.LocationSpecific.HasValue && role.LocationSpecific.Value)
+        //        {
+        //            ddlLoc.Enabled = true;
+        //            //ddlMultiLoc.Enabled = true;
+        //        }
+        //    }
+        //}
+
+        void txtPort_TextChanged(object sender, EventArgs e)
         {
-            ddlLoc.Enabled = false;
-            //ddlMultiLoc.Enabled = false;
+            string port = ((TextBox)txtPort.FindControl("txtPort")).Text;
 
-            IRole role = new UserBLL().GetRole(Convert.ToInt32(ddlRole.SelectedValue));
-
-            if (!ReferenceEquals(role, null))
+            if (port != string.Empty)
             {
-                if (role.LocationSpecific.HasValue && role.LocationSpecific.Value)
+                if (port.Split('|').Length > 1)
                 {
-                    ddlLoc.Enabled = true;
-                    //ddlMultiLoc.Enabled = true;
+                    string portCode = port.Split('|')[1].Trim();
+
+                    int portId = new TransactionBLL().GetPortId(portCode);
+
+                    ViewState["PORTID"] = portId;
+                }
+                else
+                {
+                    ViewState["PORTID"] = null;
                 }
             }
-        }
+            else
+            {
+                ViewState["PORTID"] = null;
+            }
 
+
+        }
         #endregion
 
         #region Private Methods
@@ -88,7 +115,7 @@ namespace VPR.WebApp.View
             spnLName.Style["display"] = "none";
             spnEmail.Style["display"] = "none";
             spnRole.Style["display"] = "none";
-            spnLoc.Style["display"] = "none";
+            //spnLoc.Style["display"] = "none";
 
             if (!IsPostBack)
             {
@@ -101,7 +128,7 @@ namespace VPR.WebApp.View
                     if (!_canEdit) btnSave.Visible = false;
                 }
 
-                ddlLoc.Enabled = false;
+                //ddlLoc.Enabled = false;
                 //ddlMultiLoc.Enabled = false;
                 //rfvUserName.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00036");
                 //rfvFName.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00037");
@@ -119,7 +146,7 @@ namespace VPR.WebApp.View
                 spnLName.InnerText = ResourceManager.GetStringWithoutName("ERR00050");
                 spnEmail.InnerText = ResourceManager.GetStringWithoutName("ERR00051");
                 spnRole.InnerText = ResourceManager.GetStringWithoutName("ERR00052");
-                spnLoc.InnerText = ResourceManager.GetStringWithoutName("ERR00037");
+                //spnLoc.InnerText = ResourceManager.GetStringWithoutName("ERR00037");
             }
 
             if (_uId == -1)
@@ -198,12 +225,12 @@ namespace VPR.WebApp.View
             GeneralFunctions.PopulateDropDownList(ddlRole, lstRole, "Id", "Name", true);
         }
 
-        private void PopulateLocation()
-        {
-            CommonBLL commonBll = new CommonBLL();
-            List<ILocation> lstLoc = commonBll.GetActiveLocation();
-            GeneralFunctions.PopulateDropDownList(ddlLoc, lstLoc, "Id", "Name", true);
-        }
+        //private void PopulateLocation()
+        //{
+        //    CommonBLL commonBll = new CommonBLL();
+        //    List<ILocation> lstLoc = commonBll.GetActiveLocation();
+        //    GeneralFunctions.PopulateDropDownList(ddlLoc, lstLoc, "Id", "Name", true);
+        //}
 
         private void LoadData()
         {
@@ -216,7 +243,12 @@ namespace VPR.WebApp.View
                 txtLName.Text = user.LastName;
                 txtEmail.Text = user.EmailId;
                 ddlRole.SelectedValue = Convert.ToString(user.UserRole.Id);
-                ddlLoc.SelectedValue = Convert.ToString(user.UserLocation.Id);
+
+                string port = new TransactionBLL().GetPortNameById(user.PortID);
+                ViewState["PORTID"] = user.PortID;
+                ((TextBox)txtPort.FindControl("txtPort")).Text = port;
+
+                //ddlLoc.SelectedValue = Convert.ToString(user.UserLocation.Id);
 
                 //if (user.AllowMutipleLocation)
                 //    ddlMultiLoc.SelectedValue = "1";
@@ -270,12 +302,20 @@ namespace VPR.WebApp.View
             {
                 if (user.UserRole.LocationSpecific.HasValue && user.UserRole.LocationSpecific.Value)
                 {
-                    if (user.UserLocation.Id == 0)
-                    {
-                        isValid = false;
-                        spnLoc.Style["display"] = "";
-                    }
+                    //string port = new TransactionBLL().GetPortNameById(user.port);
+                    //ViewState["PORTID"] = user.port;
+                    //((TextBox)txtPort.FindControl("txtPort")).Text = port;
+
+                    txtPort.EnableViewState = true;
+
+                    //if (user.UserLocation.Id == 0)
+                    //{
+                    //    isValid = false;
+                    //    spnLoc.Style["display"] = "";
+                    //}
                 }
+                else
+                    txtPort.EnableViewState = false;
             }
 
             //if (user.UserLocation.Id == 0)
@@ -326,7 +366,8 @@ namespace VPR.WebApp.View
             user.LastName = txtLName.Text.Trim().ToUpper();
             user.EmailId = txtEmail.Text.Trim().ToUpper();
             user.UserRole.Id = Convert.ToInt32(ddlRole.SelectedValue);
-            user.UserLocation.Id = Convert.ToInt32(ddlLoc.SelectedValue);
+            user.PortID = Convert.ToInt32(ViewState["PORTID"]);
+            //user.UserLocation.Id = Convert.ToInt32(ddlLoc.SelectedValue);
 
             IRole role = new UserBLL().GetRole(Convert.ToInt32(ddlRole.SelectedValue));
 
@@ -367,5 +408,10 @@ namespace VPR.WebApp.View
         }
 
         #endregion
+
+        protected void ddlRole_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -135,7 +135,7 @@ namespace VPR.WebApp.View
                 e.Row.Cells[2].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "UserRole.Name"));
                 e.Row.Cells[3].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "FirstName"));
                 e.Row.Cells[4].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "LastName"));
-                e.Row.Cells[5].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "UserLocation.Name"));
+                e.Row.Cells[5].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "PortName"));
 
                 //Pwd Button
                 LinkButton lnkPwd = (LinkButton)e.Row.FindControl("lnkPwd");
