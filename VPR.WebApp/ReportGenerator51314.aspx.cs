@@ -66,7 +66,7 @@ namespace VPR.WebApp
             rptViewer.LocalReport.DataSources.Clear();
             rptViewer.LocalReport.ShowDetailedSubreportMessages = true;
             rptViewer.LocalReport.SubreportProcessing += new SubreportProcessingEventHandler(SubreportEventHandler);
-            rptViewer.LocalReport.ReportPath = HttpContext.Current.Server.MapPath(HttpContext.Current.Request.ApplicationPath) + ConfigurationManager.AppSettings["ReportPath"].ToString() + "/" + rptName;
+            rptViewer.LocalReport.ReportPath = HttpContext.Current.Server.MapPath(HttpContext.Current.Request.ApplicationPath) + ConfigurationManager.AppSettings["ReportPath1"].ToString() + "/" + rptName;
             rptViewer.LocalReport.DataSources.Add(new ReportDataSource("DistinctPortName", DistinctVesselPosition));
             rptViewer.LocalReport.SetParameters(new ReportParameter("CompanyName", "BEN LINE AGENCIES (INDIA) PVT. LTD."));
             rptViewer.LocalReport.SetParameters(new ReportParameter("Address", "VESSEL LINE UP AS ON DT. - " + DateTime.Now.ToString("dd/MM/yyyy")));
