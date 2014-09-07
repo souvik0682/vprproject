@@ -31,7 +31,7 @@ input[type="text"],textarea
 
 input[type="submit"]
 {
-	background-color:#f3f6f8;color:Black;border:solid 1px #c8c8c8; cursor:pointer;font-family:"Trebuchet MS", Helvetica, sans-serif;font-size:10pt;height:28px;
+	background-color:#f3f6f8;color:Black;border:solid 1px #c8c8c8; cursor:pointer;font-family:"Trebuchet MS", Helvetica, sans-serif;font-size:10pt;
 }
 select
 {
