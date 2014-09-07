@@ -17,7 +17,8 @@ namespace VPR.BLL
         }
         public List<VesselPosition> GetDistinctPortsFromVesselPosition(List<VesselPosition> vesselPositions)
         {
-            return vesselPositions.GroupBy(x => x.PortName).Select(y => y.First()).ToList(); //vesselPositions.Select(x => x.PortName).Distinct().ToList();
+            return vesselPositions.GroupBy(x => x.PortName).Select(y => y.First()).ToList(); 
+            //return vesselPositions.GroupBy(x => x.PortName).Distinct().ToList();
         }
 
         //public List<CargoReport> GetCargoDetails(List<CargoReport> CargoDetails)
