@@ -268,6 +268,7 @@ namespace VPR.DAL
                 oDq.AddVarcharParam("@EmailId", 500, searchCriteria.EmailId);
                 oDq.AddVarcharParam("@Company", 100, searchCriteria.Company);
                 oDq.AddVarcharParam("@CargoGroup", 100, searchCriteria.CargoGroup);
+                oDq.AddVarcharParam("@CompanyAbbr", 100, searchCriteria.ChargeName);
 
                 oDq.AddVarcharParam("@SortExpression", 100, searchCriteria.SortExpression);
                 oDq.AddVarcharParam("@SortDirection", 100, searchCriteria.SortDirection);
