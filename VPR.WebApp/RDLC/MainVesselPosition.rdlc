@@ -84,6 +84,8 @@
                           <Value>=Fields!PortName.Value</Value>
                         </Parameter>
                       </Parameters>
+                      <MergeTransactions>true</MergeTransactions>
+                      <Bookmark>=Fields!PortName.Value</Bookmark>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -115,8 +117,8 @@
         </TablixRowHierarchy>
         <RepeatRowHeaders>true</RepeatRowHeaders>
         <DataSetName>DistinctPortName</DataSetName>
-        <Top>0.17781in</Top>
-        <Left>0.09355cm</Left>
+        <Top>0.18959in</Top>
+        <Left>0.33522cm</Left>
         <Height>0.25in</Height>
         <Width>6in</Width>
         <Style>
@@ -126,7 +128,7 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>0.49514in</Height>
+    <Height>0.50903in</Height>
     <Style />
   </Body>
   <ReportParameters>
@@ -150,7 +152,7 @@
           <Source>Embedded</Source>
           <Value>logo_benline</Value>
           <Sizing>FitProportional</Sizing>
-          <Left>2.63193in</Left>
+          <Left>2.69792in</Left>
           <Height>0.48542in</Height>
           <Width>0.89932in</Width>
           <Style>
@@ -180,7 +182,7 @@
           </Paragraphs>
           <rd:DefaultName>locationaddress</rd:DefaultName>
           <Top>2.04436cm</Top>
-          <Left>0.16761cm</Left>
+          <Left>0.33522cm</Left>
           <Height>0.6cm</Height>
           <Width>15.40761cm</Width>
           <ZIndex>1</ZIndex>
@@ -216,9 +218,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox17</rd:DefaultName>
           <Top>1.23297cm</Top>
-          <Left>0.16761cm</Left>
+          <Left>0.33522cm</Left>
           <Height>0.25in</Height>
-          <Width>6.03683in</Width>
+          <Width>6.06599in</Width>
           <ZIndex>2</ZIndex>
           <Style>
             <Border>
@@ -232,9 +234,9 @@
         </Textbox>
         <Line Name="Line1">
           <Top>1.08275in</Top>
-          <Left>0.16761cm</Left>
+          <Left>0.33522cm</Left>
           <Height>0cm</Height>
-          <Width>15.24cm</Width>
+          <Width>15.40761cm</Width>
           <ZIndex>3</ZIndex>
           <Style>
             <Border>
@@ -249,6 +251,51 @@
         </Border>
       </Style>
     </PageHeader>
+    <PageFooter>
+      <Height>0.32849in</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="Textbox1">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>D - Discharge / L - Load</Value>
+                  <Style>
+                    <FontFamily>Calibri</FontFamily>
+                    <FontSize>9pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox1</rd:DefaultName>
+          <Top>0.04167in</Top>
+          <Left>2.1425in</Left>
+          <Height>0.25in</Height>
+          <Width>2.10057in</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageFooter>
+    <LeftMargin>0.25in</LeftMargin>
     <TopMargin>1in</TopMargin>
     <BottomMargin>1in</BottomMargin>
     <Style />
