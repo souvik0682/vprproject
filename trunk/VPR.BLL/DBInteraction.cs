@@ -284,7 +284,7 @@ namespace VPR.BLL
 
         #region Cargo
 
-        public DataSet GetCargo(int pk_CargoId, string Cargo, string CargoSubGroupName, string CargoGroupName)
+        public DataSet GetCargo(int pk_CargoId, string CargoSubGroupName, string CargoGroupName, string Cargo)
         {
             string ProcName = "admin.prcGetCargo";
             DAL.DbManager.DbQuery dquery = new DAL.DbManager.DbQuery(ProcName);
