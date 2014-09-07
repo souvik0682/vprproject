@@ -35,10 +35,20 @@ namespace VPR.Entity
             this.Names = Convert.ToString(reader["CargoPlanned"]);
             this.ArrivalDate = Convert.ToString(reader["ArrivalDate"]);
             this.BerthDate = Convert.ToString(reader["BerthDate"]);
-            this.ETA = Convert.ToString(reader["ETA"]);
-            this.ETC = Convert.ToString(reader["ETC"]);
-            this.Remarks = Convert.ToString(reader["Remarks"]);
-            this.PortName = Convert.ToString(reader["PortName"]);
+            if (ColumnExists(reader, "ETA"))
+                if (reader["ETA"] != DBNull.Value)
+                    this.ETA = Convert.ToString(reader["ETA"]);
+            if (ColumnExists(reader, "ETC"))
+                if (reader["ETC"] != DBNull.Value)
+                    this.ETC = Convert.ToString(reader["ETC"]);
+            if (ColumnExists(reader, "Remarks"))
+                if (reader["Remarks"] != DBNull.Value)
+                    this.Remarks = Convert.ToString(reader["Remarks"]);
+            if (ColumnExists(reader, "PortName"))
+                if (reader["PortName"] != DBNull.Value)
+                    this.PortName = Convert.ToString(reader["PortName"]);
+            //if (ColumnExists(reader, "ActivityStatus"))
+            //    if (reader["ActivityStatus"] != DBNull.Value)
             this.ActivityStatus = Convert.ToString(reader["ActivityStatus"]);
             if (ColumnExists(reader, "ActivityName"))
                 if (reader["ActivityName"] != DBNull.Value)
