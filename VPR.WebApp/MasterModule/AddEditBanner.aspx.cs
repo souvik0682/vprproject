@@ -172,16 +172,22 @@ namespace VPR.WebApp.MasterModule
                 {
                     path += @"\" + newFileName + System.IO.Path.GetExtension(fileName);
                 }
-
-                int result = dbinteract.SaveBanner(_userId, Convert.ToInt32(portId), ddlType.SelectedValue.ToString(), txtBanner.Text.Trim().ToUpper(), txtStartDate.Text, txtEndDate.Text, path, isedit);
-                if (result > 0)
+                if (ValidateSave(path))
                 {
-                    Response.Redirect("~/MasterModule/ManageBanner.aspx");
+                    fileUpload.PostedFile.SaveAs(path);
+
+                    int result = dbinteract.SaveBanner(_userId, Convert.ToInt32(portId), ddlType.SelectedValue.ToString(), txtBanner.Text.Trim().ToUpper(), txtStartDate.Text, txtEndDate.Text, path, isedit);
+                    if (result > 0)
+                    {
+                        Response.Redirect("~/MasterModule/ManageBanner.aspx");
+                    }
+                    else
+                    {
+                        GeneralFunctions.RegisterAlertScript(this, "Error Occured");
+                    }
                 }
                 else
-                {
                     GeneralFunctions.RegisterAlertScript(this, "Error Occured");
-                }
             }
         }
 
@@ -205,6 +211,18 @@ namespace VPR.WebApp.MasterModule
                 txtEndDate.Enabled = false;
             }
 
+        }
+
+        private bool ValidateSave(string path)
+        {
+            bool IsValid = true;
+
+            if (string.IsNullOrEmpty(path) || path.Length == 0)
+            {
+                IsValid = false;
+                lblErr.Text = "Please provide fields properly";
+            }
+            return IsValid;
         }
     }
 }

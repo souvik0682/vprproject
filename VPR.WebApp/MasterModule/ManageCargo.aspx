@@ -22,15 +22,15 @@
                 <tr>
                     <td>
                         <asp:TextBox ID="txtCargoGroup" runat="server" CssClass="watermark" ForeColor="#747862" ></asp:TextBox>
-                       <%-- <cc1:TextBoxWatermarkExtender ID="txtWMECargoGroup" runat="server" TargetControlID="txtCargoGroup" WatermarkText="Type Cargo Group" WatermarkCssClass="watermark"></cc1:TextBoxWatermarkExtender>--%>
+                        <cc1:TextBoxWatermarkExtender ID="txtWMECargoGroup" runat="server" TargetControlID="txtCargoGroup" WatermarkText="Type Group" WatermarkCssClass="watermark"></cc1:TextBoxWatermarkExtender>
                     </td>
                      <td>
                         <asp:TextBox ID="txtCargoSubGroup" runat="server" CssClass="watermark" ForeColor="#747862" ></asp:TextBox>
-                        <%--<cc1:TextBoxWatermarkExtender ID="txtWMECargoSubGroup" runat="server" TargetControlID="txtCargoSubGroup" WatermarkText="Type Cargo Group" WatermarkCssClass="watermark"></cc1:TextBoxWatermarkExtender>--%>
+                        <cc1:TextBoxWatermarkExtender ID="txtWMECargoSubGroup" runat="server" TargetControlID="txtCargoSubGroup" WatermarkText="Type Sub Group" WatermarkCssClass="watermark"></cc1:TextBoxWatermarkExtender>
                     </td>
                     <td>
                         <asp:TextBox ID="txtCargo" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
-                        <%--<cc1:TextBoxWatermarkExtender ID="txtWMEName" runat="server" TargetControlID="txtCargo" WatermarkText="Type Cargo Name" WatermarkCssClass="watermark"></cc1:TextBoxWatermarkExtender>--%>
+                        <cc1:TextBoxWatermarkExtender ID="txtWMEName" runat="server" TargetControlID="txtCargo" WatermarkText="Type Cargo Name" WatermarkCssClass="watermark"></cc1:TextBoxWatermarkExtender>
                     </td>
  
                     <td><asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="button" Width="100px" OnClick="btnSearch_Click" />

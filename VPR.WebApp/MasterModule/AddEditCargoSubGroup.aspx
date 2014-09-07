@@ -17,10 +17,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="container" runat="Server">
     <div id="headercaption">
-        ADD / EDIT CARGO SUB GROUP</div>
+        ADD / EDIT SUB GROUP</div>
     <center>
         <fieldset style="width:600px;">
-            <legend>Add / Edit Port</legend>
+            <legend>Add / Edit Sub Group</legend>
             <table border="0" cellpadding="2" cellspacing="3">
                 <tr>
                     <td class="style1">Cargo Sub Group :<span class="errormessage1">*</span></td>

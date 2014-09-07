@@ -40,8 +40,6 @@
                                 WatermarkText="Email ID">
                             </cc1:TextBoxWatermarkExtender>
                         </td>
-                    </tr>
-                    <tr>
                         <td>
                             <asp:TextBox ID="txtCargoGroup" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
                             <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender7" runat="server" FilterType="Custom,UppercaseLetters,LowercaseLetters,Numbers"
@@ -51,6 +49,9 @@
                                 WatermarkText="Cargo Group">
                             </cc1:TextBoxWatermarkExtender>
                         </td>
+                    </tr>
+                    <tr>
+                        
                         <td>
                             <asp:TextBox ID="txtCompany" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
                             <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender9" runat="server" FilterType="Custom,UppercaseLetters,LowercaseLetters,Numbers"
@@ -60,9 +61,18 @@
                                 WatermarkText="Company">
                             </cc1:TextBoxWatermarkExtender>
                         </td>
-                    </tr>
+                        <td>
+                            <asp:TextBox ID="txtCategory" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
+                            <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender1" runat="server" FilterType="Custom,UppercaseLetters,LowercaseLetters,Numbers"
+                                FilterMode="InvalidChars" ValidChars=" " TargetControlID="txtCompany">
+                            </cc1:FilteredTextBoxExtender>
+                            <cc1:TextBoxWatermarkExtender ID="TextBoxWatermarkExtender1" runat="server" TargetControlID="txtCategory"
+                                WatermarkText="Category">
+                            </cc1:TextBoxWatermarkExtender>
+                        </td>
+<%--                    </tr>
                     
-                    <tr>
+                    <tr>--%>
                         <td>
                             <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="button" 
                                 Width="100px" onclick="btnSearch_Click"/>
@@ -137,6 +147,13 @@
                                         <ItemStyle CssClass="gridviewitem" Width="10%" />
                                         <HeaderTemplate>
                                             <asp:LinkButton ID="lnkCompany" runat="server" CommandName="Sort" CommandArgument="Company" Text="Company"></asp:LinkButton>
+                                        </HeaderTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField>
+                                        <HeaderStyle CssClass="gridviewheader" />
+                                        <ItemStyle CssClass="gridviewitem" Width="10%" />
+                                        <HeaderTemplate>
+                                            <asp:LinkButton ID="lnkCategory" runat="server" CommandName="Sort" CommandArgument="CompanyAbbr" Text="Category"></asp:LinkButton>
                                         </HeaderTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField>

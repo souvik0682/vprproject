@@ -85,6 +85,7 @@
                         <asp:Button ID="btnSave" runat="server" Text="Save" ValidationGroup="Save" OnClick="btnSave_Click" />&nbsp;&nbsp;<asp:Button 
                             ID="btnBack" runat="server" CssClass="button" Text="Back" 
                             onclick="btnBack_Click" />
+                        <asp:Label ID="lblErr" runat="server" CssClass="errormessage"></asp:Label>
                     </td>
                 </tr>
             </table>
