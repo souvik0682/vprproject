@@ -389,7 +389,7 @@
           <Border>
             <Style>None</Style>
           </Border>
-          <BackgroundColor>Blue</BackgroundColor>
+          <BackgroundColor>SlateBlue</BackgroundColor>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
           <PaddingTop>2pt</PaddingTop>
@@ -403,7 +403,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>VESSELS AT WAITING FOR BERTH  </Value>
+                <Value>VESSELS WAITING FOR BERTH  </Value>
                 <Style>
                   <FontFamily>Calibri</FontFamily>
                   <FontSize>11pt</FontSize>
@@ -425,7 +425,7 @@
           <Border>
             <Style>None</Style>
           </Border>
-          <BackgroundColor>Blue</BackgroundColor>
+          <BackgroundColor>SlateBlue</BackgroundColor>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
           <PaddingTop>2pt</PaddingTop>
@@ -461,7 +461,7 @@
           <Border>
             <Style>None</Style>
           </Border>
-          <BackgroundColor>Blue</BackgroundColor>
+          <BackgroundColor>SlateBlue</BackgroundColor>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
           <PaddingTop>2pt</PaddingTop>
@@ -497,7 +497,7 @@
           <Border>
             <Style>None</Style>
           </Border>
-          <BackgroundColor>Blue</BackgroundColor>
+          <BackgroundColor>SlateBlue</BackgroundColor>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
           <PaddingTop>2pt</PaddingTop>
@@ -1028,9 +1028,7 @@
               <KeepWithGroup>After</KeepWithGroup>
             </TablixMember>
             <TablixMember>
-              <Group Name="Details">
-                <DocumentMapLabel>=Fields!PortName.Value</DocumentMapLabel>
-              </Group>
+              <Group Name="Details" />
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
