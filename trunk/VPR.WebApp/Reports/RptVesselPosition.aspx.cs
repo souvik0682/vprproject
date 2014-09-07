@@ -68,6 +68,7 @@ namespace VPR.WebApp.Reports
                     e.DataSources.Add(new ReportDataSource("VesselPositionDischarge", VesselPositionDischarge));
                     e.DataSources.Add(new ReportDataSource("VesselPositionAwaiting", VesselPositionAwaiting));
                     e.DataSources.Add(new ReportDataSource("VesselPositionArrive", VesselPositionArrive));
+                    
                 }
                 catch { }
                 index++;

@@ -114,7 +114,7 @@
                                         <%--</div>--%>
                                         <br />
                                         <asp:Button ID="btnProceed" runat="server" Text="Proceed" OnClick="btnProceed_Click" />
-                                        <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
+                                        <%--<asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" />--%>
                                         <br />
                                         <asp:Label ID="lblError" runat="server" Text="" CssClass="errormessage"></asp:Label>
                                         <%--</fieldset>--%>
