@@ -55,6 +55,7 @@ namespace VPR.WebApp.MasterModule
             txtCargoGroup.Text = "";
             txtEmailId.Text = "";
             txtName.Text = "";
+            txtCategory.Text = "";
 
             SaveNewPageIndex(0);
             LoadEmailGroup();
@@ -121,6 +122,7 @@ namespace VPR.WebApp.MasterModule
                 e.Row.Cells[0].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Name"));
                 e.Row.Cells[1].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "EmailId"));
                 e.Row.Cells[2].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Company"));
+                e.Row.Cells[3].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "CompanyAbbr"));
 
                 //Edit Link
                 ImageButton btnEdit = (ImageButton)e.Row.FindControl("btnEdit");
@@ -272,6 +274,7 @@ namespace VPR.WebApp.MasterModule
             criteria.CargoGroup = (txtCargoGroup.Text == "") ? string.Empty : txtCargoGroup.Text.Trim();
             criteria.Name = (txtName.Text == "") ? string.Empty : txtName.Text.Trim();
             criteria.Company = (txtCompany.Text == "") ? string.Empty : txtCompany.Text.Trim();
+            criteria.ChargeName = (txtCategory.Text == "") ? string.Empty : txtCategory.Text.Trim();
 
             Session[Constants.SESSION_SEARCH_CRITERIA] = criteria;
         }
@@ -297,6 +300,7 @@ namespace VPR.WebApp.MasterModule
                         txtCompany.Text = criteria.Company;
                         txtEmailId.Text = criteria.EmailId;
                         txtName.Text = criteria.Name;
+                        txtCategory.Text = criteria.ChargeName;
 
                         gvImportBL.PageIndex = criteria.PageIndex;
                         gvImportBL.PageSize = criteria.PageSize;

@@ -36,8 +36,8 @@ namespace VPR.WebApp.MasterModule
             if (!IsPostBack)
             {
                 RetrieveSearchCriteria();
-                SearchCriteria searchCriteria = (SearchCriteria)Session[Constants.SESSION_SEARCH_CRITERIA];
-                LoadData(searchCriteria.SortExpression, searchCriteria.SortDirection);
+                //SearchCriteria searchCriteria = (SearchCriteria)Session[Constants.SESSION_SEARCH_CRITERIA];
+                LoadData();
             }
         }
 
@@ -49,8 +49,8 @@ namespace VPR.WebApp.MasterModule
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             SaveNewPageIndex(0);
-            SearchCriteria searchCriteria = (SearchCriteria)Session[Constants.SESSION_SEARCH_CRITERIA];
-            LoadData(searchCriteria.SortExpression, searchCriteria.SortDirection);
+            //SearchCriteria searchCriteria = (SearchCriteria)Session[Constants.SESSION_SEARCH_CRITERIA];
+            LoadData();
             upLoc.Update();
         }
 
@@ -59,8 +59,8 @@ namespace VPR.WebApp.MasterModule
             int newIndex = e.NewPageIndex;
             gvwLoc.PageIndex = e.NewPageIndex;
             SaveNewPageIndex(e.NewPageIndex);
-            SearchCriteria searchCriteria = (SearchCriteria)Session[Constants.SESSION_SEARCH_CRITERIA];
-            LoadData(searchCriteria.SortExpression, searchCriteria.SortDirection);
+            //SearchCriteria searchCriteria = (SearchCriteria)Session[Constants.SESSION_SEARCH_CRITERIA];
+            LoadData();
         }
         protected void gvwLoc_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -87,8 +87,8 @@ namespace VPR.WebApp.MasterModule
                     }
                 }
 
-                SearchCriteria searchCriteria = (SearchCriteria)Session[Constants.SESSION_SEARCH_CRITERIA];
-                LoadData(searchCriteria.SortExpression, searchCriteria.SortDirection);
+                //SearchCriteria searchCriteria = (SearchCriteria)Session[Constants.SESSION_SEARCH_CRITERIA];
+                LoadData();
             }
             else if (e.CommandName == "Edit")
             {
@@ -154,8 +154,8 @@ namespace VPR.WebApp.MasterModule
         {
             int newPageSize = Convert.ToInt32(ddlPaging.SelectedValue);
             SaveNewPageSize(newPageSize);
-            SearchCriteria searchCriteria = (SearchCriteria)Session[Constants.SESSION_SEARCH_CRITERIA];
-            LoadData(searchCriteria.SortExpression, searchCriteria.SortDirection);
+            //SearchCriteria searchCriteria = (SearchCriteria)Session[Constants.SESSION_SEARCH_CRITERIA];
+            LoadData();
             upLoc.Update();
         }
         #endregion
@@ -165,12 +165,12 @@ namespace VPR.WebApp.MasterModule
             if (criteria.SortDirection == "ASC")
             {
                 criteria.SortDirection = "DESC";
-                LoadData(criteria.SortExpression, criteria.SortDirection);
+                LoadData();
             }
             else
             {
                 criteria.SortDirection = "ASC";
-                LoadData(criteria.SortExpression, criteria.SortDirection);
+                LoadData();
             }
         }
 
@@ -201,7 +201,7 @@ namespace VPR.WebApp.MasterModule
             gvwLoc.PagerSettings.PageButtonCount = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["PageButtonCount"]);
         }
 
-        private void LoadData(string SortExp, string direction)
+        private void LoadData()
         {
             string CargoGroup = string.IsNullOrEmpty(txtCargoGroup.Text) ? "" : txtCargoGroup.Text.Trim();
             string CargoSubGroup = string.IsNullOrEmpty(txtCargoSubGroup.Text) ? "" : txtCargoSubGroup.Text.Trim();
@@ -211,6 +211,10 @@ namespace VPR.WebApp.MasterModule
             if (!ReferenceEquals(Session[Constants.SESSION_SEARCH_CRITERIA], null))
             {
                 SearchCriteria searchCriteria = (SearchCriteria)Session[Constants.SESSION_SEARCH_CRITERIA];
+                string SortExp;
+                string direction;
+                SortExp = searchCriteria.SortExpression;
+                direction = searchCriteria.SortDirection;
 
                 if (!ReferenceEquals(searchCriteria, null))
                 {
@@ -291,7 +295,7 @@ namespace VPR.WebApp.MasterModule
             DBInteraction dinteract = new DBInteraction();
             dinteract.DeleteCargoSubGroup(portId);
             SearchCriteria searchCriteria = (SearchCriteria)Session[Constants.SESSION_SEARCH_CRITERIA];
-            LoadData(searchCriteria.SortExpression, searchCriteria.SortDirection);
+            LoadData();
             ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", "<script>javascript:void alert('" + ResourceManager.GetStringWithoutName("ERR00010") + "');</script>", false);
         }
 
@@ -312,6 +316,11 @@ namespace VPR.WebApp.MasterModule
                 sortExpression = Convert.ToString(ViewState[Constants.SORT_EXPRESSION]);
                 sortDirection = Convert.ToString(ViewState[Constants.SORT_DIRECTION]);
             }
+            else
+            {
+                sortExpression = "CargoName";
+                sortDirection = "ASC";
+            }
 
 
             criteria.SortExpression = sortExpression;
@@ -328,28 +337,29 @@ namespace VPR.WebApp.MasterModule
         {
             bool isCriteriaExists = false;
 
-            //if (!ReferenceEquals(Session[Constants.SESSION_SEARCH_CRITERIA], null))
-            //{
-            //    SearchCriteria criteria = (SearchCriteria)Session[Constants.SESSION_SEARCH_CRITERIA];
+            if (!ReferenceEquals(Session[Constants.SESSION_SEARCH_CRITERIA], null))
+            {
+                SearchCriteria criteria = (SearchCriteria)Session[Constants.SESSION_SEARCH_CRITERIA];
 
-            //    if (!ReferenceEquals(criteria, null))
-            //    {
-            //        if (criteria.CurrentPage != PageName.LocationMaster)
-            //        {
-            //            criteria.Clear();
-            //            SetDefaultSearchCriteria(criteria);
-            //        }
-            //        else
-            //        {
-            //            txtPortCode.Text = criteria.LocAbbr;
-            //            txtPortName.Text = criteria.LocName;
-            //            gvwLoc.PageIndex = criteria.PageIndex;
-            //            gvwLoc.PageSize = criteria.PageSize;
-            //            ddlPaging.SelectedValue = criteria.PageSize.ToString();
-            //            isCriteriaExists = true;
-            //        }
-            //    }
-            //}
+                if (!ReferenceEquals(criteria, null))
+                {
+                    if (criteria.CurrentPage != PageName.LocationMaster)
+                    {
+                        criteria.Clear();
+                        SetDefaultSearchCriteria(criteria);
+                    }
+                    else
+                    {
+                        txtCargo.Text = criteria.CargoName;
+                        txtCargoGroup.Text = criteria.CargoGroup;
+                        txtCargoSubGroup.Text = criteria.CargoSubGroup;
+                        gvwLoc.PageIndex = criteria.PageIndex;
+                        gvwLoc.PageSize = criteria.PageSize;
+                        ddlPaging.SelectedValue = criteria.PageSize.ToString();
+                        isCriteriaExists = true;
+                    }
+                }
+            }
 
             if (!isCriteriaExists)
             {
@@ -360,8 +370,8 @@ namespace VPR.WebApp.MasterModule
 
         private void SetDefaultSearchCriteria(SearchCriteria criteria)
         {
-            string sortExpression = string.Empty;
-            string sortDirection = string.Empty;
+            string sortExpression = "CargoName";
+            string sortDirection = "ASC";
 
             criteria.SortExpression = sortExpression;
             criteria.SortDirection = sortDirection;

@@ -502,7 +502,7 @@ namespace VPR.WebApp.MasterModule
 
             if (!ReferenceEquals(objGroup.SendingTime, null))
             {
-                ddlHour.SelectedValue = objGroup.SendingTime.Split(':')[0];
+                ddlHour.SelectedValue = objGroup.SendingTime.Split(':')[0].ToInt().ToString();
                 ddlMinutes.SelectedValue = objGroup.SendingTime.Split(':')[1];
             }
 

@@ -44,7 +44,7 @@
             </ProgressTemplate>        
         </asp:UpdateProgress>
         <fieldset id="fsList" runat="server" style="width:100%;min-height:100px;">
-            <legend>Port List</legend>
+            <legend>Sub Group List</legend>
             <div style="float:right;padding-bottom:5px;margin-top: -10px">
                 Results Per Page:<asp:DropDownList ID="ddlPaging" runat="server" Width="50px" AutoPostBack="true" 
                         OnSelectedIndexChanged="ddlPaging_SelectedIndexChanged">

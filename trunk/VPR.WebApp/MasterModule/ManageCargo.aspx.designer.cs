@@ -22,6 +22,15 @@ namespace VPR.WebApp.MasterModule {
         protected global::System.Web.UI.WebControls.TextBox txtCargoGroup;
         
         /// <summary>
+        /// txtWMECargoGroup control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.TextBoxWatermarkExtender txtWMECargoGroup;
+        
+        /// <summary>
         /// txtCargoSubGroup control.
         /// </summary>
         /// <remarks>
@@ -31,6 +40,15 @@ namespace VPR.WebApp.MasterModule {
         protected global::System.Web.UI.WebControls.TextBox txtCargoSubGroup;
         
         /// <summary>
+        /// txtWMECargoSubGroup control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.TextBoxWatermarkExtender txtWMECargoSubGroup;
+        
+        /// <summary>
         /// txtCargo control.
         /// </summary>
         /// <remarks>
@@ -38,6 +56,15 @@ namespace VPR.WebApp.MasterModule {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCargo;
+        
+        /// <summary>
+        /// txtWMEName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.TextBoxWatermarkExtender txtWMEName;
         
         /// <summary>
         /// btnSearch control.

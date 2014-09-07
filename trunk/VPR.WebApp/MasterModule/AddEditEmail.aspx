@@ -110,7 +110,7 @@
                     </tr>
                     <tr>
                         <td>
-                            Company Abbr.
+                            Category
                         </td>
                         <td>
                             <asp:TextBox ID="txtCompanyAbbr" runat="server" Width="350px"></asp:TextBox>
