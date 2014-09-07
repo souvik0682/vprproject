@@ -19,7 +19,7 @@ namespace VPR.WebApp.DailyReport
                 filename = Request.QueryString["ReportName"].ToString();
                 string fileDate = filename.Substring(15, 10);
 
-                if (DateTime.Now.Date > Convert.ToDateTime(fileDate))
+                if (DateTime.Now.Date > Convert.ToDateTime(fileDate).AddDays(3))
                 {
                     lblMessage.Text = "The link has been expired!";
                 }
