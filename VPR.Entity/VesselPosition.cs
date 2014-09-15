@@ -33,7 +33,11 @@ namespace VPR.Entity
             this.VesselName = Convert.ToString(reader["VesselName"]);
             this.BerthName = Convert.ToString(reader["BerthName"]);
             this.Names = Convert.ToString(reader["CargoPlanned"]);
-            this.ArrivalDate = Convert.ToString(reader["ArrivalDate"]);
+            
+            if (ColumnExists(reader, "ArrivalDate"))
+                if (reader["ArrivalDate"] != DBNull.Value)
+                    this.ArrivalDate = Convert.ToString(reader["ArrivalDate"]);
+
             this.BerthDate = Convert.ToString(reader["BerthDate"]);
             if (ColumnExists(reader, "ETA"))
                 if (reader["ETA"] != DBNull.Value)
