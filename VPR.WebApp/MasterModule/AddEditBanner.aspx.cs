@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using VPR.Utilities;
 using VPR.BLL;
+using System.Configuration;
 
 using VPR.Utilities.ResourceManager;
 using VPR.Common;
@@ -166,17 +167,19 @@ namespace VPR.WebApp.MasterModule
             {
                 var fileName = fileUpload.FileName;
                 var path = Server.MapPath("~/Documents");
+                var path1 = Convert.ToString(ConfigurationManager.AppSettings["ApplicationUrl"]) + "/Documents";
                 var newFileName = Guid.NewGuid().ToString();
 
                 if (!string.IsNullOrEmpty(path))
                 {
                     path += @"\" + newFileName + System.IO.Path.GetExtension(fileName);
+                    path1 += @"\" + newFileName + System.IO.Path.GetExtension(fileName);
                 }
                 if (ValidateSave(path))
                 {
                     fileUpload.PostedFile.SaveAs(path);
 
-                    int result = dbinteract.SaveBanner(_userId, Convert.ToInt32(portId), ddlType.SelectedValue.ToString(), txtBanner.Text.Trim().ToUpper(), txtStartDate.Text, txtEndDate.Text, path, isedit);
+                    int result = dbinteract.SaveBanner(_userId, Convert.ToInt32(portId), ddlType.SelectedValue.ToString(), txtBanner.Text.Trim().ToUpper(), txtStartDate.Text, txtEndDate.Text, path1, isedit);
                     if (result > 0)
                     {
                         Response.Redirect("~/MasterModule/ManageBanner.aspx");
