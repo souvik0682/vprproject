@@ -58,13 +58,13 @@ namespace VPR.Entity
                 if (reader["pk_CargoGroupID"] != DBNull.Value)
                     this.CargoGroupID = Convert.ToInt32(reader["pk_CargoGroupID"]);
 
-            if (ColumnExists(reader, "fk_CargoGroupID"))
-                if (reader["fk_CargoGroupID"] != DBNull.Value)
-                    this.fk_CargoGroupID = Convert.ToInt32(reader["fk_CargoGroupID"]);
+            if (ColumnExists(reader, "fk_GroupID"))
+                if (reader["fk_GroupID"] != DBNull.Value)
+                    this.fk_CargoGroupID = Convert.ToInt32(reader["fk_GroupID"]);
 
-            if (ColumnExists(reader, "fk_CargoSubGroupID"))
-                if (reader["fk_CargoSubGroupID"] != DBNull.Value)
-                    this.fk_CargoSubGroupID = Convert.ToInt32(reader["fk_CargoSubGroupID"]);
+            if (ColumnExists(reader, "fk_SubGroupID"))
+                if (reader["fk_SubGroupID"] != DBNull.Value)
+                    this.fk_CargoSubGroupID = Convert.ToInt32(reader["fk_SubGroupID"]);
 
             if (ColumnExists(reader, "pk_CargoSubGroupID"))
                 if (reader["pk_CargoSubGroupID"] != DBNull.Value)
