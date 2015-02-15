@@ -140,6 +140,7 @@ namespace VPR.WebApp.Transaction
                 ddlBerth.DataBind();
 
                 ddlBerth.SelectedValue = o.BerthId.ToString();
+    
             }
         }
         protected void gvwDischarging_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -160,6 +161,7 @@ namespace VPR.WebApp.Transaction
                 ddlBerth.DataBind();
 
                 ddlBerth.SelectedValue = o.BerthId.ToString();
+
             }
         }
         protected void gvwAwaiting_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -206,23 +208,28 @@ namespace VPR.WebApp.Transaction
         protected void chkLoading_CheckedChanged(object sender, EventArgs e)
         {
             GridViewRow row = (GridViewRow)((CheckBox)sender).NamingContainer;
+            DropDownList ddlBerth = (DropDownList)row.FindControl("ddlBerth");
             TextBox txtLoadingDate = (TextBox)row.FindControl("txtETC");
 
             if (((CheckBox)sender).Checked)
             {
+                txtLoadingDate.Text = "";
                 txtLoadingDate.Enabled = true;
+                ddlBerth.Enabled = true;
                 //txtLoadingDate.Text = DateTime.Now.ToString("dd-MM-yyyy");
             }
             else
             {
                 txtLoadingDate.Enabled = false;
                 txtLoadingDate.Text = string.Empty;
+                ddlBerth.Enabled = false;
             }
         }
 
         protected void chkDischarging_CheckedChanged(object sender, EventArgs e)
         {
             GridViewRow row = (GridViewRow)((CheckBox)sender).NamingContainer;
+            DropDownList ddlBerth = (DropDownList)row.FindControl("ddlBerth");
 
             //TextBox txtArrivalDate = (TextBox)row.FindControl("txtArrivalDate");
             //TextBox txtBerthDate = (TextBox)row.FindControl("txtBerthDate");
@@ -232,12 +239,15 @@ namespace VPR.WebApp.Transaction
             if (((CheckBox)sender).Checked)
             {
                 txtDischargeDate.Enabled = true;
+                ddlBerth.Enabled = true;
+                txtDischargeDate.Text = "";
                 //txtDischargeDate.Text = DateTime.Now.ToString("dd-MM-yyyy");
             }
             else
             {
                 txtDischargeDate.Enabled = false;
                 txtDischargeDate.Text = string.Empty;
+                ddlBerth.Enabled = false;
             }
         }
 
@@ -493,18 +503,25 @@ namespace VPR.WebApp.Transaction
                     TextBox txtArrivalDate = (TextBox)thisGridViewRow.FindControl("txtArrivalDate");
                     TextBox txtBerthDate = (TextBox)thisGridViewRow.FindControl("txtBerthDate");
                     TextBox txtETC = (TextBox)thisGridViewRow.FindControl("txtETC");
-
-                    lstPromote.Add(new VesselStatus
+                    HiddenField hdnActivity = (HiddenField)thisGridViewRow.FindControl("hdnActivity");
+                    if (string.IsNullOrEmpty(txtETC.Text) == false)
                     {
-                        CreatedBy = _userId,
-                        ModifiedBy = _userId,
-                        BerthId = Convert.ToInt32(ddlBerth.SelectedValue),
-                        VesselId = Convert.ToInt32(hdnVesselId.Value),
-                        ArrivalDate = Convert.ToDateTime(txtArrivalDate.Text),
-                        BerthDate = (txtArrivalDate.Text != string.Empty) ? Convert.ToDateTime(txtArrivalDate.Text) : dte,
-                        ETC = Convert.ToDateTime(txtETC.Text),
-                        Activity = "D"
-                    });
+                        if (txtETC.Text.ToDateTime() <= DateTime.Now && txtETC.Text.ToDateTime() >= txtBerthDate.Text.ToDateTime())
+                        {
+                            lstPromote.Add(new VesselStatus
+                            {
+                                CreatedBy = _userId,
+                                ModifiedBy = _userId,
+                                BerthId = Convert.ToInt32(ddlBerth.SelectedValue),
+                                VesselId = Convert.ToInt32(hdnVesselId.Value),
+                                ArrivalDate = Convert.ToDateTime(txtArrivalDate.Text),
+                                BerthDate = (txtArrivalDate.Text != string.Empty) ? Convert.ToDateTime(txtArrivalDate.Text) : dte,
+                                ETC = Convert.ToDateTime(txtETC.Text),
+                                VActivity = hdnActivity.Value,
+                                Activity = "D"
+                            });
+                        }
+                    }
 
                 }
             }
@@ -605,19 +622,23 @@ namespace VPR.WebApp.Transaction
                     TextBox txtArrivalDate = (TextBox)thisGridViewRow.FindControl("txtArrivalDate");
                     TextBox txtBerthDate = (TextBox)thisGridViewRow.FindControl("txtBerthDate");
                     TextBox txtETC = (TextBox)thisGridViewRow.FindControl("txtETC");
-
-                    lstPromote.Add(new VesselStatus
+                    HiddenField hdnActivity = (HiddenField)thisGridViewRow.FindControl("hdnActivity");
+                    if (string.IsNullOrEmpty(txtETC.Text) == false)
                     {
-                        CreatedBy = _userId,
-                        ModifiedBy = _userId,
-                        BerthId = Convert.ToInt32(ddlBerth.SelectedValue),
-                        VesselId = Convert.ToInt32(hdnVesselId.Value),
-                        ArrivalDate = Convert.ToDateTime(txtArrivalDate.Text),
-                        BerthDate = (txtArrivalDate.Text != string.Empty) ? Convert.ToDateTime(txtArrivalDate.Text) : dte,
-                        ETC = Convert.ToDateTime(txtETC.Text),
-                        Activity = "L"
-                    });
-
+                        lstPromote.Add(new VesselStatus
+                        {
+                            CreatedBy = _userId,
+                            ModifiedBy = _userId,
+                            BerthId = Convert.ToInt32(ddlBerth.SelectedValue),
+                            VesselId = Convert.ToInt32(hdnVesselId.Value),
+                            ArrivalDate = Convert.ToDateTime(txtArrivalDate.Text),
+                            BerthDate = (txtArrivalDate.Text != string.Empty) ? Convert.ToDateTime(txtArrivalDate.Text) : dte,
+                            ETC = (txtETC.Text != string.Empty) ? Convert.ToDateTime(txtETC.Text) : DateTime.Now,
+                            //ETC = Convert.ToDateTime(txtETC.Text),
+                            VActivity = hdnActivity.Value,
+                            Activity = "L"
+                        });
+                    }
                 }
             }
 

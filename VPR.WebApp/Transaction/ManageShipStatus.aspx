@@ -32,6 +32,7 @@
                                                                     <asp:CheckBox ID="chkExpecting" runat="server" OnCheckedChanged="chkExpecting_CheckedChanged"
                                                                         AutoPostBack="true" />
                                                                     <asp:HiddenField ID="hdnVesselId" runat="server" Value='<%# Eval("VesselId") %>' />
+                                                                    <asp:HiddenField ID="hdnActivity" runat="server" Value='<%# Eval("VActivity") %>' />
                                                                 </ItemTemplate>
                                                                 <HeaderStyle Width="25px" />
                                                             </asp:TemplateField>
@@ -103,7 +104,7 @@
                                                                 </ItemTemplate>
                                                                 <HeaderStyle Width="100px" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="ETC" SortExpression="ETC">
+                                                            <asp:TemplateField HeaderText="ETC/Sail Date" SortExpression="ETC">
                                                                 <ItemTemplate>
                                                                     <asp:TextBox ID="txtETC" runat="server" Text='<%# Bind("ETC","{0:dd-MM-yyyy}") %>'
                                                                         Width="80" BorderStyle="None" MaxLength="10" Enabled="false">
@@ -151,6 +152,7 @@
                                                                         AutoPostBack="true" />
                                                                     <asp:HiddenField ID="hdnVesselId" runat="server" Value='<%# Eval("VesselId") %>' />
                                                                     <asp:HiddenField ID="hdnStatusId" runat="server" Value='<%# Eval("StatusId") %>' />
+                                                                    <asp:HiddenField ID="hdnActivity" runat="server" Value='<%# Eval("VActivity") %>' />
                                                                 </ItemTemplate>
                                                                 <HeaderStyle Width="25px" />
                                                             </asp:TemplateField>
@@ -218,7 +220,7 @@
                                                                 </ItemTemplate>
                                                                 <HeaderStyle Width="100px" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="ETC" SortExpression="ETC">
+                                                            <asp:TemplateField HeaderText="ETC/Sail Date" SortExpression="ETC">
                                                                 <ItemTemplate>
                                                                     <asp:TextBox ID="txtETC" runat="server" Text='<%# Bind("ETC","{0:dd-MM-yyyy}") %>'
                                                                         Width="80" BorderStyle="None" MaxLength="10" Enabled="false">
@@ -263,6 +265,7 @@
                                                                         AutoPostBack="true" />
                                                                     <asp:HiddenField ID="hdnVesselId" runat="server" Value='<%# Eval("VesselId") %>' />
                                                                     <asp:HiddenField ID="hdnStatusId" runat="server" Value='<%# Eval("StatusId") %>' />
+                                                                    <asp:HiddenField ID="hdnActivity" runat="server" Value='<%# Eval("VActivity") %>' />
                                                                 </ItemTemplate>
                                                                 <HeaderStyle Width="25px" />
                                                             </asp:TemplateField>
@@ -330,7 +333,7 @@
                                                                 </ItemTemplate>
                                                                 <HeaderStyle Width="100px" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="ETC" SortExpression="ETC">
+                                                            <asp:TemplateField HeaderText="ETC/Sail Date" SortExpression="ETC">
                                                                 <ItemTemplate>
                                                                     <asp:TextBox ID="txtETC" runat="server" Text='<%# Bind("ETC","{0:dd-MM-yyyy}") %>'
                                                                         Width="80" BorderStyle="None" MaxLength="10" Enabled="false">
@@ -341,9 +344,13 @@
                                                                         Operator="LessThanEqual" Display="Dynamic" ValueToCompare="<%# DateTime.Today.ToShortDateString() %>"
                                                                         Type="Date" ToolTip="Date should be less than equals to current date!" ValidationGroup="Save">
                                                                     </asp:CompareValidator>
-                                                                    <asp:RequiredFieldValidator ID="rfv3" runat="server" ControlToValidate="txtETC"
+                                                                    <asp:RequiredFieldValidator ID="rfv3" runat="server" CssClass="errormessage"
+                                                                        ErrorMessage="This field is required" ControlToValidate="txtETC" InitialValue=""
+                                                                        ValidationGroup="Save" Display="Dynamic"></asp:RequiredFieldValidator>
+
+<%--                                                                    <asp:RequiredFieldValidator ID="rfv3" runat="server" ControlToValidate="txtETC"
                                                                         Display="Dynamic" ValidationGroup="Save">
-                                                                    </asp:RequiredFieldValidator>
+                                                                    </asp:RequiredFieldValidator>--%>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle Width="100px" />
                                                             </asp:TemplateField>
@@ -377,6 +384,7 @@
                                                                         AutoPostBack="true" />
                                                                     <asp:HiddenField ID="hdnVesselId" runat="server" Value='<%# Eval("VesselId") %>' />
                                                                     <asp:HiddenField ID="hdnStatusId" runat="server" Value='<%# Eval("StatusId") %>' />
+                                                                    <asp:HiddenField ID="hdnActivity" runat="server" Value='<%# Eval("VActivity") %>' />
                                                                 </ItemTemplate>
                                                                 <HeaderStyle Width="25px" />
                                                             </asp:TemplateField>
@@ -444,7 +452,7 @@
                                                                 </ItemTemplate>
                                                                 <HeaderStyle Width="100px" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="ETC" SortExpression="ETC">
+                                                            <asp:TemplateField HeaderText="ETC/Sail Date" SortExpression="ETC">
                                                                 <ItemTemplate>
                                                                     <asp:TextBox ID="txtETC" runat="server" Text='<%# Bind("ETC","{0:dd-MM-yyyy}") %>'
                                                                         Width="80" BorderStyle="None" MaxLength="10" Enabled="false">
@@ -455,9 +463,13 @@
                                                                         Operator="LessThanEqual" Display="Dynamic" ValueToCompare="<%# DateTime.Today.ToShortDateString() %>"
                                                                         Type="Date" ToolTip="Date should be less than equals to current date!" ValidationGroup="Save">
                                                                     </asp:CompareValidator>
-                                                                    <asp:RequiredFieldValidator ID="rfv3" runat="server" ControlToValidate="txtETC"
-                                                                        Display="Dynamic" ValidationGroup="Save">
+                                                                    <asp:RequiredFieldValidator ID="rfv3" runat="server" CssClass="errormessage"
+                                                                        ErrorMessage="This field is required" ControlToValidate="txtETC" InitialValue=""
+                                                                        ValidationGroup="Save" Display="Dynamic">
                                                                     </asp:RequiredFieldValidator>
+<%--                                                                    <asp:RequiredFieldValidator ID="rfv3" runat="server" ControlToValidate="txtETC"
+                                                                        Display="Dynamic" ValidationGroup="Save">
+                                                                    </asp:RequiredFieldValidator>--%>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle Width="100px" />
                                                             </asp:TemplateField>
