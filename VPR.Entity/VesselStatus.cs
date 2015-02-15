@@ -22,6 +22,7 @@ namespace VPR.Entity
         public DateTime? ETC { get; set; }
         public DateTime? SailingDate { get; set; }
         public string Cargo { get; set; }
+        public string VActivity { get; set; }
 
         public int CreatedBy { get; set; }
         public int ModifiedBy { get; set; }
@@ -43,6 +44,18 @@ namespace VPR.Entity
             if (ColumnExists(reader, "fk_BerthID"))
                 if (reader["fk_BerthID"] != DBNull.Value)
                     this.BerthId = Convert.ToInt32(reader["fk_BerthID"]);
+
+            if (ColumnExists(reader, "VAct"))
+            {
+                if (Convert.ToString(reader["Vact"]) == "DISCHARGE")
+                    this.VActivity = "D";
+                else if (Convert.ToString(reader["Vact"]) == "LOAD")
+                    this.VActivity = "L";
+                else if (Convert.ToString(reader["Vact"]) == "DIS & LOAD")
+                    this.VActivity = "B";
+                else
+                    this.VActivity = "O";
+            }
 
             if (ColumnExists(reader, "VAct"))
                 this.Activity = Convert.ToString(reader["Vact"]);
