@@ -13,15 +13,6 @@ namespace VPR.WebApp.Transaction {
     public partial class ManageShipStatus {
         
         /// <summary>
-        /// upImportBL control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upImportBL;
-        
-        /// <summary>
         /// tcPP control.
         /// </summary>
         /// <remarks>
@@ -38,6 +29,15 @@ namespace VPR.WebApp.Transaction {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.TabPanel tpExpecting;
+        
+        /// <summary>
+        /// upExpecting control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upExpecting;
         
         /// <summary>
         /// gvwExpecting control.
@@ -67,6 +67,15 @@ namespace VPR.WebApp.Transaction {
         protected global::System.Web.UI.WebControls.Button btnSaveETA;
         
         /// <summary>
+        /// uProgressBL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdateProgress uProgressBL;
+        
+        /// <summary>
         /// tpAwating control.
         /// </summary>
         /// <remarks>
@@ -74,6 +83,15 @@ namespace VPR.WebApp.Transaction {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.TabPanel tpAwating;
+        
+        /// <summary>
+        /// upAwaiting control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upAwaiting;
         
         /// <summary>
         /// gvwAwaiting control.
@@ -103,6 +121,15 @@ namespace VPR.WebApp.Transaction {
         protected global::System.Web.UI.WebControls.Button btnAwaRevert;
         
         /// <summary>
+        /// UpdateProgress1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdateProgress UpdateProgress1;
+        
+        /// <summary>
         /// tpDischarging control.
         /// </summary>
         /// <remarks>
@@ -110,6 +137,15 @@ namespace VPR.WebApp.Transaction {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.TabPanel tpDischarging;
+        
+        /// <summary>
+        /// upDischarging control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upDischarging;
         
         /// <summary>
         /// gvwDischarging control.
@@ -148,6 +184,15 @@ namespace VPR.WebApp.Transaction {
         protected global::System.Web.UI.WebControls.Button btnSaveDisETC;
         
         /// <summary>
+        /// UpdateProgress2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdateProgress UpdateProgress2;
+        
+        /// <summary>
         /// tpLoading control.
         /// </summary>
         /// <remarks>
@@ -155,6 +200,15 @@ namespace VPR.WebApp.Transaction {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.TabPanel tpLoading;
+        
+        /// <summary>
+        /// upLoading control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upLoading;
         
         /// <summary>
         /// gvwLoading control.
@@ -193,6 +247,15 @@ namespace VPR.WebApp.Transaction {
         protected global::System.Web.UI.WebControls.Button btnSaveLoadETC;
         
         /// <summary>
+        /// UpdateProgress3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdateProgress UpdateProgress3;
+        
+        /// <summary>
         /// lblErr control.
         /// </summary>
         /// <remarks>
@@ -200,14 +263,5 @@ namespace VPR.WebApp.Transaction {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblErr;
-        
-        /// <summary>
-        /// uProgressBL control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdateProgress uProgressBL;
     }
 }

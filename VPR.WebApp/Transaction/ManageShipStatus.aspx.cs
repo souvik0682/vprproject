@@ -45,7 +45,12 @@ namespace VPR.WebApp.Transaction
 
             if (!IsPostBack)
             {
-                LoadGrid();
+                //LoadGrid();
+                gvwExpecting.Visible = true;
+                LoadExpectingGrid();
+                gvwAwaiting.Visible = false;
+                gvwDischarging.Visible = false;
+                gvwLoading.Visible = false;
             }
         }
 
@@ -67,6 +72,50 @@ namespace VPR.WebApp.Transaction
             gvwExpecting.DataSource = oExpectingList;
             gvwExpecting.DataBind();
         }
+
+        private void LoadLoadingGrid()
+        {
+            List<VesselStatus> oLoadingList = new TransactionBLL().GetListVesselPosition("L", _userPort);
+            gvwLoading.DataSource = oLoadingList;
+            gvwLoading.DataBind();
+        }
+        private void LoadExpectingGrid()
+        {
+            List<VesselStatus> oExpectingList = new TransactionBLL().GetListVesselPosition("E", _userPort);
+            gvwExpecting.DataSource = oExpectingList;
+            gvwExpecting.DataBind();
+        }
+        private void LoadAwaitingGrid()
+        {
+            List<VesselStatus> oAwaitingList = new TransactionBLL().GetListVesselPosition("A", _userPort);
+            gvwAwaiting.DataSource = oAwaitingList;
+            gvwAwaiting.DataBind();
+        }
+        private void LoadDischargingGrid()
+        {
+            List<VesselStatus> oDischargingList = new TransactionBLL().GetListVesselPosition("D", _userPort);
+            gvwDischarging.DataSource = oDischargingList;
+            gvwDischarging.DataBind();
+        }
+
+        protected void btnExpectingTrigger_Click(object sender, EventArgs e)
+        {
+            LoadExpectingGrid();
+        }
+        protected void btnAwaitingTrigger_Click(object sender, EventArgs e)
+        {
+            LoadAwaitingGrid();
+        }
+        protected void btnDischargingTrigger_Click(object sender, EventArgs e)
+        {
+            LoadDischargingGrid();
+        }
+        protected void btnLoadingTrigger_Click(object sender, EventArgs e)
+        {
+            LoadLoadingGrid();
+        }
+
+
         private void RetriveParameters()
         {
             _userId = UserBLL.GetLoggedInUserId();
@@ -362,7 +411,8 @@ namespace VPR.WebApp.Transaction
                 //Save
                 new TransactionBLL().PromoteVessels(lstPromote);
                 //Reload Tabs
-                LoadGrid();
+                //LoadGrid();
+                LoadExpectingGrid();
 
                 lblErr.Text = "Vessle(s) promoted successfully!";
             }
@@ -392,7 +442,8 @@ namespace VPR.WebApp.Transaction
                 }
             }
 
-            LoadGrid();
+            //LoadGrid();
+            LoadExpectingGrid();
 
             if (IsSelected)
                 lblErr.Text = "ETA(s) saved successfully!";
@@ -440,7 +491,8 @@ namespace VPR.WebApp.Transaction
                 //Save
                 new TransactionBLL().PromoteVessels(lstPromote);
                 //Reload Tabs
-                LoadGrid();
+                //LoadGrid();
+                LoadAwaitingGrid();
 
                 lblErr.Text = "Vessle(s) promoted successfully!";
             }
@@ -473,7 +525,8 @@ namespace VPR.WebApp.Transaction
                 //Save
                 new TransactionBLL().RevertVessels(lstRevert);
                 //Reload Tabs
-                LoadGrid();
+                //LoadGrid();
+                LoadAwaitingGrid();
 
                 lblErr.Text = "Vessle(s) promoted successfully!";
             }
@@ -531,7 +584,8 @@ namespace VPR.WebApp.Transaction
                 //Save
                 new TransactionBLL().PromoteVessels(lstPromote);
                 //Reload Tabs
-                LoadGrid();
+                //LoadGrid();
+                LoadDischargingGrid();
 
                 lblErr.Text = "Vessle(s) promoted successfully!";
             }
@@ -564,7 +618,8 @@ namespace VPR.WebApp.Transaction
                 //Save
                 new TransactionBLL().RevertVessels(lstRevert);
                 //Reload Tabs
-                LoadGrid();
+                //LoadGrid();
+                LoadDischargingGrid();
 
                 lblErr.Text = "Vessle(s) promoted successfully!";
             }
@@ -594,7 +649,8 @@ namespace VPR.WebApp.Transaction
                 }
             }
 
-            LoadGrid();
+            //LoadGrid();
+            LoadDischargingGrid();
 
             if (IsSelected)
                 lblErr.Text = "ETC(s) saved successfully!";
@@ -647,7 +703,8 @@ namespace VPR.WebApp.Transaction
                 //Save
                 new TransactionBLL().PromoteVessels(lstPromote);
                 //Reload Tabs
-                LoadGrid();
+                //LoadGrid();
+                LoadLoadingGrid();
 
                 lblErr.Text = "Vessle(s) promoted successfully!";
             }
@@ -680,7 +737,8 @@ namespace VPR.WebApp.Transaction
                 //Save
                 new TransactionBLL().RevertVessels(lstRevert);
                 //Reload Tabs
-                LoadGrid();
+                //LoadGrid();
+                LoadLoadingGrid();
 
                 lblErr.Text = "Vessle(s) promoted successfully!";
             }
@@ -709,12 +767,49 @@ namespace VPR.WebApp.Transaction
                 }
             }
 
-            LoadGrid();
+            //LoadGrid();
+            LoadLoadingGrid();
 
             if (IsSelected)
                 lblErr.Text = "ETC(s) saved successfully!";
             else
                 lblErr.Text = "Nothing selected!";
+        }
+
+        protected void tcPP_ActiveTabChanged(object sender, EventArgs e)
+        {
+            if ((sender as AjaxControlToolkit.TabContainer).ActiveTabIndex == 0)
+            {
+                gvwExpecting.Visible = true;
+                LoadExpectingGrid();
+                gvwAwaiting.Visible = false;
+                gvwDischarging.Visible = false;
+                gvwLoading.Visible = false;
+            }
+            else if ((sender as AjaxControlToolkit.TabContainer).ActiveTabIndex == 1)
+            {
+                gvwAwaiting.Visible = true;
+                LoadAwaitingGrid();
+                gvwExpecting.Visible = false;
+                gvwDischarging.Visible = false;
+                gvwLoading.Visible = false;
+            }
+            else if ((sender as AjaxControlToolkit.TabContainer).ActiveTabIndex == 2)
+            {
+                gvwDischarging.Visible = true;
+                LoadDischargingGrid();
+                gvwExpecting.Visible = false;
+                gvwAwaiting.Visible = false;
+                gvwLoading.Visible = false;
+            }
+            else if ((sender as AjaxControlToolkit.TabContainer).ActiveTabIndex == 3)
+            {
+                gvwLoading.Visible = true;
+                LoadLoadingGrid();
+                gvwExpecting.Visible = false;
+                gvwAwaiting.Visible = false;
+                gvwDischarging.Visible = false;
+            }
         }
     }
 }
