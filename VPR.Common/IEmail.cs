@@ -18,6 +18,7 @@ namespace VPR.Common
         string Company { get; set; }
         int CountryId { get; set; }
         int AttachmentId { get; set; }
+        string Attachment { get; set; }
         bool MailStatus { get; set; }
         string CompanyAbbr { get; set; }
         string CargoGroup { get; set; }
