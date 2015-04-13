@@ -106,6 +106,10 @@ namespace VPR.BLL
             EmailDAL.SaveBulkEmail(xmlDoc, modifiedBy, out rowsAffected, out dupCount);
         }
 
+        public void ExportToCSV(string FileName)
+        {
+            EmailDAL.ExportToCSV(FileName);
+        }
         #endregion
     }
 }
