@@ -35,22 +35,14 @@ namespace VPR.WebApp.Reports
         {
             if (!IsPostBack)
             {
-
                 try
                 {
                     RetriveParameters();
                     CheckUserAccess();
-                    
-                    //SetAttributes();
-                    //LoadCargoGroup();
-                    //LoadCargo(0);
-                    //LoadCountry();
-                    //LoadPort("");
                 }
                 catch (Exception ex)
                 {
                     CommonBLL.HandleException(ex, this.Server.MapPath(this.Request.ApplicationPath).Replace("/", "\\"));
-                    //ToggleErrorPanel(true, ex.Message);
                 }
             }
             txtPort.TextChanged += new EventHandler(txtPort_TextChanged);
@@ -68,23 +60,10 @@ namespace VPR.WebApp.Reports
             }
         }
 
-        //private void SetAttributes()
-        //{
-        //    if (!IsPostBack)
-        //    {
-        //        btnShow.ToolTip = ResourceManager.GetStringWithoutName("R00058");
-        //        ceFromDt.Format = Convert.ToString(ConfigurationManager.AppSettings["DateFormat"]);
-        //        ceToDt.Format = Convert.ToString(ConfigurationManager.AppSettings["DateFormat"]);
-        //        rfvFromDt.ErrorMessage = ResourceManager.GetStringWithoutName("R00062");
-        //        rfvToDt.ErrorMessage = ResourceManager.GetStringWithoutName("R00063");
-        //    }
-        //}
-
         private void RetriveParameters()
         {
             _userId = UserBLL.GetLoggedInUserId();
 
-            //Get user permission.
             UserBLL.GetUserPermission(out _canAdd, out _canEdit, out _canDelete, out _canView);
         }
 
@@ -105,7 +84,6 @@ namespace VPR.WebApp.Reports
 
             lstcargoReport = ReportBAL.GetVPR(criteria);
             ReportDataSource dsGeneral = new ReportDataSource("dsSelectedVPR", lstcargoReport);
-            //reportManager.AddParameter("CompanyName", Convert.ToString(ConfigurationManager.AppSettings["CompanyName"]));
             
             string Port = ((TextBox)txtPort.FindControl("txtPort")).Text;
             string PortName = "";
@@ -158,65 +136,7 @@ namespace VPR.WebApp.Reports
                 ViewState["PORTID"] = null;
             }
 
-
         }
 
-        //private void LoadCargoGroup()
-        //{
-        //    DataTable dt = new ReportBAL().GetAllCargoGroup();
-        //    DataRow dr = dt.NewRow();
-        //    dr["pk_CargoGroupId"] = "0";
-        //    dr["CargoGroupName"] = "All Groups";
-        //    dt.Rows.InsertAt(dr, 0);
-        //    ddlCargoGroup.DataValueField = "pk_CargoGroupId";
-        //    ddlCargoGroup.DataTextField = "CargoGroupName";
-        //    ddlCargoGroup.DataSource = dt;
-        //    ddlCargoGroup.DataBind();
-        //}
-
-        //private void LoadCargo(int GroupID)
-        //{
-        //    DataTable dt = new ReportBAL().GetAllCargo(GroupID);
-        //    DataRow dr = dt.NewRow();
-        //    dr["pk_CargoId"] = "0";
-        //    dr["CargoName"] = "All Cargo";
-        //    dt.Rows.InsertAt(dr, 0);
-        //    ddlCargo.DataValueField = "pk_CargoId";
-        //    ddlCargo.DataTextField = "CargoName";
-        //    ddlCargo.DataSource = dt;
-        //    ddlCargo.DataBind();
-        //}
-
-        //private void LoadPort(string Country)
-        //{
-        //    DataTable dt = new ReportBAL().GetAllPorts(Country);
-        //    DataRow dr = dt.NewRow();
-        //    dr["pk_PortId"] = "0";
-        //    dr["PortName"] = "All Ports";
-        //    dt.Rows.InsertAt(dr, 0);
-        //    ddlPort.DataValueField = "pk_PortId";
-        //    ddlPort.DataTextField = "PortName";
-        //    ddlPort.DataSource = dt;
-        //    ddlPort.DataBind();
-        //}
-
-        //protected void ddlPort_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-
-        //}
-
-        //private void LoadCountry()
-        //{
-
-        //    DataTable dt = new ReportBAL().GetAllCountry();
-        //    DataRow dr = dt.NewRow();
-        //    dr["pk_CountryId"] = "0";
-        //    dr["CountryName"] = "All Country";
-        //    dt.Rows.InsertAt(dr, 0);
-        //    ddlCountry.DataValueField = "pk_CountryId";
-        //    ddlCountry.DataTextField = "CountryName";
-        //    ddlCountry.DataSource = dt;
-        //    ddlCountry.DataBind();
-        //}
     }
 }
