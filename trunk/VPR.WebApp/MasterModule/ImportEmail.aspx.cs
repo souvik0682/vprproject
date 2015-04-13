@@ -14,6 +14,7 @@ using VPR.Common;
 using VPR.Entity;
 using VPR.Utilities;
 using VPR.Utilities.ResourceManager;
+using System.Data;
 
 namespace VPR.WebApp.MasterModule
 {
@@ -50,8 +51,6 @@ namespace VPR.WebApp.MasterModule
             }
         }
 
-       
-
         protected void btnImport_Click(object sender, EventArgs e)
         {
             //LoadShipSoftData();
@@ -79,6 +78,7 @@ namespace VPR.WebApp.MasterModule
                                 {
                                     
                                     EmailImport Email = new EmailImport();
+                                    Email.CompanyAbbr = Convert.ToString(abc[4]);
                                     Email.Name = Convert.ToString(abc[2]);
                                     Email.EmailID = Convert.ToString(abc[0]);
 
@@ -111,6 +111,7 @@ namespace VPR.WebApp.MasterModule
             }
         }
 
+        
         //private string test(string arg)
         //{
         //    int nInStrLen = 0;
@@ -175,9 +176,75 @@ namespace VPR.WebApp.MasterModule
             return asciiString;
         }
         
+        protected void btnExport_Click(object sender, EventArgs e)
+        {
+            EmailBLL cls = new EmailBLL();
+            var path = Server.MapPath("~/ExpEmail/filename.txt");
+            var newFileName = Server.MapPath("~/ExpEmail/EmailExport" + DateTime.Now.ToString("ddMMyyyymmhh") + ".txt");
+            File.Copy(path, newFileName, true);
+            new EmailBLL().ExportToCSV(newFileName);
+
+            byte[] Content = File.ReadAllBytes(newFileName);
+            Response.ContentType = "text/csv";
+            Response.AddHeader("content-disposition", "attachment; filename=" + newFileName);
+            Response.BufferOutput = true;;
+            Response.OutputStream.Write(Content, 0, Content.Length);
+            Response.End();
+            
+
+        }
+
+        //protected void btnExport_Click(object sender, EventArgs e)
+        //{
+        //    EmailBLL cls = new EmailBLL();
+        //    string strBasePath = @"D:\";
+        //    string strFilename = @"filename.csv";
+        //    string CSVConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0; Data Source='" + strBasePath + @"';Extended Properties='text; HDR=Yes;FMT=Delimited';";
+        //    using (OleDbConnection CSVConnection = new OleDbConnection(CSVConnectionString))
+        //    {
+        //        try
+        //        {
+        //            DataTable dtEmail = new DataTable();
+        //            dtEmail = cls.GetAllEmail();
+
+        //            CSVConnection.Open();
+        //            string strInsertCommand = @"INSERT INTO " + strFilename + @" (ReceiverNm, ValidemailID, Cat) VALUES (@Receiver, @email, @category)";
+        //            OleDbCommand InsertCommanmd = CSVConnection.CreateCommand();
+        //            InsertCommanmd.CommandText = strInsertCommand;
+                   
+
+        //            foreach (DataRow row in dtEmail.Rows)
+        //            {
+        //                InsertCommanmd.Parameters.Clear();
+        //                InsertCommanmd.Parameters.AddWithValue("@Receiver", row["ReceiverName"].ToString());
+        //                InsertCommanmd.Parameters.AddWithValue("@email", row["emailIDActive"].ToString());
+        //                InsertCommanmd.Parameters.AddWithValue("@category", row["CompanyAbbr"].ToString());
+        //                //Optional Line :Writing to console
+        //                //Console.WriteLine("{0}\t{1}\t\t\b{2}", row["customerNumber"].ToString(), row["customerName"].ToString().PadRight(25), row["country"].ToString());
+
+        //                InsertCommanmd.ExecuteNonQuery();
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Console.WriteLine("CSV Database Err: " + ex.Message);
+        //        }
+        //        finally
+        //        {
+        //            if (!CSVConnection.State.Equals(ConnectionState.Closed))
+        //            {
+        //                CSVConnection.Close();
+        //                byte[] Content= File.ReadAllBytes(FilePath)
+        //                Response.ContentType = "text/csv";
+        //                Response.AddHeader("content-disposition", "attachment; filename=" + fileName + ".csv");
+        //                Response.BufferOutput = true;;
+        //                Response.OutputStream.Write(Content, 0, Content.Length);
+        //                Response.End();
+        //            }
+        //        }
+        //    }
+        //}
 
         #endregion
-
-       
     }
 }
