@@ -332,8 +332,8 @@ namespace VPR.WebApp.Transaction
 
         private void SetDefaultSearchCriteria(SearchCriteria criteria)
         {
-            string sortExpression = "VesselName";
-            string sortDirection = "ASC";
+            string sortExpression = "ArrivalDate";
+            string sortDirection = "DESC";
 
             criteria.CurrentPage = PageName.EmailGroup;
             criteria.PageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]);
