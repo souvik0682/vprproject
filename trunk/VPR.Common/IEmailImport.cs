@@ -9,5 +9,6 @@ namespace VPR.Common
     {
         string Name { get; set; }
         string EmailID { get; set; }
+        string CompanyAbbr { get; set; }
     }
 }
