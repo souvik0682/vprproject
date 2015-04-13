@@ -39,15 +39,12 @@ namespace VPR.WebApp.Reports
                     RetriveParameters();
                     CheckUserAccess();
                     SetAttributes();
-                    //LoadCargoGroup();
                     LoadCargo(0);
                     LoadCountry();
-                    //LoadPort("");
                 }
                 catch (Exception ex)
                 {
                     CommonBLL.HandleException(ex, this.Server.MapPath(this.Request.ApplicationPath).Replace("/", "\\"));
-                    //ToggleErrorPanel(true, ex.Message);
                 }
             }
             txtPort.TextChanged += new EventHandler(txtPort_TextChanged);
@@ -58,8 +55,7 @@ namespace VPR.WebApp.Reports
         {
             if (!IsPostBack)
             {
-                //btnShow.ToolTip = ResourceManager.GetStringWithoutName("R00058");
-                
+
                 ceMovementDate.Format = Convert.ToString(ConfigurationManager.AppSettings["DateFormat"]);
                 ceMovementDate1.Format = Convert.ToString(ConfigurationManager.AppSettings["DateFormat"]);
                 rfvMovementDate.ErrorMessage = ResourceManager.GetStringWithoutName("R00062");
@@ -70,7 +66,6 @@ namespace VPR.WebApp.Reports
         {
             _userId = UserBLL.GetLoggedInUserId();
 
-            //Get user permission.
             UserBLL.GetUserPermission(out _canAdd, out _canEdit, out _canDelete, out _canView);
         }
 
@@ -87,19 +82,6 @@ namespace VPR.WebApp.Reports
             GenerateReport();
         }
 
-        //private void LoadCargoGroup()
-        //{
-        //    DataTable dt = new ReportBAL().GetAllCargoGroup();
-        //    DataRow dr = dt.NewRow();
-        //    dr["pk_CargoGroupId"] = "0";
-        //    dr["CargoGroupName"] = "All Groups";
-        //    dt.Rows.InsertAt(dr, 0);
-        //    ddlCargoGroup.DataValueField = "pk_CargoGroupId";
-        //    ddlCargoGroup.DataTextField = "CargoGroupName";
-        //    ddlCargoGroup.DataSource = dt;
-        //    ddlCargoGroup.DataBind();
-        //}
-
         private void LoadCargo(int GroupID)
         {
             DataTable dt = new ReportBAL().GetAllCargo(GroupID, 0);
@@ -112,19 +94,6 @@ namespace VPR.WebApp.Reports
             ddlCargo.DataSource = dt;
             ddlCargo.DataBind();
         }
-
-        //private void LoadPort(string Country)
-        //{
-        //    DataTable dt = new ReportBAL().GetAllPorts(Country);
-        //    DataRow dr = dt.NewRow();
-        //    dr["pk_PortId"] = "0";
-        //    dr["PortName"] = "All Ports";
-        //    dt.Rows.InsertAt(dr, 0);
-        //    ddlPort.DataValueField = "pk_PortId";
-        //    ddlPort.DataTextField = "PortName";
-        //    ddlPort.DataSource = dt;
-        //    ddlPort.DataBind();
-        //}
 
         private void LoadCountry()
         {
@@ -162,20 +131,9 @@ namespace VPR.WebApp.Reports
                 if (Port != string.Empty)
                 {
                     PortID = Convert.ToInt32(ViewState["PORTID"]);
-                    //PortName = new TransactionBLL().GetOnlyPortNameById(portid);
                 }
                 dtExcel = cls.GetPASExcelReport(dt1, dt2, Convert.ToInt32(ddlCargo.SelectedValue), PortID, CountryAbbr, ddlActivity.SelectedValue);
 
-                //dtExcel.Columns.Remove("fk_NVOCCID");
-                //dtExcel.Columns.Remove("fk_MainLineVesselID");
-                ////dtExcel.Columns.Remove("CustName");
-                //dtExcel.Columns.Remove("fk_MainLineVoyageID");
-                //dtExcel.Columns.Remove("ContainerAbbr");
-                ////dtExcel.Columns.Remove("Nos");
-                //dtExcel.Columns.Remove("Commodity");
-                ////dtExcel.Columns.Remove("LineName");
-                ////dtExcel.Columns.Remove("ServiceName");
-                ////dtExcel.Columns.Remove("ETANextPort");
                 ExporttoExcel(dtExcel);
             }
             catch (Exception)
@@ -271,12 +229,7 @@ namespace VPR.WebApp.Reports
                 ViewState["PORTID"] = null;
             }
 
-
         }
-        //protected void ddlPort_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-
-        //}
 
     }
 }
