@@ -483,6 +483,8 @@ namespace VPR.DAL
                     oDq.AddDateTimeParam("@StatusDate", vessel.ArrivalDate);
                 else if (vessel.Activity == "A")
                     oDq.AddDateTimeParam("@StatusDate", vessel.BerthDate);
+                else if (((vessel.VActivity == "D" && vessel.Activity == "D") || vessel.Activity == "L") && vessel.ETC.HasValue)
+                    oDq.AddDateTimeParam("@StatusDate", vessel.ETC);
                 else
                     oDq.AddDateTimeParam("@StatusDate", DateTime.Now);
 
@@ -511,7 +513,7 @@ namespace VPR.DAL
             }
         }
 
-        public static void SaveETCorWTA(int vesselId, DateTime dt, bool isETA)
+        public static void SaveETCorWTA(int vesselId, DateTime dt, bool isETA, int BerthID)
         {
             string strExecution = "usp_SaveETCorETA";
 
@@ -520,6 +522,7 @@ namespace VPR.DAL
                 oDq.AddIntegerParam("@vesselId", vesselId);
                 oDq.AddBooleanParam("@isETA", isETA);
                 oDq.AddDateTimeParam("@dt", dt);
+                oDq.AddIntegerParam("@BerthID", BerthID);
 
                 oDq.RunActionQuery();
             }

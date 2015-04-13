@@ -164,6 +164,7 @@ namespace VPR.DAL
                 oDq.AddVarcharParam("@CompanyAbbr", 50, EmailGroup.CompanyAbbr);
                 oDq.AddBooleanParam("@MailStatus", EmailGroup.MailStatus);
                 oDq.AddIntegerParam("@CountryId", EmailGroup.CountryId);
+                oDq.AddVarcharParam("@Attachment", 1, EmailGroup.Attachment);
 
                 oDq.AddIntegerParam("@CreatedBy", EmailGroup.CreatedBy);
                 oDq.AddIntegerParam("@ModifiedBy", EmailGroup.ModifiedBy);
@@ -303,6 +304,28 @@ namespace VPR.DAL
             }
         }
 
+        public static DataTable GetAllEmail()
+        {
+            string strExecution = "[dbo].[usp_GetEmail]";
+            DataTable dt = new DataTable();
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                dt = oDq.GetTable();
+            }
+            return dt;
+        }
+
+
+        public static void ExportToCSV(string FileName)
+        {
+            string strExecution = "uspExportEmail";
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddVarcharParam("@Filename", 200, FileName);
+                oDq.RunActionQuery();
+            }
+        }
         #endregion
     }
 }
