@@ -167,9 +167,9 @@ namespace VPR.BLL
             }
         }
 
-        public void SaveETCorWTA(int vesselId, DateTime dt, bool isETA)
+        public void SaveETCorWTA(int vesselId, DateTime dt, bool isETA, int BerthID)
         {
-            TransactionDAL.SaveETCorWTA(vesselId, dt, isETA);
+            TransactionDAL.SaveETCorWTA(vesselId, dt, isETA, BerthID);
         }
 
         public DataTable GetPASVesselList()

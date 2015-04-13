@@ -299,7 +299,7 @@ namespace VPR.BLL
 
         public void DeleteCargo(int pk_CargoId)
         {
-            string ProcName = "admin.prcDeleteCargoSubGroup";
+            string ProcName = "admin.prcDeleteCargo";
             DAL.DbManager.DbQuery dquery = new DAL.DbManager.DbQuery(ProcName);
             dquery.AddIntegerParam("@pk_CargoID", pk_CargoId);
             dquery.RunActionQuery();
