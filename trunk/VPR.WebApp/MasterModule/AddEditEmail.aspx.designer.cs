@@ -193,6 +193,15 @@ namespace VPR.WebApp.MasterModule {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCountry;
         
         /// <summary>
+        /// ddlAttachment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlAttachment;
+        
+        /// <summary>
         /// ListBox1 control.
         /// </summary>
         /// <remarks>

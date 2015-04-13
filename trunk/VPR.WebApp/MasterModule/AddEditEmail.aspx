@@ -133,6 +133,20 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>
+                            Attachment
+                        </td>
+                        <td>
+                            <asp:DropDownList ID="ddlAttachment" runat="server" 
+                                onselectedindexchanged="ddlAttachment_SelectedIndexChanged">
+                                <asp:ListItem Value="N" Text="None" Selected="True"></asp:ListItem>
+                                <asp:ListItem Value="L" Text="Link"></asp:ListItem>
+                                <asp:ListItem Value="A" Text="Attachment"></asp:ListItem>
+                                <asp:ListItem Value="B" Text="Both"></asp:ListItem>
+                            </asp:DropDownList>
+                        </td>
+                    </tr>
+                    <tr>
                         <td colspan="4" style="padding-top: 10; border: none;">
                             <fieldset style="width: 95%;">
                                 <legend>Tag Cargo Group(s)</legend>

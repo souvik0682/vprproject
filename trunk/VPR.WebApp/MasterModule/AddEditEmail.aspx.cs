@@ -131,6 +131,7 @@ namespace VPR.WebApp.MasterModule
             txtCompanyName.Text = objGroup.Company;
             txtCompanyAbbr.Text = objGroup.CompanyAbbr;
             ddlCountry.SelectedValue = objGroup.CountryId.ToString();
+            ddlAttachment.SelectedValue = objGroup.Attachment;
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -152,6 +153,7 @@ namespace VPR.WebApp.MasterModule
                 emailGroup.Company = txtCompanyName.Text.Trim();
                 emailGroup.CompanyAbbr = txtCompanyAbbr.Text.Trim();
                 emailGroup.CountryId = Convert.ToInt32(ddlCountry.SelectedValue);
+                emailGroup.Attachment = ddlAttachment.SelectedValue;
 
                 if (!ReferenceEquals(ViewState["dynList2"], null))
                     emailGroup.CargoGroupList = (List<ICargoGroup>)ViewState["dynList2"];
@@ -448,6 +450,11 @@ namespace VPR.WebApp.MasterModule
             txtSuffix.Text = string.Empty;
             BindListBox(0);
 
-        } 
+        }
+
+        protected void ddlAttachment_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
