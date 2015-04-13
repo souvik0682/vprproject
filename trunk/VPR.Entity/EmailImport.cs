@@ -26,6 +26,12 @@ namespace VPR.Entity
             set;
         }
 
+        public string CompanyAbbr
+        {
+            get;
+            set;
+        }
+
         #endregion
 
         #region Constructors
@@ -40,6 +46,7 @@ namespace VPR.Entity
             
             this.Name = Convert.ToString(reader["Name"]);
             this.EmailID = Convert.ToString(reader["EmailID"]);
+            this.CompanyAbbr = Convert.ToString(reader["CompanyAbbr"]);
             
         }
 

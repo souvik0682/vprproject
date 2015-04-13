@@ -22,6 +22,8 @@ namespace VPR.Entity
 
         public int AttachmentId { get; set; }
 
+        public string Attachment { get; set; }
+
         public bool MailStatus { get; set; }
 
         public string CompanyAbbr { get; set; }
@@ -67,6 +69,9 @@ namespace VPR.Entity
 
             if (ColumnExists(reader, "Salutation"))
                 this.Salutation = Convert.ToString(reader["Salutation"]);
+
+            if (ColumnExists(reader, "Attachment"))
+                this.Attachment = Convert.ToString(reader["Attachment"]);
 
             if (ColumnExists(reader, "ReceiverName"))
                 this.Name = Convert.ToString(reader["ReceiverName"]);
