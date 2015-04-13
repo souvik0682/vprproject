@@ -75,24 +75,28 @@ namespace VPR.WebApp.Transaction
 
         private void LoadLoadingGrid()
         {
+            lblErr.Text = "";
             List<VesselStatus> oLoadingList = new TransactionBLL().GetListVesselPosition("L", _userPort);
             gvwLoading.DataSource = oLoadingList;
             gvwLoading.DataBind();
         }
         private void LoadExpectingGrid()
         {
+            lblErr.Text = "";
             List<VesselStatus> oExpectingList = new TransactionBLL().GetListVesselPosition("E", _userPort);
             gvwExpecting.DataSource = oExpectingList;
             gvwExpecting.DataBind();
         }
         private void LoadAwaitingGrid()
         {
+            lblErr.Text = "";
             List<VesselStatus> oAwaitingList = new TransactionBLL().GetListVesselPosition("A", _userPort);
             gvwAwaiting.DataSource = oAwaitingList;
             gvwAwaiting.DataBind();
         }
         private void LoadDischargingGrid()
         {
+            lblErr.Text = "";
             List<VesselStatus> oDischargingList = new TransactionBLL().GetListVesselPosition("D", _userPort);
             gvwDischarging.DataSource = oDischargingList;
             gvwDischarging.DataBind();
@@ -436,8 +440,9 @@ namespace VPR.WebApp.Transaction
                 {
                     HiddenField hdnVesselId = (HiddenField)thisGridViewRow.FindControl("hdnVesselId");
                     TextBox txtETA = (TextBox)thisGridViewRow.FindControl("txtETA");
+                    DropDownList ddlBerth = (DropDownList)thisGridViewRow.FindControl("ddlBerth");
 
-                    new TransactionBLL().SaveETCorWTA(Convert.ToInt32(hdnVesselId.Value), Convert.ToDateTime(txtETA.Text.Trim()), true);
+                    new TransactionBLL().SaveETCorWTA(Convert.ToInt32(hdnVesselId.Value), Convert.ToDateTime(txtETA.Text.Trim()), true, ddlBerth.SelectedValue.ToInt());
                     IsSelected = true;
                 }
             }
@@ -540,6 +545,7 @@ namespace VPR.WebApp.Transaction
         protected void btnDisPromote_Click(object sender, EventArgs e)
         {
             DateTime? dte = null;
+            int? cnt = 0;
             List<VesselStatus> lstPromote = new List<VesselStatus>();
             int totalRows = gvwDischarging.Rows.Count;
 
@@ -574,6 +580,11 @@ namespace VPR.WebApp.Transaction
                                 Activity = "D"
                             });
                         }
+                        else
+                        {
+                            cnt ++;
+                            //lblErr.Text = "Invalid Date Selected in atleast One Row!";
+                        }
                     }
 
                 }
@@ -588,6 +599,10 @@ namespace VPR.WebApp.Transaction
                 LoadDischargingGrid();
 
                 lblErr.Text = "Vessle(s) promoted successfully!";
+            }
+            else if (cnt > 0)
+            {
+                lblErr.Text = "Invalid Date Selected in atleast One Row!";
             }
             else
             {
@@ -643,8 +658,8 @@ namespace VPR.WebApp.Transaction
                 {
                     HiddenField hdnVesselId = (HiddenField)thisGridViewRow.FindControl("hdnVesselId");
                     TextBox txtETC = (TextBox)thisGridViewRow.FindControl("txtETC");
-
-                    new TransactionBLL().SaveETCorWTA(Convert.ToInt32(hdnVesselId.Value), Convert.ToDateTime(txtETC.Text.Trim()), false);
+                    DropDownList ddlBerth = (DropDownList)thisGridViewRow.FindControl("ddlBerth");
+                    new TransactionBLL().SaveETCorWTA(Convert.ToInt32(hdnVesselId.Value), Convert.ToDateTime(txtETC.Text.Trim()), false, ddlBerth.SelectedValue.ToInt());
                     IsSelected = true;
                 }
             }
@@ -762,8 +777,9 @@ namespace VPR.WebApp.Transaction
                 {
                     HiddenField hdnVesselId = (HiddenField)thisGridViewRow.FindControl("hdnVesselId");
                     TextBox txtETC = (TextBox)thisGridViewRow.FindControl("txtETC");
+                    DropDownList ddlBerth = (DropDownList)thisGridViewRow.FindControl("ddlBerth");
 
-                    new TransactionBLL().SaveETCorWTA(Convert.ToInt32(hdnVesselId.Value), Convert.ToDateTime(txtETC.Text.Trim()), false);
+                    new TransactionBLL().SaveETCorWTA(Convert.ToInt32(hdnVesselId.Value), Convert.ToDateTime(txtETC.Text.Trim()), false, ddlBerth.SelectedValue.ToInt());
                 }
             }
 

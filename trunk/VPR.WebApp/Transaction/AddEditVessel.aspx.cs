@@ -370,6 +370,17 @@ namespace VPR.WebApp.Transaction
                 errNextPort.Text = "This field is required";
             }
 
+            if (gvwCargo.Rows.Count == 1)
+            {
+                List<CargoDetails> lstData = ViewState["DataSource"] as List<CargoDetails>;
+                GridViewRow thisGridViewRow = gvwCargo.Rows[0];
+                DropDownList ddlCargo = (DropDownList)thisGridViewRow.FindControl("ddlCargo");
+                if (ddlCargo.SelectedIndex == 0)
+                {
+                    IsValid = false;
+                    lblErr.Text = "Cargo is compulsory";
+                }
+            }
             return IsValid;
         }
 
@@ -445,6 +456,9 @@ namespace VPR.WebApp.Transaction
             o = new TransactionBLL().GetVessel(VesselId);
 
             ddlAcivity.SelectedValue = o.Activity;
+            if (!string.IsNullOrEmpty(o.ActivityStatus))
+                ddlAcivity.Enabled = false;
+
             txtVesselName.Text = o.VesselName;
             ddlVesselPrefix.SelectedValue = o.VesselPrefix.ToString();
 
@@ -479,11 +493,13 @@ namespace VPR.WebApp.Transaction
             txtOwnerName.Text = o.Owner;
             ddlAgentName.SelectedValue = o.AgentId.ToString();
             txtRemarks.Text = o.Remarks;
+            txtSailDate.Enabled = true;
+            
             if (o.ActivityStatus == "S")
             {
                 txtBerthDate.Enabled = true;
                 txtArrivalDate.Enabled = true;
-                txtSailDate.Enabled = true;
+                //txtSailDate.Enabled = true;
                 txtETC.Enabled = true;
                 ddlAcivity.Enabled = false;
                 txtPort.EnableViewState = false;
