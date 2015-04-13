@@ -23,6 +23,7 @@
                         Select File: <asp:FileUpload ID="fuShipSoft" runat="server" />
                     </td>
                     <td><asp:Button ID="btnImport" runat="server" Text="Import" Width="100px" OnClick="btnImport_Click" /></td>
+                    <td><asp:Button ID="btnExport" runat="server" Text="Export" Width="100px" OnClick="btnExport_Click" /></td>
                 </tr>
             </table>
         </fieldset>

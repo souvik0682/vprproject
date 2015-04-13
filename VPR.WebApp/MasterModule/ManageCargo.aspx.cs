@@ -96,7 +96,7 @@ namespace VPR.WebApp.MasterModule
             }
             else if (e.CommandName == "Remove")
             {
-                DeleteCargoSubGroup(Convert.ToInt32(e.CommandArgument));
+                DeleteCargo(Convert.ToInt32(e.CommandArgument));
             }
         }
 
@@ -290,10 +290,10 @@ namespace VPR.WebApp.MasterModule
             }
         }
 
-        private void DeleteCargoSubGroup(int portId)
+        private void DeleteCargo(int portId)
         {
             DBInteraction dinteract = new DBInteraction();
-            dinteract.DeleteCargoSubGroup(portId);
+            dinteract.DeleteCargo(portId);
             SearchCriteria searchCriteria = (SearchCriteria)Session[Constants.SESSION_SEARCH_CRITERIA];
             LoadData();
             ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", "<script>javascript:void alert('" + ResourceManager.GetStringWithoutName("ERR00010") + "');</script>", false);
